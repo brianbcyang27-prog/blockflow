@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BlockFlow - 3 Block Day</title>
+    <meta name="description" content="A simple productivity app to reduce scrolling addiction and improve focus">
+    <meta name="theme-color" content="#667eea">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+</head>
+<body>
+<div class="container">
+<header class="header">
+<h1>BlockFlow</h1>
+<p class="subtitle">Balance your day in 3 blocks</p>
+<div class="date-display" id="currentDate">Today: Loading...</div>
+</header>
+
+<nav class="nav-tabs">
+<button class="nav-tab active" onclick="window.location.href='index.html'">🏠 Dashboard</button>
+<button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
+<button class="nav-tab" onclick="window.location.href='settings.html'">⚙️ Settings</button>
+</nav>
+
+<main>
+            <!-- Daily Blocks Section -->
+            <section class="blocks-section">
+                <h2>📋 Today's Blocks</h2>
+                <div class="blocks-container" id="blocksContainer">
+                    <!-- Blocks will be dynamically inserted here -->
+                </div>
+            </section>
+
+            <!-- Focus Timer Section -->
+            <section class="timer-section">
+                <h2>⏱️ Focus Timer</h2>
+                <div class="timer-display" id="timerDisplay">
+                    <div class="time" id="timerTime">25:00</div>
+                    <div class="timer-controls">
+                        <button class="btn btn-primary" id="startTimer">Start Focus</button>
+                        <button class="btn btn-secondary" id="pauseTimer" disabled>Pause</button>
+                        <button class="btn btn-secondary" id="resetTimer">Reset</button>
+                    </div>
+                    <div class="timer-status" id="timerStatus">Ready to focus</div>
+                </div>
+            </section>
+
+            <!-- Anti-Scroll Tracker -->
+            <section class="tracker-section">
+                <h2>🚫 Distraction Tracker</h2>
+                <div class="tracker-card">
+                    <p>Caught yourself scrolling?</p>
+                    <button class="btn btn-warning" id="logDistraction">I got distracted</button>
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-label">Today's distractions:</span>
+                            <span class="stat-value" id="distractionCount">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Focus time:</span>
+                            <span class="stat-value" id="focusTime">0 min</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sleep Tracker -->
+            <section class="sleep-section">
+                <h2>😴 Sleep Tracker</h2>
+                <div class="sleep-card">
+                    <div class="sleep-inputs">
+                        <div class="input-group">
+                            <label for="sleepTime">Sleep Time</label>
+                            <input type="time" id="sleepTime" value="22:00">
+                        </div>
+                        <div class="input-group">
+                            <label for="wakeTime">Wake Time</label>
+                            <input type="time" id="wakeTime" value="07:00">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="saveSleep">Save Sleep</button>
+                    <div class="sleep-display" id="sleepDisplay">
+                        Sleep duration: <span id="sleepDuration">9h 0m</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daily Reset -->
+            <section class="reset-section">
+                <button class="btn btn-secondary" id="dailyReset">Reset Day</button>
+                <p class="note">Day resets automatically at midnight</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>BlockFlow &copy; 2025 - Simple focus tool</p>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="blockSettingsModal">
+        <div class="modal-content">
+            <h3>Block Settings</h3>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="blockDuration">Duration (minutes)</label>
+                    <input type="number" id="blockDuration" min="15" max="240" value="60">
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="saveBlockSettings">Save</button>
+                    <button class="btn btn-secondary" id="cancelBlockSettings">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/ui.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker registration failed:', err));
+        }
+    </script>
+</body>
+</html>

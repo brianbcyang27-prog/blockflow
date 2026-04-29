@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0539444CA82B7CED671E2A4A /* BlockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11F8733BF392C4A3AA2B542 /* BlockViewModel.swift */; };
+		07E02AD25C44FE48E2F2A100 /* HealthDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC6CA2E7072E8E283D0C503 /* HealthDetailView.swift */; };
+		0F6B24ADD17631E6F890E206 /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B7DFC12345569FCEC4F0EF /* HealthService.swift */; };
+		11F6BD6113B9DB2DD452D3A1 /* DebugLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09CB0F777DE7AFCDC7B5C75 /* DebugLogManager.swift */; };
+		414FED59ADFB6E3F7E533411 /* ScreenTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803F43D93B4A8DE078165F22 /* ScreenTimeService.swift */; };
+		4B1FF51226BF0A03E762EBB8 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B4B477CF89674E27C0A91 /* CalendarView.swift */; };
+		5C12714AA63D38261B0CF15E /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4554FB8C0A2B4D22B0C45379 /* CalendarService.swift */; };
+		64FBDD6E28C8F9BD4C769BF3 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FABADE922EBDC88DFF5A3C /* NotificationService.swift */; };
+		6A0E32117E2D3A3792D3DC47 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F8681A80836885C0B145DE /* InsightsView.swift */; };
+		6A92ABC4039C0DB94A077DED /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0207C1F34ED637DAC4D8D79 /* WorkoutDetailView.swift */; };
+		725B8C372287F9390C1F5DCD /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58508BA521659830B6BBD5F7 /* BlockModel.swift */; };
+		812D9C0D3E6B6F0B6C8F29D7 /* HealthDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A73D844E6CD3FED6CC01B0 /* HealthDashboardView.swift */; };
+		819D254E72A228F1D19EA5C3 /* BlockFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDAE2B0BEFFFBC275D041E2 /* BlockFlowApp.swift */; };
+		8B69A40D39C4713403EEAD08 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DDDCD24F542E594A39ECA /* SplashView.swift */; };
+		93222839AFEA40A81173C0A1 /* RecommendationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BF706BD637D0EFDBAC7CCB /* RecommendationEngine.swift */; };
+		AF1CA1D5CD570FC8ED6139A5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DC87F9497B922C2A350F5C /* SettingsView.swift */; };
+		B1E8F88AFD876695A7D9AE7D /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603A64756ED01006AFEDE163 /* StorageService.swift */; };
+		B305F0349DC8D085EA2A8DE1 /* AddBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C18F32C7F7DBCD7D8333F7D /* AddBlockView.swift */; };
+		B76C62D4AABFF92695050A24 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2AA7DDAF78748699ED0D6E /* LoginView.swift */; };
+		BF023F4EEC5BA4C2CBD7CAD4 /* DebugLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C1201311FCE4E58698BE3D /* DebugLogView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		15C13BF933A8979FBA96C057 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		19C1201311FCE4E58698BE3D /* DebugLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLogView.swift; sourceTree = "<group>"; };
+		2C18F32C7F7DBCD7D8333F7D /* AddBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlockView.swift; sourceTree = "<group>"; };
+		352B4B477CF89674E27C0A91 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		3A2AA7DDAF78748699ED0D6E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		444DDDCD24F542E594A39ECA /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		4554FB8C0A2B4D22B0C45379 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		58508BA521659830B6BBD5F7 /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
+		603A64756ED01006AFEDE163 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		73DC87F9497B922C2A350F5C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		803F43D93B4A8DE078165F22 /* ScreenTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenTimeService.swift; sourceTree = "<group>"; };
+		80BF706BD637D0EFDBAC7CCB /* RecommendationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngine.swift; sourceTree = "<group>"; };
+		96F8681A80836885C0B145DE /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		AD7FC1513C95D391E5493174 /* BlockFlowiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlockFlowiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B09CB0F777DE7AFCDC7B5C75 /* DebugLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLogManager.swift; sourceTree = "<group>"; };
+		C0207C1F34ED637DAC4D8D79 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
+		DBC6CA2E7072E8E283D0C503 /* HealthDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDetailView.swift; sourceTree = "<group>"; };
+		E4A73D844E6CD3FED6CC01B0 /* HealthDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDashboardView.swift; sourceTree = "<group>"; };
+		E5B7DFC12345569FCEC4F0EF /* HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthService.swift; sourceTree = "<group>"; };
+		F11F8733BF392C4A3AA2B542 /* BlockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockViewModel.swift; sourceTree = "<group>"; };
+		F8FABADE922EBDC88DFF5A3C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		FDDAE2B0BEFFFBC275D041E2 /* BlockFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockFlowApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0C8D4D27179982EE40314174 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F11F8733BF392C4A3AA2B542 /* BlockViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		389CAB69B1E928D0F14E4C4D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				58508BA521659830B6BBD5F7 /* BlockModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		53204119782DA6109862042A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		744A8E33591D1F9345B0A112 = {
+			isa = PBXGroup;
+			children = (
+				15C13BF933A8979FBA96C057 /* Info.plist */,
+				53204119782DA6109862042A /* Resources */,
+				9EFE6168E06FB4206237EEB4 /* Sources */,
+				B0C8076659EF146CC7417426 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7803C5179FCFCF2219A88651 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2C18F32C7F7DBCD7D8333F7D /* AddBlockView.swift */,
+				352B4B477CF89674E27C0A91 /* CalendarView.swift */,
+				19C1201311FCE4E58698BE3D /* DebugLogView.swift */,
+				E4A73D844E6CD3FED6CC01B0 /* HealthDashboardView.swift */,
+				DBC6CA2E7072E8E283D0C503 /* HealthDetailView.swift */,
+				96F8681A80836885C0B145DE /* InsightsView.swift */,
+				3A2AA7DDAF78748699ED0D6E /* LoginView.swift */,
+				73DC87F9497B922C2A350F5C /* SettingsView.swift */,
+				444DDDCD24F542E594A39ECA /* SplashView.swift */,
+				C0207C1F34ED637DAC4D8D79 /* WorkoutDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9EFE6168E06FB4206237EEB4 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D496B3BAEC4D4660D9885E0B /* App */,
+				389CAB69B1E928D0F14E4C4D /* Models */,
+				A9894808AA89E53F8F01575F /* Utils */,
+				0C8D4D27179982EE40314174 /* ViewModels */,
+				7803C5179FCFCF2219A88651 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A9894808AA89E53F8F01575F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4554FB8C0A2B4D22B0C45379 /* CalendarService.swift */,
+				B09CB0F777DE7AFCDC7B5C75 /* DebugLogManager.swift */,
+				E5B7DFC12345569FCEC4F0EF /* HealthService.swift */,
+				F8FABADE922EBDC88DFF5A3C /* NotificationService.swift */,
+				80BF706BD637D0EFDBAC7CCB /* RecommendationEngine.swift */,
+				803F43D93B4A8DE078165F22 /* ScreenTimeService.swift */,
+				603A64756ED01006AFEDE163 /* StorageService.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B0C8076659EF146CC7417426 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AD7FC1513C95D391E5493174 /* BlockFlowiOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D496B3BAEC4D4660D9885E0B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FDDAE2B0BEFFFBC275D041E2 /* BlockFlowApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6D8D7DAD3AAFC553661E8586 /* BlockFlowiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0568DE4326908E2DDE60515C /* Build configuration list for PBXNativeTarget "BlockFlowiOS" */;
+			buildPhases = (
+				8B25256DECF62AAB3C0EFD02 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BlockFlowiOS;
+			packageProductDependencies = (
+			);
+			productName = BlockFlowiOS;
+			productReference = AD7FC1513C95D391E5493174 /* BlockFlowiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C559A6BB5C2B452F30DDFA2D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					6D8D7DAD3AAFC553661E8586 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E6091818D2B18006DAB0CAC9 /* Build configuration list for PBXProject "BlockFlowiOS" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 744A8E33591D1F9345B0A112;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B0C8076659EF146CC7417426 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6D8D7DAD3AAFC553661E8586 /* BlockFlowiOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8B25256DECF62AAB3C0EFD02 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B305F0349DC8D085EA2A8DE1 /* AddBlockView.swift in Sources */,
+				819D254E72A228F1D19EA5C3 /* BlockFlowApp.swift in Sources */,
+				725B8C372287F9390C1F5DCD /* BlockModel.swift in Sources */,
+				0539444CA82B7CED671E2A4A /* BlockViewModel.swift in Sources */,
+				5C12714AA63D38261B0CF15E /* CalendarService.swift in Sources */,
+				4B1FF51226BF0A03E762EBB8 /* CalendarView.swift in Sources */,
+				11F6BD6113B9DB2DD452D3A1 /* DebugLogManager.swift in Sources */,
+				BF023F4EEC5BA4C2CBD7CAD4 /* DebugLogView.swift in Sources */,
+				812D9C0D3E6B6F0B6C8F29D7 /* HealthDashboardView.swift in Sources */,
+				07E02AD25C44FE48E2F2A100 /* HealthDetailView.swift in Sources */,
+				0F6B24ADD17631E6F890E206 /* HealthService.swift in Sources */,
+				6A0E32117E2D3A3792D3DC47 /* InsightsView.swift in Sources */,
+				B76C62D4AABFF92695050A24 /* LoginView.swift in Sources */,
+				64FBDD6E28C8F9BD4C769BF3 /* NotificationService.swift in Sources */,
+				93222839AFEA40A81173C0A1 /* RecommendationEngine.swift in Sources */,
+				414FED59ADFB6E3F7E533411 /* ScreenTimeService.swift in Sources */,
+				AF1CA1D5CD570FC8ED6139A5 /* SettingsView.swift in Sources */,
+				8B69A40D39C4713403EEAD08 /* SplashView.swift in Sources */,
+				B1E8F88AFD876695A7D9AE7D /* StorageService.swift in Sources */,
+				6A92ABC4039C0DB94A077DED /* WorkoutDetailView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0345D2CD44954B95F073A6BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A89L3GUQY2;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blockflow.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		32B8BE3DE96C93580DE9E5AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A89L3GUQY2;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blockflow.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3AF8AC10DC00551BF987C461 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EAC01ACCDA8074DC3356C84C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0568DE4326908E2DDE60515C /* Build configuration list for PBXNativeTarget "BlockFlowiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32B8BE3DE96C93580DE9E5AC /* Debug */,
+				0345D2CD44954B95F073A6BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E6091818D2B18006DAB0CAC9 /* Build configuration list for PBXProject "BlockFlowiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAC01ACCDA8074DC3356C84C /* Debug */,
+				3AF8AC10DC00551BF987C461 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C559A6BB5C2B452F30DDFA2D /* Project object */;
+}

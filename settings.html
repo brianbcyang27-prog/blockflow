@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BlockFlow - Settings</title>
+<meta name="description" content="BlockFlow settings and preferences">
+<meta name="theme-color" content="#667eea">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+.settings-container {
+max-width: 650px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.settings-section {
+background: rgba(255, 255, 255, 0.98);
+border-radius: 24px;
+padding: 28px;
+box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.8);
+animation: fadeInUp 0.6s ease backwards;
+}
+
+.settings-section h3 {
+font-size: 1.2rem;
+color: #1f2937;
+margin-bottom: 20px;
+padding-bottom: 15px;
+border-bottom: 2px solid #f3f4f6;
+font-weight: 700;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.settings-section h3::before {
+content: '';
+width: 4px;
+height: 22px;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+border-radius: 2px;
+}
+
+.setting-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 18px 0;
+border-bottom: 1px solid #f3f4f6;
+flex-wrap: wrap;
+gap: 15px;
+}
+
+.setting-item:last-child {
+border-bottom: none;
+}
+
+.setting-label {
+flex: 1;
+min-width: 200px;
+}
+
+.setting-label strong {
+display: block;
+color: #1f2937;
+margin-bottom: 4px;
+font-weight: 600;
+}
+
+.setting-label span {
+font-size: 0.85rem;
+color: #6b7280;
+}
+
+.setting-control {
+flex-shrink: 0;
+}
+
+.api-status {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 14px 18px;
+border-radius: 12px;
+font-size: 0.9rem;
+margin-top: 20px;
+font-weight: 500;
+}
+
+.api-status.connected {
+background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+color: #059669;
+border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.api-status.disconnected {
+background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+color: #dc2626;
+border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.api-status-dot {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.api-status.connected .api-status-dot { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.api-status.disconnected .api-status-dot { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+
+.btn-danger {
+background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+color: white;
+}
+
+.btn-danger:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.about-section {
+text-align: center;
+padding: 35px 25px;
+color: #6b7280;
+background: rgba(255, 255, 255, 0.98);
+border-radius: 24px;
+box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.8);
+animation: fadeInUp 0.6s ease backwards;
+}
+
+.about-section h3 {
+color: #667eea;
+margin-bottom: 10px;
+font-size: 1.4rem;
+border: none;
+padding: 0;
+margin-bottom: 15px;
+}
+
+.about-section h3::before {
+display: none;
+}
+
+.about-section p {
+margin-bottom: 8px;
+}
+
+.version {
+font-size: 0.85rem;
+margin-top: 15px;
+padding-top: 15px;
+border-top: 1px solid #e5e7eb;
+display: inline-block;
+}
+
+@media (max-width: 768px) {
+.setting-item {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.setting-label {
+width: 100%;
+}
+
+.setting-control {
+width: 100%;
+}
+
+.setting-control .btn {
+width: 100%;
+}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="header">
+<h1>BlockFlow</h1>
+<p class="subtitle">Settings & Preferences</p>
+</header>
+
+<nav class="nav-tabs">
+<button class="nav-tab" onclick="window.location.href='index.html'">🏠 Dashboard</button>
+<button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
+<button class="nav-tab active">⚙️ Settings</button>
+</nav>
+
+<div class="settings-container">
+<section class="settings-section">
+<h3>Google Calendar</h3>
+<div class="input-group" style="margin-bottom: 15px;">
+<label for="apiKey">Google API Key</label>
+<input type="text" id="apiKey" placeholder="AIzaSy..." style="width: 100%;">
+</div>
+<div class="input-group" style="margin-bottom: 15px;">
+<label for="calendarId">Calendar ID</label>
+<input type="text" id="calendarId" placeholder="your-email@gmail.com" style="width: 100%;">
+</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<button class="btn btn-primary" id="connectCalendar">Connect Calendar</button>
+<button class="btn btn-secondary" id="clearSettings">Clear</button>
+</div>
+<div class="api-status disconnected" id="apiStatus">
+<span class="api-status-dot"></span>
+<span id="apiStatusText">Not connected</span>
+</div>
+</section>
+
+<section class="settings-section">
+<h3>Timer Settings</h3>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Default Focus Duration</strong>
+<span>25 minutes recommended for productivity</span>
+</div>
+<div class="setting-control">
+<select id="focusDuration" class="input-group" style="padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 8px;">
+<option value="15">15 min</option>
+<option value="25" selected>25 min</option>
+<option value="30">30 min</option>
+<option value="45">45 min</option>
+<option value="60">60 min</option>
+</select>
+</div>
+</div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Auto-start Break Timer</strong>
+<span>Automatically start break after focus session</span>
+</div>
+<div class="setting-control">
+<label class="toggle">
+<input type="checkbox" id="autoBreak">
+<span style="margin-left: 8px;">Off</span>
+</label>
+</div>
+</div>
+</section>
+
+<section class="settings-section">
+<h3>Data Management</h3>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Export Data</strong>
+<span>Download your BlockFlow data as JSON</span>
+</div>
+<div class="setting-control">
+<button class="btn btn-secondary" id="exportData">Export</button>
+</div>
+</div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Clear All Data</strong>
+<span>Reset all data including history</span>
+</div>
+<div class="setting-control">
+<button class="btn btn-danger" id="clearAllData">Clear Data</button>
+</div>
+</div>
+</section>
+
+<section class="about-section">
+<h3>BlockFlow</h3>
+<p>A simple productivity app to reduce scrolling addiction and improve focus</p>
+<p class="version">Version 1.0.0</p>
+</section>
+</div>
+
+<footer class="footer">
+<p>BlockFlow &copy; 2025 - Simple focus tool</p>
+</footer>
+</div>
+
+<script src="js/storage.js"></script>
+<script>
+const Settings = {
+elements: {},
+settingsKey: 'blockflow_calendar_settings',
+
+init() {
+this.cacheElements();
+this.loadSettings();
+this.setupEventListeners();
+},
+
+cacheElements() {
+this.elements = {
+apiKey: document.getElementById('apiKey'),
+calendarId: document.getElementById('calendarId'),
+connectCalendar: document.getElementById('connectCalendar'),
+clearSettings: document.getElementById('clearSettings'),
+apiStatus: document.getElementById('apiStatus'),
+apiStatusText: document.getElementById('apiStatusText'),
+focusDuration: document.getElementById('focusDuration'),
+autoBreak: document.getElementById('autoBreak'),
+exportData: document.getElementById('exportData'),
+clearAllData: document.getElementById('clearAllData')
+};
+},
+
+loadSettings() {
+const settings = localStorage.getItem(this.settingsKey);
+if (settings) {
+const parsed = JSON.parse(settings);
+this.elements.apiKey.value = parsed.apiKey || '';
+this.elements.calendarId.value = parsed.calendarId || '';
+if (parsed.apiKey && parsed.calendarId) {
+this.updateApiStatus(true);
+}
+}
+},
+
+setupEventListeners() {
+this.elements.connectCalendar.addEventListener('click', () => this.connect());
+this.elements.clearSettings.addEventListener('click', () => this.clearSettings());
+this.elements.exportData.addEventListener('click', () => this.exportData());
+this.elements.clearAllData.addEventListener('click', () => this.clearAllData());
+},
+
+connect() {
+const apiKey = this.elements.apiKey.value.trim();
+const calendarId = this.elements.calendarId.value.trim();
+
+if (!apiKey || !calendarId) {
+alert('Please enter both API Key and Calendar ID');
+return;
+}
+
+const settings = { apiKey, calendarId };
+localStorage.setItem(this.settingsKey, JSON.stringify(settings));
+this.updateApiStatus(true);
+alert('Calendar connected successfully!');
+},
+
+clearSettings() {
+if (confirm('Clear Google Calendar settings?')) {
+localStorage.removeItem(this.settingsKey);
+this.elements.apiKey.value = '';
+this.elements.calendarId.value = '';
+this.updateApiStatus(false);
+}
+},
+
+updateApiStatus(connected) {
+this.elements.apiStatus.className = `api-status ${connected ? 'connected' : 'disconnected'}`;
+this.elements.apiStatusText.textContent = connected ? 'Connected to Google Calendar' : 'Not connected';
+},
+
+exportData() {
+const data = {
+blockflow: localStorage.getItem('blockflow_data'),
+history: localStorage.getItem('blockflow_history'),
+calendar: localStorage.getItem('blockflow_calendar_settings')
+};
+const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = `blockflow-backup-${new Date().toISOString().split('T')[0]}.json`;
+a.click();
+URL.revokeObjectURL(url);
+},
+
+clearAllData() {
+if (confirm('This will delete ALL your data including history. Are you sure?')) {
+localStorage.removeItem('blockflow_data');
+localStorage.removeItem('blockflow_history');
+localStorage.removeItem('blockflow_calendar_settings');
+alert('All data cleared. Please refresh the page.');
+location.reload();
+}
+}
+};
+
+document.addEventListener('DOMContentLoaded', () => Settings.init());
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('sw.js')
+.then(() => console.log('Service Worker registered'))
+.catch(err => console.log('Service Worker registration failed:', err));
+}
+</script>
+</body>
+</html>
