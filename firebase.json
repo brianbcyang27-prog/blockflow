@@ -1,0 +1,34 @@
+{
+"hosting": {
+"public": "BlockFlow",
+"ignore": [
+"firebase.json",
+"**/.*",
+"**/node_modules/**"
+],
+"rewrites": [
+{
+"source": "/api/calendar/events",
+"function": "calendarEvents"
+}
+]
+},
+"functions": {
+"source": "functions",
+"runtime": "nodejs18"
+},
+"emulators": {
+"auth": {
+"port": 9099
+},
+"functions": {
+"port": 5001
+},
+"hosting": {
+"port": 5000
+},
+"ui": {
+"enabled": true
+}
+}
+}

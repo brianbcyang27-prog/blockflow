@@ -1,4 +1,4 @@
-const CACHE_NAME = 'blockflow-v3';
+const CACHE_NAME = 'blockflow-v4';
 const urlsToCache = [
 '/',
 '/index.html',
@@ -10,6 +10,7 @@ const urlsToCache = [
 '/js/timer.js',
 '/js/ui.js',
 '/js/calendar.js',
+'/js/firebase.js',
 '/manifest.json'
 ];
 
