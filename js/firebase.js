@@ -41,6 +41,10 @@ this.listeners.forEach(cb => cb(user));
 },
 
 async signIn() {
+if (this.config.apiKey === 'YOUR_API_KEY' || !this.config.apiKey || this.config.apiKey.startsWith('YOUR_')) {
+alert('Firebase is not configured yet.\n\nTo enable Google Sign-In:\n1. Go to Firebase Console\n2. Create a project\n3. Add a Web app\n4. Copy the config to js/firebase.js');
+return { success: false, error: 'Firebase not configured' };
+}
 try {
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/calendar.readonly');

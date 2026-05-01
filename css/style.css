@@ -711,3 +711,24 @@ font-size: 0.8rem;
 padding: 25px;
 }
 }
+
+/* Button Click Feedback */
+@keyframes buttonClick {
+0% { transform: scale(1); }
+50% { transform: scale(0.95); }
+100% { transform: scale(1); }
+}
+
+.btn:active, .nav-tab:active, .sign-in-btn:active, .sign-out-btn:active {
+animation: buttonClick 0.15s ease;
+}
+
+.btn:focus, .nav-tab:focus, .sign-in-btn:focus, .sign-out-btn:focus {
+outline: 3px solid rgba(102, 126, 234, 0.4);
+outline-offset: 2px;
+}
+
+/* Ensure all buttons have pointer cursor */
+button, .btn, .nav-tab, .sign-in-btn, .sign-out-btn {
+cursor: pointer;
+}
