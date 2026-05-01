@@ -1,11 +1,12 @@
 const Firebase = {
 config: {
-apiKey: "YOUR_API_KEY",
-authDomain: "YOUR_PROJECT.firebaseapp.com",
-projectId: "YOUR_PROJECT_ID",
-storageBucket: "YOUR_PROJECT.appspot.com",
-messagingSenderId: "YOUR_SENDER_ID",
-appId: "YOUR_APP_ID"
+apiKey: "AIzaSyA5fBcpGbR90FzBja5elSq9wMMG3GZBQ7Q",
+authDomain: "blockflow-28d39.firebaseapp.com",
+projectId: "blockflow-28d39",
+storageBucket: "blockflow-28d39.firebasestorage.app",
+messagingSenderId: "255025772243",
+appId: "1:255025772243:web:a8bdf98440b67b34ef8626",
+measurementId: "G-XKQSEZJB5J"
 },
 auth: null,
 user: null,
