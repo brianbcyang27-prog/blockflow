@@ -5,9 +5,9 @@ const App = {
     init() {
         Storage.checkAndResetDay();
         this.loadData();
+        UI.init();
         this.setupEventListeners();
         this.setupTimer();
-        UI.init();
         this.render();
     },
 
