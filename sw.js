@@ -1,9 +1,10 @@
-const CACHE_NAME = 'blockflow-v4';
+const CACHE_NAME = 'blockflow-v5';
 const urlsToCache = [
 '/',
 '/index.html',
 '/calendar.html',
 '/settings.html',
+'/docs.html',
 '/css/style.css',
 '/js/app.js',
 '/js/storage.js',

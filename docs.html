@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlockFlow - Project Documentation</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+line-height: 1.7;
+color: #1a1a2e;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+min-height: 100vh;
+}
+
+.container {
+max-width: 900px;
+margin: 0 auto;
+padding: 40px 20px;
+}
+
+.hero {
+text-align: center;
+background: rgba(255, 255, 255, 0.95);
+border-radius: 24px;
+padding: 50px 40px;
+margin-bottom: 30px;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.hero h1 {
+font-size: 3rem;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+-webkitwebkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 15px;
+font-weight: 800;
+}
+
+.hero p {
+font-size: 1.2rem;
+color: #6b7280;
+margin-bottom: 25px;
+}
+
+.hero .badge {
+display: inline-block;
+padding: 8px 20px;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+border-radius: 20px;
+font-weight: 600;
+font-size: 0.9rem;
+}
+
+section {
+background: rgba(255, 255, 255, 0.95);
+border-radius: 20px;
+padding: 35px;
+margin-bottom: 25px;
+box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+font-size: 1.5rem;
+color: #1f2937;
+margin-bottom: 25px;
+font-weight: 700;
+display: flex;
+align-items: center;
+gap: 12px;
+border-bottom: 2px solid #f3f4f6;
+padding-bottom: 15px;
+}
+
+section h2 .icon {
+font-size: 1.8rem;
+}
+
+section h3 {
+font-size: 1.2rem;
+color: #374151;
+margin: 25px 0 15px;
+font-weight: 600;
+}
+
+.problem-solution {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+margin-top: 20px;
+}
+
+.card {
+background: #f9fafb;
+border-radius: 16px;
+padding: 25px;
+}
+
+.card h4 {
+font-size: 1rem;
+color: #667eea;
+margin-bottom: 12px;
+font-weight: 700;
+}
+
+.card ul {
+list-style: none;
+padding: 0;
+}
+
+.card li {
+padding: 8px 0;
+color: #4b5563;
+font-size: 0.95rem;
+}
+
+.card li::before {
+content: "•";
+color: #667eea;
+font-weight: bold;
+display: inline-block;
+width: 20px;
+}
+
+.feature-list {
+display: grid;
+gap: 20px;
+}
+
+.feature-item {
+display: flex;
+gap: 20px;
+padding: 20px;
+background: #f9fafb;
+border-radius: 16px;
+border-left: 5px solid;
+}
+
+.feature-item.focus { border-left-color: #667eea; }
+.feature-item.personal { border-left-color: #10b981; }
+.feature-item.recovery { border-left-color: #f59e0b; }
+.feature-item.timer { border-left-color: #ef4444; }
+.feature-item.sleep { border-left-color: #8b5cf6; }
+.feature-item.auth { border-left-color: #06b6d4; }
+
+.feature-icon {
+font-size: 2.5rem;
+flex-shrink: 0;
+}
+
+.feature-content h4 {
+font-size: 1.1rem;
+color: #1f2937;
+margin-bottom: 8px;
+font-weight: 700;
+}
+
+.feature-content p {
+color: #6b7280;
+font-size: 0.95rem;
+margin-bottom: 12px;
+}
+
+.scenario {
+background: #fff;
+border-radius: 12px;
+padding: 15px;
+margin-top: 10px;
+font-size: 0.9rem;
+color: #4b5563;
+border: 1px solid #e5e7eb;
+}
+
+.scenario strong {
+color: #667eea;
+}
+
+.arch-diagram {
+background: #f9fafb;
+border-radius: 16px;
+padding: 25px;
+text-align: center;
+}
+
+.arch-box {
+display: inline-block;
+padding: 15px 25px;
+border-radius: 12px;
+margin: 8px;
+font-weight: 600;
+font-size: 0.9rem;
+}
+
+.arch-box.client { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+.arch-box.firebase { background: #fff3cd; color: #856404; border: 2px solid #ffc107; }
+.arch-box.google { background: #d4edda; color: #155724; border: 2px solid #28a745; }
+
+.arch-arrow {
+display: block;
+color: #9ca3af;
+margin: 5px 0;
+}
+
+.status-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 15px;
+}
+
+.status-item {
+text-align: center;
+padding: 20px;
+background: #f9fafb;
+border-radius: 12px;
+}
+
+.status-item .percent {
+font-size: 2rem;
+font-weight: 800;
+color: #667eea;
+}
+
+.status-item .label {
+font-size: 0.9rem;
+color: #6b7280;
+margin-top: 5px;
+}
+
+.challenge-card {
+background: #fef3c7;
+border-radius: 12px;
+padding: 20px;
+border-left: 4px solid #f59e0b;
+}
+
+.challenge-card h4 {
+color: #92400e;
+margin-bottom: 10px;
+font-weight: 600;
+}
+
+.tech-stack {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+margin-top: 15px;
+}
+
+.tech-badge {
+padding: 8px 16px;
+background: #f3f4f6;
+border-radius: 20px;
+font-size: 0.85rem;
+color: #374151;
+font-weight: 500;
+}
+
+.user-story {
+background: #f9fafb;
+border-radius: 12px;
+padding: 20px;
+margin: 15px 0;
+}
+
+.user-story .role {
+font-weight: 700;
+color: #667eea;
+margin-bottom: 5px;
+}
+
+.user-story .action {
+color: #374151;
+}
+
+.user-story .goal {
+color: #6b7280;
+font-style: italic;
+margin-top: 8px;
+}
+
+.footer {
+text-align: center;
+padding: 30px;
+color: rgba(255, 255, 255, 0.8);
+font-size: 0.9rem;
+}
+
+.footer a {
+color: white;
+text-decoration: none;
+}
+
+@media (max-width: 768px) {
+.problem-solution {
+grid-template-columns: 1fr;
+}
+
+.feature-item {
+flex-direction: column;
+}
+
+.hero {
+padding: 30px 20px;
+}
+
+.hero h1 {
+font-size: 2rem;
+}
+
+section {
+padding: 25px 20px;
+}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="hero">
+<h1>BlockFlow</h1>
+<p>A productivity app to reduce scrolling addiction and improve focus</p>
+<span class="badge">In Development</span>
+</div>
+
+<nav class="nav-tabs" style="background: rgba(255,255,255,0.95); border-radius: 16px; padding: 8px; margin-bottom: 30px;">
+<button class="nav-tab" onclick="window.location.href='index.html'">🏠 Dashboard</button>
+<button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
+<button class="nav-tab" onclick="window.location.href='settings.html'">⚙️ Settings</button>
+<button class="nav-tab active">📄 Docs</button>
+</nav>
+
+<section>
+<h2><span class="icon">📌</span> Project Goals</h2>
+
+<h3>The Problem</h3>
+<div class="problem-solution">
+<div class="card">
+<h4>問題現況</h4>
+<ul>
+<li>現代人每天花費大量時間滑手機</li>
+<li>美國成年人平均每天解鎖手機 80-150 次</li>
+<li>每次分心後需要約 23 分鐘才能回覆專注</li>
+<li>大學生的平均睡眠不足 7 小時</li>
+<li>缺乏簡單的時間管理工具</li>
+</ul>
+</div>
+<div class="card">
+<h4>解決方案</h4>
+<ul>
+<li>採用「3 區塊日」時間管理法</li>
+<li>结合 Pomodoro 計時器追蹤專注</li>
+<li>記錄分心次數提高自覺</li>
+<li>追蹤睡眠養成健康習慣</li>
+<li>簡單易用的 Web 介面</li>
+</ul>
+</div>
+</div>
+
+<h3>User Stories</h3>
+<div class="user-story">
+<div class="role">作為一個大學生</div>
+<div class="action">我希望記錄每天的專注/休閒時間</div>
+<div class="goal">以平衡學業和生活</div>
+</div>
+<div class="user-story">
+<div class="role">作為一個容易分心的人</div>
+<div class="action">我想追蹤自己滑手機的次數</div>
+<div class="goal">以提高自覺並改善習慣</div>
+</div>
+<div class="user-story">
+<div class="role">作為一個注重健康的人</div>
+<div class="action">我想記錄睡眠時間</div>
+<div class="goal">以了解自己的睡眠質量</div>
+</div>
+</section>
+
+<section>
+<h2><span class="icon">⚙️</span> Features</h2>
+
+<div class="feature-list">
+<div class="feature-item focus">
+<div class="feature-icon">🎯</div>
+<div class="feature-content">
+<h4>3 個可自訂時長的日常區塊</h4>
+<p>採用「3 區塊日」概念，將每天分成三大類別：</p>
+<div class="scenario">
+<strong>Focus Block</strong> - 工作、學習、學校（寫作業、準備考試）<br>
+<strong>Personal Block</strong> - 興趣、專案（學吉他、寫小說）<br>
+<strong>Recovery Block</strong> - 休息、社交、娛樂（看劇、聊天）<br>
+每個區塊可設定 15-240 分鐘，完成後可標記為已完成。
+</div>
+</div>
+</div>
+
+<div class="feature-item timer">
+<div class="feature-icon">⏱️</div>
+<div class="feature-content">
+<h4>Pomodoro 風格計時器</h4>
+<p>25 分鐘番茄工作法定時器，幫助用戶保持專注</p>
+<div class="scenario">
+<strong>使用方法：</strong> 點擊「Start Focus」開始 25 分鐘倒數，計時結束後記錄專注時間。用戶可隨時暫停或重置。
+</div>
+</div>
+</div>
+
+<div class="feature-item personal">
+<div class="feature-icon">🚫</div>
+<div class="feature-content">
+<h4>分心次數追蹤</h4>
+<p>當用戶發現自己在滑手機時，按下「I got distracted」記錄一次</p>
+<div class="scenario">
+<strong>目的：</strong> 提高自覺，了解自己一天分心多少次。<br>
+<strong>參考：</strong> 0-3次=專注，4-7次=普通，8次以上=需改善
+</div>
+</div>
+</div>
+
+<div class="feature-item sleep">
+<div class="feature-icon">😴</div>
+<div class="feature-content">
+<h4>睡眠時間記錄</h4>
+<p>設定就寢時間和起床時間，自動計算睡眠時長</p>
+<div class="scenario">
+<strong>使用情境：</strong> 睡前設定 Sleep Time，起床後設定 Wake Time，系統自動計算。<br>
+<strong>評價：</strong> <7小時=不足，7-8小時=理想，>8小時=可能過多
+</div>
+</div>
+</div>
+
+<div class="feature-item focus">
+<div class="feature-icon">🔄</div>
+<div class="feature-content">
+<h4>每日自動重置</h4>
+<p>每天午夜自動將資料歸零，開始新的一天</p>
+<div class="scenario">
+<strong>設計理念：</strong> 每天早上是新的開始，前一天的未完成不應成為壓力。<br>
+<strong>歷史記錄：</strong> 過去 7 天的資料會被保存用於週統計。
+</div>
+</div>
+</div>
+
+<div class="feature-item auth">
+<div class="feature-icon">🔐</div>
+<div class="feature-content">
+<h4>Google 登入（Firebase Auth）</h4>
+<p>使用 Google 帳號登入，未來可同步資料到雲端</p>
+<div class="scenario">
+<strong>目前狀態：</strong> 已完成 Firebase Authentication 整合<br>
+<strong>目的：</strong> 未來可連接 Google Calendar 讀取行事曆事件
+</div>
+</div>
+</div>
+
+<div class="feature-item auth">
+<div class="feature-icon">📅</div>
+<div class="feature-content">
+<h4>Google Calendar 事件顯示</h4>
+<p>在月曆上顯示 Google Calendar 的行程</p>
+<div class="scenario">
+<strong>使用情境：</strong> 用戶可在同一介面看到「計畫」和「行事曆」，更好規劃時間。<br>
+<strong>目前狀態：</strong> Firebase 部署遇到困難，功能仍在開發中
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<h2><span class="icon">🏗️</span> Architecture</h2>
+
+<div class="arch-diagram">
+<div class="arch-box client">🌐 Browser (HTML/CSS/JS)</div>
+<span class="arch-arrow">↓</span>
+<div class="arch-box client">💾 LocalStorage (資料儲存)</div>
+<br><br>
+<span class="arch-arrow">↓ 登入/行事曆</span>
+<br>
+<div class="arch-box firebase">🔐 Firebase Auth (Google 登入)</div>
+<span class="arch-arrow">↓</span>
+<div class="arch-box firebase">☁️ Firebase Cloud Functions</div>
+<span class="arch-arrow">↓</span>
+<div class="arch-box google">📆 Google Calendar API</div>
+</div>
+
+<h3>Technology Stack</h3>
+<div class="tech-stack">
+<span class="tech-badge">HTML5</span>
+<span class="tech-badge">CSS3</span>
+<span class="tech-badge">JavaScript</span>
+<span class="tech-badge">Firebase Auth</span>
+<span class="tech-badge">LocalStorage</span>
+<span class="tech-badge">PWA</span>
+<span class="tech-badge">GitHub Pages</span>
+</div>
+
+<h3>File Structure</h3>
+<pre style="background: #f3f4f6; padding: 20px; border-radius: 12px; overflow-x: auto; font-size: 0.85rem;">
+BlockFlow/
+├── index.html          # 儀表板主頁面
+├── calendar.html       # 行事曆頁面
+├── settings.html       # 設定頁面
+├── sw.js               # Service Worker (PWA 離線支援)
+├── manifest.json       # PWA 設定
+├── css/
+│   └── style.css       # 所有樣式
+├── js/
+│   ├── app.js          # 主應用邏輯
+│   ├── calendar.js      # 行事曆邏輯
+│   ├── firebase.js      # Firebase 認證
+│   ├── storage.js       # LocalStorage 資料管理
+│   ├── timer.js         # 計時器邏輯
+│   └── ui.js            # UI 渲染
+└── functions/          # Firebase Cloud Functions
+    └── index.js         # 行事曆事件讀取函式
+</pre>
+</section>
+
+<section>
+<h2><span class="icon">📊</span> Project Status</h2>
+
+<div class="status-grid">
+<div class="status-item">
+<div class="percent">85%</div>
+<div class="label">前端開發</div>
+</div>
+<div class="status-item">
+<div class="percent">100%</div>
+<div class="label">UI/UX 設計</div>
+</div>
+<div class="status-item">
+<div class="percent">60%</div>
+<div class="label">Firebase 整合</div>
+</div>
+<div class="status-item">
+<div class="percent">70%</div>
+<div class="label">Google Calendar</div>
+</div>
+</div>
+
+<h3>Completed Features</h3>
+<ul style="list-style: none; padding: 0;">
+<li style="padding: 8px 0;">✅ Dashboard - 3 個日常區塊 + 進度追蹤</li>
+<li style="padding: 8px 0;">✅ Focus Timer - 25 分鐘 Pomodoro 計時器</li>
+<li style="padding: 8px 0;">✅ Distraction Tracker - 分心次數記錄</li>
+<li style="padding: 8px 0;">✅ Sleep Tracker - 睡眠時間計算</li>
+<li style="padding: 8px 0;">✅ 每日自動重置 + 7 天歷史</li>
+<li style="padding: 8px 0;">✅ Navigation - 3 個頁面自由切換</li>
+<li style="padding: 8px 0;">✅ PWA - 可安裝在桌面/手機</li>
+<li style="padding: 8px 0;">✅ Google Sign-In - Firebase 登入已連接</li>
+</ul>
+
+<h3>Challenges</h3>
+<div class="challenge-card">
+<h4>⚠️ Firebase Cloud Functions 部署困難</h4>
+<p>Firebase Cloud Functions 需要升級到 Blaze 方案才能部署。Blaze 方案需要信用卡驗證，雖然有每月免費額度（125,000 次調用），但需要驗證才能使用。</p>
+<p style="margin-top: 10px; color: #92400e;"><strong>影響：</strong> Google Calendar 事件顯示功能暫時無法正常運作</p>
+<p style="margin-top: 10px;"><strong>解決方案：</strong> 1) 升級 Firebase 方案 2) 使用其他後端服務 3) 手動輸入行事曆（未來優化）</p>
+</div>
+</section>
+
+<section>
+<h2><span class="icon">🎯</span> Next Steps</h2>
+
+<ul style="list-style: none; padding: 0;">
+<li style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+<strong style="color: #667eea;">1.</strong> 完成 Firebase 部署<br>
+<span style="color: #6b7280; font-size: 0.9rem;">升級 Firebase 方案並部署 Cloud Functions，實現 Google Calendar 整合</span>
+</li>
+<li style="padding: 12px 0; border-bottom: 1px solid #f3f4f6;">
+<strong style="color: #667eea;">2.</strong> 測試與除錯<br>
+<span style="color: #6b7280; font-size: 0.9rem;">在多個設備和瀏覽器上測試，確保所有功能正常運作</span>
+</li>
+<li style="padding: 12px 0;">
+<strong style="color: #667eea;">3.</strong> 部署上線<br>
+<span style="color: #6b7280; font-size: 0.9rem;">使用 GitHub Pages 托管網站，申請自訂網域（如有需要）</span>
+</li>
+</ul>
+</section>
+
+<footer class="footer">
+<p>BlockFlow &copy; 2025 | <a href="https://github.com/brianbcyang27-prog/blockflow" target="_blank">GitHub Repository</a></p>
+</footer>
+</div>
+</body>
+</html>
