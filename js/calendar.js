@@ -1,337 +1,535 @@
 const Calendar = {
-currentDate: new Date(),
-events: [],
-elements: {},
+    currentDate: new Date(),
+    events: [],
+    elements: {},
+    editingEventId: null,
+    pendingAiResult: null,
+    pendingAiValues: null,
+    NVIDIA_KEY: 'blockflow_nvidia_key',
+    NVIDIA_DEFAULT_KEY: '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',
 
-init() {
-this.cacheElements();
-this.render();
-this.setupEventListeners();
-Firebase.onAuthChange((user) => this.onAuthStateChange(user));
-},
+    init() {
+        this.cacheElements();
+        this.loadEvents();
+        this.render();
+        this.setupEventListeners();
+    },
 
-cacheElements() {
-this.elements = {
-calendarGrid: document.getElementById('calendarGrid'),
-currentMonth: document.getElementById('currentMonth'),
-prevMonth: document.getElementById('prevMonth'),
-nextMonth: document.getElementById('nextMonth'),
-todayBtn: document.getElementById('todayBtn'),
-signInBtn: document.getElementById('signInBtn'),
-signOutBtn: document.getElementById('signOutBtn'),
-userEmail: document.getElementById('userEmail'),
-userPhoto: document.getElementById('userPhoto'),
-userInfo: document.getElementById('userInfo'),
-eventModal: document.getElementById('eventModal'),
-eventTitle: document.getElementById('eventTitle'),
-eventTime: document.getElementById('eventTime'),
-eventDescription: document.getElementById('eventDescription'),
-openInGoogle: document.getElementById('openInGoogle'),
-closeEventModal: document.getElementById('closeEventModal')
-};
-},
+    cacheElements() {
+        this.elements = {
+            calendarGrid: document.getElementById('calendarGrid'),
+            currentMonth: document.getElementById('currentMonth'),
+            prevMonth: document.getElementById('prevMonth'),
+            nextMonth: document.getElementById('nextMonth'),
+            todayBtn: document.getElementById('todayBtn'),
+            addEventBtn: document.getElementById('addEventBtn'),
+            addEventDate: document.getElementById('addEventDate'),
+            eventModal: document.getElementById('eventModal'),
+            eventForm: document.getElementById('eventForm'),
+            eventId: document.getElementById('eventId'),
+            eventTitle: document.getElementById('eventTitle'),
+            eventDate: document.getElementById('eventDate'),
+            eventTime: document.getElementById('eventTime'),
+            eventEndTime: document.getElementById('eventEndTime'),
+            eventDescription: document.getElementById('eventDescription'),
+            eventImportance: document.getElementById('eventImportance'),
+            eventBlock: document.getElementById('eventBlock'),
+            aiSkeleton: document.getElementById('aiSkeleton'),
+            aiSuggestion: document.getElementById('aiSuggestion'),
+            aiSuggestionText: document.getElementById('aiSuggestionText'),
+            aiAccept: document.getElementById('aiAccept'),
+            aiReject: document.getElementById('aiReject'),
+            modalTitle: document.getElementById('modalTitle'),
+            saveEvent: document.getElementById('saveEvent'),
+            deleteEvent: document.getElementById('deleteEvent'),
+            cancelEvent: document.getElementById('cancelEvent'),
+            closeEventModal: document.getElementById('closeEventModal'),
+            viewModal: document.getElementById('viewModal'),
+            viewTitle: document.getElementById('viewTitle'),
+            viewTime: document.getElementById('viewTime'),
+            viewBlock: document.getElementById('viewBlock'),
+            viewImportance: document.getElementById('viewImportance'),
+            viewDescription: document.getElementById('viewDescription'),
+            editFromView: document.getElementById('editFromView'),
+            deleteFromView: document.getElementById('deleteFromView'),
+            closeViewModal: document.getElementById('closeViewModal')
+        };
+    },
 
-setupEventListeners() {
-this.elements.prevMonth.addEventListener('click', () => this.changeMonth(-1));
-this.elements.nextMonth.addEventListener('click', () => this.changeMonth(1));
-this.elements.todayBtn.addEventListener('click', () => this.goToToday());
-this.elements.signInBtn.addEventListener('click', () => this.signIn());
-this.elements.signOutBtn.addEventListener('click', () => this.signOut());
-this.elements.closeEventModal.addEventListener('click', () => this.hideEventModal());
-this.elements.eventModal.addEventListener('click', (e) => {
-if (e.target === this.elements.eventModal) {
-this.hideEventModal();
-}
-});
-},
+    setupEventListeners() {
+        this.elements.prevMonth.addEventListener('click', () => this.changeMonth(-1));
+        this.elements.nextMonth.addEventListener('click', () => this.changeMonth(1));
+        this.elements.todayBtn.addEventListener('click', () => this.goToToday());
+        this.elements.addEventBtn.addEventListener('click', () => this.openAddModal());
+        this.elements.closeEventModal.addEventListener('click', () => {
+            if (this.elements.saveEvent.disabled) return; // Don't close during AI analysis
+            this.hideEventModal();
+        });
+        this.elements.cancelEvent.addEventListener('click', () => {
+            if (this.elements.saveEvent.disabled) return; // Don't close during AI analysis
+            this.hideEventModal();
+        });
+        this.elements.closeViewModal.addEventListener('click', () => this.hideViewModal());
+        this.elements.saveEvent.addEventListener('click', () => this.saveCurrentEvent());
+        this.elements.deleteEvent.addEventListener('click', () => this.deleteCurrentEvent());
+        this.elements.editFromView.addEventListener('click', () => this.editFromViewModal());
+        this.elements.deleteFromView.addEventListener('click', () => this.deleteFromViewModal());
+        this.elements.aiAccept.addEventListener('click', () => { this.acceptAiSuggestion(); });
+        this.elements.aiReject.addEventListener('click', () => { this.rejectAiSuggestion(); });
+        this.elements.eventForm.addEventListener('submit', (e) => e.preventDefault());
 
-onAuthStateChange(user) {
-if (user) {
-this.elements.signInBtn.style.display = 'none';
-this.elements.signOutBtn.style.display = 'inline-block';
-this.elements.userInfo.style.display = 'flex';
-this.elements.userEmail.textContent = user.email;
-if (user.photoURL) {
-this.elements.userPhoto.src = user.photoURL;
-} else {
-this.elements.userPhoto.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236b7280"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
-}
-this.fetchEvents();
-} else {
-this.elements.signInBtn.style.display = 'inline-block';
-this.elements.signOutBtn.style.display = 'none';
-this.elements.userInfo.style.display = 'none';
-this.events = [];
-this.render();
-}
-},
+        this.elements.eventModal.addEventListener('click', (e) => {
+            if (e.target === this.elements.eventModal && !this.elements.saveEvent.disabled) this.hideEventModal();
+        });
+        this.elements.viewModal.addEventListener('click', (e) => {
+            if (e.target === this.elements.viewModal) this.hideViewModal();
+        });
+    },
 
-async signIn() {
-const result = await Firebase.signIn();
-if (result.success) {
-console.log('Signed in as:', result.user.email);
-} else {
-alert('Sign-in failed: ' + result.error);
-}
-},
+    loadEvents() {
+        this.events = Storage.getCalendarEvents();
+    },
 
-async signOut() {
-const result = await Firebase.signOut();
-if (result.success) {
-console.log('Signed out');
-}
-},
+    render() {
+        this.renderHeader();
+        this.renderGrid();
+    },
 
-async fetchEvents() {
-if (!Firebase.isSignedIn()) return;
+    renderHeader() {
+        const options = { month: 'long', year: 'numeric' };
+        this.elements.currentMonth.textContent = this.currentDate.toLocaleDateString('en-US', options);
+        const now = new Date();
+        const todayStr = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        this.elements.addEventDate.textContent = 'Today: ' + todayStr;
+    },
 
-this.elements.calendarGrid.innerHTML = `
-<div class="calendar-loading">
-<div class="spinner"></div>
-<span>Loading your events...</span>
-</div>
-`;
+    renderGrid() {
+        const year = this.currentDate.getFullYear();
+        const month = this.currentDate.getMonth();
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const startDay = firstDay.getDay();
+        const daysInMonth = lastDay.getDate();
 
-const token = await Firebase.getIdToken();
-if (!token) {
-console.error('No ID token available');
-return;
-}
+        const today = new Date();
+        const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+        const todayDate = today.getDate();
 
-const year = this.currentDate.getFullYear();
-const month = this.currentDate.getMonth();
-const timeMin = new Date(year, month, 1).toISOString();
-const timeMax = new Date(year, month + 1, 0, 23, 59, 59).toISOString();
+        const prevMonthDate = new Date(year, month, 0);
+        const daysInPrevMonth = prevMonthDate.getDate();
 
-try {
-const response = await fetch('/api/calendar/events?timeMin=' + encodeURIComponent(timeMin) + '&timeMax=' + encodeURIComponent(timeMax), {
-headers: {
-'Authorization': 'Bearer ' + token
-}
-});
+        let html = '';
 
-if (!response.ok) {
-throw new Error('Failed to fetch events');
-}
+        const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        dayHeaders.forEach(day => {
+            html += `<div class="calendar-day-header">${day}</div>`;
+        });
 
-const data = await response.json();
-this.events = data.items || [];
-this.render();
-} catch (error) {
-console.error('Error fetching events:', error);
-this.elements.calendarGrid.innerHTML = `
-<div class="calendar-loading" style="color: #dc2626;">
-<span>Failed to load events. Please try signing in again.</span>
-</div>
-`;
-}
-},
+        for (let i = startDay - 1; i >= 0; i--) {
+            const day = daysInPrevMonth - i;
+            html += this.renderDay(day, true, false, prevMonthDate.getMonth(), prevMonthDate.getFullYear());
+        }
 
-changeMonth(delta) {
-this.currentDate.setMonth(this.currentDate.getMonth() + delta);
-this.render();
-if (Firebase.isSignedIn()) {
-this.fetchEvents();
-}
-},
+        for (let day = 1; day <= daysInMonth; day++) {
+            const isToday = isCurrentMonth && day === todayDate;
+            const dateStr = this.formatDateStr(year, month, day);
+            const dayEvents = this.getEventsForDate(dateStr);
+            html += this.renderDay(day, false, isToday, month, year, dayEvents);
+        }
 
-goToToday() {
-this.currentDate = new Date();
-this.render();
-if (Firebase.isSignedIn()) {
-this.fetchEvents();
-}
-},
+        const totalCells = startDay + daysInMonth;
+        const remainingCells = totalCells > 35 ? 42 - totalCells : 35 - totalCells;
+        const nextMonthDate = new Date(year, month + 1, 1);
 
-render() {
-this.renderHeader();
-this.renderGrid();
-},
+        for (let day = 1; day <= remainingCells; day++) {
+            html += this.renderDay(day, true, false, nextMonthDate.getMonth(), nextMonthDate.getFullYear());
+        }
 
-renderHeader() {
-const options = { month: 'long', year: 'numeric' };
-this.elements.currentMonth.textContent = this.currentDate.toLocaleDateString('en-US', options);
-},
+        this.elements.calendarGrid.innerHTML = html;
 
-renderGrid() {
-const year = this.currentDate.getFullYear();
-const month = this.currentDate.getMonth();
-const firstDay = new Date(year, month, 1);
-const lastDay = new Date(year, month + 1, 0);
-const startDay = firstDay.getDay();
-const daysInMonth = lastDay.getDate();
+        document.querySelectorAll('.calendar-day:not(.other-month)').forEach(dayEl => {
+            dayEl.addEventListener('click', (e) => {
+                if (e.target.closest('.add-event-quick')) return;
+                const dateStr = dayEl.dataset.date;
+                if (dateStr) this.showDayEvents(dateStr);
+            });
+        });
 
-const today = new Date();
-const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
-const todayDate = today.getDate();
+        document.querySelectorAll('.add-event-quick').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const dateStr = btn.dataset.date;
+                if (dateStr) this.openAddModal(dateStr);
+            });
+        });
+    },
 
-const prevMonth = new Date(year, month, 0);
-const daysInPrevMonth = prevMonth.getDate();
+    renderDay(day, isOther, isToday, month, year, events = []) {
+        const todayClass = isToday ? 'today' : '';
+        const otherClass = isOther ? 'other-month' : '';
+        const dateStr = this.formatDateStr(year, month, day);
 
-let html = '';
+        let eventsHtml = '';
+        if (!isOther && events.length > 0) {
+            const displayEvents = events.slice(0, 2);
+            displayEvents.forEach(event => {
+                const impClass = event.importance || 'medium';
+                const title = this.escapeHtml(event.title);
+                const timeStr = event.time ? ' ' + this.escapeHtml(event.time) : '';
+                eventsHtml += `<div class="event-item importance-${impClass}" title="${title}${timeStr}">${title}</div>`;
+            });
+            if (events.length > 2) {
+                eventsHtml += `<div class="event-item importance-default">+${events.length - 2} more</div>`;
+            }
+        }
 
-const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-dayHeaders.forEach(day => {
-html += `<div class="calendar-day-header">${day}</div>`;
-});
+        return `
+            <div class="calendar-day ${todayClass} ${otherClass}" data-date="${dateStr}">
+                <div class="day-number">${day}</div>
+                <div class="day-events">${eventsHtml}</div>
+                ${!isOther ? '<button class="add-event-quick" data-date="' + dateStr + '" title="Add event">+</button>' : ''}
+            </div>
+        `;
+    },
 
-for (let i = startDay - 1; i >= 0; i--) {
-const day = daysInPrevMonth - i;
-html += this.renderDay(day, true, null, prevMonth.getMonth(), prevMonth.getFullYear());
-}
+    formatDateStr(year, month, day) {
+        return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    },
 
-for (let day = 1; day <= daysInMonth; day++) {
-const isToday = isCurrentMonth && day === todayDate;
-const dateStr = this.formatDateStr(year, month, day);
-const dayEvents = this.getEventsForDate(dateStr);
-html += this.renderDay(day, false, isToday, month, year, dayEvents);
-}
+    getEventsForDate(dateStr) {
+        return this.events.filter(event => event.date === dateStr);
+    },
 
-const totalCells = startDay + daysInMonth;
-const remainingCells = totalCells > 35 ? 42 - totalCells : 35 - totalCells;
-const nextMonth = new Date(year, month + 1, 1);
+    changeMonth(delta) {
+        this.currentDate.setMonth(this.currentDate.getMonth() + delta);
+        this.render();
+    },
 
-for (let day = 1; day <= remainingCells; day++) {
-html += this.renderDay(day, true, null, nextMonth.getMonth(), nextMonth.getFullYear());
-}
+    goToToday() {
+        this.currentDate = new Date();
+        this.render();
+    },
 
-this.elements.calendarGrid.innerHTML = html;
+    openAddModal(dateStr) {
+        this.editingEventId = null;
+        this.elements.modalTitle.textContent = 'Add Event';
+        this.elements.saveEvent.textContent = 'Add Event';
+        this.elements.deleteEvent.style.display = 'none';
+        this.elements.aiSkeleton.style.display = 'none';
+        this.elements.aiSuggestion.style.display = 'none';
+        this.elements.eventForm.reset();
+        this.elements.eventId.value = '';
+        this.elements.eventImportance.value = 'medium';
+        this.elements.eventBlock.value = 'focus';
+        this.elements.eventDate.value = dateStr || this.formatDateStr(
+            this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate()
+        );
+        this.elements.eventModal.style.display = 'flex';
+    },
 
-document.querySelectorAll('.calendar-day:not(.other-month)').forEach(dayEl => {
-dayEl.addEventListener('click', (e) => {
-const dateStr = dayEl.dataset.date;
-if (dateStr) {
-this.showDayEvents(dateStr);
-}
-});
-});
-},
+    openEditModal(eventId) {
+        const event = this.events.find(e => e.id === eventId);
+        if (!event) return;
 
-renderDay(day, isOther, isToday, month, year, events = []) {
-const todayClass = isToday ? 'today' : '';
-const otherClass = isOther ? 'other-month' : '';
-const dateStr = this.formatDateStr(year, month, day);
+        this.editingEventId = eventId;
+        this.elements.modalTitle.textContent = 'Edit Event';
+        this.elements.saveEvent.textContent = 'Save Changes';
+        this.elements.deleteEvent.style.display = 'inline-block';
+        this.elements.aiSkeleton.style.display = 'none';
+        this.elements.aiSuggestion.style.display = 'none';
+        this.elements.eventId.value = eventId;
+        this.elements.eventTitle.value = event.title || '';
+        this.elements.eventDate.value = event.date || '';
+        this.elements.eventTime.value = event.time || '';
+        this.elements.eventEndTime.value = event.endTime || '';
+        this.elements.eventDescription.value = event.description || '';
+        this.elements.eventImportance.value = event.importance || 'medium';
+        this.elements.eventBlock.value = event.block || 'focus';
+        this.elements.eventModal.style.display = 'flex';
+    },
 
-let eventsHtml = '';
-if (!isOther && events.length > 0) {
-const displayEvents = events.slice(0, 3);
-displayEvents.forEach(event => {
-const eventClass = this.getEventClass(event);
-const title = event.summary || 'Busy';
-eventsHtml += `<div class="event-item ${eventClass}" title="${this.escapeHtml(title)}">${this.escapeHtml(title)}</div>`;
-});
-if (events.length > 3) {
-eventsHtml += `<div class="event-item default">+${events.length - 3} more</div>`;
-}
-}
+    hideEventModal() {
+        this.elements.eventModal.style.display = 'none';
+        this.editingEventId = null;
+        this.elements.saveEvent.disabled = false;
+        this.elements.saveEvent.textContent = this.editingEventId ? 'Save Changes' : 'Add Event';
+        this.elements.aiSkeleton.style.display = 'none';
+        this.elements.aiSuggestion.style.display = 'none';
+        this.pendingAiResult = null;
+        this.pendingAiValues = null;
+    },
 
-return `
-<div class="calendar-day ${todayClass} ${otherClass}" data-date="${dateStr}">
-<div class="day-number">${day}</div>
-<div class="day-events">${eventsHtml}</div>
-</div>
-`;
-},
+    saveCurrentEvent() {
+        const title = this.elements.eventTitle.value.trim();
+        if (!title) {
+            alert('Please enter an event title.');
+            return;
+        }
 
-formatDateStr(year, month, day) {
-return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-},
+        const eventData = {
+            title: title,
+            date: this.elements.eventDate.value,
+            time: this.elements.eventTime.value,
+            endTime: this.elements.eventEndTime.value,
+            description: this.elements.eventDescription.value,
+            importance: this.elements.eventImportance.value,
+            block: this.elements.eventBlock.value
+        };
 
-getEventsForDate(dateStr) {
-return this.events.filter(event => {
-const start = event.start || {};
-const eventDate = start.date || start.dateTime || '';
-return eventDate.startsWith(dateStr);
-});
-},
+        const eventId = this.elements.eventId.value;
 
-getEventClass(event) {
-const title = (event.summary || '').toLowerCase();
-if (title.includes('work') || title.includes('meeting') || title.includes('project')) {
-return 'work';
-}
-if (title.includes('personal') || title.includes('hobby') || title.includes('friend')) {
-return 'personal';
-}
-if (title.includes('reminder') || title.includes('task') || title.includes('todo')) {
-return 'reminder';
-}
-return 'default';
-},
+        if (eventId) {
+            Storage.updateCalendarEvent(eventId, eventData);
+            this.loadEvents();
+            this.render();
+            this.hideEventModal();
+        } else {
+            const saved = Storage.addCalendarEvent(eventData);
+            this.elements.eventId.value = saved.id; // Set hidden id for accept/reject flow
+            this.loadEvents();
+            this.render();
+            this.elements.saveEvent.disabled = true;
+            this.elements.saveEvent.textContent = 'Analyzing...';
+            this.runAiAnalysis(saved, eventData);
+        }
+    },
 
-showDayEvents(dateStr) {
-const events = this.getEventsForDate(dateStr);
-if (events.length === 0) {
-return;
-}
+    deleteCurrentEvent() {
+        const eventId = this.elements.eventId.value;
+        if (!eventId) return;
+        if (!confirm('Delete this event?')) return;
+        Storage.deleteCalendarEvent(eventId);
+        this.loadEvents();
+        this.render();
+        this.hideEventModal();
+    },
 
-if (events.length === 1) {
-this.showEventModal(events[0]);
-} else {
-const date = new Date(dateStr + 'T12:00:00');
-const options = { weekday: 'long', month: 'long', day: 'numeric' };
-const formattedDate = date.toLocaleDateString('en-US', options);
+    showDayEvents(dateStr) {
+        const events = this.getEventsForDate(dateStr);
+        if (events.length === 0) {
+            this.openAddModal(dateStr);
+            return;
+        }
 
-let content = `<strong>${formattedDate}</strong><br><br>`;
-events.forEach((event, index) => {
-const time = this.formatEventTime(event);
-content += `<strong>${index + 1}. ${this.escapeHtml(event.summary || 'Busy')}</strong><br>`;
-content += `Time: ${time}<br><br>`;
-});
+        if (events.length === 1) {
+            this.showViewModal(events[0]);
+        } else {
+            const date = new Date(dateStr + 'T12:00:00');
+            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+            const formattedDate = date.toLocaleDateString('en-US', options);
 
-this.elements.eventTitle.textContent = `${events.length} Events`;
-this.elements.eventTime.textContent = formattedDate;
-this.elements.eventDescription.innerHTML = content;
-this.elements.openInGoogle.style.display = 'none';
-this.elements.eventModal.style.display = 'flex';
-}
-},
+            let content = '';
+            events.forEach((event, index) => {
+                const timeStr = this.formatEventTimeDisplay(event);
+                const imp = event.importance || 'medium';
+                const block = event.block || 'focus';
+                content += '<div style="padding:12px 16px;background:#f9fafb;border-radius:12px;margin-bottom:8px;cursor:pointer;border-left:4px solid ' + this.importanceColor(imp) + '" onclick="Calendar.showViewModal(Calendar.events.find(e=>e.id===\'' + event.id + '\'))">';
+                content += '<strong>' + (index + 1) + '. ' + this.escapeHtml(event.title) + '</strong><br>';
+                content += '<span style="font-size:0.85rem;color:#6b7280;">' + this.escapeHtml(timeStr) + '</span>';
+                content += '</div>';
+            });
 
-showEventModal(event) {
-const title = event.summary || 'Busy';
-const time = this.formatEventTime(event);
-const description = event.description || 'No description';
-const link = event.htmlLink || '#';
+            this.elements.viewTitle.textContent = events.length + ' Events on ' + formattedDate;
+            this.elements.viewTime.textContent = '';
+            this.elements.viewBlock.textContent = '';
+            this.elements.viewImportance.textContent = '';
+            this.elements.viewDescription.innerHTML = content;
+            this.elements.editFromView.style.display = 'none';
+            this.elements.deleteFromView.style.display = 'none';
+            this.elements.viewModal.style.display = 'flex';
+        }
+    },
 
-this.elements.eventTitle.textContent = title;
-this.elements.eventTime.textContent = time;
-this.elements.eventDescription.textContent = description;
-this.elements.openInGoogle.href = link;
-this.elements.openInGoogle.style.display = link !== '#' ? 'inline-block' : 'none';
-this.elements.eventModal.style.display = 'flex';
-},
+    showViewModal(event) {
+        const title = event.title || 'Untitled';
+        const timeStr = this.formatEventTimeDisplay(event);
+        const blockMap = { focus: 'Focus', personal: 'Personal', recovery: 'Recovery' };
+        const impMap = { high: 'High', medium: 'Medium', low: 'Low' };
 
-formatEventTime(event) {
-const start = event.start || {};
-const dateStr = start.date || start.dateTime || '';
+        this.elements.viewTitle.textContent = title;
+        this.elements.viewTime.textContent = timeStr;
+        this.elements.viewBlock.textContent = 'Block: ' + (blockMap[event.block] || event.block);
+        this.elements.viewImportance.style.color = event.importance === 'high' ? '#dc2626' : event.importance === 'low' ? '#10b981' : '#d97706';
+        this.elements.viewImportance.textContent = 'Importance: ' + (impMap[event.importance] || event.importance);
+        this.elements.viewDescription.textContent = event.description || 'No description';
+        this.elements.editFromView.dataset.eventId = event.id;
+        this.elements.deleteFromView.dataset.eventId = event.id;
+        this.elements.editFromView.style.display = 'inline-block';
+        this.elements.deleteFromView.style.display = 'inline-block';
+        this.elements.viewModal.style.display = 'flex';
+    },
 
-if (!dateStr) return 'All day';
+    hideViewModal() {
+        this.elements.viewModal.style.display = 'none';
+    },
 
-if (start.date) {
-return 'All day';
-}
+    editFromViewModal() {
+        const eventId = this.elements.editFromView.dataset.eventId;
+        this.hideViewModal();
+        this.openEditModal(eventId);
+    },
 
-const date = new Date(dateStr);
-const options = { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
-return date.toLocaleDateString('en-US', options);
-},
+    deleteFromViewModal() {
+        const eventId = this.elements.deleteFromView.dataset.eventId;
+        if (!eventId || !confirm('Delete this event?')) return;
+        Storage.deleteCalendarEvent(eventId);
+        this.loadEvents();
+        this.render();
+        this.hideViewModal();
+    },
 
-hideEventModal() {
-this.elements.eventModal.style.display = 'none';
-},
+    formatEventTimeDisplay(event) {
+        if (!event.time) return 'All day';
+        let str = event.time;
+        if (event.endTime) str += ' - ' + event.endTime;
+        const date = new Date(event.date + 'T12:00:00');
+        const options = { weekday: 'short', month: 'short', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options) + ' ' + str;
+    },
 
-escapeHtml(text) {
-const div = document.createElement('div');
-div.textContent = text;
-return div.innerHTML;
-}
+    importanceColor(imp) {
+        return imp === 'high' ? '#dc2626' : imp === 'low' ? '#10b981' : '#d97706';
+    },
+
+    async runAiAnalysis(savedEvent, rawData) {
+        let apiKey = localStorage.getItem(this.NVIDIA_KEY);
+        if (!apiKey) {
+            apiKey = this.NVIDIA_DEFAULT_KEY;
+            localStorage.setItem(this.NVIDIA_KEY, apiKey);
+        }
+        const noAi = () => {
+            this.showAiSkeleton(false);
+            this.hideEventModal();
+            this.elements.saveEvent.disabled = false;
+            this.elements.saveEvent.textContent = 'Add Event';
+        };
+        if (!apiKey) { noAi(); return; }
+
+        const systemPrompt = 'You are a productivity assistant. Analyze an event and respond with ONLY valid JSON (no markdown):\n{\n  "importance": "high|medium|low",\n  "suggestedBlock": "focus|personal|recovery",\n  "reason": "one short sentence"\n}\n\nGuidelines:\n- high: deadlines, meetings, exams, work\n- medium: regular tasks, appointments\n- low: optional activities, leisure\n- focus: work, study, deep work\n- personal: hobbies, projects\n- recovery: rest, social, exercise';
+
+        const userPrompt = 'Title: ' + (rawData.title || savedEvent.title) + '\nDate: ' + (rawData.date || savedEvent.date) + '\nTime: ' + (rawData.time || 'all day') + '\nDescription: ' + (rawData.description || savedEvent.description || 'N/A');
+
+        const modelSelect = document.getElementById('nvidiaModel');
+        const model = modelSelect ? modelSelect.value : 'nvidia/llama-3.1-nemotron-nano-8b-v1';
+
+        this.showAiSkeleton(true);
+        this.pendingAiResult = savedEvent.id;
+
+        try {
+            const response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + apiKey
+                },
+                body: JSON.stringify({
+                    model: model,
+                    messages: [
+                        { role: 'system', content: systemPrompt },
+                        { role: 'user', content: userPrompt }
+                    ],
+                    temperature: 0.1,
+                    max_tokens: 200
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('API error: ' + response.status);
+            }
+
+            const data = await response.json();
+            const content = data.choices[0].message.content.trim();
+            const result = JSON.parse(content);
+
+            if (result.importance && result.suggestedBlock) {
+                // Store pending AI values — not applied until user clicks Apply
+                this.pendingAiValues = {
+                    importance: result.importance,
+                    block: result.suggestedBlock,
+                    aiAnalyzed: true
+                };
+                this.showAiSuggestion(result.importance, result.suggestedBlock, result.reason);
+            } else {
+                noAi();
+            }
+        } catch (error) {
+            console.error('AI analysis failed:', error);
+            noAi();
+        }
+    },
+
+    showAiSkeleton(show) {
+        const el = this.elements.aiSkeleton;
+        if (!el) return;
+        el.style.display = show ? 'flex' : 'none';
+    },
+
+    showAiSuggestion(importance, block, reason) {
+        this.showAiSkeleton(false);
+        this.elements.saveEvent.disabled = false;
+        this.elements.saveEvent.textContent = 'Add Event';
+
+        const suggestion = this.elements.aiSuggestion;
+        if (!suggestion) return;
+
+        const impMap = { high: '🔴 High', medium: '🟡 Medium', low: '🟢 Low' };
+        const blockMap = { focus: '🎯 Focus', personal: '📚 Personal', recovery: '🧘 Recovery' };
+
+        const el = this.elements.aiSuggestionText;
+        if (el) {
+            el.innerHTML = '<span style="background:#f3f4f6;padding:4px 12px;border-radius:6px;font-weight:600;">' + (impMap[importance] || importance) + '</span> <span style="background:#f3f4f6;padding:4px 12px;border-radius:6px;font-weight:600;">' + (blockMap[block] || block) + '</span> <span style="color:#6b7280;font-size:0.85rem;">' + (reason || '') + '</span>';
+        }
+
+        // Pre-fill the form fields with AI suggestion for preview
+        if (this.elements.eventImportance.value !== importance) {
+            this.elements.eventImportance.value = importance;
+        }
+        if (this.elements.eventBlock.value !== block) {
+            this.elements.eventBlock.value = block;
+        }
+
+        suggestion.style.display = 'block';
+    },
+
+    acceptAiSuggestion() {
+        const eventId = this.elements.eventId.value;
+        if (eventId && this.pendingAiValues) {
+            Storage.updateCalendarEvent(eventId, this.pendingAiValues);
+            this.loadEvents();
+            this.render();
+        }
+        this.elements.aiSuggestion.style.display = 'none';
+        this.pendingAiResult = null;
+        this.pendingAiValues = null;
+        this.hideEventModal();
+        this.elements.saveEvent.disabled = false;
+        this.elements.saveEvent.textContent = 'Add Event';
+    },
+
+    rejectAiSuggestion() {
+        const eventId = this.elements.eventId.value;
+        if (eventId) {
+            Storage.updateCalendarEvent(eventId, { aiAnalyzed: false });
+        }
+        this.elements.aiSuggestion.style.display = 'none';
+        this.pendingAiResult = null;
+        this.pendingAiValues = null;
+        this.hideEventModal();
+        this.elements.saveEvent.disabled = false;
+        this.elements.saveEvent.textContent = 'Add Event';
+    },
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-Firebase.init();
-Calendar.init();
+    Calendar.init();
 });
 
 if (typeof module !== 'undefined' && module.exports) {
-module.exports = Calendar;
+    module.exports = Calendar;
 }

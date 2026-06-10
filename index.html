@@ -3,130 +3,761 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BlockFlow - 3 Block Day</title>
-    <meta name="description" content="A simple productivity app to reduce scrolling addiction and improve focus">
+    <title>BlockFlow</title>
+    <meta name="description" content="Balance your day in 3 blocks">
     <meta name="theme-color" content="#667eea">
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icons/icon-192.png" type="image/png">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <style>
+        /* ─ Layout ─ */
+        .home-main {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 4px 24px rgba(102, 126, 234, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .card-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        /* ─ Blocks ─ */
+        .blocks-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .block-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 20px;
+            border-radius: 18px;
+            background: #f9fafb;
+            border-left: 5px solid;
+            transition: background 0.2s ease, transform 0.2s ease;
+            cursor: default;
+        }
+
+        .block-row:hover {
+            background: #f3f4f6;
+            transform: translateX(4px);
+        }
+
+        .block-row-focus { border-left-color: #667eea; }
+        .block-row-personal { border-left-color: #10b981; }
+        .block-row-recovery { border-left-color: #f59e0b; }
+
+        .block-row-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            width: 40px;
+            text-align: center;
+        }
+
+        .block-row-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .block-row-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1f2937;
+            margin-bottom: 2px;
+        }
+
+        .block-row-sub {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .block-row-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .block-row-dur {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #6b7280;
+            background: white;
+            padding: 5px 14px;
+            border-radius: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+
+        .block-row .btn {
+            min-width: auto;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            border-radius: 10px;
+            box-shadow: none;
+        }
+
+        .block-row .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .block-row .btn-outline {
+            background: transparent;
+            border: 1.5px solid #d1d5db;
+            color: #6b7280;
+        }
+
+        .block-row .btn-outline:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .block-completed-row {
+            opacity: 0.7;
+        }
+
+        .block-completed-row .block-row-name::after {
+            content: ' ✓';
+            color: #10b981;
+            font-weight: 800;
+        }
+
+        /* ─ Timer ─ */
+        .timer-card {
+            text-align: center;
+            padding: 40px 32px;
+        }
+
+        .timer-face {
+            font-size: 6rem;
+            font-weight: 800;
+            letter-spacing: -4px;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .timer-controls-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .timer-controls-row .btn {
+            min-width: 110px;
+            padding: 12px 24px;
+            font-size: 0.9rem;
+        }
+
+        .timer-controls-row .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .timer-status-badge {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #9ca3af;
+            padding: 6px 18px;
+            background: #f3f4f6;
+            border-radius: 20px;
+        }
+
+        .timer-break .timer-face {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        .timer-break {
+            border: 2.5px solid rgba(16, 185, 129, 0.25);
+        }
+
+        .focus-mode .timer-face {
+            color: white;
+            font-size: 6.5rem;
+        }
+
+        .focus-mode .timer-status-badge {
+            background: rgba(255,255,255,0.15);
+            color: white;
+        }
+
+        .focus-mode .timer-controls-row .btn {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .focus-mode .timer-controls-row .btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* ─ Stats ─ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .stat-cell {
+            padding: 20px 16px;
+            border-radius: 18px;
+            background: #f9fafb;
+            text-align: center;
+            transition: background 0.2s ease;
+        }
+
+        .stat-cell:hover {
+            background: #f3f4f6;
+        }
+
+        .stat-cell-icon {
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+        }
+
+        .stat-cell-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-cell-label {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .distract-btn-wrap {
+            grid-column: 1 / -1;
+            margin-top: 4px;
+        }
+
+        .distract-btn-wrap .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 0.9rem;
+            box-shadow: none;
+        }
+
+        /* ─ Sleep popover ─ */
+        .sleep-popover {
+            display: none;
+            margin-top: 16px;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 16px;
+        }
+
+        .sleep-popover.open {
+            display: block;
+        }
+
+        .sleep-popover .sleep-inputs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .sleep-popover .input-group {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sleep-popover .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .sleep-popover .input-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            background: white;
+        }
+
+        .sleep-popover .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .sleep-popover-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .sleep-popover-actions .btn {
+            min-width: auto;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            box-shadow: none;
+        }
+
+        /* ─ History ─ */
+        .history-compact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .history-day-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: #f9fafb;
+            transition: background 0.2s ease;
+        }
+
+        .history-day-row:hover {
+            background: #f3f4f6;
+        }
+
+        .history-day-row.today-row {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.06) 0%, rgba(118, 75, 162, 0.06) 100%);
+        }
+
+        .history-day-date {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #374151;
+            min-width: 100px;
+        }
+
+        .history-day-stats {
+            display: flex;
+            gap: 14px;
+            flex: 1;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .history-day-blocks {
+            display: flex;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .history-day-blocks span {
+            font-size: 1.1rem;
+        }
+
+        .history-empty {
+            text-align: center;
+            padding: 24px;
+            color: #d1d5db;
+            font-size: 0.9rem;
+        }
+
+        /* ─ Reset link ─ */
+        .reset-link {
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .reset-link button {
+            background: none;
+            border: none;
+            color: #d1d5db;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .reset-link button:hover {
+            color: #ef4444;
+        }
+
+        /* ─ Walkthrough overlay ─ */
+        .walkthrough-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .walkthrough-overlay.show { display: flex; }
+
+        .walkthrough-content {
+            background: white;
+            border-radius: 28px;
+            padding: 36px 32px;
+            max-width: 480px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+            animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .walkthrough-step { display: none; }
+        .walkthrough-step.active { display: block; }
+
+        .walkthrough-step h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .walkthrough-step h2::before { display: none; }
+        .walkthrough-icon { font-size: 2.8rem; text-align: center; margin-bottom: 12px; }
+
+        .walkthrough-step p {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .walkthrough-step .feature-list {
+            text-align: left;
+            margin: 12px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .walkthrough-step .feature-list li {
+            padding: 10px 14px;
+            margin-bottom: 6px;
+            background: #f9fafb;
+            border-radius: 12px;
+            color: #374151;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .walkthrough-step .feature-list li span { font-size: 1.1rem; }
+
+        .walkthrough-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            gap: 12px;
+        }
+
+        .walkthrough-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .walkthrough-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .walkthrough-dot.active {
+            background: #667eea;
+            transform: scale(1.4);
+        }
+
+        .walkthrough-nav .btn {
+            min-width: auto;
+            padding: 10px 22px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ─ Responsive ─ */
+        @media (max-width: 768px) {
+            .card { padding: 24px 20px; }
+            .timer-face { font-size: 4.5rem; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .stat-cell { padding: 16px 10px; }
+            .stat-cell-value { font-size: 1.4rem; }
+            .block-row { padding: 14px 16px; gap: 12px; flex-wrap: wrap; }
+            .block-row-meta { width: 100%; justify-content: flex-end; }
+            .history-day-date { min-width: 80px; font-size: 0.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .timer-face { font-size: 3.8rem; letter-spacing: -2px; }
+            .stats-grid { gap: 8px; }
+            .stat-cell { padding: 12px 8px; border-radius: 14px; }
+            .stat-cell-value { font-size: 1.2rem; }
+            .stat-cell-icon { font-size: 1rem; }
+            .timer-controls-row .btn { min-width: 90px; padding: 10px 16px; font-size: 0.85rem; }
+            .block-row { padding: 12px 14px; }
+            .block-row-icon { font-size: 1.2rem; width: 32px; }
+            .card { padding: 20px 16px; border-radius: 22px; }
+            .walkthrough-content { padding: 28px 20px; }
+            .history-day-row { flex-wrap: wrap; gap: 8px; }
+            .history-day-date { min-width: auto; }
+            .sleep-popover .sleep-inputs { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-<header class="header">
-<h1>BlockFlow</h1>
-<p class="subtitle">Balance your day in 3 blocks</p>
-<div class="date-display" id="currentDate">Today: Loading...</div>
-</header>
+    <header class="header">
+        <h1>BlockFlow</h1>
+        <p class="subtitle">Balance your day in 3 blocks</p>
+        <div class="date-display" id="currentDate">Today: Loading...</div>
+    </header>
 
-<nav class="nav-tabs">
-<button class="nav-tab active" onclick="window.location.href='index.html'">🏠 Dashboard</button>
-<button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
-<button class="nav-tab" onclick="window.location.href='settings.html'">⚙️ Settings</button>
-</nav>
+    <nav class="nav-tabs">
+        <button class="nav-tab active">🏠 Home</button>
+        <button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
+        <button class="nav-tab" onclick="window.location.href='settings.html'">⚙️ Settings</button>
+    </nav>
 
-<main>
-            <!-- Daily Blocks Section -->
-            <section class="blocks-section">
-                <h2>📋 Today's Blocks</h2>
-                <div class="blocks-container" id="blocksContainer">
-                    <!-- Blocks will be dynamically inserted here -->
+    <main class="home-main">
+
+        <!-- Blocks -->
+        <div class="card" style="animation-delay:0.05s;">
+            <div class="card-title">Today's Blocks</div>
+            <div class="blocks-stack" id="blocksContainer"></div>
+        </div>
+
+        <!-- Timer -->
+        <div class="card timer-card" id="timerCard" style="animation-delay:0.1s;">
+            <div class="timer-face" id="timerTime">25:00</div>
+            <div class="timer-controls-row">
+                <button class="btn btn-primary" id="startTimer">Start Focus</button>
+                <button class="btn btn-outline" id="pauseTimer" disabled>Pause</button>
+                <button class="btn btn-outline" id="resetTimer">Reset</button>
+                <button class="btn btn-success" id="skipBreak" style="display:none;">Skip Break</button>
+            </div>
+            <div class="timer-status-badge" id="timerStatus">Ready to focus</div>
+        </div>
+
+        <!-- Stats -->
+        <div class="card" style="animation-delay:0.15s;">
+            <div class="card-title">Today's Stats</div>
+            <div class="stats-grid">
+                <div class="stat-cell">
+                    <div class="stat-cell-icon">🚫</div>
+                    <div class="stat-cell-value" id="distractionCount">0</div>
+                    <div class="stat-cell-label">distractions</div>
                 </div>
-            </section>
-
-            <!-- Focus Timer Section -->
-            <section class="timer-section">
-                <h2>⏱️ Focus Timer</h2>
-                <div class="timer-display" id="timerDisplay">
-                    <div class="time" id="timerTime">25:00</div>
-                    <div class="timer-controls">
-                        <button class="btn btn-primary" id="startTimer">Start Focus</button>
-                        <button class="btn btn-secondary" id="pauseTimer" disabled>Pause</button>
-                        <button class="btn btn-secondary" id="resetTimer">Reset</button>
-                    </div>
-                    <div class="timer-status" id="timerStatus">Ready to focus</div>
+                <div class="stat-cell">
+                    <div class="stat-cell-icon">⏱️</div>
+                    <div class="stat-cell-value" id="focusTime">0</div>
+                    <div class="stat-cell-label">focus min</div>
                 </div>
-            </section>
-
-            <!-- Anti-Scroll Tracker -->
-            <section class="tracker-section">
-                <h2>🚫 Distraction Tracker</h2>
-                <div class="tracker-card">
-                    <p>Caught yourself scrolling?</p>
+                <div class="stat-cell" id="sleepStat" style="cursor:pointer;">
+                    <div class="stat-cell-icon">😴</div>
+                    <div class="stat-cell-value" id="sleepDuration">9h</div>
+                    <div class="stat-cell-label">sleep</div>
+                </div>
+                <div class="distract-btn-wrap">
                     <button class="btn btn-warning" id="logDistraction">I got distracted</button>
-                    <div class="stats">
-                        <div class="stat">
-                            <span class="stat-label">Today's distractions:</span>
-                            <span class="stat-value" id="distractionCount">0</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">Focus time:</span>
-                            <span class="stat-value" id="focusTime">0 min</span>
-                        </div>
+                </div>
+            </div>
+
+            <!-- Sleep popover -->
+            <div class="sleep-popover" id="sleepPopover">
+                <div class="sleep-inputs">
+                    <div class="input-group">
+                        <label for="sleepTime">Bedtime</label>
+                        <input type="time" id="sleepTime" value="22:00">
+                    </div>
+                    <div class="input-group">
+                        <label for="wakeTime">Wake up</label>
+                        <input type="time" id="wakeTime" value="07:00">
                     </div>
                 </div>
-            </section>
-
-            <!-- Sleep Tracker -->
-            <section class="sleep-section">
-                <h2>😴 Sleep Tracker</h2>
-                <div class="sleep-card">
-                    <div class="sleep-inputs">
-                        <div class="input-group">
-                            <label for="sleepTime">Sleep Time</label>
-                            <input type="time" id="sleepTime" value="22:00">
-                        </div>
-                        <div class="input-group">
-                            <label for="wakeTime">Wake Time</label>
-                            <input type="time" id="wakeTime" value="07:00">
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" id="saveSleep">Save Sleep</button>
-                    <div class="sleep-display" id="sleepDisplay">
-                        Sleep duration: <span id="sleepDuration">9h 0m</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Daily Reset -->
-            <section class="reset-section">
-                <button class="btn btn-secondary" id="dailyReset">Reset Day</button>
-                <p class="note">Day resets automatically at midnight</p>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <p>BlockFlow &copy; 2025 - Simple focus tool</p>
-        </footer>
-    </div>
-
-    <!-- Modals -->
-    <div class="modal" id="blockSettingsModal">
-        <div class="modal-content">
-            <h3>Block Settings</h3>
-            <div class="modal-body">
-                <div class="input-group">
-                    <label for="blockDuration">Duration (minutes)</label>
-                    <input type="number" id="blockDuration" min="15" max="240" value="60">
-                </div>
-                <div class="modal-actions">
-                    <button class="btn btn-primary" id="saveBlockSettings">Save</button>
-                    <button class="btn btn-secondary" id="cancelBlockSettings">Cancel</button>
+                <div class="sleep-popover-actions">
+                    <button class="btn btn-primary" id="saveSleep">Save</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="js/app.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/timer.js"></script>
-    <script src="js/ui.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
-                .then(() => console.log('Service Worker registered'))
-                .catch(err => console.log('Service Worker registration failed:', err));
+        <!-- History -->
+        <div class="card" style="animation-delay:0.2s;">
+            <div class="card-title">7-Day History</div>
+            <div class="history-compact" id="historyContainer">
+                <div class="history-empty">No history yet</div>
+            </div>
+        </div>
+
+        <!-- Reset -->
+        <div class="reset-link">
+            <button id="dailyReset">Reset today's data</button>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <p>BlockFlow &copy; 2025</p>
+    </footer>
+</div>
+
+<!-- Block Settings Modal -->
+<div class="modal" id="blockSettingsModal">
+    <div class="modal-content">
+        <h3>Block Settings</h3>
+        <div class="modal-body">
+            <div class="input-group">
+                <label for="blockDuration">Duration (minutes)</label>
+                <input type="number" id="blockDuration" min="15" max="240" value="60">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="saveBlockSettings">Save</button>
+                <button class="btn btn-secondary" id="cancelBlockSettings">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Walkthrough -->
+<div class="walkthrough-overlay" id="walkthroughOverlay">
+    <div class="walkthrough-content">
+        <div class="walkthrough-step active" data-step="0">
+            <div class="walkthrough-icon">👋</div>
+            <h2>Welcome to BlockFlow</h2>
+            <p>A simple system to balance your day — focus, rest, and everything in between.</p>
+            <ul class="feature-list">
+                <li><span>📋</span> Set 3 daily blocks: Focus, Personal, Recovery</li>
+                <li><span>⏱️</span> Use the timer to work distraction-free</li>
+                <li><span>🚫</span> Track distractions to build awareness</li>
+                <li><span>📅</span> Plan events with AI in the Calendar tab</li>
+            </ul>
+        </div>
+        <div class="walkthrough-step" data-step="1">
+            <div class="walkthrough-icon">📋</div>
+            <h2>Your 3 Daily Blocks</h2>
+            <p>Each day is split into 3 blocks. Set a time for each, work through them, and mark them done.</p>
+            <ul class="feature-list">
+                <li><span>🎯</span> <strong>Focus Block</strong> — Work, study, deep tasks</li>
+                <li><span>📚</span> <strong>Personal Block</strong> — Hobbies, projects, learning</li>
+                <li><span>🧘</span> <strong>Recovery Block</strong> — Rest, social, unwind</li>
+            </ul>
+        </div>
+        <div class="walkthrough-step" data-step="2">
+            <div class="walkthrough-icon">⏱️</div>
+            <h2>Timer &amp; Auto-Break</h2>
+            <p>Use the timer to work in focused sprints. When it ends, auto-break gives you 5 minutes to rest.</p>
+            <ul class="feature-list">
+                <li><span>▶️</span> Press <strong>Start Focus</strong> to begin</li>
+                <li><span>⏸️</span> Pause any time — focus time is saved</li>
+                <li><span>☕</span> Auto-break (toggle in Settings)</li>
+                <li><span>🔔</span> Sound notifications (toggle in Settings)</li>
+            </ul>
+        </div>
+        <div class="walkthrough-step" data-step="3">
+            <div class="walkthrough-icon">🚫</div>
+            <h2>Build Better Habits</h2>
+            <p>Tap <strong>"I got distracted"</strong> when you catch yourself scrolling. Track sleep, check your history, and plan events with AI in the Calendar tab.</p>
+            <ul class="feature-list">
+                <li><span>📊</span> Check 7-day history to see your progress</li>
+                <li><span>📅</span> Plan events with AI in Calendar</li>
+                <li><span>⚙️</span> Customize everything in Settings</li>
+            </ul>
+        </div>
+        <div class="walkthrough-nav">
+            <button class="btn btn-secondary" id="walkthroughPrev" style="visibility:hidden;">Back</button>
+            <div class="walkthrough-dots">
+                <span class="walkthrough-dot active" data-dot="0"></span>
+                <span class="walkthrough-dot" data-dot="1"></span>
+                <span class="walkthrough-dot" data-dot="2"></span>
+                <span class="walkthrough-dot" data-dot="3"></span>
+            </div>
+            <button class="btn btn-primary" id="walkthroughNext">Next</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/ui.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(() => console.log('SW registered'))
+            .catch(() => {});
+    }
+
+    // Walkthrough
+    (function() {
+        if (localStorage.getItem('blockflow_walkthrough_done')) return;
+        const overlay = document.getElementById('walkthroughOverlay');
+        const prevBtn = document.getElementById('walkthroughPrev');
+        const nextBtn = document.getElementById('walkthroughNext');
+        const steps = document.querySelectorAll('.walkthrough-step');
+        const dots = document.querySelectorAll('.walkthrough-dot');
+        let step = 0;
+
+        function show(i) {
+            steps.forEach((s, n) => s.classList.toggle('active', n === i));
+            dots.forEach((d, n) => d.classList.toggle('active', n === i));
+            prevBtn.style.visibility = i === 0 ? 'hidden' : 'visible';
+            nextBtn.textContent = i === steps.length - 1 ? 'Get Started' : 'Next';
+            step = i;
         }
-    </script>
+
+        prevBtn.addEventListener('click', () => { if (step > 0) show(step - 1); });
+        nextBtn.addEventListener('click', () => {
+            if (step < steps.length - 1) { show(step + 1); }
+            else { overlay.classList.remove('show'); localStorage.setItem('blockflow_walkthrough_done', 'true'); }
+        });
+        overlay.classList.add('show');
+    })();
+</script>
 </body>
 </html>

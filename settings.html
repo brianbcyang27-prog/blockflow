@@ -162,6 +162,63 @@ border-top: 1px solid #e5e7eb;
 display: inline-block;
 }
 
+.setup-step {
+display: flex;
+gap: 16px;
+padding: 18px 0;
+border-bottom: 1px solid #f3f4f6;
+align-items: flex-start;
+}
+
+.setup-step:last-child {
+border-bottom: none;
+padding-bottom: 0;
+}
+
+.setup-step-num {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+font-size: 0.9rem;
+flex-shrink: 0;
+margin-top: 2px;
+}
+
+.setup-step-content {
+flex: 1;
+}
+
+.setup-step-content strong {
+display: block;
+color: #1f2937;
+margin-bottom: 6px;
+font-size: 1rem;
+}
+
+.setup-step-content p {
+font-size: 0.9rem;
+color: #6b7280;
+line-height: 1.6;
+margin: 0;
+}
+
+.setup-step-content code {
+font-size: 0.8rem;
+background: #f3f4f6;
+padding: 10px 14px;
+border-radius: 8px;
+display: inline-block;
+word-break: break-all;
+border: 1px solid #e5e7eb;
+font-family: 'SF Mono', 'Monaco', monospace;
+}
+
 @media (max-width: 768px) {
 .setting-item {
 flex-direction: column;
@@ -196,59 +253,123 @@ width: 100%;
 </nav>
 
 <div class="settings-container">
-<section class="settings-section">
-<h3>Google Calendar</h3>
-<div class="input-group" style="margin-bottom: 15px;">
-<label for="apiKey">Google API Key</label>
-<input type="text" id="apiKey" placeholder="AIzaSy..." style="width: 100%;">
+<section class="settings-section" id="nvidiaSetup">
+<h3>AI Calendar Setup</h3>
+<p style="color: #374151; margin-bottom: 20px; line-height: 1.7;">
+BlockFlow uses <strong>NVIDIA AI</strong> to analyze your events and suggest importance levels and block types.
+Get a free API key from NVIDIA (no credit card required).
+</p>
+
+<div class="setup-step">
+<div class="setup-step-num">1</div>
+<div class="setup-step-content">
+<strong>Get your free NVIDIA API key</strong>
+<p>Go to <a href="https://build.nvidia.com" target="_blank" style="color: #667eea;">build.nvidia.com</a>, sign up for the free NVIDIA Developer Program, and generate an API key.</p>
+<a class="btn btn-primary" href="https://build.nvidia.com" target="_blank" style="text-decoration: none; margin-top: 10px;">
+Get Free API Key
+</a>
 </div>
-<div class="input-group" style="margin-bottom: 15px;">
-<label for="calendarId">Calendar ID</label>
-<input type="text" id="calendarId" placeholder="your-email@gmail.com" style="width: 100%;">
 </div>
-<div style="display: flex; gap: 10px; flex-wrap: wrap;">
-<button class="btn btn-primary" id="connectCalendar">Connect Calendar</button>
-<button class="btn btn-secondary" id="clearSettings">Clear</button>
+
+<div class="setup-step">
+<div class="setup-step-num">2</div>
+<div class="setup-step-content">
+<strong>Enter your API key</strong>
+<p>Paste your <code style="font-size:0.8rem;background:#f3f4f6;padding:2px 8px;border-radius:4px;">nvapi-</code> key below.</p>
+<div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+<input type="password" id="nvidiaApiKey" placeholder="nvapi-..." style="flex:1;min-width:200px;padding:12px 16px;border:2px solid #e5e7eb;border-radius:12px;font-size:0.95rem;">
+<button class="btn btn-primary" id="saveNvidiaKey" style="min-width:auto;">Save</button>
 </div>
-<div class="api-status disconnected" id="apiStatus">
+<span id="nvidiaKeyStatus" style="font-size:0.85rem;margin-top:8px;display:block;"></span>
+</div>
+</div>
+
+<div class="setup-step">
+<div class="setup-step-num">3</div>
+<div class="setup-step-content">
+<strong>Choose AI Model</strong>
+<p>Select which model to use for event analysis.</p>
+<select id="nvidiaModel" style="margin-top:10px;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:0.9rem;background:white;max-width:100%;">
+<option value="nvidia/llama-3.1-nemotron-nano-8b-v1">Llama Nemotron Nano 8B (Fast)</option>
+<option value="meta/llama-3.3-70b-instruct">Llama 3.3 70B (Accurate)</option>
+<option value="nvidia/nemotron-4-340b-instruct">Nemotron 4 340B (Most Accurate)</option>
+</select>
+</div>
+</div>
+
+<div class="api-status disconnected" id="apiStatus" style="margin-top: 25px;">
 <span class="api-status-dot"></span>
-<span id="apiStatusText">Not connected</span>
+<span id="apiStatusText">AI not configured</span>
 </div>
 </section>
 
 <section class="settings-section">
 <h3>Timer Settings</h3>
 <div class="setting-item">
-<div class="setting-label">
-<strong>Default Focus Duration</strong>
-<span>25 minutes recommended for productivity</span>
-</div>
-<div class="setting-control">
-<select id="focusDuration" class="input-group" style="padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 8px;">
-<option value="15">15 min</option>
-<option value="25" selected>25 min</option>
-<option value="30">30 min</option>
-<option value="45">45 min</option>
-<option value="60">60 min</option>
-</select>
-</div>
-</div>
+        <div class="setting-label">
+            <strong>Default Focus Duration</strong>
+            <span>25 minutes recommended for productivity</span>
+        </div>
+        <div class="setting-control">
+            <select id="focusDuration" class="input-group" style="padding: 8px 12px; border: 2px solid #e9ecef; border-radius: 8px;">
+                <option value="15">15 min</option>
+                <option value="25">25 min</option>
+                <option value="30">30 min</option>
+                <option value="45">45 min</option>
+                <option value="60">60 min</option>
+            </select>
+        </div>
+    </div>
+    <div class="setting-item">
+        <div class="setting-label">
+            <strong>Auto-start Break Timer</strong>
+            <span>Automatically start break after focus session</span>
+        </div>
+        <div class="setting-control">
+            <label class="toggle">
+                <input type="checkbox" id="autoBreak">
+                <span style="margin-left: 8px;" id="autoBreakLabel">Off</span>
+            </label>
+        </div>
+    </div>
+    <div class="setting-item">
+        <div class="setting-label">
+            <strong>Sound Notifications</strong>
+            <span>Play sound when timer completes</span>
+        </div>
+        <div class="setting-control">
+            <label class="toggle">
+                <input type="checkbox" id="soundNotifications">
+                <span style="margin-left: 8px;" id="soundLabel">On</span>
+            </label>
+        </div>
+    </div>
+</section>
+
+<section class="settings-section">
+<h3>Help & Walkthrough</h3>
 <div class="setting-item">
 <div class="setting-label">
-<strong>Auto-start Break Timer</strong>
-<span>Automatically start break after focus session</span>
+<strong>Show Walkthrough</strong>
+<span>Replay the introductory guide</span>
 </div>
 <div class="setting-control">
-<label class="toggle">
-<input type="checkbox" id="autoBreak">
-<span style="margin-left: 8px;">Off</span>
-</label>
+<button class="btn btn-primary" id="showWalkthrough">Show Guide</button>
 </div>
 </div>
 </section>
 
 <section class="settings-section">
 <h3>Data Management</h3>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Import Sample Data</strong>
+<span>Populate with 21 sample events and 5 days of history to test the app</span>
+</div>
+<div class="setting-control">
+<button class="btn btn-secondary" id="importSampleData">Import Samples</button>
+</div>
+</div>
 <div class="setting-item">
 <div class="setting-label">
 <strong>Export Data</strong>
@@ -284,102 +405,199 @@ width: 100%;
 <script src="js/storage.js"></script>
 <script>
 const Settings = {
-elements: {},
-settingsKey: 'blockflow_calendar_settings',
+    elements: {},
+    appSettingsKey: 'blockflow_app_settings',
 
-init() {
-this.cacheElements();
-this.loadSettings();
-this.setupEventListeners();
-},
+    init() {
+        this.cacheElements();
+        this.loadSettings();
+        this.setupEventListeners();
+    },
 
-cacheElements() {
-this.elements = {
-apiKey: document.getElementById('apiKey'),
-calendarId: document.getElementById('calendarId'),
-connectCalendar: document.getElementById('connectCalendar'),
-clearSettings: document.getElementById('clearSettings'),
-apiStatus: document.getElementById('apiStatus'),
-apiStatusText: document.getElementById('apiStatusText'),
-focusDuration: document.getElementById('focusDuration'),
-autoBreak: document.getElementById('autoBreak'),
-exportData: document.getElementById('exportData'),
-clearAllData: document.getElementById('clearAllData')
-};
-},
+    cacheElements() {
+        this.elements = {
+            apiStatus: document.getElementById('apiStatus'),
+            apiStatusText: document.getElementById('apiStatusText'),
+            focusDuration: document.getElementById('focusDuration'),
+            autoBreak: document.getElementById('autoBreak'),
+            autoBreakLabel: document.getElementById('autoBreakLabel'),
+            soundNotifications: document.getElementById('soundNotifications'),
+            soundLabel: document.getElementById('soundLabel'),
+            importSampleData: document.getElementById('importSampleData'),
+            exportData: document.getElementById('exportData'),
+            clearAllData: document.getElementById('clearAllData'),
+            showWalkthrough: document.getElementById('showWalkthrough'),
+            nvidiaApiKey: document.getElementById('nvidiaApiKey'),
+            saveNvidiaKey: document.getElementById('saveNvidiaKey'),
+            nvidiaKeyStatus: document.getElementById('nvidiaKeyStatus'),
+            nvidiaModel: document.getElementById('nvidiaModel')
+        };
+    },
 
-loadSettings() {
-const settings = localStorage.getItem(this.settingsKey);
-if (settings) {
-const parsed = JSON.parse(settings);
-this.elements.apiKey.value = parsed.apiKey || '';
-this.elements.calendarId.value = parsed.calendarId || '';
-if (parsed.apiKey && parsed.calendarId) {
-this.updateApiStatus(true);
-}
-}
-},
+    loadSettings() {
+        const appSettings = localStorage.getItem(this.appSettingsKey);
 
-setupEventListeners() {
-this.elements.connectCalendar.addEventListener('click', () => this.connect());
-this.elements.clearSettings.addEventListener('click', () => this.clearSettings());
-this.elements.exportData.addEventListener('click', () => this.exportData());
-this.elements.clearAllData.addEventListener('click', () => this.clearAllData());
-},
+        // Set default NVIDIA key so it works out of the box
+        if (!localStorage.getItem('blockflow_nvidia_key')) {
+            localStorage.setItem('blockflow_nvidia_key', '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');
+        }
+        if (appSettings) {
+            try {
+                const parsed = JSON.parse(appSettings);
+                this.elements.focusDuration.value = parsed.focusDuration || '25';
+                this.elements.autoBreak.checked = parsed.autoBreak || false;
+                this.elements.soundNotifications.checked = parsed.soundNotifications !== false;
+                this.updateToggleLabels();
+            } catch (e) {
+                console.error('Failed to load app settings:', e);
+            }
+        } else {
+            this.elements.focusDuration.value = '25';
+            this.elements.autoBreak.checked = false;
+            this.elements.soundNotifications.checked = true;
+            this.updateToggleLabels();
+        }
 
-connect() {
-const apiKey = this.elements.apiKey.value.trim();
-const calendarId = this.elements.calendarId.value.trim();
+        const savedKey = localStorage.getItem('blockflow_nvidia_key');
+        if (savedKey) {
+            this.elements.nvidiaApiKey.value = savedKey;
+            this.updateNvidiaStatus(true);
+        }
 
-if (!apiKey || !calendarId) {
-alert('Please enter both API Key and Calendar ID');
-return;
-}
+        const savedModel = localStorage.getItem('blockflow_nvidia_model');
+        if (savedModel && this.elements.nvidiaModel.querySelector('option[value="' + savedModel + '"]')) {
+            this.elements.nvidiaModel.value = savedModel;
+        }
+    },
 
-const settings = { apiKey, calendarId };
-localStorage.setItem(this.settingsKey, JSON.stringify(settings));
-this.updateApiStatus(true);
-alert('Calendar connected successfully!');
-},
+    updateToggleLabels() {
+        this.elements.autoBreakLabel.textContent = this.elements.autoBreak.checked ? 'On' : 'Off';
+        this.elements.soundLabel.textContent = this.elements.soundNotifications.checked ? 'On' : 'Off';
+    },
 
-clearSettings() {
-if (confirm('Clear Google Calendar settings?')) {
-localStorage.removeItem(this.settingsKey);
-this.elements.apiKey.value = '';
-this.elements.calendarId.value = '';
-this.updateApiStatus(false);
-}
-},
+    saveAppSettings() {
+        const settings = {
+            focusDuration: this.elements.focusDuration.value,
+            autoBreak: this.elements.autoBreak.checked,
+            soundNotifications: this.elements.soundNotifications.checked
+        };
+        localStorage.setItem(this.appSettingsKey, JSON.stringify(settings));
+    },
 
-updateApiStatus(connected) {
-this.elements.apiStatus.className = `api-status ${connected ? 'connected' : 'disconnected'}`;
-this.elements.apiStatusText.textContent = connected ? 'Connected to Google Calendar' : 'Not connected';
-},
+    setupEventListeners() {
+        this.elements.importSampleData.addEventListener('click', () => this.importSampleData());
+        this.elements.exportData.addEventListener('click', () => this.exportData());
+        this.elements.clearAllData.addEventListener('click', () => this.clearAllData());
+        this.elements.showWalkthrough.addEventListener('click', () => this.showWalkthrough());
 
-exportData() {
-const data = {
-blockflow: localStorage.getItem('blockflow_data'),
-history: localStorage.getItem('blockflow_history'),
-calendar: localStorage.getItem('blockflow_calendar_settings')
-};
-const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-const url = URL.createObjectURL(blob);
-const a = document.createElement('a');
-a.href = url;
-a.download = `blockflow-backup-${new Date().toISOString().split('T')[0]}.json`;
-a.click();
-URL.revokeObjectURL(url);
-},
+        this.elements.saveNvidiaKey.addEventListener('click', () => this.saveNvidiaKey());
+        this.elements.nvidiaModel.addEventListener('change', () => {
+            localStorage.setItem('blockflow_nvidia_model', this.elements.nvidiaModel.value);
+        });
 
-clearAllData() {
-if (confirm('This will delete ALL your data including history. Are you sure?')) {
-localStorage.removeItem('blockflow_data');
-localStorage.removeItem('blockflow_history');
-localStorage.removeItem('blockflow_calendar_settings');
-alert('All data cleared. Please refresh the page.');
-location.reload();
-}
-}
+        this.elements.focusDuration.addEventListener('change', () => this.saveAppSettings());
+        this.elements.autoBreak.addEventListener('change', () => {
+            this.updateToggleLabels();
+            this.saveAppSettings();
+        });
+        this.elements.soundNotifications.addEventListener('change', () => {
+            this.updateToggleLabels();
+            this.saveAppSettings();
+        });
+    },
+
+    saveNvidiaKey() {
+        const key = this.elements.nvidiaApiKey.value.trim();
+        if (!key) {
+            localStorage.removeItem('blockflow_nvidia_key');
+            this.updateNvidiaStatus(false);
+            this.elements.nvidiaKeyStatus.textContent = 'API key removed.';
+            this.elements.nvidiaKeyStatus.style.color = '#6b7280';
+            return;
+        }
+        if (!key.startsWith('nvapi-')) {
+            this.elements.nvidiaKeyStatus.textContent = 'Invalid key format. Should start with nvapi-';
+            this.elements.nvidiaKeyStatus.style.color = '#dc2626';
+            return;
+        }
+        localStorage.setItem('blockflow_nvidia_key', key);
+        this.updateNvidiaStatus(true);
+        this.elements.nvidiaKeyStatus.textContent = 'API key saved! AI analysis is active.';
+        this.elements.nvidiaKeyStatus.style.color = '#059669';
+    },
+
+    updateNvidiaStatus(connected) {
+        this.elements.apiStatus.className = 'api-status ' + (connected ? 'connected' : 'disconnected');
+        this.elements.apiStatusText.textContent = connected ? 'AI configured' : 'AI not configured';
+    },
+
+    importSampleData() {
+        var today = '2026-06-10', t1 = '2026-06-11', t2 = '2026-06-12', t3 = '2026-06-13', t4 = '2026-06-14', t5 = '2026-06-09', t6 = '2026-06-08';
+        localStorage.setItem('blockflow_calendar_events', JSON.stringify([
+            { id:'evt_s_1', title:'Team standup', date:today, time:'09:00', endTime:'09:30', description:'Daily sync', importance:'high', block:'focus', aiAnalyzed:true, createdAt:1 },
+            { id:'evt_s_2', title:'Review PR #42', date:today, time:'10:00', endTime:'11:00', description:'Auth module code review', importance:'high', block:'focus', aiAnalyzed:true, createdAt:2 },
+            { id:'evt_s_3', title:'Coffee with Jo', date:today, time:'11:30', endTime:'12:00', description:'Catch up', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:3 },
+            { id:'evt_s_4', title:'Lunch', date:today, time:'12:00', endTime:'13:00', description:'', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:4 },
+            { id:'evt_s_5', title:'Blog draft', date:today, time:'14:00', endTime:'16:00', description:'React hooks post', importance:'medium', block:'personal', aiAnalyzed:true, createdAt:5 },
+            { id:'evt_s_6', title:'Gym', date:today, time:'18:00', endTime:'19:00', description:'Upper body', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:6 },
+            { id:'evt_s_7', title:'Read ch.5', date:today, time:'20:00', endTime:'21:00', description:'Design Patterns', importance:'medium', block:'personal', aiAnalyzed:true, createdAt:7 },
+            { id:'evt_s_8', title:'Project deadline', date:t1, time:'10:00', endTime:'12:00', description:'Q2 report due', importance:'high', block:'focus', aiAnalyzed:true, createdAt:8 },
+            { id:'evt_s_9', title:'Dentist', date:t1, time:'14:00', endTime:'15:00', description:'Checkup', importance:'medium', block:'personal', aiAnalyzed:true, createdAt:9 },
+            { id:'evt_s_10', title:'Movie night', date:t1, time:'19:00', endTime:'22:00', description:'Inception', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:10 },
+            { id:'evt_s_11', title:'Weekly planning', date:t2, time:'09:00', endTime:'10:00', description:'Next week plan', importance:'medium', block:'focus', aiAnalyzed:true, createdAt:11 },
+            { id:'evt_s_12', title:'Practice guitar', date:t2, time:'15:00', endTime:'16:00', description:'New song', importance:'low', block:'personal', aiAnalyzed:true, createdAt:12 },
+            { id:'evt_s_13', title:'Game night', date:t2, time:'19:00', endTime:'23:00', description:'Board games', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:13 },
+            { id:'evt_s_14', title:'Farmers market', date:t3, time:'09:00', endTime:'11:00', description:'Fresh produce', importance:'low', block:'personal', aiAnalyzed:true, createdAt:14 },
+            { id:'evt_s_15', title:'Side project', date:t3, time:'13:00', endTime:'17:00', description:'Mobile app', importance:'medium', block:'focus', aiAnalyzed:true, createdAt:15 },
+            { id:'evt_s_16', title:'Morning run', date:t4, time:'07:00', endTime:'08:00', description:'5k easy', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:16 },
+            { id:'evt_s_17', title:'Meal prep', date:t4, time:'11:00', endTime:'13:00', description:'Weekly lunches', importance:'medium', block:'personal', aiAnalyzed:true, createdAt:17 },
+            { id:'evt_s_18', title:'Sprint review', date:t5, time:'10:00', endTime:'11:30', description:'Sprint goals', importance:'high', block:'focus', aiAnalyzed:true, createdAt:18 },
+            { id:'evt_s_19', title:'Yoga', date:t5, time:'18:00', endTime:'19:00', description:'Vinyasa', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:19 },
+            { id:'evt_s_20', title:'1:1 with manager', date:t6, time:'14:00', endTime:'14:30', description:'Career chat', importance:'high', block:'focus', aiAnalyzed:true, createdAt:20 },
+            { id:'evt_s_21', title:'Paint evening', date:t6, time:'20:00', endTime:'22:00', description:'Watercolor', importance:'low', block:'personal', aiAnalyzed:true, createdAt:21 },
+        ]));
+        localStorage.setItem('blockflow_history', JSON.stringify([
+            { date:'2026-06-09', blocks:{ focus:{duration:60,completed:true,timeSpent:55}, personal:{duration:60,completed:true,timeSpent:45}, recovery:{duration:60,completed:true,timeSpent:60} }, distractions:2, focusTime:55, sleep:{sleepTime:'22:30',wakeTime:'06:45'} },
+            { date:'2026-06-08', blocks:{ focus:{duration:60,completed:true,timeSpent:60}, personal:{duration:60,completed:false,timeSpent:20}, recovery:{duration:60,completed:true,timeSpent:50} }, distractions:5, focusTime:60, sleep:{sleepTime:'23:00',wakeTime:'07:00'} },
+            { date:'2026-06-07', blocks:{ focus:{duration:60,completed:true,timeSpent:50}, personal:{duration:60,completed:true,timeSpent:60}, recovery:{duration:60,completed:false,timeSpent:30} }, distractions:1, focusTime:50, sleep:{sleepTime:'22:00',wakeTime:'08:00'} },
+            { date:'2026-06-06', blocks:{ focus:{duration:60,completed:false,timeSpent:10}, personal:{duration:60,completed:true,timeSpent:40}, recovery:{duration:60,completed:true,timeSpent:55} }, distractions:8, focusTime:10, sleep:{sleepTime:'23:30',wakeTime:'09:00'} },
+            { date:'2026-06-05', blocks:{ focus:{duration:60,completed:true,timeSpent:60}, personal:{duration:60,completed:true,timeSpent:50}, recovery:{duration:60,completed:true,timeSpent:60} }, distractions:0, focusTime:60, sleep:{sleepTime:'22:00',wakeTime:'06:30'} },
+        ]));
+        alert('Sample data imported! 21 calendar events and 5 days of history have been added. Go to the Calendar tab to see them.');
+    },
+
+    exportData() {
+        const data = {
+            blockflow: localStorage.getItem('blockflow_data'),
+            history: localStorage.getItem('blockflow_history'),
+            appSettings: localStorage.getItem('blockflow_app_settings')
+        };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'blockflow-backup-' + new Date().toISOString().split('T')[0] + '.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    },
+
+    clearAllData() {
+        if (confirm('This will delete ALL your data including history and calendar events. Are you sure?')) {
+            localStorage.removeItem('blockflow_data');
+            localStorage.removeItem('blockflow_history');
+            localStorage.removeItem('blockflow_app_settings');
+            localStorage.removeItem('blockflow_nvidia_key');
+            localStorage.removeItem('blockflow_nvidia_model');
+            localStorage.removeItem('blockflow_calendar_events');
+            alert('All data cleared. Please refresh the page.');
+            location.reload();
+        }
+    },
+
+    showWalkthrough() {
+        localStorage.removeItem('blockflow_walkthrough_done');
+        window.location.href = 'index.html';
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => Settings.init());

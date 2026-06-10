@@ -3,10 +3,50 @@ const Storage = {
     HISTORY_KEY: 'blockflow_history',
     MAX_HISTORY_DAYS: 7,
 
+    isLocalStorageAvailable() {
+        try {
+            const test = '__storage_test__';
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    },
+
+    safeGetItem(key) {
+        try {
+            return localStorage.getItem(key);
+        } catch (e) {
+            console.error('localStorage read error:', e);
+            return null;
+        }
+    },
+
+    safeSetItem(key, value) {
+        try {
+            localStorage.setItem(key, value);
+            return true;
+        } catch (e) {
+            console.error('localStorage write error:', e);
+            alert('Storage error: Unable to save data. Please clear some browser storage and try again.');
+            return false;
+        }
+    },
+
     getData() {
-        const data = localStorage.getItem(this.STORAGE_KEY);
+        if (!this.isLocalStorageAvailable()) {
+            alert('localStorage is not available. Your data will not be saved.');
+            return this.getDefaultData();
+        }
+        const data = this.safeGetItem(this.STORAGE_KEY);
         if (data) {
-            return JSON.parse(data);
+            try {
+                return JSON.parse(data);
+            } catch (e) {
+                console.error('Failed to parse stored data:', e);
+                return this.getDefaultData();
+            }
         }
         return this.getDefaultData();
     },
@@ -30,7 +70,7 @@ const Storage = {
     },
 
     saveData(data) {
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+        return this.safeSetItem(this.STORAGE_KEY, JSON.stringify(data));
     },
 
     checkAndResetDay() {
@@ -61,12 +101,18 @@ const Storage = {
             history = history.slice(-this.MAX_HISTORY_DAYS);
         }
 
-        localStorage.setItem(this.HISTORY_KEY, JSON.stringify(history));
+        this.safeSetItem(this.HISTORY_KEY, JSON.stringify(history));
     },
 
     getHistory() {
-        const history = localStorage.getItem(this.HISTORY_KEY);
-        return history ? JSON.parse(history) : [];
+        const history = this.safeGetItem(this.HISTORY_KEY);
+        if (!history) return [];
+        try {
+            return JSON.parse(history);
+        } catch (e) {
+            console.error('Failed to parse history:', e);
+            return [];
+        }
     },
 
     updateBlock(blockId, updates) {
@@ -121,6 +167,58 @@ const Storage = {
         const data = this.getDefaultData();
         this.saveData(data);
         return data;
+    },
+
+    CALENDAR_KEY: 'blockflow_calendar_events',
+
+    getCalendarEvents() {
+        const data = this.safeGetItem(this.CALENDAR_KEY);
+        if (!data) return [];
+        try {
+            return JSON.parse(data);
+        } catch (e) {
+            console.error('Failed to parse calendar events:', e);
+            return [];
+        }
+    },
+
+    saveCalendarEvents(events) {
+        return this.safeSetItem(this.CALENDAR_KEY, JSON.stringify(events));
+    },
+
+    addCalendarEvent(event) {
+        const events = this.getCalendarEvents();
+        const newEvent = {
+            id: 'evt_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+            title: event.title || 'Untitled',
+            date: event.date || '',
+            time: event.time || '',
+            endTime: event.endTime || '',
+            description: event.description || '',
+            importance: event.importance || 'medium',
+            block: event.block || 'focus',
+            aiAnalyzed: event.aiAnalyzed || false,
+            createdAt: Date.now()
+        };
+        events.push(newEvent);
+        this.saveCalendarEvents(events);
+        return newEvent;
+    },
+
+    updateCalendarEvent(eventId, updates) {
+        const events = this.getCalendarEvents();
+        const index = events.findIndex(e => e.id === eventId);
+        if (index === -1) return null;
+        events[index] = { ...events[index], ...updates };
+        this.saveCalendarEvents(events);
+        return events[index];
+    },
+
+    deleteCalendarEvent(eventId) {
+        const events = this.getCalendarEvents();
+        const filtered = events.filter(e => e.id !== eventId);
+        this.saveCalendarEvents(filtered);
+        return filtered;
     }
 };
 

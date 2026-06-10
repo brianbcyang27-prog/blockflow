@@ -19,15 +19,17 @@ const App = {
         UI.renderBlocks(this.currentData.blocks);
         UI.updateDistractionCount(this.currentData.distractions);
         UI.updateFocusTime(this.currentData.focusTime);
-        
+
         const sleepDuration = Storage.calculateSleepDuration(
             this.currentData.sleep.sleepTime,
             this.currentData.sleep.wakeTime
         );
         UI.updateSleepDuration(sleepDuration.hours, sleepDuration.minutes);
-        
+
         UI.elements.sleepTime.value = this.currentData.sleep.sleepTime;
         UI.elements.wakeTime.value = this.currentData.sleep.wakeTime;
+
+        UI.renderHistory();
     },
 
     setupEventListeners() {
@@ -41,9 +43,13 @@ const App = {
             const sleepTime = UI.elements.sleepTime.value;
             const wakeTime = UI.elements.wakeTime.value;
             this.currentData = Storage.saveSleep(sleepTime, wakeTime);
-            
             const duration = Storage.calculateSleepDuration(sleepTime, wakeTime);
             UI.updateSleepDuration(duration.hours, duration.minutes);
+            UI.toggleSleepPopover(false);
+        });
+
+        UI.elements.sleepStat.addEventListener('click', () => {
+            UI.toggleSleepPopover(UI.elements.sleepPopover.classList.contains('open') ? false : true);
         });
 
         UI.elements.dailyReset.addEventListener('click', () => {
@@ -60,6 +66,9 @@ const App = {
             this.currentData = Storage.updateBlock(blockId, { duration });
             UI.hideBlockSettingsModal();
             this.render();
+            if (blockId === 'focus') {
+                Timer.setDuration(duration);
+            }
         });
 
         UI.elements.cancelBlockSettings.addEventListener('click', () => {
@@ -71,27 +80,108 @@ const App = {
                 UI.hideBlockSettingsModal();
             }
         });
+
+        UI.elements.skipBreak.addEventListener('click', () => {
+            Timer.skipBreak();
+            UI.updateTimerButtons(false);
+            UI.updateTimerStatus('Break skipped');
+            UI.updateTimerMode(false);
+        });
     },
 
     setupTimer() {
+        const savedSettings = localStorage.getItem('blockflow_app_settings');
+        let defaultDuration = 25;
+
+        if (savedSettings) {
+            try {
+                const parsed = JSON.parse(savedSettings);
+                defaultDuration = parseInt(parsed.focusDuration) || 25;
+            } catch (e) {
+                console.error('Failed to load timer settings:', e);
+            }
+        }
+
+        const focusBlockDuration = this.currentData.blocks.focus.duration;
+        if (focusBlockDuration > 0) {
+            defaultDuration = focusBlockDuration;
+        }
+
+        Timer.setDuration(defaultDuration);
+
         Timer.init(
             (time) => {
                 UI.updateTimerDisplay(time);
             },
-            () => {
-                UI.updateTimerStatus('Focus session complete!');
-                UI.updateTimerButtons(false);
-                UI.toggleFocusMode(false);
-                
-                const minutes = Timer.getElapsedMinutes();
-                this.currentData = Storage.addFocusTime(minutes);
-                UI.updateFocusTime(this.currentData.focusTime);
-                
-                alert('Great job! Focus session complete.');
+            (isBreakComplete) => {
+                if (isBreakComplete) {
+                    UI.updateTimerStatus('Break complete! Ready to focus.');
+                    UI.updateTimerButtons(false);
+                    UI.updateTimerMode(false);
+                    const appSettings = localStorage.getItem('blockflow_app_settings');
+                    let soundEnabled = true;
+                    if (appSettings) {
+                        try {
+                            soundEnabled = JSON.parse(appSettings).soundNotifications !== false;
+                        } catch (e) {}
+                    }
+                    if (soundEnabled) {
+                        this.playNotificationSound();
+                    }
+                    alert('Break is over! Time to focus.');
+                } else {
+                    UI.updateTimerStatus('Focus session complete!');
+                    UI.updateTimerButtons(false);
+                    UI.updateTimerMode(false);
+
+                    const minutes = Timer.getElapsedMinutes();
+                    this.currentData = Storage.addFocusTime(minutes);
+                    UI.updateFocusTime(this.currentData.focusTime);
+
+                    const appSettings = localStorage.getItem('blockflow_app_settings');
+                    let soundEnabled = true;
+                    let autoBreak = false;
+                    if (appSettings) {
+                        try {
+                            const parsed = JSON.parse(appSettings);
+                            soundEnabled = parsed.soundNotifications !== false;
+                            autoBreak = parsed.autoBreak === true;
+                        } catch (e) {}
+                    }
+                    if (soundEnabled) {
+                        this.playNotificationSound();
+                    }
+
+                    if (autoBreak) {
+                        Timer.startBreak();
+                        UI.updateTimerStatus('Break time! Take 5.');
+                        UI.updateTimerMode(true);
+                        UI.updateTimerButtons(true);
+                    } else {
+                        alert('Great job! Focus session complete.');
+                    }
+                }
+            },
+            (isBreak) => {
+                UI.updateTimerMode(isBreak);
+                if (isBreak) {
+                    UI.updateTimerStatus('Break time!');
+                }
             }
         );
 
+        if (Timer.isBreakMode()) {
+            UI.updateTimerMode(true);
+            UI.updateTimerStatus('Break time!');
+            UI.updateTimerButtons(Timer.isActive());
+        } else if (Timer.isActive()) {
+            UI.updateTimerStatus('Focusing...');
+            UI.updateTimerButtons(true);
+            UI.toggleFocusMode(true);
+        }
+
         UI.elements.startTimer.addEventListener('click', () => {
+            if (Timer.isBreakMode()) return;
             Timer.start();
             UI.updateTimerButtons(true);
             UI.updateTimerStatus('Focusing...');
@@ -101,19 +191,22 @@ const App = {
         UI.elements.pauseTimer.addEventListener('click', () => {
             Timer.pause();
             UI.updateTimerButtons(false);
-            UI.updateTimerStatus('Paused');
+            UI.updateTimerStatus(Timer.isBreakMode() ? 'Break paused' : 'Paused');
             UI.toggleFocusMode(false);
-            
-            const minutes = Timer.getElapsedMinutes();
-            if (minutes > 0) {
-                this.currentData = Storage.addFocusTime(minutes);
-                UI.updateFocusTime(this.currentData.focusTime);
+
+            if (!Timer.isBreakMode()) {
+                const minutes = Timer.getElapsedMinutes();
+                if (minutes > 0) {
+                    this.currentData = Storage.addFocusTime(minutes);
+                    UI.updateFocusTime(this.currentData.focusTime);
+                }
             }
         });
 
         UI.elements.resetTimer.addEventListener('click', () => {
             Timer.reset();
             UI.updateTimerButtons(false);
+            UI.updateTimerMode(false);
             UI.updateTimerStatus('Ready to focus');
             UI.toggleFocusMode(false);
         });
@@ -128,11 +221,25 @@ const App = {
     toggleBlockComplete(blockId) {
         const block = this.currentData.blocks[blockId];
         const newCompleted = !block.completed;
-        this.currentData = Storage.updateBlock(blockId, { 
+        this.currentData = Storage.updateBlock(blockId, {
             completed: newCompleted,
             timeSpent: newCompleted ? block.duration : 0
         });
         this.render();
+    },
+
+    playNotificationSound() {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        oscillator.frequency.value = 880;
+        oscillator.type = 'sine';
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.5);
     }
 };
 

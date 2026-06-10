@@ -19,3 +19,6 @@ xcuserdata/
 # Temporary files
 *.tmp
 *.temp
+
+# Stale Firebase deployment directory
+BlockFlow/

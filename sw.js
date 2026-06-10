@@ -1,17 +1,19 @@
-const CACHE_NAME = 'blockflow-v4';
+const CACHE_NAME = 'blockflow-v7';
 const urlsToCache = [
-'/',
-'/index.html',
-'/calendar.html',
-'/settings.html',
-'/css/style.css',
-'/js/app.js',
-'/js/storage.js',
-'/js/timer.js',
-'/js/ui.js',
-'/js/calendar.js',
-'/js/firebase.js',
-'/manifest.json'
+    '/',
+    '/index.html',
+    '/calendar.html',
+    '/settings.html',
+    '/css/style.css',
+    '/js/app.js',
+    '/js/storage.js',
+    '/js/timer.js',
+    '/js/ui.js',
+    '/js/calendar.js',
+    '/manifest.json',
+    '/icons/icon-192.png',
+    '/icons/icon-512.png',
+    '/icons/icon-192.svg'
 ];
 
 self.addEventListener('install', (event) => {
