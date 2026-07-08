@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BlockFlow - Settings</title>
+<meta name="description" content="BlockFlow settings and preferences">
+<meta name="theme-color" content="#667eea">
+<link rel="stylesheet" href="css/style.css?v=2.0.0">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://www.gstatic.com">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+/* ─── Custom Cursor ─── */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.1) 60%, transparent 70%);
+  border: 1.5px solid rgba(102, 126, 234, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  will-change: transform;
+}
+.custom-cursor.active {
+  width: 32px; height: 32px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.35) 0%, rgba(118, 75, 162, 0.15) 60%, transparent 70%);
+  border-color: rgba(102, 126, 234, 0.5);
+}
+.custom-cursor.hover-link {
+  width: 28px; height: 28px;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.15) 60%, transparent 70%);
+  border-color: #667eea;
+}
+.custom-cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  transform: translate(-50%, -50%);
+  transition: width 0.1s ease, height 0.1s ease;
+  will-change: transform;
+}
+.custom-cursor-dot.active { width: 10px; height: 10px; }
+.cursor-area { cursor: none; }
+
+.login-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.login-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.login-card {
+    background: white; border-radius: 32px; padding: 48px 40px;
+    text-align: center; max-width: 380px; width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.6s ease;
+}
+.login-icon { font-size: 3.5rem; margin-bottom: 16px; }
+.login-title { font-size: 2rem; font-weight: 800; color: #1f2937; margin: 0 0 8px; }
+.login-subtitle { color: #6b7280; margin: 0 0 32px; font-size: 1rem; line-height: 1.5; }
+.login-btn { width: 100%; padding: 14px !important; font-size: 1rem !important; display: flex !important; align-items: center; justify-content: center; }
+.login-note { color: #9ca3af; font-size: 0.8rem; margin-top: 20px; }
+
+.settings-container {
+.settings-container {
+max-width: 650px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.settings-section {
+background: rgba(255, 255, 255, 0.98);
+border-radius: 24px;
+padding: 28px;
+box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.8);
+animation: fadeInUp 0.6s ease backwards;
+}
+
+.settings-section h3 {
+font-size: 1.2rem;
+color: #1f2937;
+margin-bottom: 20px;
+padding-bottom: 15px;
+border-bottom: 2px solid #f3f4f6;
+font-weight: 700;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.settings-section h3::before {
+content: '';
+width: 4px;
+height: 22px;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+border-radius: 2px;
+}
+
+.setting-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 18px 0;
+border-bottom: 1px solid #f3f4f6;
+flex-wrap: wrap;
+gap: 15px;
+}
+
+.setting-item:last-child {
+border-bottom: none;
+}
+
+.setting-label {
+flex: 1;
+min-width: 200px;
+}
+
+.setting-label strong {
+display: block;
+color: #1f2937;
+margin-bottom: 4px;
+font-weight: 600;
+}
+
+.setting-label span {
+font-size: 0.85rem;
+color: #6b7280;
+}
+
+.setting-control {
+flex-shrink: 0;
+}
+
+.api-status {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 14px 18px;
+border-radius: 12px;
+font-size: 0.9rem;
+margin-top: 25px;
+font-weight: 500;
+}
+
+.api-status.connected {
+background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+color: #059669;
+border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.api-status.disconnected {
+background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+color: #dc2626;
+border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.api-status-dot {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.api-status.connected .api-status-dot { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.api-status.disconnected .api-status-dot { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+
+.btn-danger {
+background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+color: white;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.google-cal-status {
+  display: block;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.google-cal-success { background: rgba(16, 185, 129, 0.1); color: #059669; border: 1px solid rgba(16, 185, 129, 0.2); }
+.google-cal-error { background: rgba(239, 68, 68, 0.1); color: #dc2626; border: 1px solid rgba(239, 68, 68, 0.2); }
+.google-cal-loading { background: rgba(102, 126, 234, 0.08); color: #667eea; border: 1px solid rgba(102, 126, 234, 0.2); }
+
+/* Dashboard style live preview */
+#dashPreview { transition: all 0.3s ease; }
+#dashPreview .pv-block {
+  border-radius: 10px; padding: 8px 6px 6px;
+  border: 1px solid #f0eeeb; background: white;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: all 0.3s ease;
+}
+#dashPreview .pv-block .pv-bar { height: 3px; border-radius: 3px; transition: all 0.3s ease; }
+#dashPreview.dstyle-modern .pv-block {
+  padding: 12px 10px 10px; border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+#dashPreview.dstyle-modern .pv-block .pv-bar { height: 4px; border-radius: 4px; }
+#dashPreview.dstyle-agenda .pv-block {
+  padding: 6px 6px 4px; border-radius: 8px;
+  background: #fafafa;
+}
+#dashPreview.dstyle-agenda .pv-block .pv-bar { height: 2px; }
+
+#dashPreview.dstyle-dark {
+  background: #1e293b; border-color: #334155;
+}
+#dashPreview.dstyle-dark .pv-block {
+  background: #0f172a; border-color: #334155;
+}
+
+#dashPreview.dstyle-bold {
+  border: 3px solid #1f2937; border-radius: 0;
+}
+#dashPreview.dstyle-bold .pv-block {
+  border: 2px solid #1f2937; border-radius: 0;
+  padding: 8px 8px 6px;
+}
+#dashPreview.dstyle-bold .pv-block .pv-bar { height: 5px; border-radius: 0; }
+
+#dashPreview.dstyle-muted {
+  background: rgba(255,255,255,0.6); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.8);
+}
+#dashPreview.dstyle-muted .pv-block {
+  background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.6); border-radius: 16px;
+}
+
+#dashPreview.dstyle-warm {
+  background: #faf6f0; border-color: #e8ddd0;
+}
+#dashPreview.dstyle-warm .pv-block {
+  background: #fdfaf5; border-color: #e8ddd0; border-radius: 14px;
+}
+
+/* Dashboard layout live preview */
+.layout-preview {
+  margin-top: 14px;
+  border-radius: 14px;
+  background: #f9fafb;
+  border: 1px solid #f0eeeb;
+  padding: 14px 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 12px;
+}
+.layout-preview .lp-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  transition: all 0.3s ease;
+}
+.layout-preview .lp-timer-face {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #1f2937;
+  font-family: 'SF Mono', monospace;
+  letter-spacing: -1px;
+}
+.layout-preview .lp-timer-sub {
+  font-size: 0.6rem;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+.layout-preview .lp-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.layout-preview .lp-blocks-row {
+  display: flex;
+  gap: 6px;
+}
+.layout-preview .lp-block {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #f0eeeb;
+  transition: all 0.3s ease;
+  min-width: 0;
+}
+.layout-preview .lp-block-bar {
+  width: 3px;
+  height: 20px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.layout-preview .lp-block.f .lp-block-bar { background: #4a7cf7; }
+.layout-preview .lp-block.p .lp-block-bar { background: #10b981; }
+.layout-preview .lp-block.r .lp-block-bar { background: #f59e0b; }
+.layout-preview .lp-block-tag {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.layout-preview .lp-metrics-row {
+  display: flex;
+  gap: 6px;
+}
+.layout-preview .lp-metric {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #f0eeeb;
+  transition: all 0.3s ease;
+}
+.layout-preview .lp-metric-val {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #374151;
+}
+.layout-preview .lp-metric-lbl {
+  font-size: 0.55rem;
+  color: #9ca3af;
+}
+
+/* Focus layout preview */
+#layoutPreview.dlayout-focus {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+#layoutPreview.dlayout-focus .lp-timer {
+  min-width: auto;
+  padding: 10px 0;
+}
+#layoutPreview.dlayout-focus .lp-timer-face {
+  font-size: 1.8rem;
+}
+#layoutPreview.dlayout-focus .lp-body {
+  width: 100%;
+}
+#layoutPreview.dlayout-focus .lp-block {
+  padding: 4px 6px;
+  flex-direction: column;
+  gap: 3px;
+}
+#layoutPreview.dlayout-focus .lp-block-bar {
+  width: 100%;
+  height: 3px;
+}
+
+/* Expanded layout preview */
+#layoutPreview.dlayout-expanded {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+#layoutPreview.dlayout-expanded .lp-timer {
+  grid-column: 1;
+  grid-row: 1;
+  border-right: 1px solid #f0eeeb;
+  padding-right: 12px;
+}
+#layoutPreview.dlayout-expanded .lp-body {
+  grid-column: 2;
+  grid-row: 1;
+}
+#layoutPreview.dlayout-expanded .lp-metrics-row {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-top: 4px;
+}
+
+/* Analytics layout preview */
+#layoutPreview.dlayout-analytics {
+  flex-direction: column;
+}
+#layoutPreview.dlayout-analytics .lp-timer {
+  flex-direction: row;
+  gap: 8px;
+  min-width: auto;
+  justify-content: flex-start;
+}
+#layoutPreview.dlayout-analytics .lp-metrics-row {
+  order: -1;
+}
+#layoutPreview.dlayout-analytics .lp-metric {
+  padding: 10px 4px;
+  background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+}
+#layoutPreview.dlayout-analytics .lp-block {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+  border-left: 3px solid;
+}
+#layoutPreview.dlayout-analytics .lp-block.f { border-left-color: #4a7cf7; }
+#layoutPreview.dlayout-analytics .lp-block.p { border-left-color: #10b981; }
+#layoutPreview.dlayout-analytics .lp-block.r { border-left-color: #f59e0b; }
+
+.about-section {
+text-align: center;
+padding: 35px 25px;
+color: #6b7280;
+background: rgba(255, 255, 255, 0.98);
+border-radius: 24px;
+box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.8);
+animation: fadeInUp 0.6s ease backwards;
+}
+
+.about-section h3 {
+color: #667eea;
+margin-bottom: 10px;
+font-size: 1.4rem;
+border: none;
+padding: 0;
+margin-bottom: 15px;
+}
+
+.about-section h3::before {
+display: none;
+}
+
+.about-section p {
+margin-bottom: 8px;
+}
+
+.version {
+font-size: 0.85rem;
+margin-top: 15px;
+padding-top: 15px;
+border-top: 1px solid #e5e7eb;
+display: inline-block;
+}
+
+.setup-step {
+display: flex;
+gap: 16px;
+padding: 18px 0;
+border-bottom: 1px solid #f3f4f6;
+align-items: flex-start;
+}
+
+.setup-step:last-child {
+border-bottom: none;
+padding-bottom: 0;
+}
+
+.setup-step-num {
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+font-size: 0.9rem;
+flex-shrink: 0;
+margin-top: 2px;
+}
+
+.setup-step-content {
+flex: 1;
+}
+
+.setup-step-content strong {
+display: block;
+color: #1f2937;
+margin-bottom: 6px;
+font-size: 1rem;
+}
+
+.setup-step-content p {
+font-size: 0.9rem;
+color: #6b7280;
+line-height: 1.6;
+margin: 0;
+}
+
+.setup-step-content .btn {
+margin-top: 10px;
+}
+.setup-step-content code {
+font-size: 0.8rem;
+background: #f3f4f6;
+padding: 10px 14px;
+border-radius: 8px;
+display: inline-block;
+word-break: break-all;
+border: 1px solid #e5e7eb;
+font-family: 'SF Mono', 'Monaco', monospace;
+}
+
+/* ─── API Keys ─── */
+.free-badge {
+  display:inline-block; font-size:0.65rem; font-weight:700;
+  background:#d1fae5; color:#059669; padding:2px 7px; border-radius:4px;
+  margin-right:4px; vertical-align:middle;
+}
+.setting-item.key-filter-hidden { display:none; }
+#needsKeyBtn.active { background:linear-gradient(135deg,#059669,#10b981); color:white; border-color:#059669; }
+
+/* ─── Toggle Switch ─── */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute; cursor: pointer; inset: 0;
+  background: #d1d5db; border-radius: 24px;
+  transition: 0.3s;
+}
+.toggle-slider::before {
+  content: ''; position: absolute; height: 18px; width: 18px;
+  left: 3px; bottom: 3px; background: white; border-radius: 50%;
+  transition: 0.3s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.toggle-switch input:checked + .toggle-slider { background: linear-gradient(135deg, #667eea, #764ba2); }
+.toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+@media (max-width: 768px) {
+.setting-item {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.setting-label {
+width: 100%;
+}
+
+.setting-control {
+width: 100%;
+}
+
+.setting-control .btn {
+width: 100%;
+}
+}
+</style>
+</head>
+<body class="cursor-area">
+<!-- Login Overlay -->
+<div id="loginOverlay" class="login-overlay">
+    <div class="login-card">
+        <div class="login-icon">📅</div>
+        <h1 class="login-title">BlockFlow</h1>
+        <p class="login-subtitle">A smarter way to plan your day</p>
+        <button class="btn btn-primary login-btn" id="loginBtn">
+            <svg viewBox="0 0 24 24">
+                <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+                <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Sign in with Google
+        </button>
+        <p class="login-note">Sign in to sync your data across devices</p>
+        <button class="btn btn-secondary login-btn skip-login-btn" id="skipLoginBtn">Continue without signing in</button>
+    </div>
+</div>
+<div class="container">
+<header class="header">
+<h1>BlockFlow</h1>
+<p class="subtitle">Settings & Preferences <a href="docs.html" class="nav-link-icon">📄</a></p>
+</header>
+
+<nav class="nav-tabs">
+<button class="nav-tab" onclick="window.location.href='index.html'">🏠 Dashboard</button>
+<button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
+<button class="nav-tab active">⚙️ Settings</button>
+</nav>
+
+<div class="settings-container">
+<section class="settings-section" id="apiKeysSection">
+<div class="api-section-header">
+<h3>API Keys</h3>
+<button class="btn btn-secondary" id="needsKeyBtn">🔍 Needs key</button>
+</div>
+<p class="api-desc">
+Configure API keys for AI features. All providers listed have a <strong>free tier</strong> — no credit card required for most.
+Keys are saved to your browser and never sent to any server except the API provider.
+</p>
+<div id="apiKeysContainer">
+<div class="setting-item"><div class="setting-label"><strong>Google Gemini</strong><span><span class="free-badge">🆓 FREE</span> 1500 req/day · <a href="https://ai.google.dev" target="_blank" class="link-accent">ai.google.dev</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_gemini" placeholder="AIza..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_gemini">Save</button><span class="key-status" data-key="bf_key_gemini"></span></div></div>
+<div class="setting-item"><div class="setting-label"><strong>Groq</strong><span><span class="free-badge">🆓 FREE</span> 30 RPM · <a href="https://console.groq.com" target="_blank" class="link-accent">console.groq.com</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_groq" placeholder="gsk_..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_groq">Save</button><span class="key-status" data-key="bf_key_groq"></span></div></div>
+<div class="setting-item"><div class="setting-label"><strong>OpenRouter</strong><span><span class="free-badge">🆓 FREE</span> 50 req/day · <a href="https://openrouter.ai/keys" target="_blank" class="link-accent">openrouter.ai/keys</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_openrouter" placeholder="sk-or-..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_openrouter">Save</button><span class="key-status" data-key="bf_key_openrouter"></span></div></div>
+<div class="setting-item"><div class="setting-label"><strong>Cerebras</strong><span><span class="free-badge">🆓 FREE</span> 1M tokens/day · <a href="https://cloud.cerebras.ai" target="_blank" class="link-accent">cloud.cerebras.ai</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_cerebras" placeholder="cerebras-..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_cerebras">Save</button><span class="key-status" data-key="bf_key_cerebras"></span></div></div>
+<div class="setting-item"><div class="setting-label"><strong>Mistral AI</strong><span><span class="free-badge">🆓 FREE</span> 1B tokens/month · <a href="https://console.mistral.ai" target="_blank" class="link-accent">console.mistral.ai</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_mistral" placeholder="MISTRAL_..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_mistral">Save</button><span class="key-status" data-key="bf_key_mistral"></span></div></div>
+<div class="setting-item"><div class="setting-label"><strong>NVIDIA NIM</strong><span><span class="free-badge">🆓 FREE</span> · <a href="https://build.nvidia.com" target="_blank" class="link-accent">build.nvidia.com</a> (also in AI section below)</span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_nvidia" placeholder="nvapi-..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_nvidia">Save</button><span class="key-status" data-key="bf_key_nvidia"></span></div></div>
+<div class="setting-item"><div class="setting-label"><strong>OCR.space</strong><span><span class="free-badge">🆓 FREE</span> 500 req/day · <a href="https://ocr.space" target="_blank" class="link-accent">ocr.space</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_ocrspace" placeholder="K8..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_ocrspace">Save</button><span class="key-status" data-key="bf_key_ocrspace"></span></div></div>
+</div>
+<p class="small-note">
+&#9432; These keys are shared with the <a href="api-verify/index.html" class="api-hub-link">API Verification Hub</a> — save once, use everywhere.
+</p>
+</section>
+
+
+
+<section class="settings-section" id="nvidiaSetup">
+<h3>AI Calendar Setup</h3>
+<p class="section-intro">
+BlockFlow uses <strong>NVIDIA AI</strong> to analyze your events and suggest importance levels and block types.
+Get a free API key from NVIDIA (no credit card required).
+</p>
+
+<div class="setup-step">
+<div class="setup-step-num">1</div>
+<div class="setup-step-content">
+<strong>Get your free NVIDIA API key</strong>
+<p>Go to <a href="https://build.nvidia.com" target="_blank" class="link-accent">build.nvidia.com</a>, sign up for the free NVIDIA Developer Program, and generate an API key.</p>
+<a class="btn btn-primary" href="https://build.nvidia.com" target="_blank">
+Get Free API Key
+</a>
+</div>
+</div>
+
+<div class="setup-step">
+<div class="setup-step-num">2</div>
+<div class="setup-step-content">
+<strong>Enter your API key</strong>
+<p>Paste your <code class="inline-code">nvapi-</code> key below.</p>
+<div class="nvidia-input-group">
+                <input type="password" id="nvidiaApiKey" placeholder="nvapi-...">
+                <button class="btn btn-primary btn-auto" id="saveNvidiaKey">Save</button>
+                <button class="btn btn-secondary btn-auto" id="testNvidiaKey">Test</button>
+                </div>
+                <span id="nvidiaKeyStatus" class="nvidia-status"></span>
+</div>
+</div>
+
+<div class="setup-step">
+<div class="setup-step-num">3</div>
+<div class="setup-step-content">
+<strong>Choose AI Model</strong>
+<p>Select which model to use for event analysis.</p>
+<select id="nvidiaModel">
+<option value="nvidia/llama-3.1-nemotron-nano-8b-v1">Llama Nemotron Nano 8B (Fast)</option>
+<option value="meta/llama-3.3-70b-instruct">Llama 3.3 70B (Accurate)</option>
+<option value="nvidia/llama-3.3-nemotron-super-49b-v1">Nemotron Super 49B (Most Accurate)</option>
+</select>
+</div>
+</div>
+
+<div class="api-status disconnected" id="apiStatus">
+<span class="api-status-dot"></span>
+<span id="apiStatusText">AI not configured</span>
+</div>
+
+<div class="setting-item">
+<div class="setting-label">
+<strong>Auto-navigate to Calendar</strong>
+<span>When the AI adds or edits events, automatically switch to the Calendar view</span>
+</div>
+<div class="setting-control">
+<label class="toggle-switch">
+<input type="checkbox" id="autoCalendarNav" checked>
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+</section>
+
+<section class="settings-section">
+<h3>Timer Settings</h3>
+<div class="setting-item">
+        <div class="setting-label">
+            <strong>Default Focus Duration</strong>
+            <span>25 minutes recommended for productivity</span>
+        </div>
+        <div class="setting-control">
+            <select id="focusDuration" class="input-group">
+                <option value="15">15 min</option>
+                <option value="25">25 min</option>
+                <option value="30">30 min</option>
+                <option value="45">45 min</option>
+                <option value="60">60 min</option>
+            </select>
+        </div>
+    </div>
+    <div class="setting-item">
+        <div class="setting-label">
+            <strong>Auto-start Break Timer</strong>
+            <span>Automatically start break after focus session</span>
+        </div>
+        <div class="setting-control">
+            <label class="toggle">
+                <input type="checkbox" id="autoBreak">
+                <span class="toggle-label-text" id="autoBreakLabel">Off</span>
+            </label>
+        </div>
+    </div>
+    <div class="setting-item">
+        <div class="setting-label">
+            <strong>Sound Notifications</strong>
+            <span>Play sound when timer completes</span>
+        </div>
+        <div class="setting-control">
+            <label class="toggle">
+                <input type="checkbox" id="soundNotifications">
+                <span class="toggle-label-text" id="soundLabel">On</span>
+            </label>
+        </div>
+    </div>
+    <div class="setting-item">
+        <div class="setting-label">
+            <strong>Themes</strong>
+            <span>Choose a color theme for the whole page</span>
+        </div>
+        <div class="setting-control">
+            <div class="picker-group" id="dashStylePicker">
+                <label class="dstyle-option picker-card" data-style="compact">
+                    <span class="picker-card-icon">📋</span>
+                    <span class="picker-card-label">Compact</span>
+                    <input type="radio" name="dashStyle" value="compact">
+                </label>
+                <label class="dstyle-option picker-card" data-style="modern">
+                    <span class="picker-card-icon">✨</span>
+                    <span class="picker-card-label">Modern</span>
+                    <input type="radio" name="dashStyle" value="modern">
+                </label>
+                <label class="dstyle-option picker-card" data-style="agenda">
+                    <span class="picker-card-icon">📅</span>
+                    <span class="picker-card-label">Agenda</span>
+                    <input type="radio" name="dashStyle" value="agenda">
+                </label>
+                <label class="dstyle-option picker-card" data-style="dark">
+                    <span class="picker-card-icon">🌙</span>
+                    <span class="picker-card-label">Dark</span>
+                    <input type="radio" name="dashStyle" value="dark">
+                </label>
+                <label class="dstyle-option picker-card" data-style="bold">
+                    <span class="picker-card-icon">💥</span>
+                    <span class="picker-card-label">Bold</span>
+                    <input type="radio" name="dashStyle" value="bold">
+                </label>
+                <label class="dstyle-option picker-card" data-style="muted">
+                    <span class="picker-card-icon">🎨</span>
+                    <span class="picker-card-label">Muted</span>
+                    <input type="radio" name="dashStyle" value="muted">
+                </label>
+                <label class="dstyle-option picker-card" data-style="warm">
+                    <span class="picker-card-icon">☀️</span>
+                    <span class="picker-card-label">Warm</span>
+                    <input type="radio" name="dashStyle" value="warm">
+                </label>
+            </div>
+            <!-- Live preview -->
+            <div id="dashPreview" class="dash-preview">
+                <div class="preview-blocks">
+                    <div class="pv-block pv-f"><div class="pv-bar"></div></div>
+                    <div class="pv-block pv-p"><div class="pv-bar"></div></div>
+                    <div class="pv-block pv-r"><div class="pv-bar"></div></div>
+                </div>
+                <div class="preview-timer-row">
+                    <div class="preview-timer">25:00</div>
+                    <div class="preview-bar-wrap">
+                        <div class="preview-bar-track"><div></div></div>
+                    </div>
+                    <div class="preview-bar-label">Focus</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="setting-item">
+        <div class="setting-label">
+            <strong>Dashboard Layout</strong>
+            <span>Change the structure and arrangement of your dashboard</span>
+        </div>
+        <div class="setting-control">
+            <div class="picker-group" id="dashLayoutPicker">
+                <label class="dlayout-option picker-card" data-layout="standard">
+                    <span class="picker-card-icon">📊</span>
+                    <span class="picker-card-label">Standard</span>
+                    <input type="radio" name="dashLayout" value="standard">
+                </label>
+                <label class="dlayout-option picker-card" data-layout="focus">
+                    <span class="picker-card-icon">⏱️</span>
+                    <span class="picker-card-label">Focus</span>
+                    <input type="radio" name="dashLayout" value="focus">
+                </label>
+                <label class="dlayout-option picker-card" data-layout="expanded">
+                    <span class="picker-card-icon">📐</span>
+                    <span class="picker-card-label">Expanded</span>
+                    <input type="radio" name="dashLayout" value="expanded">
+                </label>
+                <label class="dlayout-option picker-card" data-layout="analytics">
+                    <span class="picker-card-icon">📈</span>
+                    <span class="picker-card-label">Analytics</span>
+                    <input type="radio" name="dashLayout" value="analytics">
+                </label>
+            </div>
+            <!-- Live preview -->
+            <div id="layoutPreview" class="layout-preview">
+                <div class="lp-timer">
+                    <div class="lp-timer-face">25:00</div>
+                    <div class="lp-timer-sub">Focus Time</div>
+                </div>
+                <div class="lp-body">
+                    <div class="lp-blocks-row">
+                        <div class="lp-block f"><div class="lp-block-bar"></div><div class="lp-block-tag">Focus</div></div>
+                        <div class="lp-block p"><div class="lp-block-bar"></div><div class="lp-block-tag">Personal</div></div>
+                        <div class="lp-block r"><div class="lp-block-bar"></div><div class="lp-block-tag">Recovery</div></div>
+                    </div>
+                    <div class="lp-metrics-row">
+                        <div class="lp-metric"><div class="lp-metric-val">3</div><div class="lp-metric-lbl">Tasks</div></div>
+                        <div class="lp-metric"><div class="lp-metric-val">2h</div><div class="lp-metric-lbl">Tracked</div></div>
+                        <div class="lp-metric"><div class="lp-metric-val">85%</div><div class="lp-metric-lbl">Focus</div></div>
+                    </div>
+                </div>
+            </div>
+</div>
+</div>
+
+<div class="setting-item">
+<div class="setting-label">
+<strong>Auto-add to Calendar</strong>
+<span>When the AI detects a potential event in your message, automatically add it without asking</span>
+</div>
+<div class="setting-control">
+<label class="toggle-switch">
+<input type="checkbox" id="autoAddEvents">
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+</section>
+
+<section class="settings-section">
+<h3>Help & Walkthrough</h3>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Show Walkthrough</strong>
+<span>Replay the introductory guide</span>
+</div>
+<div class="setting-control">
+<button class="btn btn-primary" id="showWalkthrough">Show Guide</button>
+</div>
+</div>
+</section>
+
+<section class="settings-section">
+<h3>Data Management</h3>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Import Sample Data</strong>
+<span>Populate with 21 sample events and 5 days of history to test the app</span>
+</div>
+<div class="setting-control">
+<button class="btn btn-secondary" id="importSampleData">Import Samples</button>
+</div>
+</div>
+    <div class="setting-item">
+      <div class="setting-label">
+        <strong>Export Data</strong>
+        <span>Download your BlockFlow data as JSON</span>
+      </div>
+      <div class="setting-control">
+        <button class="btn btn-secondary" id="exportData">Export</button>
+      </div>
+    </div>
+    <div class="setting-item setting-item-column">
+      <div class="setting-label setting-label-wide">
+        <strong>Import from Google Calendar</strong>
+        <span>Fetch events from your Google Calendar for the next 30 days. Duplicate events will be skipped.</span>
+        <p class="google-cal-note">Note: This requires the domain to be authorized in the Google Cloud Console. On localhost/custom domains, authentication may fail. You can still add events manually in the Calendar tab.</p>
+      </div>
+      <div class="setting-control setting-control-wide">
+        <button class="btn btn-primary btn-auto" id="importGoogleCalendar">Import from Google Calendar</button>
+        <span id="googleCalStatus" class="google-cal-status"></span>
+      </div>
+    </div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Clear All Data</strong>
+<span>Reset all data including history</span>
+</div>
+<div class="setting-control">
+<button class="btn btn-danger" id="clearAllData">Clear Data</button>
+</div>
+</div>
+</section>
+
+<section class="about-section">
+<h3>BlockFlow</h3>
+<p>A simple productivity app to reduce scrolling addiction and improve focus</p>
+<p class="version">Version 1.2.0</p>
+</section>
+</div>
+
+<footer class="footer">
+<p>BlockFlow &copy; 2025 - Simple focus tool</p>
+</footer>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/firebase-auth.js"></script>
+<script src="js/firebase-db.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/google-calendar.js"></script>
+<script>
+FirebaseAuth.init();
+FirebaseDB.init();
+FirebaseAuth.onAuthChange(function(user) {
+    var overlay = document.getElementById('loginOverlay');
+    if (!overlay) return;
+    overlay.classList.toggle('hidden', !!user);
+    if (user) Storage.syncFromFirestore();
+});
+document.getElementById('loginBtn').addEventListener('click', function() {
+    FirebaseAuth.signIn();
+});
+document.getElementById('skipLoginBtn').addEventListener('click', function() {
+    FirebaseAuth.skipSignIn();
+});
+</script>
+<script>
+const Settings = {
+    elements: {},
+    appSettingsKey: 'blockflow_app_settings',
+
+    init() {
+        this.cacheElements();
+        this.loadSettings();
+        this.loadApiKeys();
+        this.initDashPreview();
+        this.initLayoutPreview();
+        this.setupEventListeners();
+    },
+
+    initDashPreview() {
+        var style = localStorage.getItem('blockflow_dashboard_style') || 'compact';
+        var preview = document.getElementById('dashPreview');
+        if (preview) preview.classList.add('dstyle-' + style);
+        // Highlight active option
+        document.querySelectorAll('.dstyle-option').forEach(function(el) {
+            if (el.dataset.style === style) {
+                el.style.borderColor = '#667eea';
+                el.style.background = 'rgba(102,126,234,0.08)';
+                el.querySelector('input').checked = true;
+            }
+        });
+    },
+
+    initLayoutPreview() {
+        var layout = localStorage.getItem('blockflow_dashboard_layout') || 'standard';
+        var preview = document.getElementById('layoutPreview');
+        if (preview) preview.classList.add('dlayout-' + layout);
+        // Highlight active option
+        document.querySelectorAll('.dlayout-option').forEach(function(el) {
+            if (el.dataset.layout === layout) {
+                el.style.borderColor = '#667eea';
+                el.style.background = 'rgba(102,126,234,0.08)';
+                el.querySelector('input').checked = true;
+            }
+        });
+    },
+
+    cacheElements() {
+        this.elements = {
+            apiStatus: document.getElementById('apiStatus'),
+            apiStatusText: document.getElementById('apiStatusText'),
+            focusDuration: document.getElementById('focusDuration'),
+            autoBreak: document.getElementById('autoBreak'),
+            autoBreakLabel: document.getElementById('autoBreakLabel'),
+            soundNotifications: document.getElementById('soundNotifications'),
+            soundLabel: document.getElementById('soundLabel'),
+            importSampleData: document.getElementById('importSampleData'),
+            exportData: document.getElementById('exportData'),
+            clearAllData: document.getElementById('clearAllData'),
+            showWalkthrough: document.getElementById('showWalkthrough'),
+            nvidiaApiKey: document.getElementById('nvidiaApiKey'),
+            saveNvidiaKey: document.getElementById('saveNvidiaKey'),
+            testNvidiaKey: document.getElementById('testNvidiaKey'),
+            nvidiaKeyStatus: document.getElementById('nvidiaKeyStatus'),
+            nvidiaModel: document.getElementById('nvidiaModel'),
+            autoCalendarNav: document.getElementById('autoCalendarNav'),
+            autoAddEvents: document.getElementById('autoAddEvents')
+        };
+    },
+
+    loadSettings() {
+        const appSettings = localStorage.getItem(this.appSettingsKey);
+
+        // Set default NVIDIA key so it works out of the box
+        if (!localStorage.getItem('blockflow_nvidia_key')) {
+            localStorage.setItem('blockflow_nvidia_key', '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');
+        }
+        if (appSettings) {
+            try {
+                const parsed = JSON.parse(appSettings);
+                this.elements.focusDuration.value = parsed.focusDuration || '25';
+                this.elements.autoBreak.checked = parsed.autoBreak || false;
+                this.elements.soundNotifications.checked = parsed.soundNotifications !== false;
+                this.updateToggleLabels();
+            } catch (e) {
+                console.error('Failed to load app settings:', e);
+            }
+        } else {
+            this.elements.focusDuration.value = '25';
+            this.elements.autoBreak.checked = false;
+            this.elements.soundNotifications.checked = true;
+            this.updateToggleLabels();
+        }
+
+        const savedKey = localStorage.getItem('blockflow_nvidia_key') || localStorage.getItem('bf_key_nvidia');
+        if (savedKey) {
+            this.elements.nvidiaApiKey.value = savedKey;
+            this.updateNvidiaStatus(true);
+        }
+
+        const savedModel = localStorage.getItem('blockflow_nvidia_model');
+        if (savedModel && this.elements.nvidiaModel.querySelector('option[value="' + savedModel + '"]')) {
+            this.elements.nvidiaModel.value = savedModel;
+        }
+
+        const autoNav = localStorage.getItem('blockflow_auto_calendar_nav');
+        if (autoNav === 'false') {
+            this.elements.autoCalendarNav.checked = false;
+        }
+
+        const autoAdd = localStorage.getItem('blockflow_ai_auto_add');
+        if (autoAdd === 'true') {
+            this.elements.autoAddEvents.checked = true;
+        }
+    },
+
+    updateToggleLabels() {
+        this.elements.autoBreakLabel.textContent = this.elements.autoBreak.checked ? 'On' : 'Off';
+        this.elements.soundLabel.textContent = this.elements.soundNotifications.checked ? 'On' : 'Off';
+    },
+
+    saveAppSettings() {
+        const settings = {
+            focusDuration: this.elements.focusDuration.value,
+            autoBreak: this.elements.autoBreak.checked,
+            soundNotifications: this.elements.soundNotifications.checked
+        };
+        localStorage.setItem(this.appSettingsKey, JSON.stringify(settings));
+    },
+
+    setupEventListeners() {
+        this.elements.importSampleData.addEventListener('click', () => this.importSampleData());
+        this.elements.exportData.addEventListener('click', () => this.exportData());
+        this.elements.clearAllData.addEventListener('click', () => this.clearAllData());
+        this.elements.showWalkthrough.addEventListener('click', () => this.showWalkthrough());
+
+        this.elements.saveNvidiaKey.addEventListener('click', () => this.saveNvidiaKey());
+        this.elements.testNvidiaKey.addEventListener('click', () => this.testNvidiaKey());
+        this.elements.nvidiaModel.addEventListener('change', () => {
+            localStorage.setItem('blockflow_nvidia_model', this.elements.nvidiaModel.value);
+        });
+        this.elements.autoCalendarNav.addEventListener('change', () => {
+            localStorage.setItem('blockflow_auto_calendar_nav', this.elements.autoCalendarNav.checked);
+        });
+        this.elements.autoAddEvents.addEventListener('change', () => {
+            localStorage.setItem('blockflow_ai_auto_add', this.elements.autoAddEvents.checked);
+        });
+
+        // Needs-key filter toggle — shows only APIs without a saved key
+        document.getElementById('needsKeyBtn').addEventListener('click', () => {
+            const btn = document.getElementById('needsKeyBtn');
+            const isActive = btn.classList.toggle('active');
+            btn.textContent = isActive ? '🔍 Show all' : '🔍 Needs key';
+            this.applyKeyFilter(isActive);
+        });
+
+        // Re-evaluate filter after saving a key
+        document.getElementById('apiKeysContainer').addEventListener('click', (e) => {
+            const btn = e.target.closest('.key-save-btn');
+            if (btn && document.getElementById('needsKeyBtn').classList.contains('active')) {
+                setTimeout(() => this.applyKeyFilter(true), 150);
+            }
+        });
+        document.getElementById('apiKeysContainer').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && document.getElementById('needsKeyBtn').classList.contains('active')) {
+                setTimeout(() => this.applyKeyFilter(true), 150);
+            }
+        });
+
+        // API Keys delegation (handles all key-save-btn clicks)
+        document.getElementById('apiKeysContainer').addEventListener('click', (e) => {
+            const btn = e.target.closest('.key-save-btn');
+            if (btn) this.saveApiKey(btn.dataset.key);
+        });
+        // Also save on Enter key
+        document.getElementById('apiKeysContainer').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const input = e.target.closest('input[id^="bf_key_"]');
+                if (input) this.saveApiKey(input.id);
+            }
+        });
+
+        this.elements.focusDuration.addEventListener('change', () => this.saveAppSettings());
+        this.elements.autoBreak.addEventListener('change', () => {
+            this.updateToggleLabels();
+            this.saveAppSettings();
+        });
+        this.elements.soundNotifications.addEventListener('change', () => {
+            this.updateToggleLabels();
+            this.saveAppSettings();
+        });
+
+        // Dashboard style picker
+        document.getElementById('dashStylePicker').addEventListener('click', function(e) {
+            var label = e.target.closest('.dstyle-option');
+            if (!label) return;
+            var style = label.dataset.style;
+            if (!style) return;
+            localStorage.setItem('blockflow_dashboard_style', style);
+            document.querySelectorAll('.dstyle-option').forEach(function(el) {
+                el.style.borderColor = '#e5e7eb';
+                el.style.background = 'transparent';
+            });
+            label.style.borderColor = '#667eea';
+            label.style.background = 'rgba(102,126,234,0.08)';
+            label.querySelector('input').checked = true;
+            // Update live preview
+            var preview = document.getElementById('dashPreview');
+            preview.className = preview.className.split(' ').filter(function(c) { return c.indexOf('dstyle-') !== 0; }).join(' ');
+            preview.classList.add('dstyle-' + style);
+        });
+
+        // Dashboard layout picker
+        document.getElementById('dashLayoutPicker').addEventListener('click', function(e) {
+            var label = e.target.closest('.dlayout-option');
+            if (!label) return;
+            var layout = label.dataset.layout;
+            if (!layout) return;
+            localStorage.setItem('blockflow_dashboard_layout', layout);
+            document.querySelectorAll('.dlayout-option').forEach(function(el) {
+                el.style.borderColor = '#e5e7eb';
+                el.style.background = 'transparent';
+            });
+            label.style.borderColor = '#667eea';
+            label.style.background = 'rgba(102,126,234,0.08)';
+            label.querySelector('input').checked = true;
+            // Update live preview
+            var preview = document.getElementById('layoutPreview');
+            preview.className = preview.className.split(' ').filter(function(c) { return c.indexOf('dlayout-') !== 0; }).join(' ');
+            preview.classList.add('dlayout-' + layout);
+        });
+    },
+
+    saveNvidiaKey() {
+        const key = this.elements.nvidiaApiKey.value.trim();
+        if (!key) {
+            localStorage.removeItem('blockflow_nvidia_key');
+            this.updateNvidiaStatus(false);
+            this.elements.nvidiaKeyStatus.textContent = 'API key removed.';
+            this.elements.nvidiaKeyStatus.style.color = '#6b7280';
+            return;
+        }
+        if (!key.startsWith('nvapi-')) {
+            this.elements.nvidiaKeyStatus.textContent = 'Invalid key format. Should start with nvapi-';
+            this.elements.nvidiaKeyStatus.style.color = '#dc2626';
+            return;
+        }
+        localStorage.setItem('blockflow_nvidia_key', key);
+        localStorage.setItem('bf_key_nvidia', key);
+        // Sync the API Keys section input
+        const apiKeyNvidiaInput = document.getElementById('bf_key_nvidia');
+        if (apiKeyNvidiaInput) apiKeyNvidiaInput.value = key;
+        this.updateNvidiaStatus(true);
+        this.elements.nvidiaKeyStatus.textContent = 'API key saved! AI analysis is active.';
+        this.elements.nvidiaKeyStatus.style.color = '#059669';
+    },
+
+    async testNvidiaKey() {
+        const key = this.elements.nvidiaApiKey.value.trim();
+        if (!key || !key.startsWith('nvapi-')) {
+            this.elements.nvidiaKeyStatus.textContent = 'Enter a valid nvapi- key first.';
+            this.elements.nvidiaKeyStatus.style.color = '#dc2626';
+            return;
+        }
+        this.elements.nvidiaKeyStatus.textContent = 'Testing...';
+        this.elements.nvidiaKeyStatus.style.color = '#6b7280';
+        this.elements.testNvidiaKey.disabled = true;
+        try {
+            const apiUrl = 'https://integrate.api.nvidia.com/v1/chat/completions';
+            const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(apiUrl);
+            const res = await fetch(proxyUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+                body: JSON.stringify({
+                    model: 'nvidia/llama-3.1-nemotron-nano-8b-v1',
+                    messages: [{ role: 'user', content: 'Say OK' }],
+                    max_tokens: 10
+                })
+            });
+            if (res.ok) {
+                this.elements.nvidiaKeyStatus.textContent = 'Connection OK! API key is valid.';
+                this.elements.nvidiaKeyStatus.style.color = '#059669';
+                this.updateNvidiaStatus(true);
+            } else {
+                const errText = await res.text().catch(() => '');
+                this.elements.nvidiaKeyStatus.textContent = 'API error: ' + res.status + '. ' + (errText ? errText.slice(0, 80) : 'Check your key.');
+                this.elements.nvidiaKeyStatus.style.color = '#dc2626';
+                this.updateNvidiaStatus(false);
+            }
+        } catch (e) {
+            this.elements.nvidiaKeyStatus.textContent = 'Network error — proxy may be unavailable. Try again later.';
+            this.elements.nvidiaKeyStatus.style.color = '#dc2626';
+            this.updateNvidiaStatus(false);
+        }
+        this.elements.testNvidiaKey.disabled = false;
+    },
+
+    updateNvidiaStatus(connected) {
+        this.elements.apiStatus.className = 'api-status ' + (connected ? 'connected' : 'disconnected');
+        this.elements.apiStatusText.textContent = connected ? 'AI configured' : 'AI not configured';
+    },
+
+    loadApiKeys() {
+        // Set default NVIDIA key for new visitors
+        if (!localStorage.getItem('bf_key_nvidia') && !localStorage.getItem('blockflow_nvidia_key')) {
+            localStorage.setItem('bf_key_nvidia', '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');
+        }
+        const apiKeys = ['bf_key_gemini','bf_key_groq','bf_key_openrouter','bf_key_cerebras','bf_key_mistral','bf_key_nvidia','bf_key_ocrspace'];
+        apiKeys.forEach(key => {
+            const input = document.getElementById(key);
+            if (!input) return;
+            // Try current key, then fallback for nvidia
+            let saved = localStorage.getItem(key);
+            if (!saved && key === 'bf_key_nvidia') saved = localStorage.getItem('blockflow_nvidia_key');
+            if (saved) input.value = saved;
+        });
+    },
+
+    saveApiKey(key) {
+        const input = document.getElementById(key);
+        if (!input) return;
+        const val = input.value.trim();
+        if (val) {
+            localStorage.setItem(key, val);
+        } else {
+            localStorage.removeItem(key);
+        }
+        // Update status indicator
+        const status = document.querySelector('.key-status[data-key="' + key + '"]');
+        if (status) {
+            if (val) {
+                status.textContent = 'Saved';
+                status.style.color = '#059669';
+                setTimeout(() => { status.textContent = ''; }, 2000);
+            } else {
+                status.textContent = '';
+            }
+        }
+        // Also sync the old NVIDIA key field and legacy key if this is nvidia
+        if (key === 'bf_key_nvidia') {
+            const nvidiaInput = document.getElementById('nvidiaApiKey');
+            if (nvidiaInput) nvidiaInput.value = val;
+            if (val) localStorage.setItem('blockflow_nvidia_key', val);
+            else localStorage.removeItem('blockflow_nvidia_key');
+            this.updateNvidiaStatus(!!val);
+        }
+    },
+
+    applyKeyFilter(showOnlyNeedsKey) {
+        document.querySelectorAll('#apiKeysContainer .setting-item').forEach(item => {
+            const input = item.querySelector('input[id^="bf_key_"]');
+            if (!input) return;
+            item.classList.toggle('key-filter-hidden', showOnlyNeedsKey && input.value.trim().length > 0);
+        });
+    },
+
+    importSampleData() {
+        function d(offset) { var date = new Date(); date.setDate(date.getDate() + offset); return date.toISOString().split('T')[0]; }
+        var today = d(0), t1 = d(1), t2 = d(2), t3 = d(3), t4 = d(4), t5 = d(-1), t6 = d(-2);
+        localStorage.setItem('blockflow_calendar_events', JSON.stringify([
+            { id:'evt_s_1', title:'Team standup', date:today, time:'09:00', endTime:'09:30', description:'Daily sync', importance:'high', block:'focus', aiAnalyzed:true, createdAt:1 },
+            { id:'evt_s_2', title:'Review PR #42', date:today, time:'10:00', endTime:'11:00', description:'Auth module code review', importance:'high', block:'focus', aiAnalyzed:true, createdAt:2 },
+            { id:'evt_s_3', title:'Coffee with Jo', date:today, time:'11:30', endTime:'12:00', description:'Catch up', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:3 },
+            { id:'evt_s_4', title:'Lunch', date:today, time:'12:00', endTime:'13:00', description:'', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:4 },
+            { id:'evt_s_5', title:'Blog draft', date:today, time:'14:00', endTime:'16:00', description:'React hooks post', importance:'medium', block:'personal', aiAnalyzed:true, createdAt:5 },
+            { id:'evt_s_6', title:'Gym', date:today, time:'18:00', endTime:'19:00', description:'Upper body', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:6 },
+            { id:'evt_s_7', title:'Read ch.5', date:today, time:'20:00', endTime:'21:00', description:'Design Patterns', importance:'medium', block:'personal', aiAnalyzed:true, createdAt:7 },
+            { id:'evt_s_8', title:'Project deadline', date:t1, time:'10:00', endTime:'12:00', description:'Q2 report due', importance:'high', block:'focus', aiAnalyzed:true, createdAt:8 },
+            { id:'evt_s_9', title:'Dentist', date:t1, time:'14:00', endTime:'15:00', description:'Checkup', importance:'medium', block:'personal', aiAnalyzed:true, createdAt:9 },
+            { id:'evt_s_10', title:'Movie night', date:t1, time:'19:00', endTime:'22:00', description:'Inception', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:10 },
+            { id:'evt_s_11', title:'Weekly planning', date:t2, time:'09:00', endTime:'10:00', description:'Next week plan', importance:'medium', block:'focus', aiAnalyzed:true, createdAt:11 },
+            { id:'evt_s_12', title:'Practice guitar', date:t2, time:'15:00', endTime:'16:00', description:'New song', importance:'low', block:'personal', aiAnalyzed:true, createdAt:12 },
+            { id:'evt_s_13', title:'Game night', date:t2, time:'19:00', endTime:'23:00', description:'Board games', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:13 },
+            { id:'evt_s_14', title:'Farmers market', date:t3, time:'09:00', endTime:'11:00', description:'Fresh produce', importance:'low', block:'personal', aiAnalyzed:true, createdAt:14 },
+            { id:'evt_s_15', title:'Side project', date:t3, time:'13:00', endTime:'17:00', description:'Mobile app', importance:'medium', block:'focus', aiAnalyzed:true, createdAt:15 },
+            { id:'evt_s_16', title:'Morning run', date:t4, time:'07:00', endTime:'08:00', description:'5k easy', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:16 },
+            { id:'evt_s_17', title:'Meal prep', date:t4, time:'11:00', endTime:'13:00', description:'Weekly lunches', importance:'medium', block:'personal', aiAnalyzed:true, createdAt:17 },
+            { id:'evt_s_18', title:'Sprint review', date:t5, time:'10:00', endTime:'11:30', description:'Sprint goals', importance:'high', block:'focus', aiAnalyzed:true, createdAt:18 },
+            { id:'evt_s_19', title:'Yoga', date:t5, time:'18:00', endTime:'19:00', description:'Vinyasa', importance:'low', block:'recovery', aiAnalyzed:true, createdAt:19 },
+            { id:'evt_s_20', title:'1:1 with manager', date:t6, time:'14:00', endTime:'14:30', description:'Career chat', importance:'high', block:'focus', aiAnalyzed:true, createdAt:20 },
+            { id:'evt_s_21', title:'Paint evening', date:t6, time:'20:00', endTime:'22:00', description:'Watercolor', importance:'low', block:'personal', aiAnalyzed:true, createdAt:21 },
+        ]));
+        localStorage.setItem('blockflow_history', JSON.stringify([
+            { date:d(-1), blocks:{ focus:{duration:25,completed:true,timeSpent:25}, personal:{duration:60,completed:true,timeSpent:45}, recovery:{duration:60,completed:true,timeSpent:60} }, distractions:2, focusTime:25, sleep:{sleepTime:'22:30',wakeTime:'06:45'} },
+            { date:d(-2), blocks:{ focus:{duration:25,completed:true,timeSpent:25}, personal:{duration:60,completed:false,timeSpent:20}, recovery:{duration:60,completed:true,timeSpent:50} }, distractions:5, focusTime:25, sleep:{sleepTime:'23:00',wakeTime:'07:00'} },
+            { date:d(-3), blocks:{ focus:{duration:25,completed:true,timeSpent:25}, personal:{duration:60,completed:true,timeSpent:60}, recovery:{duration:60,completed:false,timeSpent:30} }, distractions:1, focusTime:25, sleep:{sleepTime:'22:00',wakeTime:'08:00'} },
+            { date:d(-4), blocks:{ focus:{duration:25,completed:false,timeSpent:10}, personal:{duration:60,completed:true,timeSpent:40}, recovery:{duration:60,completed:true,timeSpent:55} }, distractions:8, focusTime:10, sleep:{sleepTime:'23:30',wakeTime:'09:00'} },
+            { date:d(-5), blocks:{ focus:{duration:25,completed:true,timeSpent:25}, personal:{duration:60,completed:true,timeSpent:50}, recovery:{duration:60,completed:true,timeSpent:60} }, distractions:0, focusTime:25, sleep:{sleepTime:'22:00',wakeTime:'06:30'} },
+        ]));
+        alert('Sample data imported! 21 calendar events and 5 days of history have been added. Go to the Calendar tab to see them.');
+    },
+
+    exportData() {
+        const data = {
+            blockflow: localStorage.getItem('blockflow_data'),
+            history: localStorage.getItem('blockflow_history'),
+            appSettings: localStorage.getItem('blockflow_app_settings')
+        };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'blockflow-backup-' + new Date().toISOString().split('T')[0] + '.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    },
+
+    clearAllData() {
+        if (confirm('This will delete ALL your data including history and calendar events. Are you sure?')) {
+            localStorage.removeItem('blockflow_data');
+            localStorage.removeItem('blockflow_history');
+            localStorage.removeItem('blockflow_app_settings');
+            localStorage.removeItem('blockflow_nvidia_key');
+            localStorage.removeItem('blockflow_nvidia_model');
+            localStorage.removeItem('blockflow_calendar_events');
+            ['bf_key_gemini','bf_key_groq','bf_key_openrouter','bf_key_cerebras','bf_key_mistral','bf_key_nvidia','bf_key_ocrspace'].forEach(k => localStorage.removeItem(k));
+            alert('All data cleared. Please refresh the page.');
+            location.reload();
+        }
+    },
+
+    showWalkthrough() {
+        localStorage.removeItem('blockflow_walkthrough_done');
+        window.location.href = 'index.html';
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => Settings.init());
+</script>
+<script>
+window.addEventListener('pageshow', function(evt) {
+  if (evt.persisted) window.location.reload();
+});
+if ('serviceWorker' in navigator) {
+navigator.serviceWorker.register('sw.js')
+.then(() => console.log('Service Worker registered'))
+.catch(err => console.log('Service Worker registration failed:', err));
+}
+</script>
+<script>
+// Custom cursor
+(function() {
+  var root = document.querySelector('.container') || document.body;
+  var cursor = document.createElement('div');
+  cursor.className = 'custom-cursor';
+  var dot = document.createElement('div');
+  dot.className = 'custom-cursor-dot';
+  root.appendChild(cursor);
+  root.appendChild(dot);
+  var posX = 0, posY = 0, dotX = 0, dotY = 0;
+  var interactiveEls = 'a, button, .btn, .nav-tab, input, select, textarea';
+  document.addEventListener('mousemove', function(e) {
+    posX = e.clientX; posY = e.clientY;
+    cursor.style.left = posX + 'px'; cursor.style.top = posY + 'px';
+    cursor.classList.toggle('hover-link', !!e.target.closest(interactiveEls));
+  });
+  function animateDot() {
+    dotX += (posX - dotX) * 0.2; dotY += (posY - dotY) * 0.2;
+    dot.style.left = dotX + 'px'; dot.style.top = dotY + 'px';
+    requestAnimationFrame(animateDot);
+  }
+  animateDot();
+  document.addEventListener('mousedown', function() { cursor.classList.add('active'); dot.classList.add('active'); });
+  document.addEventListener('mouseup', function() { cursor.classList.remove('active'); dot.classList.remove('active'); });
+  document.addEventListener('mouseleave', function() { cursor.style.opacity = '0'; dot.style.opacity = '0'; });
+  document.addEventListener('mouseenter', function() { cursor.style.opacity = '1'; dot.style.opacity = '1'; });
+})();
+</script>
+</body>
+</html>

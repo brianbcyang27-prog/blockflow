@@ -3,12 +3,6 @@
 *.swp
 *~
 
-# Xcode
-*.xcuserstate
-*.xcworkspace/xcuserdata/
-project.xcworkspace/
-xcuserdata/
-
 # IDE
 .vscode/
 .idea/
@@ -20,5 +14,20 @@ xcuserdata/
 *.tmp
 *.temp
 
-# Stale Firebase deployment directory
-BlockFlow/
+# Screenshots and debug snapshots at root
+*.png
+/page-snapshot*.md
+
+# Firebase hosting cache
+.firebase/
+
+# Playwright test artifacts
+.playwright-mcp/
+
+# Test runner output
+test-results/
+
+# Stale Firebase deployment directory (root level only)
+/BlockFlow/
+# API keys (secret)
+blockflow goal/api-keys.txt

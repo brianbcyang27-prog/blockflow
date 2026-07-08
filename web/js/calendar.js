@@ -6,7 +6,6 @@ const Calendar = {
     pendingAiResult: null,
     pendingAiValues: null,
     NVIDIA_KEY: 'blockflow_nvidia_key',
-    NVIDIA_DEFAULT_KEY: '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',
 
     init() {
         this.cacheElements();
@@ -250,9 +249,9 @@ const Calendar = {
 
     hideEventModal() {
         this.elements.eventModal.style.display = 'none';
-        this.editingEventId = null;
         this.elements.saveEvent.disabled = false;
         this.elements.saveEvent.textContent = this.editingEventId ? 'Save Changes' : 'Add Event';
+        this.editingEventId = null;
         this.elements.aiSkeleton.style.display = 'none';
         this.elements.aiSuggestion.style.display = 'none';
         this.pendingAiResult = null;
@@ -392,11 +391,7 @@ const Calendar = {
     },
 
     async runAiAnalysis(savedEvent, rawData) {
-        let apiKey = localStorage.getItem(this.NVIDIA_KEY);
-        if (!apiKey) {
-            apiKey = this.NVIDIA_DEFAULT_KEY;
-            localStorage.setItem(this.NVIDIA_KEY, apiKey);
-        }
+        const apiKey = localStorage.getItem(this.NVIDIA_KEY);
         const noAi = (timedOut) => {
             this.showAiSkeleton(false);
             this.hideEventModal();
@@ -417,22 +412,19 @@ const Calendar = {
 
         this.showAiSkeleton(true);
         this.pendingAiResult = savedEvent.id;
-
-        // Create abort controller with a 15-second timeout
-        var controller = new AbortController();
+        const controller = new AbortController();
         this._aiTimeoutId = setTimeout(function() {
             controller.abort();
         }, 15000);
 
-        // Allow closing the modal during analysis
-        var unlockModal = function() {
+        const unlockModal = function() {
             controller.abort();
             clearTimeout(this._aiTimeoutId);
             noAi(false);
         }.bind(this);
         this.elements.closeEventModal._aiUnlock = unlockModal;
         this.elements.cancelEvent._aiUnlock = unlockModal;
-        var origClose = this.elements.closeEventModal.click;
+        const origClose = this.elements.closeEventModal.click;
         if (!origClose._patched) {
             this.elements.closeEventModal.addEventListener('click', function(e) {
                 if (this.elements.saveEvent.disabled && this.elements.closeEventModal._aiUnlock) {
@@ -441,7 +433,7 @@ const Calendar = {
             }.bind(this));
             this.elements.closeEventModal._patched = true;
         }
-        var origCancel = this.elements.cancelEvent.click;
+        const origCancel = this.elements.cancelEvent.click;
         if (!origCancel._patched) {
             this.elements.cancelEvent.addEventListener('click', function(e) {
                 if (this.elements.saveEvent.disabled && this.elements.cancelEvent._aiUnlock) {
@@ -452,8 +444,7 @@ const Calendar = {
         }
 
         try {
-            // Try direct fetch first, fall back to CORS proxy
-            var response;
+            let response;
             try {
                 response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
                     method: 'POST',
@@ -473,9 +464,8 @@ const Calendar = {
                     signal: controller.signal
                 });
             } catch (directError) {
-                // Direct fetch failed (likely CORS), try via proxy
-                if (directError.name === 'AbortError') { noAi(true); return; }
-                var proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://integrate.api.nvidia.com/v1/chat/completions');
+            if (directError.name === 'AbortError') { noAi(true); return; }
+                const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://integrate.api.nvidia.com/v1/chat/completions');
                 response = await fetch(proxyUrl, {
                     method: 'POST',
                     headers: {
@@ -528,7 +518,7 @@ const Calendar = {
         if (!el) return;
         el.style.display = show ? 'flex' : 'none';
         if (show && !el.querySelector('.ai-skeleton-dismiss')) {
-            var dismissBtn = document.createElement('button');
+            const dismissBtn = document.createElement('button');
             dismissBtn.className = 'ai-skeleton-dismiss';
             dismissBtn.textContent = '×';
             dismissBtn.style.cssText = 'position:absolute;top:8px;right:12px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:#9ca3af;line-height:1;z-index:10;';
@@ -542,7 +532,7 @@ const Calendar = {
             el.appendChild(dismissBtn);
         }
         if (!show) {
-            var dismiss = el.querySelector('.ai-skeleton-dismiss');
+            const dismiss = el.querySelector('.ai-skeleton-dismiss');
             if (dismiss) dismiss.remove();
         }
     },

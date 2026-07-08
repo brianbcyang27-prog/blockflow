@@ -1,0 +1,135 @@
+BlockFlow — API Usage Guide
+Last tested: July 2, 2026
+──────────────────────────────────────────────────────
+
+═══ VISION (Image / OCR) ═══
+
+1. Tesseract.js                    ✅ No key needed
+   What it does: Client-side OCR via WebAssembly. Runs entirely
+                 in the browser — no data sent anywhere.
+   Used for: Offline text extraction from images.
+   Test status: ✅ PASS
+
+2. OCR.space                       🔑 Needs API key
+   What it does: Cloud OCR API, 500 requests/day free tier.
+   Used for: High-accuracy OCR from images and PDFs.
+   Test status: ✅ PASS (key saved)
+   Sign up: https://ocr.space
+
+3. Puter.js img2txt                ✅ No key needed
+   What it does: Free OCR via Puter.js SDK. Requires Puter
+                 account sign-in (free).
+   Used for: Alternative free OCR option.
+   Test status: ✅ PASS
+
+═══ VOICE (Speech) ═══
+
+4. Web Speech API                  ✅ No key needed
+   What it does: Browser built-in speech recognition. Works
+                 offline, no API calls.
+   Used for: Voice input and speech-to-text in the app.
+   Test status: ✅ PASS
+
+5. Puter.js speech2txt             ✅ No key needed
+   What it does: Free speech-to-text via Puter.js SDK.
+                 Requires Puter account and mic permission.
+   Used for: Alternative speech recognition option.
+   Test status: ✅ PASS (SDK ready)
+
+═══ LLM (AI Chat / Text Generation) ═══
+
+6. Google Gemini                   🔑 Needs API key
+   What it does: Google's multimodal AI — text, images, code.
+                 1500 requests/day free tier.
+   Used for: AI assistant in the dashboard.
+   Test status: ❌ QUOTA EXCEEDED (key is valid, free quota used up)
+   Sign up: https://ai.google.dev/gemini-api/docs/api-key
+
+7. Groq                            🔑 Needs API key
+   What it does: Ultra-fast LLM inference (320 tokens/sec).
+                 30 RPM free tier, no credit card needed.
+   Used for: Low-latency AI responses.
+   Test status: ✅ PASS (key saved)
+   Sign up: https://console.groq.com
+
+8. OpenRouter                      🔑 Needs API key
+   What it does: One API for 100+ models (Claude, GPT-4, etc.).
+                 50 requests/day free tier.
+   Used for: Fallback when other providers are unavailable.
+   Test status: ❌ PROVIDER ERROR (transient — try again later)
+   Sign up: https://openrouter.ai/keys
+
+9. Cerebras                        🔑 Needs API key
+   What it does: High-throughput LLM inference on dedicated HW.
+                 1M tokens/day free, no credit card needed.
+   Used for: Alternative LLM provider.
+   Test status: ✅ PASS (key saved)
+   Sign up: https://cloud.cerebras.ai
+
+10. Mistral AI                     🔑 Needs API key
+    What it does: French AI lab. Strong at reasoning & coding.
+                  1B tokens/month free tier.
+    Used for: AI conversations and code generation.
+    Test status: ✅ PASS (key saved)
+    Sign up: https://console.mistral.ai
+
+11. NVIDIA NIM                     🔑 Needs API key
+    What it does: NVIDIA's hosted LLM API. Current default
+                  provider for BlockFlow AI features.
+    Used for: Main AI assistant provider.
+    Test status: ✅ PASS (key saved)
+    Sign up: https://build.nvidia.com
+
+12. Puter.js Chat                  ✅ No key needed
+    What it does: 400+ models via Puter.js SDK. User pays
+                  Puter directly — no separate API key.
+    Used for: Free alternative chat when key-based APIs are down.
+    Test status: ✅ PASS
+
+═══ HEALTH ═══
+
+13. Google Fit OAuth               🔑 Needs Google Client ID
+    What it does: Read sleep, steps, heart rate from Google Fit.
+    How it works: Uses OAuth — needs a Google Cloud Client ID
+                  configured (same as Calendar setup).
+    Test status: ❌ NOT CONFIGURED (no Client ID entered yet)
+
+14. Google Sign-In                 ✅ Built in
+    What it does: Google Identity Services OAuth. Already
+                  configured in the app's Firebase project.
+    Used for: User login, Calendar & Fit integration.
+    Test status: ✅ Working in main app
+
+═══ PWA (Progressive Web App) ═══
+
+15. Service Worker                 ✅ No key needed
+    What it does: Enables offline support and caching.
+    Test status: ✅ PASS (registered)
+
+16. Web Manifest                   ✅ No key needed
+    What it does: Allows "Add to Home Screen" installation.
+    Test status: ✅ PASS (valid manifest)
+
+17. Offline Support                ✅ No key needed
+    What it does: Checks if the app can work without internet.
+    Test status: ✅ PASS (online now, SW caching active)
+
+18. Notification API               ✅ No key needed
+    What it does: Browser push notifications for timers/alerts.
+    Test status: ✅ PASS (permission granted)
+
+19. IndexedDB                      ✅ No key needed
+    What it does: Browser database used by BlockFlow's storage.
+    Test status: ✅ PASS (supported)
+
+══════════════════════════════════════════════════
+SUMMARY
+
+Need API key (7):  Gemini, Groq, OpenRouter, Cerebras,
+                    Mistral, NVIDIA, OCR.space
+No key needed (10): Tesseract, Puter img2txt, Web Speech,
+                     Puter speech, Puter Chat, Google Sign-In,
+                     Service Worker, Manifest, Offline,
+                     Notification, IndexedDB
+Need OAuth setup (2): Google Fit, Google Calendar (already
+                       configured in Firebase)

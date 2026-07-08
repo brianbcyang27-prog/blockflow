@@ -1,6 +1,8 @@
 const Storage = {
     STORAGE_KEY: 'blockflow_data',
     HISTORY_KEY: 'blockflow_history',
+    CALENDAR_KEY: 'blockflow_calendar_events',
+    SETTINGS_KEY: 'blockflow_app_settings',
     MAX_HISTORY_DAYS: 7,
 
     isLocalStorageAvailable() {
@@ -55,7 +57,7 @@ const Storage = {
         return {
             date: this.getTodayDate(),
             blocks: {
-                focus: { duration: 60, completed: false, timeSpent: 0 },
+                focus: { duration: 25, completed: false, timeSpent: 0 },
                 personal: { duration: 60, completed: false, timeSpent: 0 },
                 recovery: { duration: 60, completed: false, timeSpent: 0 }
             },
@@ -102,6 +104,9 @@ const Storage = {
         }
 
         this.safeSetItem(this.HISTORY_KEY, JSON.stringify(history));
+        if (FirebaseDB && FirebaseDB.isReady()) {
+            FirebaseDB.saveHistory(history);
+        }
     },
 
     getHistory() {
@@ -169,8 +174,6 @@ const Storage = {
         return data;
     },
 
-    CALENDAR_KEY: 'blockflow_calendar_events',
-
     getCalendarEvents() {
         const data = this.safeGetItem(this.CALENDAR_KEY);
         if (!data) return [];
@@ -183,7 +186,13 @@ const Storage = {
     },
 
     saveCalendarEvents(events) {
-        return this.safeSetItem(this.CALENDAR_KEY, JSON.stringify(events));
+        const ok = this.safeSetItem(this.CALENDAR_KEY, JSON.stringify(events));
+        if (FirebaseDB && FirebaseDB.isReady()) {
+            events.forEach(function(evt) {
+                FirebaseDB.saveEvent(evt);
+            });
+        }
+        return ok;
     },
 
     addCalendarEvent(event) {
@@ -202,23 +211,48 @@ const Storage = {
         };
         events.push(newEvent);
         this.saveCalendarEvents(events);
+        if (FirebaseDB && FirebaseDB.isReady()) {
+            FirebaseDB.saveEvent(newEvent);
+        }
         return newEvent;
     },
 
     updateCalendarEvent(eventId, updates) {
         const events = this.getCalendarEvents();
-        const index = events.findIndex(e => e.id === eventId);
+        const index = events.findIndex(function(e) { return e.id === eventId; });
         if (index === -1) return null;
-        events[index] = { ...events[index], ...updates };
+        events[index] = Object.assign({}, events[index], updates);
         this.saveCalendarEvents(events);
+        if (FirebaseDB && FirebaseDB.isReady()) {
+            FirebaseDB.saveEvent(events[index]);
+        }
         return events[index];
     },
 
     deleteCalendarEvent(eventId) {
         const events = this.getCalendarEvents();
-        const filtered = events.filter(e => e.id !== eventId);
+        const filtered = events.filter(function(e) { return e.id !== eventId; });
         this.saveCalendarEvents(filtered);
+        if (FirebaseDB && FirebaseDB.isReady()) {
+            FirebaseDB.deleteEvent(eventId);
+        }
         return filtered;
+    },
+
+    syncFromFirestore: async function() {
+        if (!FirebaseDB || !FirebaseDB.isReady()) return;
+        const events = await FirebaseDB.getEvents();
+        if (events && events.length > 0) {
+            this.safeSetItem(this.CALENDAR_KEY, JSON.stringify(events));
+        }
+        const history = await FirebaseDB.getHistory();
+        if (history && history.length > 0) {
+            this.safeSetItem(this.HISTORY_KEY, JSON.stringify(history));
+        }
+        const settings = await FirebaseDB.getSettings();
+        if (settings) {
+            this.safeSetItem(this.SETTINGS_KEY, JSON.stringify(settings));
+        }
     }
 };
 
