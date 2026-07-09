@@ -31,3 +31,9 @@ test-results/
 /BlockFlow/
 # API keys (secret)
 blockflow goal/api-keys.txt
+
+# Sisyphus orchestration artifacts
+.sisyphus/
+
+# Graphify knowledge graph output
+graphify-out/
