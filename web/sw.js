@@ -1,4 +1,4 @@
-const CACHE_NAME = 'blockflow-v12';
+const CACHE_NAME = 'blockflow-v14';
 const urlsToCache = [
     './',
     'index.html',

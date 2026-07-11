@@ -1,0 +1,167 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e3]:
+    - generic [ref=f2e4]: 📅
+    - heading "BlockFlow" [level=1] [ref=f2e5]
+    - paragraph [ref=f2e6]: A smarter way to plan your day
+    - button "Sign in with Google" [ref=f2e7] [cursor=pointer]
+    - paragraph [ref=f2e13]: Sign in to sync your data across devices
+    - button "Continue without signing in" [ref=f2e14] [cursor=pointer]
+  - generic [ref=f2e15]:
+    - banner [ref=f2e16]:
+      - heading "BlockFlow" [level=1] [ref=f2e17]
+      - paragraph [ref=f2e18]:
+        - text: Plan your day, your way
+        - link "📄" [ref=f2e19] [cursor=pointer]:
+          - /url: docs.html
+    - navigation [ref=f2e20]:
+      - button "🏠 Dashboard" [ref=f2e21] [cursor=pointer]
+      - button "📅 Calendar" [ref=f2e22] [cursor=pointer]
+      - button "⚙️ Settings" [ref=f2e23] [cursor=pointer]
+    - generic [ref=f2e24]:
+      - generic [ref=f2e25]:
+        - button "+ Add Event" [ref=f2e26] [cursor=pointer]
+        - generic [ref=f2e27]: "Today: Sat, Jul 11"
+      - generic [ref=f2e28]:
+        - generic [ref=f2e29]:
+          - button "< Prev" [ref=f2e30] [cursor=pointer]
+          - heading "July 2026" [level=2] [ref=f2e31]
+          - button "Next >" [ref=f2e32] [cursor=pointer]
+        - button "Today" [ref=f2e33] [cursor=pointer]
+      - generic [ref=f2e34]:
+        - generic [ref=f2e35]: Sun
+        - generic [ref=f2e36]: Mon
+        - generic [ref=f2e37]: Tue
+        - generic [ref=f2e38]: Wed
+        - generic [ref=f2e39]: Thu
+        - generic [ref=f2e40]: Fri
+        - generic [ref=f2e41]: Sat
+        - generic [ref=f2e42] [cursor=pointer]: "28"
+        - generic [ref=f2e44] [cursor=pointer]: "29"
+        - generic [ref=f2e46] [cursor=pointer]: "30"
+        - generic [ref=f2e48] [cursor=pointer]:
+          - generic [ref=f2e49]: "1"
+          - button "+" [ref=f2e50]
+        - generic [ref=f2e51] [cursor=pointer]:
+          - generic [ref=f2e52]: "2"
+          - button "+" [ref=f2e53]
+        - generic [ref=f2e54] [cursor=pointer]:
+          - generic [ref=f2e55]: "3"
+          - button "+" [ref=f2e56]
+        - generic [ref=f2e57] [cursor=pointer]:
+          - generic [ref=f2e58]: "4"
+          - button "+" [ref=f2e59]
+        - generic [ref=f2e60] [cursor=pointer]:
+          - generic [ref=f2e61]: "5"
+          - button "+" [ref=f2e62]
+        - generic [ref=f2e63] [cursor=pointer]:
+          - generic [ref=f2e64]: "6"
+          - button "+" [ref=f2e65]
+        - generic [ref=f2e66] [cursor=pointer]:
+          - generic [ref=f2e67]: "7"
+          - button "+" [ref=f2e68]
+        - generic [ref=f2e69] [cursor=pointer]:
+          - generic [ref=f2e70]: "8"
+          - button "+" [ref=f2e71]
+        - generic [ref=f2e72] [cursor=pointer]:
+          - generic [ref=f2e73]: "9"
+          - button "+" [ref=f2e74]
+        - generic [ref=f2e75] [cursor=pointer]:
+          - generic [ref=f2e76]: "10"
+          - button "+" [ref=f2e77]
+        - generic [ref=f2e78] [cursor=pointer]:
+          - generic [ref=f2e79]: "11"
+          - button "+" [ref=f2e80]
+        - generic [ref=f2e81] [cursor=pointer]:
+          - generic [ref=f2e82]: "12"
+          - button "+" [ref=f2e83]
+        - generic [ref=f2e84] [cursor=pointer]:
+          - generic [ref=f2e85]: "13"
+          - button "+" [ref=f2e86]
+        - generic [ref=f2e87] [cursor=pointer]:
+          - generic [ref=f2e88]: "14"
+          - button "+" [ref=f2e89]
+        - generic [ref=f2e90] [cursor=pointer]:
+          - generic [ref=f2e91]: "15"
+          - button "+" [ref=f2e92]
+        - generic [ref=f2e93] [cursor=pointer]:
+          - generic [ref=f2e94]: "16"
+          - button "+" [ref=f2e95]
+        - generic [ref=f2e96] [cursor=pointer]:
+          - generic [ref=f2e97]: "17"
+          - button "+" [ref=f2e98]
+        - generic [ref=f2e99] [cursor=pointer]:
+          - generic [ref=f2e100]: "18"
+          - button "+" [ref=f2e101]
+        - generic [ref=f2e102] [cursor=pointer]:
+          - generic [ref=f2e103]: "19"
+          - button "+" [ref=f2e104]
+        - generic [ref=f2e105] [cursor=pointer]:
+          - generic [ref=f2e106]: "20"
+          - button "+" [ref=f2e107]
+        - generic [ref=f2e108] [cursor=pointer]:
+          - generic [ref=f2e109]: "21"
+          - button "+" [ref=f2e110]
+        - generic [ref=f2e111] [cursor=pointer]:
+          - generic [ref=f2e112]: "22"
+          - button "+" [ref=f2e113]
+        - generic [ref=f2e114] [cursor=pointer]:
+          - generic [ref=f2e115]: "23"
+          - button "+" [ref=f2e116]
+        - generic [ref=f2e117] [cursor=pointer]:
+          - generic [ref=f2e118]: "24"
+          - button "+" [ref=f2e119]
+        - generic [ref=f2e120] [cursor=pointer]:
+          - generic [ref=f2e121]: "25"
+          - button "+" [ref=f2e122]
+        - generic [ref=f2e123] [cursor=pointer]:
+          - generic [ref=f2e124]: "26"
+          - button "+" [ref=f2e125]
+        - generic [ref=f2e126] [cursor=pointer]:
+          - generic [ref=f2e127]: "27"
+          - button "+" [ref=f2e128]
+        - generic [ref=f2e129] [cursor=pointer]:
+          - generic [ref=f2e130]: "28"
+          - button "+" [ref=f2e131]
+        - generic [ref=f2e132] [cursor=pointer]:
+          - generic [ref=f2e133]: "29"
+          - button "+" [ref=f2e134]
+        - generic [ref=f2e135] [cursor=pointer]:
+          - generic [ref=f2e136]: "30"
+          - button "+" [ref=f2e137]
+        - generic [ref=f2e138] [cursor=pointer]:
+          - generic [ref=f2e139]: "31"
+          - button "+" [ref=f2e140]
+        - generic [ref=f2e141] [cursor=pointer]: "1"
+    - contentinfo [ref=f2e143]:
+      - paragraph [ref=f2e144]: BlockFlow © 2025 - Simple focus tool
+  - button "Open AI Assistant" [ref=f2e145] [cursor=pointer]
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic: 🤖
+          - generic: BlockFlow Assistant
+        - generic:
+          - combobox:
+            - option "Llama 3.1 8B - Fast general chat" [selected]
+            - option "Nemotron Super 49B - Stronger reasoning"
+            - option "Gemma 4 31B - Balanced instruction model"
+            - option "Gemma 2 2B - Lightweight and quick"
+        - generic:
+          - button "Memory": 🧠
+          - button "Close": x
+      - generic:
+        - generic:
+          - text: Good morning! I'm your assistant. Your calendar looks clear. Want to plan something?
+          - button "Copy message"
+      - generic:
+        - button "Clear my afternoon"
+        - button "Reschedule slipped focus"
+        - button "Find deep work windows"
+      - generic:
+        - generic:
+          - textbox "Ask me anything..."
+          - button "Attach file": 📎
+          - button "Voice input": 🎤
+          - button "Send"
+        - paragraph: BlockFlow Assistant may produce inaccurate information.

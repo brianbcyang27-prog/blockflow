@@ -1,0 +1,14 @@
+{
+  "name": "blockflow-api-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloud Function proxy for NVIDIA NIM API",
+  "main": "index.js",
+  "dependencies": {
+    "firebase-functions": "^6.3.2",
+    "firebase-admin": "^13.1.0"
+  },
+  "engines": {
+    "node": "20"
+  }
+}

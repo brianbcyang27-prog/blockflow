@@ -144,7 +144,7 @@ const App = {
                     if (appSettings) {
                         try {
                             soundEnabled = JSON.parse(appSettings).soundNotifications !== false;
-                        } catch (e) {}
+                        } catch (e) { console.warn('[App] parse settings (break):', e); }
                     }
                     if (soundEnabled) {
                         this.playNotificationSound();
@@ -167,7 +167,7 @@ const App = {
                             const parsed = JSON.parse(appSettings);
                             soundEnabled = parsed.soundNotifications !== false;
                             autoBreak = parsed.autoBreak === true;
-                        } catch (e) {}
+                        } catch (e) { console.warn('[App] parse settings (focus):', e); }
                     }
                     if (soundEnabled) {
                         this.playNotificationSound();

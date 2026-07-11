@@ -116,7 +116,7 @@ const GoogleCalendar = {
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
+        const errorData = await response.json().catch(() => { console.warn('[GoogleCalendar] Failed to parse error response'); return {}; });
         throw new Error(errorData.error?.message || 'HTTP ' + response.status);
       }
 

@@ -1,0 +1,200 @@
+- generic [ref=f61e1]:
+  - generic [ref=f61e678]:
+    - banner [ref=f61e679]:
+      - generic [ref=f61e692]:
+        - button "Ask AI" [ref=f61e693] [cursor=pointer]
+        - link "Support" [ref=f61e699] [cursor=pointer]:
+          - /url: /?to=/:account/support
+        - button "User menu" [ref=f61e704] [cursor=pointer]
+    - generic [ref=f61e1473]:
+      - generic [ref=f61e1475]:
+        - generic [ref=f61e1476]:
+          - link "blockflow-proxy" [ref=f61e1479] [cursor=pointer]:
+            - /url: /15866ce24af5f88f0741fa40d2c37f32/workers/services/view/blockflow-proxy/production
+          - button "3f799c4a (Active) Latest" [ref=f61e1485] [cursor=pointer]:
+            - text: 3f799c4a
+            - generic [ref=f61e1486]: (Active)
+            - generic [ref=f61e1487]: Latest
+        - iframe [active] [ref=f61e1491]:
+          - application [ref=f69e2]:
+            - generic [ref=f69e6]:
+              - generic [ref=f69e8]:
+                - toolbar [ref=f69e16]:
+                  - button "Go Back (⌃-)" [disabled] [ref=f69e250]: 
+                  - button "Go Forward (⌃⇧-)" [disabled] [ref=f69e251]: 
+                  - toolbar [ref=f69e254] [cursor=pointer]:
+                    - button "blockflow-proxy" [ref=f69e255]:
+                      - generic [ref=f69e256]: 
+                - toolbar "Title actions" [ref=f69e29]:
+                  - button "Customize Layout..." [ref=f69e258] [cursor=pointer]: 
+                  - checkbox "Toggle Primary Side Bar (⌘B)" [ref=f69e259] [cursor=pointer]: 
+                  - checkbox "Toggle Panel (⌘J)" [ref=f69e260] [cursor=pointer]: 
+                  - checkbox "Toggle Secondary Side Bar (⌥⌘B)" [ref=f69e261] [cursor=pointer]: 
+              - generic [ref=f69e38]:
+                - generic [ref=f69e40]:
+                  - tablist "Active View Switcher" [ref=f69e43]:
+                    - tab "Explorer (⇧⌘E)" [ref=f69e44] [cursor=pointer]:
+                      - generic "Explorer (⇧⌘E)" [ref=f69e45]: 
+                    - tab "Search (⇧⌘F)" [ref=f69e46] [cursor=pointer]:
+                      - generic "Search (⇧⌘F)" [ref=f69e47]: 
+                  - toolbar "Manage" [ref=f69e50]:
+                    - button "Manage" [ref=f69e51] [cursor=pointer]:
+                      - generic "Manage" [ref=f69e52]: 
+                - main [ref=f69e60]:
+                  - generic [ref=f69e68]:
+                    - generic [ref=f69e69] [cursor=pointer]:
+                      - generic [ref=f69e70]:
+                        - tablist [ref=f69e71]:
+                          - tab "worker.js" [selected] [ref=f69e72]:
+                            - generic "~/worker.js" [ref=f69e73]:
+                              - text: 
+                              - generic [ref=f69e74]: worker.js
+                            - toolbar "Tab actions" [ref=f69e78]:
+                              - button "Close (⌘W)" [ref=f69e79]: 
+                        - toolbar "Editor actions" [ref=f69e83]:
+                          - button "Split Editor Right (⌘\\) [⌥] Split Editor Down" [ref=f69e84]: 
+                          - generic "More Actions..." [ref=f69e87]: 
+                      - list [ref=f69e90]:
+                        - listitem [ref=f69e91]:
+                          - generic "~/worker.js" [ref=f69e92]:
+                            - text: 
+                            - generic [ref=f69e93]: worker.js
+                          - generic [ref=f69e262]: 
+                        - listitem [ref=f69e263]:
+                          - generic [ref=f69e264]: …
+                          - text: 
+                    - generic "worker.js" [ref=f69e96]:
+                      - code [ref=f69e97]:
+                        - generic [ref=f69e98]:
+                          - textbox "worker.js" [active]
+                          - textbox [ref=f69e99]
+                          - generic [ref=f69e102]:
+                            - generic [ref=f69e265]: "1"
+                            - generic [ref=f69e107]: "2"
+                            - generic [ref=f69e109]: "3"
+                            - generic [ref=f69e111]: "4"
+                            - generic [ref=f69e113]: "5"
+                            - generic [ref=f69e115]: "6"
+                            - generic [ref=f69e117]: "7"
+                            - generic [ref=f69e119]: "8"
+                            - generic [ref=f69e121]: "9"
+                            - generic [ref=f69e123]: "10"
+                            - generic [ref=f69e125]:
+                              - generic [ref=f69e126] [cursor=pointer]: 
+                              - generic [ref=f69e127]: "11"
+                            - generic [ref=f69e128]:
+                              - generic [ref=f69e129] [cursor=pointer]: 
+                              - generic [ref=f69e130]: "12"
+                            - generic [ref=f69e131]: "13"
+                            - generic [ref=f69e133]: "14"
+                            - generic [ref=f69e135]: "15"
+                            - generic [ref=f69e137]: "16"
+                            - generic [ref=f69e139]: "17"
+                          - generic [ref=f69e177]:
+                            - generic [ref=f69e178]: /**
+                            - generic [ref=f69e180]: "* Welcome to Cloudflare Workers! This is your first worker."
+                            - generic [ref=f69e182]: "*"
+                            - generic [ref=f69e184]: "* - Run \"npm run dev\" in your terminal to start a development server"
+                            - generic [ref=f69e186]: "* - Open a browser tab at http://localhost:8787/ to see your worker in action"
+                            - generic [ref=f69e188]: "* - Run \"npm run deploy\" to publish your worker"
+                            - generic [ref=f69e190]: "*"
+                            - generic [ref=f69e192]: "* Learn more at https://developers.cloudflare.com/workers/"
+                            - generic [ref=f69e194]: "*/"
+                            - generic [ref=f69e197]: "export default {"
+                            - generic [ref=f69e276]: "async fetch(request, env, ctx) {"
+                            - generic [ref=f69e201]: // You can view your logs in the Observability dashboard
+                            - generic [ref=f69e203]: "console.info({ message: 'Hello World Worker received a request!' });"
+                            - generic [ref=f69e205]: return new Response('Hello World!');
+                            - generic [ref=f69e207]: "}"
+                            - generic [ref=f69e209]: "};"
+                    - text: 
+              - status [ref=f69e219]:
+                - generic [ref=f69e220]:
+                  - generic "remote" [ref=f69e221]:
+                    - button "remote" [ref=f69e222] [cursor=pointer]:
+                      - generic [ref=f69e223]: 
+                  - generic "No Problems" [ref=f69e224]:
+                    - button "No Problems" [ref=f69e225] [cursor=pointer]:
+                      - generic [ref=f69e226]: 
+                      - text: "0"
+                      - generic [ref=f69e227]: 
+                      - text: "0"
+                - generic [ref=f69e231]:
+                  - generic "Notifications" [ref=f69e232]:
+                    - button "Notifications" [ref=f69e233] [cursor=pointer]:
+                      - generic [ref=f69e279]: 
+                  - 'generic "Layout: U.S." [ref=f69e235]':
+                    - 'button "Layout: U.S." [ref=f69e236] [cursor=pointer]'
+                  - generic "JavaScript" [ref=f69e237]:
+                    - button "JavaScript" [ref=f69e238] [cursor=pointer]
+                  - 'generic "Editor Language Status: /cfs/ts-nul-authority/blockflow-proxy/jsconfig.json, next: 5.8.3, TypeScript version, next: $(copilot) No inline suggestion available, Inline suggestions" [ref=f69e280]':
+                    - 'button "Editor Language Status: /cfs/ts-nul-authority/blockflow-proxy/jsconfig.json, next: 5.8.3, TypeScript version, next: $(copilot) No inline suggestion available, Inline suggestions" [ref=f69e281] [cursor=pointer]':
+                      - generic [ref=f69e282]: 
+                  - generic "LF" [ref=f69e242]:
+                    - button "LF" [ref=f69e243] [cursor=pointer]
+                  - generic "UTF-8" [ref=f69e244]:
+                    - button "UTF-8" [ref=f69e245] [cursor=pointer]
+                  - 'generic "Spaces: 2" [ref=f69e246]':
+                    - 'button "Spaces: 2" [ref=f69e247] [cursor=pointer]'
+                  - generic "Ln 1, Col 1" [ref=f69e248]:
+                    - button "Ln 1, Col 1" [ref=f69e249] [cursor=pointer]
+            - generic:
+              - alert
+              - alert
+      - generic [ref=f61e1493]:
+        - generic [ref=f61e1496]:
+          - link "Visit" [ref=f61e1497] [cursor=pointer]:
+            - /url: https://blockflow-proxy.jarvis-cf.workers.dev
+          - generic [ref=f61e1502]:
+            - button "Deploy" [disabled]
+            - generic [ref=f61e1503]:
+              - button [disabled]
+        - generic [ref=f61e1505]:
+          - generic [ref=f61e1508]:
+            - generic [ref=f61e1509]:
+              - tablist [ref=f61e1511]:
+                - tab "Preview" [selected] [ref=f61e1512] [cursor=pointer]
+                - tab "HTTP" [ref=f61e1516] [cursor=pointer]
+                - tab "Schedule" [ref=f61e1520] [cursor=pointer]
+                - tab [ref=f61e1524] [cursor=pointer]
+              - generic [ref=f61e1528]:
+                - link "Open Worker's documentation" [ref=f61e1529] [cursor=pointer]:
+                  - /url: https://developers.cloudflare.com/workers
+                - link "Join Cloudflare’s developer Discord" [ref=f61e1532] [cursor=pointer]:
+                  - /url: https://discord.cloudflare.com
+            - generic [ref=f61e1536]:
+              - generic [ref=f61e1537]:
+                - textbox [ref=f61e1540]: https://blockflow-proxy.jarvis-cf.workers.dev/
+                - button [ref=f61e1541]:
+                  - button [ref=f61e1542] [cursor=pointer]:
+                    - img "refresh" [ref=f61e1546]
+              - generic [ref=f61e1548]:
+                - iframe [ref=f61e1549]:
+                  
+                - iframe [ref=f61e1550]:
+                  - generic [ref=f73e1]: Hello World!
+          - generic [ref=f61e1552]:
+            - generic [ref=f61e1553]:
+              - generic [ref=f61e1554]: Console
+              - button "Clear" [ref=f61e1555] [cursor=pointer]
+            - generic [ref=f61e1558]:
+              - generic [ref=f61e1560]:
+                - img "Invocation" [ref=f61e1563]
+                - generic [ref=f61e1565]: 02:04:14
+                - strong [ref=f61e1566]: GET
+                - generic "https://blockflow-proxy.jarvis-cf.workers.dev/" [ref=f61e1567]
+              - 'generic "{\"message\":\"Hello World Worker received a request!\"}" [ref=f61e1569]':
+                - generic [ref=f61e1574] [cursor=pointer]:
+                  - generic [ref=f61e1575]: ▶
+                  - text: "{message: \"Hello World Worker received a …\"}"
+              - generic [ref=f61e1577]:
+                - img "Invocation" [ref=f61e1580]
+                - generic [ref=f61e1582]: 02:04:14
+                - strong [ref=f61e1583]: GET
+                - generic "https://blockflow-proxy.jarvis-cf.workers.dev/" [ref=f61e1584]
+              - 'generic "{\"message\":\"Hello World Worker received a request!\"}" [ref=f61e1586]':
+                - generic [ref=f61e1591] [cursor=pointer]:
+                  - generic [ref=f61e1592]: ▶
+                  - text: "{message: \"Hello World Worker received a …\"}"
+  - generic:
+    - region "Notifications"

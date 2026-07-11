@@ -7,6 +7,7 @@
 <meta name="description" content="Balance your day in 3 blocks">
 <meta name="theme-color" content="#667eea">
 <link rel="stylesheet" href="css/style.css?v=2.0.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -1804,6 +1805,93 @@ body.focus-mode .custom-cursor-dot { background: linear-gradient(135deg, #667eea
 .ai-voice-btn:hover { background: #e5e7eb; color: #374151; }
 .ai-voice-btn.listening { background: #fee2e2; color: #ef4444; animation: pulse 1s infinite; }
 
+.ai-attach-btn {
+  width: 36px; height: 36px; border-radius: 50%; border: none;
+  background: transparent; color: #9ca3af; font-size: 1.1rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.2s;
+}
+.ai-attach-btn:hover { background: #f3f4f6; color: #6b7280; }
+
+.ai-drag-overlay {
+  display: none; position: absolute; inset: 0; z-index: 10;
+  background: rgba(102,126,234,0.08); border-radius: 20px;
+  border: 3px dashed #667eea; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.ai-drag-overlay.show { display: flex; }
+.ai-drag-overlay span {
+  background: #fff; padding: 12px 24px; border-radius: 12px;
+  color: #667eea; font-weight: 600; font-size: 0.95rem;
+  box-shadow: 0 4px 16px rgba(102,126,234,0.2);
+}
+
+.ai-file-preview {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 6px 16px 2px;
+}
+.ai-file-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #f3f4f6; border-radius: 8px; padding: 3px 10px;
+  font-size: 0.78rem; color: #374151; max-width: 200px;
+}
+.ai-file-tag .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ai-file-tag .remove {
+  cursor: pointer; color: #9ca3af; font-weight: bold; font-size: 0.9rem;
+  line-height: 1; padding: 0 2px;
+}
+.ai-file-tag .remove:hover { color: #ef4444; }
+
+.ai-header-actions {
+  display: flex; align-items: center; gap: 4px;
+}
+.ai-memory-btn {
+  width: 32px; height: 32px; border-radius: 8px; border: none;
+  background: transparent; font-size: 1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; color: #6b7280;
+}
+.ai-memory-btn:hover { background: #f3f4f6; }
+
+.ai-memory-modal {
+  display: none; position: absolute; bottom: 140px; left: 12px; right: 12px; z-index: 20;
+}
+.ai-memory-modal.open { display: block; }
+.ai-memory-modal-content {
+  background: #fff; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  border: 1px solid #e5e7eb; overflow: hidden;
+}
+.ai-memory-modal-header {
+  display: flex; align-items: center; gap: 8px; padding: 14px 16px 8px;
+}
+.ai-memory-list {
+  max-height: 200px; overflow-y: auto; padding: 4px 12px;
+}
+.memory-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 10px; border-radius: 8px; margin-bottom: 4px;
+  background: #f9fafb; font-size: 0.85rem; color: #374151;
+}
+.memory-item:hover { background: #f3f4f6; }
+.memory-delete {
+  background: none; border: none; color: #d1d5db; cursor: pointer;
+  font-size: 1.1rem; padding: 0 4px; line-height: 1;
+}
+.memory-delete:hover { color: #ef4444; }
+.ai-memory-input-row {
+  display: flex; gap: 8px; padding: 8px 12px 12px; border-top: 1px solid #f3f4f6;
+}
+.ai-memory-input-row input {
+  flex: 1; border: 1px solid #e5e7eb; border-radius: 10px; padding: 8px 12px;
+  font-size: 0.85rem; outline: none; font-family: inherit;
+}
+.ai-memory-input-row input:focus { border-color: #667eea; }
+.ai-memory-input-row button {
+  background: linear-gradient(135deg, #667eea, #764ba2); color: #fff;
+  border: none; border-radius: 10px; padding: 8px 16px; font-size: 0.85rem;
+  cursor: pointer; font-weight: 600; white-space: nowrap;
+}
+.ai-memory-input-row button:hover { opacity: 0.9; }
+
 .ai-send-btn {
   width: 40px; height: 40px; border-radius: 12px; border: none;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1976,8 +2064,23 @@ body.dstyle-dark .ai-copy-btn:hover { background: #334155; color: #e2e8f0; }
 body.dstyle-dark .ai-retry-btn { background: #1e293b; border-color: #334155; color: #94a3b8; }
 body.dstyle-dark .ai-retry-btn:hover { border-color: #3b82f6; color: #3b82f6; }
 body.dstyle-dark .ai-msg-ai blockquote { border-color: #475569; color: #94a3b8; }
+body.dstyle-dark .ai-file-tag { background: #1e293b; color: #cbd5e1; }
+body.dstyle-dark .ai-attach-btn { color: #64748b; }
+body.dstyle-dark .ai-attach-btn:hover { background: #1e293b; color: #94a3b8; }
+body.dstyle-dark .ai-memory-btn { color: #64748b; }
+body.dstyle-dark .ai-memory-btn:hover { background: #1e293b; }
+body.dstyle-dark .ai-memory-modal-content { background: #1e293b; border-color: #334155; }
+body.dstyle-dark .ai-memory-modal-header strong { color: #e2e8f0; }
+body.dstyle-dark .memory-item { background: #0f172a; color: #cbd5e1; }
+body.dstyle-dark .memory-item:hover { background: #1e293b; }
+body.dstyle-dark .ai-memory-input-row { border-color: #1e293b; }
+body.dstyle-dark .ai-memory-input-row input { background: #0f172a; border-color: #334155; color: #e2e8f0; }
 
 body.dstyle-warm .ai-msg-ai code { background: #efe6dc; color: #bc6c25; }
+body.dstyle-warm .ai-file-tag { background: #f5efe6; }
+body.dstyle-warm .ai-attach-btn:hover { background: #f5efe6; }
+body.dstyle-warm .ai-memory-btn:hover { background: #f5efe6; }
+body.dstyle-warm .memory-item { background: #faf6f0; }
 body.dstyle-warm .ai-copy-btn { background: rgba(250,246,240,0.9); }
 body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
 
@@ -2269,11 +2372,12 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
 <script src="js/firebase-init.js"></script>
 <script src="js/firebase-auth.js"></script>
 <script src="js/firebase-db.js"></script>
+<script src="js/nvidia-config.js?v=1.0.0"></script>
 <script src="js/app.js?v=1.2.0"></script>
 <script src="js/storage.js"></script>
 <script src="js/timer.js"></script>
 <script src="js/ui.js?v=1.3.0"></script>
-<script src="js/ai-assistant.js?v=2.1.0"></script>
+<script src="js/ai-assistant.js?v=2.5.0"></script>
 <script>
 FirebaseAuth.init();
 FirebaseDB.init();
@@ -2316,7 +2420,7 @@ document.getElementById('skipLoginBtn').addEventListener('click', function() {
   root.appendChild(cursor);
   root.appendChild(dot);
 
-  var posX = 0, posY = 0, dotX = 0, dotY = 0;
+  var posX = 0, posY = 0, dotX = 0, dotY = 0, cursorRunning = true, cursorRafId = null;
   var interactiveEls = 'a, button, .btn, .nav-tab, .stat-pill, .dc-event-row, .dc-block, .ai-fab, .ai-chip, .ai-send-btn, .ai-voice-btn, input, select, textarea';
 
   document.addEventListener('mousemove', function(e) {
@@ -2331,13 +2435,24 @@ document.getElementById('skipLoginBtn').addEventListener('click', function() {
   });
 
   function animateDot() {
+    if (!cursorRunning) return;
     dotX += (posX - dotX) * 0.2;
     dotY += (posY - dotY) * 0.2;
     dot.style.left = dotX + 'px';
     dot.style.top = dotY + 'px';
-    requestAnimationFrame(animateDot);
+    cursorRafId = requestAnimationFrame(animateDot);
   }
-  animateDot();
+  cursorRafId = requestAnimationFrame(animateDot);
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      cursorRunning = false;
+      if (cursorRafId) cancelAnimationFrame(cursorRafId);
+    } else {
+      cursorRunning = true;
+      cursorRafId = requestAnimationFrame(animateDot);
+    }
+  });
 
   document.addEventListener('mousedown', function() {
     cursor.classList.add('active');
@@ -2415,45 +2530,7 @@ document.getElementById('skipLoginBtn').addEventListener('click', function() {
 })();
 </script>
 
-<!-- AI Assistant -->
-<button class="ai-fab" id="aiBubble" aria-label="Open AI Assistant">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L3 9h7z"/></svg>
-</button>
-
-<div class="ai-overlay" id="aiOverlay">
-  <div class="ai-container">
-    <div class="ai-header">
-      <div class="ai-header-left">
-        <div class="ai-avatar">🤖</div>
-        <span class="ai-title">BlockFlow Assistant</span>
-      </div>
-      <div class="ai-header-center">
-        <select class="ai-model-select" id="aiModelSelect">
-          <option value="nvidia/llama-3.1-nemotron-nano-8b-v1">Llama (Fast)</option>
-          <option value="nvidia/llama-3.3-nemotron-super-49b-v1">Nemotron (Accurate)</option>
-        </select>
-      </div>
-      <button class="ai-close-btn" id="aiClose" aria-label="Close">x</button>
-    </div>
-    <div class="ai-conversation" id="aiMessages"></div>
-    <div class="ai-suggestions" id="aiSuggestions">
-      <button class="ai-chip" data-prompt="Help me break down a big project I've been putting off into small steps">Break down project</button>
-      <button class="ai-chip" data-prompt="Give me some time management tips for a busy day">Time management</button>
-      <button class="ai-chip" data-prompt="Review my calendar and tell me how I can optimize my schedule this week">Review schedule</button>
-    </div>
-    <div class="ai-input-wrap">
-      <div class="ai-input-area">
-        <textarea class="ai-input" id="aiInput" rows="1" placeholder="Ask me anything..." autocomplete="off"></textarea>
-        <button class="ai-voice-btn" id="aiVoiceBtn" aria-label="Voice input">🎤</button>
-        <button class="ai-send-btn" id="aiSend" aria-label="Send">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-        </button>
-      </div>
-      <p class="ai-disclaimer">BlockFlow Assistant may produce inaccurate information.</p>
-    </div>
-    <div class="ai-resize-handle"></div>
-  </div>
-</div>
+<!-- AI Assistant — built by ai-assistant.js buildDOM() -->
 
 </body>
 </html>

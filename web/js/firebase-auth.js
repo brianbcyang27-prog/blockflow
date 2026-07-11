@@ -74,7 +74,7 @@ var FirebaseAuth = (function() {
             });
             var stored = localStorage.getItem('blockflow_auth_user');
             if (stored && !currentUser) {
-                try { currentUser = JSON.parse(stored); } catch(e) {}
+                try { currentUser = JSON.parse(stored); } catch(e) { console.warn('[FirebaseAuth] Failed to parse stored user (init):', e); }
             }
             return true;
         },

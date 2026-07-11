@@ -62,7 +62,7 @@ const UI = {
     if (todayEvents.length === 0) {
       this.elements.eventsList.innerHTML =
         '<div class="dc-events-empty">' +
-        '<span>📅</span> No events today' +
+        '<span>📅</span> Clear slate — plan your day' +
         '</div>';
       return;
     }
@@ -158,7 +158,7 @@ const UI = {
   updateFocusTime(minutes) {
     if (!this.elements.focusTime) return;
     this.elements.focusTime.textContent = minutes;
-    const data = typeof Storage !== 'undefined' ? Storage.getData() : null;
+    const data = typeof Storage === 'object' ? Storage.getData() : null;
     const distractions = data ? (data.distractions || 0) : 0;
     const ratioEl = this.elements.focusRatio;
     if (ratioEl) {

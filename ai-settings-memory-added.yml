@@ -1,0 +1,305 @@
+- generic [ref=f1e2]:
+  - banner [ref=f1e3]:
+    - heading "BlockFlow" [level=1] [ref=f1e4]
+    - paragraph [ref=f1e5]:
+      - text: Settings & Preferences
+      - link "📄" [ref=f1e6] [cursor=pointer]:
+        - /url: docs.html
+  - navigation [ref=f1e7]:
+    - button "🏠 Dashboard" [ref=f1e8] [cursor=pointer]
+    - button "📅 Calendar" [ref=f1e9] [cursor=pointer]
+    - button "⚙️ Settings" [ref=f1e10] [cursor=pointer]
+  - generic [ref=f1e11]:
+    - generic [ref=f1e12]:
+      - generic [ref=f1e13]:
+        - heading "API Keys" [level=3] [ref=f1e14]
+        - button "🔍 Needs key" [ref=f1e15] [cursor=pointer]
+      - paragraph [ref=f1e16]:
+        - text: Configure API keys for AI features. All providers listed have a
+        - strong [ref=f1e17]: free tier
+        - text: — no credit card required for most. Keys are saved to your browser and never sent to any server except the API provider.
+      - generic [ref=f1e18]:
+        - generic [ref=f1e19]:
+          - generic [ref=f1e20]:
+            - strong [ref=f1e21]: Google Gemini
+            - generic [ref=f1e22]:
+              - generic [ref=f1e23]: 🆓 FREE
+              - text: 1500 req/day ·
+              - link "ai.google.dev" [ref=f1e24] [cursor=pointer]:
+                - /url: https://ai.google.dev
+          - generic [ref=f1e25]:
+            - textbox "AIza..." [ref=f1e26]
+            - button "Save" [ref=f1e27] [cursor=pointer]
+        - generic [ref=f1e28]:
+          - generic [ref=f1e29]:
+            - strong [ref=f1e30]: Groq
+            - generic [ref=f1e31]:
+              - generic [ref=f1e32]: 🆓 FREE
+              - text: 30 RPM ·
+              - link "console.groq.com" [ref=f1e33] [cursor=pointer]:
+                - /url: https://console.groq.com
+          - generic [ref=f1e34]:
+            - textbox "gsk_..." [ref=f1e35]
+            - button "Save" [ref=f1e36] [cursor=pointer]
+        - generic [ref=f1e37]:
+          - generic [ref=f1e38]:
+            - strong [ref=f1e39]: OpenRouter
+            - generic [ref=f1e40]:
+              - generic [ref=f1e41]: 🆓 FREE
+              - text: 50 req/day ·
+              - link "openrouter.ai/keys" [ref=f1e42] [cursor=pointer]:
+                - /url: https://openrouter.ai/keys
+          - generic [ref=f1e43]:
+            - textbox "sk-or-..." [ref=f1e44]
+            - button "Save" [ref=f1e45] [cursor=pointer]
+        - generic [ref=f1e46]:
+          - generic [ref=f1e47]:
+            - strong [ref=f1e48]: Cerebras
+            - generic [ref=f1e49]:
+              - generic [ref=f1e50]: 🆓 FREE
+              - text: 1M tokens/day ·
+              - link "cloud.cerebras.ai" [ref=f1e51] [cursor=pointer]:
+                - /url: https://cloud.cerebras.ai
+          - generic [ref=f1e52]:
+            - textbox "cerebras-..." [ref=f1e53]
+            - button "Save" [ref=f1e54] [cursor=pointer]
+        - generic [ref=f1e55]:
+          - generic [ref=f1e56]:
+            - strong [ref=f1e57]: Mistral AI
+            - generic [ref=f1e58]:
+              - generic [ref=f1e59]: 🆓 FREE
+              - text: 1B tokens/month ·
+              - link "console.mistral.ai" [ref=f1e60] [cursor=pointer]:
+                - /url: https://console.mistral.ai
+          - generic [ref=f1e61]:
+            - textbox "MISTRAL_..." [ref=f1e62]
+            - button "Save" [ref=f1e63] [cursor=pointer]
+        - generic [ref=f1e64]:
+          - generic [ref=f1e65]:
+            - strong [ref=f1e66]: NVIDIA NIM
+            - generic [ref=f1e67]:
+              - generic [ref=f1e68]: 🆓 FREE
+              - text: ·
+              - link "build.nvidia.com" [ref=f1e69] [cursor=pointer]:
+                - /url: https://build.nvidia.com
+              - text: (also in AI section below)
+          - generic [ref=f1e70]:
+            - textbox "nvapi-..." [ref=f1e71]: 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
+            - button "Save" [ref=f1e72] [cursor=pointer]
+        - generic [ref=f1e73]:
+          - generic [ref=f1e74]:
+            - strong [ref=f1e75]: OCR.space
+            - generic [ref=f1e76]:
+              - generic [ref=f1e77]: 🆓 FREE
+              - text: 500 req/day ·
+              - link "ocr.space" [ref=f1e78] [cursor=pointer]:
+                - /url: https://ocr.space
+          - generic [ref=f1e79]:
+            - textbox "K8..." [ref=f1e80]
+            - button "Save" [ref=f1e81] [cursor=pointer]
+      - paragraph [ref=f1e82]:
+        - text: ⓘ These keys are shared with the
+        - link "API Verification Hub" [ref=f1e83] [cursor=pointer]:
+          - /url: api-verify/index.html
+        - text: — save once, use everywhere.
+    - generic [ref=f1e84]:
+      - heading "AI Calendar Setup" [level=3] [ref=f1e85]
+      - paragraph [ref=f1e86]:
+        - text: BlockFlow uses
+        - strong [ref=f1e87]: NVIDIA AI
+        - text: to analyze your events and suggest importance levels and block types. Get a free API key from NVIDIA (no credit card required).
+      - generic [ref=f1e88]:
+        - generic [ref=f1e89]: "1"
+        - generic [ref=f1e90]:
+          - strong [ref=f1e91]: Get your free NVIDIA API key
+          - paragraph [ref=f1e92]:
+            - text: Go to
+            - link "build.nvidia.com" [ref=f1e93] [cursor=pointer]:
+              - /url: https://build.nvidia.com
+            - text: ", sign up for the free NVIDIA Developer Program, and generate an API key."
+          - link "Get Free API Key" [ref=f1e94] [cursor=pointer]:
+            - /url: https://build.nvidia.com
+      - generic [ref=f1e95]:
+        - generic [ref=f1e96]: "2"
+        - generic [ref=f1e97]:
+          - strong [ref=f1e98]: Enter your API key
+          - paragraph [ref=f1e99]:
+            - text: Paste your
+            - code [ref=f1e100]: nvapi-
+            - text: key below.
+          - generic [ref=f1e101]:
+            - textbox "nvapi-..." [ref=f1e102]: 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
+            - button "Save" [ref=f1e103] [cursor=pointer]
+            - button "Test" [ref=f1e104] [cursor=pointer]
+      - generic [ref=f1e105]:
+        - generic [ref=f1e106]: "3"
+        - generic [ref=f1e107]:
+          - strong [ref=f1e108]: Choose AI Model
+          - paragraph [ref=f1e109]: Select which model to use for event analysis.
+          - combobox [ref=f1e110]:
+            - option "Llama Nemotron Nano 8B (Fast)" [selected]
+            - option "Llama 3.3 70B (Accurate)"
+            - option "Nemotron Super 49B (Most Accurate)"
+      - generic [ref=f1e113]: AI configured
+      - generic [ref=f1e114]:
+        - generic [ref=f1e115]:
+          - strong [ref=f1e116]: Auto-navigate to Calendar
+          - text: When the AI adds or edits events, automatically switch to the Calendar view
+        - generic [ref=f1e118]:
+          - checkbox [checked]
+    - generic [ref=f1e120]:
+      - heading "Timer Settings" [level=3] [ref=f1e121]
+      - generic [ref=f1e122]:
+        - generic [ref=f1e123]:
+          - strong [ref=f1e124]: Default Focus Duration
+          - text: 25 minutes recommended for productivity
+        - combobox [ref=f1e126]:
+          - option "15 min"
+          - option "25 min" [selected]
+          - option "30 min"
+          - option "45 min"
+          - option "60 min"
+      - generic [ref=f1e127]:
+        - generic [ref=f1e128]:
+          - strong [ref=f1e129]: Auto-start Break Timer
+          - text: Automatically start break after focus session
+        - generic [ref=f1e131]:
+          - checkbox "Off" [ref=f1e132]
+          - text: "Off"
+      - generic [ref=f1e133]:
+        - generic [ref=f1e134]:
+          - strong [ref=f1e135]: Sound Notifications
+          - text: Play sound when timer completes
+        - generic [ref=f1e137]:
+          - checkbox "On" [checked] [ref=f1e138]
+          - text: "On"
+      - generic [ref=f1e139]:
+        - generic [ref=f1e140]:
+          - strong [ref=f1e141]: Themes
+          - text: Choose a color theme for the whole page
+        - generic [ref=f1e142]:
+          - generic [ref=f1e143]:
+            - generic [ref=f1e144] [cursor=pointer]:
+              - generic [ref=f1e145]: 📋
+              - generic [ref=f1e146]: Compact
+            - generic [ref=f1e147] [cursor=pointer]:
+              - generic [ref=f1e148]: ✨
+              - generic [ref=f1e149]: Modern
+            - generic [ref=f1e150] [cursor=pointer]:
+              - generic [ref=f1e151]: 📅
+              - generic [ref=f1e152]: Agenda
+            - generic [ref=f1e153] [cursor=pointer]:
+              - generic [ref=f1e154]: 🌙
+              - generic [ref=f1e155]: Dark
+            - generic [ref=f1e156] [cursor=pointer]:
+              - generic [ref=f1e157]: 💥
+              - generic [ref=f1e158]: Bold
+            - generic [ref=f1e159] [cursor=pointer]:
+              - generic [ref=f1e160]: 🎨
+              - generic [ref=f1e161]: Muted
+            - generic [ref=f1e162] [cursor=pointer]:
+              - generic [ref=f1e163]: ☀️
+              - generic [ref=f1e164]: Warm
+          - generic [ref=f1e173]:
+            - generic [ref=f1e174]: 25:00
+            - generic [ref=f1e178]: Focus
+      - generic [ref=f1e179]:
+        - generic [ref=f1e180]:
+          - strong [ref=f1e181]: Dashboard Layout
+          - text: Change the structure and arrangement of your dashboard
+        - generic [ref=f1e182]:
+          - generic [ref=f1e183]:
+            - generic [ref=f1e184] [cursor=pointer]:
+              - generic [ref=f1e185]: 📊
+              - generic [ref=f1e186]: Standard
+            - generic [ref=f1e187] [cursor=pointer]:
+              - generic [ref=f1e188]: ⏱️
+              - generic [ref=f1e189]: Focus
+            - generic [ref=f1e190] [cursor=pointer]:
+              - generic [ref=f1e191]: 📐
+              - generic [ref=f1e192]: Expanded
+            - generic [ref=f1e193] [cursor=pointer]:
+              - generic [ref=f1e194]: 📈
+              - generic [ref=f1e195]: Analytics
+          - generic [ref=f1e196]:
+            - generic [ref=f1e197]:
+              - generic [ref=f1e198]: 25:00
+              - generic [ref=f1e199]: Focus Time
+            - generic [ref=f1e200]:
+              - generic [ref=f1e201]:
+                - generic [ref=f1e204]: Focus
+                - generic [ref=f1e207]: Personal
+                - generic [ref=f1e210]: Recovery
+              - generic [ref=f1e211]:
+                - generic [ref=f1e212]:
+                  - generic [ref=f1e213]: "3"
+                  - generic [ref=f1e214]: Tasks
+                - generic [ref=f1e215]:
+                  - generic [ref=f1e216]: 2h
+                  - generic [ref=f1e217]: Tracked
+                - generic [ref=f1e218]:
+                  - generic [ref=f1e219]: 85%
+                  - generic [ref=f1e220]: Focus
+      - generic [ref=f1e221]:
+        - generic [ref=f1e222]:
+          - strong [ref=f1e223]: Auto-add to Calendar
+          - text: When the AI detects a potential event in your message, automatically add it without asking
+        - generic [ref=f1e225]:
+          - checkbox
+    - generic [ref=f1e227]:
+      - heading "🧠 AI Assistant" [level=3] [ref=f1e228]
+      - paragraph [ref=f1e229]: Manage your AI assistant's memory and custom behavior. Changes apply to the BlockFlow Assistant chatbot.
+      - generic [ref=f1e230]:
+        - heading "🧠 Memory Points" [level=4] [ref=f1e231]
+        - paragraph [ref=f1e232]: Things the AI should remember about you — like preferences, goals, or ongoing projects. Up to 10 points.
+        - generic [ref=f1e282]:
+          - generic [ref=f1e283]: I'm preparing a product demo for tomorrow
+          - button "✕" [ref=f1e284] [cursor=pointer]
+        - generic [ref=f1e234]:
+          - textbox "e.g. I'm preparing a product demo this week..." [active] [ref=f1e235]
+          - button "Add" [ref=f1e236] [cursor=pointer]
+      - generic [ref=f1e237]:
+        - heading "✏️ Custom System Prompt" [level=4] [ref=f1e238]
+        - paragraph [ref=f1e239]: Override the AI's default instructions. Leave empty to use the built-in default prompt. Changes take effect on the next message.
+        - textbox "Enter custom instructions for the AI assistant..." [ref=f1e240]
+        - generic [ref=f1e241]:
+          - button "💾 Save Prompt" [ref=f1e242] [cursor=pointer]
+          - button "↩️ Reset to Default" [ref=f1e243] [cursor=pointer]
+    - generic [ref=f1e244]:
+      - heading "Help & Walkthrough" [level=3] [ref=f1e245]
+      - generic [ref=f1e246]:
+        - generic [ref=f1e247]:
+          - strong [ref=f1e248]: Show Walkthrough
+          - text: Replay the introductory guide
+        - button "Show Guide" [ref=f1e250] [cursor=pointer]
+    - generic [ref=f1e251]:
+      - heading "Data Management" [level=3] [ref=f1e252]
+      - generic [ref=f1e253]:
+        - generic [ref=f1e254]:
+          - strong [ref=f1e255]: Import Sample Data
+          - text: Populate with 21 sample events and 5 days of history to test the app
+        - button "Import Samples" [ref=f1e257] [cursor=pointer]
+      - generic [ref=f1e258]:
+        - generic [ref=f1e259]:
+          - strong [ref=f1e260]: Export Data
+          - text: Download your BlockFlow data as JSON
+        - button "Export" [ref=f1e262] [cursor=pointer]
+      - generic [ref=f1e263]:
+        - generic [ref=f1e264]:
+          - strong [ref=f1e265]: Import from Google Calendar
+          - text: Fetch events from your Google Calendar for the next 30 days. Duplicate events will be skipped.
+          - paragraph [ref=f1e266]: "Note: This requires the domain to be authorized in the Google Cloud Console. On localhost/custom domains, authentication may fail. You can still add events manually in the Calendar tab."
+        - generic [ref=f1e267]:
+          - button "Import from Google Calendar" [ref=f1e268] [cursor=pointer]
+          - generic [ref=f1e269]: Ready
+      - generic [ref=f1e270]:
+        - generic [ref=f1e271]:
+          - strong [ref=f1e272]: Clear All Data
+          - text: Reset all data including history
+        - button "Clear Data" [ref=f1e274] [cursor=pointer]
+    - generic [ref=f1e275]:
+      - heading "BlockFlow" [level=3] [ref=f1e276]
+      - paragraph [ref=f1e277]: A simple productivity app to reduce scrolling addiction and improve focus
+      - paragraph [ref=f1e278]: Version 1.2.0
+  - contentinfo [ref=f1e279]:
+    - paragraph [ref=f1e280]: BlockFlow © 2025 - Simple focus tool

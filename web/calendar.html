@@ -7,6 +7,7 @@
 <meta name="description" content="Calendar with AI-powered event planning">
 <meta name="theme-color" content="#667eea">
 <link rel="stylesheet" href="css/style.css?v=2.0.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -520,6 +521,8 @@ margin-bottom: 8px;
 <script src="js/firebase-auth.js"></script>
 <script src="js/firebase-db.js"></script>
 <script src="js/storage.js"></script>
+<script src="js/nvidia-config.js?v=1.0.0"></script>
+<script src="js/ai-assistant.js"></script>
 <script src="js/calendar.js"></script>
 <script>
 FirebaseAuth.init();
@@ -557,7 +560,7 @@ navigator.serviceWorker.register('sw.js')
   dot.className = 'custom-cursor-dot';
   root.appendChild(cursor);
   root.appendChild(dot);
-  var posX = 0, posY = 0, dotX = 0, dotY = 0;
+  var posX = 0, posY = 0, dotX = 0, dotY = 0, cursorRunning = true, cursorRafId = null;
   var interactiveEls = 'a, button, .btn, .nav-tab, input, select, textarea';
   document.addEventListener('mousemove', function(e) {
     posX = e.clientX; posY = e.clientY;
@@ -565,11 +568,16 @@ navigator.serviceWorker.register('sw.js')
     cursor.classList.toggle('hover-link', !!e.target.closest(interactiveEls));
   });
   function animateDot() {
+    if (!cursorRunning) return;
     dotX += (posX - dotX) * 0.2; dotY += (posY - dotY) * 0.2;
     dot.style.left = dotX + 'px'; dot.style.top = dotY + 'px';
-    requestAnimationFrame(animateDot);
+    cursorRafId = requestAnimationFrame(animateDot);
   }
-  animateDot();
+  cursorRafId = requestAnimationFrame(animateDot);
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) { cursorRunning = false; if (cursorRafId) cancelAnimationFrame(cursorRafId); }
+    else { cursorRunning = true; cursorRafId = requestAnimationFrame(animateDot); }
+  });
   document.addEventListener('mousedown', function() { cursor.classList.add('active'); dot.classList.add('active'); });
   document.addEventListener('mouseup', function() { cursor.classList.remove('active'); dot.classList.remove('active'); });
   document.addEventListener('mouseleave', function() { cursor.style.opacity = '0'; dot.style.opacity = '0'; });

@@ -241,6 +241,7 @@ const Storage = {
 
     syncFromFirestore: async function() {
         if (!FirebaseDB || !FirebaseDB.isReady()) return;
+        if (!FirebaseAuth.isSignedIn() || FirebaseAuth.getUser()?.isAnonymous) return;
         const events = await FirebaseDB.getEvents();
         if (events && events.length > 0) {
             this.safeSetItem(this.CALENDAR_KEY, JSON.stringify(events));

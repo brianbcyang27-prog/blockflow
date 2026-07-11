@@ -1,0 +1,144 @@
+- generic [ref=f112e8]:
+  - generic [ref=f112e13]:
+    - complementary [ref=f112e15]:
+      - generic [ref=f112e17]:
+        - link [ref=f112e20] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=f112e25]:
+          - generic [ref=f112e27]:
+            - link "Go back" [ref=f112e28] [cursor=pointer]:
+              - /url: /
+            - heading "My Profile" [level=1] [ref=f112e31]
+          - generic [ref=f112e32]:
+            - button "Quick search..." [ref=f112e34] [cursor=pointer]:
+              - generic [ref=f112e36]:
+                - generic [ref=f112e39]: Quick search...
+                - generic [ref=f112e40]: ⌘K
+            - list [ref=f112e41]:
+              - listitem [ref=f112e42]:
+                - link "Settings" [ref=f112e43] [cursor=pointer]:
+                  - /url: /profile/
+              - listitem [ref=f112e49]:
+                - generic [ref=f112e50]:
+                  - button "Access Management" [ref=f112e51] [cursor=pointer]
+                  - list [ref=f112e60]:
+                    - listitem [ref=f112e62]:
+                      - link [ref=f112e63] [cursor=pointer]:
+                        - /url: /profile/access-management/authentication
+                        - generic [ref=f112e64]: Authentication
+                    - listitem [ref=f112e66]:
+                      - link [ref=f112e67] [cursor=pointer]:
+                        - /url: /profile/access-management/authorization
+                        - generic [ref=f112e68]: Connected Applications
+                    - listitem [ref=f112e70]:
+                      - link [ref=f112e71] [cursor=pointer]:
+                        - /url: /profile/access-management/sessions
+                        - generic [ref=f112e72]: Active sessions
+              - listitem [ref=f112e74]:
+                - link "API Tokens" [ref=f112e75] [cursor=pointer]:
+                  - /url: /profile/api-tokens
+        - button "Collapse sidebar" [expanded] [ref=f112e83] [cursor=pointer]
+    - generic [ref=f112e86]:
+      - banner [ref=f112e87]:
+        - navigation "breadcrumb" [ref=f112e90]:
+          - generic [ref=f112e91]: User API Tokens
+        - generic [ref=f112e96]:
+          - link "Support" [ref=f112e97] [cursor=pointer]:
+            - /url: /?to=/:account/support
+          - button "User menu" [ref=f112e102] [cursor=pointer]
+      - main [ref=f112e105]:
+        - generic [ref=f112e107]:
+          - generic [ref=f112e108]:
+            - heading "User API Tokens" [level=1] [ref=f112e113]
+            - paragraph [ref=f112e114]: Manage access and permissions for your accounts, sites, and products
+          - generic [ref=f112e116]:
+            - link "Documentation" [ref=f112e117] [cursor=pointer]:
+              - /url: https://developers.cloudflare.com/fundamentals/api/get-started/create-token/
+            - button [ref=f112e118] [cursor=pointer]
+        - generic [ref=f112e126]:
+          - generic [ref=f112e128]:
+            - text: Cloudflare recommends using
+            - link "Account API Tokens" [ref=f112e129] [cursor=pointer]:
+              - /url: /?to=/:account/api-tokens
+            - text: if you prefer credentials that are not associated with users.
+          - generic [ref=f112e131]:
+            - heading "API Tokens" [level=2] [ref=f112e132]
+            - textbox "Search…" [ref=f112e137]
+            - table [ref=f112e140]:
+              - rowgroup [ref=f112e141]:
+                - row [ref=f112e142]:
+                  - columnheader "Token name" [ref=f112e143] [cursor=pointer]
+                  - columnheader "Permissions" [ref=f112e145]
+                  - columnheader "Resources" [ref=f112e147]
+                  - columnheader "Last used" [ref=f112e149] [cursor=pointer]
+                  - columnheader "Expires" [ref=f112e151] [cursor=pointer]
+                  - columnheader "Status" [ref=f112e153]
+                  - columnheader [ref=f112e155]:
+                    - button "Edit columns" [ref=f112e156] [cursor=pointer]
+              - rowgroup [ref=f112e160]:
+                - row [ref=f112e161]:
+                  - cell "No API tokens" [ref=f112e162]
+          - generic [ref=f112e164]:
+            - generic [ref=f112e165]:
+              - heading "API Keys" [level=2] [ref=f112e166]
+              - paragraph [ref=f112e167]: Keys used to access Cloudflare APIs.
+            - table [ref=f112e170]:
+              - rowgroup [ref=f112e171]:
+                - row [ref=f112e172]:
+                  - columnheader "Key name" [ref=f112e173]
+                  - columnheader [ref=f112e174]
+              - rowgroup [ref=f112e175]:
+                - row [ref=f112e176]:
+                  - cell [ref=f112e177]:
+                    - paragraph [ref=f112e178]: Global API Key
+                  - cell [ref=f112e179]:
+                    - generic [ref=f112e180]:
+                      - button [ref=f112e181] [cursor=pointer]
+                      - button [ref=f112e185] [cursor=pointer]
+                - row [ref=f112e189]:
+                  - cell [ref=f112e190]:
+                    - generic [ref=f112e196]:
+                      - paragraph [ref=f112e197]: Origin CA Key (Deprecated)
+                      - generic [ref=f112e198]:
+                        - text: The Origin CA Key is deprecated. Please generate
+                        - link "Account API Tokens" [ref=f112e199] [cursor=pointer]:
+                          - /url: /?to=/:account/api-tokens
+                        - text: or User API Tokens instead.
+                        - link "Learn more" [ref=f112e201] [cursor=pointer]:
+                          - /url: https://developers.cloudflare.com/changelog/post/2026-03-19-service-key-authentication-deprecated/
+      - contentinfo [ref=f112e206]:
+        - list [ref=f112e208]:
+          - listitem [ref=f112e209]:
+            - link "Support" [ref=f112e210] [cursor=pointer]:
+              - /url: https://support.cloudflare.com
+          - listitem [ref=f112e211]:
+            - link "System status" [ref=f112e212] [cursor=pointer]:
+              - /url: https://www.cloudflarestatus.com
+          - listitem [ref=f112e213]:
+            - link "Careers" [ref=f112e214] [cursor=pointer]:
+              - /url: https://www.cloudflare.com/careers/
+          - listitem [ref=f112e215]:
+            - link "Terms of Use" [ref=f112e216] [cursor=pointer]:
+              - /url: https://www.cloudflare.com/website-terms/
+          - listitem [ref=f112e217]:
+            - link "Report Security Issues" [ref=f112e218] [cursor=pointer]:
+              - /url: https://www.cloudflare.com/disclosure/
+          - listitem [ref=f112e219]:
+            - link "Privacy Policy" [ref=f112e220] [cursor=pointer]:
+              - /url: https://www.cloudflare.com/privacypolicy/
+          - listitem [ref=f112e221]:
+            - button [ref=f112e222] [cursor=pointer]:
+              - img "A blue and white pill with a checkmark and an x, representing privacy choices" [ref=f112e223]
+              - text: Cookie Preferences
+          - listitem [ref=f112e224]:
+            - generic [ref=f112e225]: © 2026 Cloudflare, Inc.
+  - generic:
+    - region "Notifications"
+  - dialog [ref=f112e236]:
+    - banner [ref=f112e237]:
+      - heading "Verify Your Identity" [level=1] [ref=f112e238]
+      - button "Close" [active] [ref=f112e239] [cursor=pointer]
+    - generic [ref=f112e242]: For security purposes, we need to send a verification code to your email before you can proceed. Click the button below to receive the code.
+    - generic [ref=f112e245]:
+      - button "Cancel" [ref=f112e246] [cursor=pointer]
+      - button "Send Verification Code" [ref=f112e247] [cursor=pointer]

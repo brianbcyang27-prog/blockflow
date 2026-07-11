@@ -1,0 +1,2147 @@
+Total messages: 195 (Errors: 0, Warnings: 195)
+
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953
+[WARNING] [AI] save history: QuotaExceededError: Failed to execute 'setItem' on 'Storage': Setting the value of 'blockflow_ai_history' exceeded the quota.
+    at Object.saveMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953:20)
+    at Object.addAiMessage (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:1009:12)
+    at https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:941:18
+    at Array.forEach (<anonymous>)
+    at Object.loadMessageHistory (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:937:23)
+    at Object._ensureLazyLoaded (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:378:10)
+    at HTMLButtonElement.<anonymous> (https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:351:19)
+    at eval (eval at evaluate (:303:30), <anonymous>:10:11)
+    at new Promise (<anonymous>)
+    at eval (eval at evaluate (:303:30), <anonymous>:2:12) @ https://blockflow-28d39.web.app/js/ai-assistant.js?v=2.5.0:953

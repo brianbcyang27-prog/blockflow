@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlockFlow — 3 區塊生活</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -629,7 +630,7 @@
         .cursor-area { cursor: none; }
     </style>
 </head>
-<body class="cursor-area">
+<body class="cursor-area no-ai">
     <nav class="nav">
         <div class="nav-brand">BlockFlow <span style="font-weight:400; font-size:0.8rem; color:#9ca3af; -webkit-text-fill-color:#9ca3af;">Docs</span></div>
         <div style="display:flex; gap:0.75rem; align-items:center;">
@@ -887,7 +888,7 @@
                     </div>
                     <div class="feature-card">
                         <h4>🔗 <span data-i18n="ai4_title">NVIDIA API 整合</span></h4>
-                        <p data-i18n="ai4_desc">使用 NVIDIA Llama 3.1 模型，透過 CORS Proxy 實現瀏覽器端直接 AI 推論，無需自建後端伺服器。</p>
+                        <p data-i18n="ai4_desc">使用 NVIDIA Llama 3.1 模型，透過共用代理路徑與 Firebase rewrite 實現瀏覽器端 AI 推論，無需手動串接多個不同 API。</p>
                     </div>
                 </div>
                 <p style="margin-top: 1rem; color: #6b7280; font-size: 0.9rem;" data-i18n="ai_note">免費的 NVIDIA API Key 即可啟用，無需綁定信用卡。</p>
@@ -1096,7 +1097,7 @@
                 ai3_title: 'Productivity Assistant',
                 ai3_desc: 'Built-in AI chat assistant provides time management tips and personalized advice to help you build a better daily rhythm.',
                 ai4_title: 'NVIDIA API Integration',
-                ai4_desc: 'Uses NVIDIA Llama 3.1 model via CORS Proxy for direct browser-side AI inference — no backend server required.',
+                ai4_desc: 'Uses NVIDIA Llama 3.1 model via the shared proxy path and Firebase rewrite for browser-side AI inference - no need to wire multiple APIs by hand.',
                 ai_note: 'A free NVIDIA API key is all you need — no credit card required.',
                 tech_stack_title: 'Tech Stack',
                 tech_note: 'Web PWA with offline support. NVIDIA AI API for smart scheduling. Firebase for auth & cloud sync.',
@@ -1206,7 +1207,7 @@
                 ai3_title: '生產力助手',
                 ai3_desc: '內建 AI 聊天助手，隨時回答時間管理相關問題、提供客製化建議，幫助使用者建立更好的生活節奏。',
                 ai4_title: 'NVIDIA API 整合',
-                ai4_desc: '使用 NVIDIA Llama 3.1 模型，透過 CORS Proxy 實現瀏覽器端直接 AI 推論，無需自建後端伺服器。',
+                ai4_desc: '使用 NVIDIA Llama 3.1 模型，透過共用代理路徑與 Firebase rewrite 實現瀏覽器端 AI 推論，無需手動串接多個不同 API。',
                 ai_note: '免費的 NVIDIA API Key 即可啟用，無需綁定信用卡。',
                 tech_stack_title: '技術',
                 tech_note: '跨平台設計。Web 版為 PWA，iOS 版為原生 SwiftUI App。NVIDIA AI API 用於智慧排程與事件分析。Firebase 提供認證與雲端同步。',
@@ -1308,6 +1309,8 @@
             root.appendChild(dot);
 
             var posX = 0, posY = 0, dotX = 0, dotY = 0;
+            var running = true;
+            var rafId = null;
             var interactiveEls = 'a, button, .lang-btn, .tab-btn, .feature-card, .flow-step, .tech-tag, .internship-badge';
 
             document.addEventListener('mousemove', function(e) {
@@ -1322,13 +1325,24 @@
             });
 
             function animateDot() {
+                if (!running) return;
                 dotX += (posX - dotX) * 0.2;
                 dotY += (posY - dotY) * 0.2;
                 dot.style.left = dotX + 'px';
                 dot.style.top = dotY + 'px';
-                requestAnimationFrame(animateDot);
+                rafId = requestAnimationFrame(animateDot);
             }
-            animateDot();
+            rafId = requestAnimationFrame(animateDot);
+
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    running = false;
+                    if (rafId) cancelAnimationFrame(rafId);
+                } else {
+                    running = true;
+                    rafId = requestAnimationFrame(animateDot);
+                }
+            });
 
             document.addEventListener('mousedown', function() {
                 cursor.classList.add('active');
@@ -1349,5 +1363,7 @@
             });
         })();
     </script>
+    <script src="js/storage.js"></script>
+    <script src="js/ai-assistant.js"></script>
 </body>
 </html>

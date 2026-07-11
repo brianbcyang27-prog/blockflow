@@ -528,6 +528,7 @@ body::after {
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
+<script src="../js/nvidia-config.js?v=1.0.0"></script>
 <script>
 /* ══════════════════════════════════════════════════════════════
    BLOCKFLOW — API VERIFICATION HUB
@@ -775,29 +776,36 @@ defineTest('mistral', 'Mistral AI', 'llm',
 );
 
 defineTest('nvidia', 'NVIDIA NIM', 'llm',
-  'NVIDIA\'s hosted LLM API (current BlockFlow provider). Uses CORS proxy for browser access.',
+  'NVIDIA\'s hosted LLM API (current BlockFlow provider). Uses the shared BlockFlow proxy path.',
   { needsKey: true, keyLabel: 'NVIDIA API Key', keyHint: 'Get at build.nvidia.com' },
   async function(key) {
-    const apiUrl = 'https://integrate.api.nvidia.com/v1/chat/completions';
-    const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(apiUrl);
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 30000);
     try {
-      const res = await fetch(proxyUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
-        body: JSON.stringify({
-          model: 'meta/llama-3.1-70b-instruct',
-          messages: [{ role: 'user', content: 'Respond with only: OK' }],
-          max_tokens: 10
-        }),
-        signal: ctrl.signal
-      });
+      const completion = typeof NvidiaConfig !== 'undefined'
+        ? await NvidiaConfig.postChatCompletion({
+            model: 'meta/llama-3.1-8b-instruct',
+            messages: [{ role: 'user', content: 'Respond with only: OK' }],
+            max_tokens: 10
+          }, { apiKey: key })
+        : {
+            response: await fetch('/api/chat', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+              body: JSON.stringify({
+                model: 'meta/llama-3.1-8b-instruct',
+                messages: [{ role: 'user', content: 'Respond with only: OK' }],
+                max_tokens: 10
+              })
+            })
+          };
+
+      const res = completion.response;
       const data = await res.json();
       if (!res.ok) throw new Error(data.error?.message || data.error || `HTTP ${res.status}`);
       const reply = data.choices?.[0]?.message?.content || '';
       return { response: reply.trim(), detail: `[NVIDIA] Raw: ${JSON.stringify(data).slice(0,200)}` };
-    } finally { clearTimeout(timer); }
+    } catch (error) {
+      throw new Error(error.message || 'NVIDIA proxy unavailable');
+    }
   }
 );
 

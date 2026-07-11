@@ -394,9 +394,14 @@ const Calendar = {
         const apiKey = localStorage.getItem(this.NVIDIA_KEY);
         const noAi = (timedOut) => {
             this.showAiSkeleton(false);
+            if (this.elements.aiSuggestion) {
+                this.elements.aiSuggestion.style.display = 'none';
+            }
             this.hideEventModal();
             this.elements.saveEvent.disabled = false;
             this.elements.saveEvent.textContent = 'Add Event';
+            this.pendingAiResult = null;
+            this.pendingAiValues = null;
             if (timedOut) {
                 console.warn('AI analysis timed out');
             }
@@ -407,8 +412,9 @@ const Calendar = {
 
         const userPrompt = 'Title: ' + (rawData.title || savedEvent.title) + '\nDate: ' + (rawData.date || savedEvent.date) + '\nTime: ' + (rawData.time || 'all day') + '\nDescription: ' + (rawData.description || savedEvent.description || 'N/A');
 
-        const modelSelect = document.getElementById('nvidiaModel');
-        const model = modelSelect ? modelSelect.value : 'nvidia/llama-3.1-nemotron-nano-8b-v1';
+        const model = typeof NvidiaConfig !== 'undefined'
+            ? NvidiaConfig.getStoredModel()
+            : 'meta/llama-3.1-8b-instruct';
 
         this.showAiSkeleton(true);
         this.pendingAiResult = savedEvent.id;
@@ -444,46 +450,37 @@ const Calendar = {
         }
 
         try {
-            let response;
-            try {
-                response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + apiKey
-                    },
-                    body: JSON.stringify({
-                        model: model,
-                        messages: [
-                            { role: 'system', content: systemPrompt },
-                            { role: 'user', content: userPrompt }
-                        ],
-                        temperature: 0.1,
-                        max_tokens: 200
-                    }),
-                    signal: controller.signal
-                });
-            } catch (directError) {
-            if (directError.name === 'AbortError') { noAi(true); return; }
-                const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent('https://integrate.api.nvidia.com/v1/chat/completions');
-                response = await fetch(proxyUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer ' + apiKey
-                    },
-                    body: JSON.stringify({
-                        model: model,
-                        messages: [
-                            { role: 'system', content: systemPrompt },
-                            { role: 'user', content: userPrompt }
-                        ],
-                        temperature: 0.1,
-                        max_tokens: 200
-                    }),
-                    signal: controller.signal
-                });
-            }
+            const completion = typeof NvidiaConfig !== 'undefined'
+                ? await NvidiaConfig.postChatCompletion({
+                    model: model,
+                    messages: [
+                        { role: 'system', content: systemPrompt },
+                        { role: 'user', content: userPrompt }
+                    ],
+                    temperature: 0.1,
+                    max_tokens: 200
+                }, { apiKey: apiKey, signal: controller.signal })
+                : {
+                    response: await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + apiKey
+                        },
+                        body: JSON.stringify({
+                            model: model,
+                            messages: [
+                                { role: 'system', content: systemPrompt },
+                                { role: 'user', content: userPrompt }
+                            ],
+                            temperature: 0.1,
+                            max_tokens: 200
+                        }),
+                        signal: controller.signal
+                    })
+                };
+
+            const response = completion.response;
 
             clearTimeout(this._aiTimeoutId);
 

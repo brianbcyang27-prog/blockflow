@@ -1,0 +1,125 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e3]:
+    - generic [ref=f1e4]: 📅
+    - heading "BlockFlow" [level=1] [ref=f1e5]
+    - paragraph [ref=f1e6]: A smarter way to plan your day
+    - button "Sign in with Google" [ref=f1e7] [cursor=pointer]
+    - paragraph [ref=f1e13]: Sign in to sync your data across devices
+    - button "Continue without signing in" [ref=f1e14] [cursor=pointer]
+  - generic [ref=f1e15]:
+    - banner [ref=f1e16]:
+      - heading "BlockFlow" [level=1] [ref=f1e17]
+      - paragraph [ref=f1e18]: Balance your day in 3 blocks
+      - generic [ref=f1e19]: "Today: Saturday, July 11, 2026"
+    - navigation [ref=f1e20]:
+      - button "🏠 Dashboard" [ref=f1e21] [cursor=pointer]
+      - button "📅 Calendar" [ref=f1e22] [cursor=pointer]
+      - button "⚙️ Settings" [ref=f1e23] [cursor=pointer]
+    - main [ref=f1e24]:
+      - generic [ref=f1e25]:
+        - generic [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - generic [ref=f1e28]:
+              - generic [ref=f1e29]: 🎯
+              - generic [ref=f1e30]: Focus
+              - generic [ref=f1e31]: 25 min
+            - generic [ref=f1e32]:
+              - button "Set" [ref=f1e33] [cursor=pointer]
+              - button "Done" [ref=f1e34] [cursor=pointer]
+          - generic [ref=f1e35]:
+            - generic [ref=f1e36]:
+              - generic [ref=f1e37]: 📚
+              - generic [ref=f1e38]: Personal
+              - generic [ref=f1e39]: 60 min
+            - generic [ref=f1e40]:
+              - button "Set" [ref=f1e41] [cursor=pointer]
+              - button "Done" [ref=f1e42] [cursor=pointer]
+          - generic [ref=f1e43]:
+            - generic [ref=f1e44]:
+              - generic [ref=f1e45]: 🧘
+              - generic [ref=f1e46]: Recovery
+              - generic [ref=f1e47]: 60 min
+            - generic [ref=f1e48]:
+              - button "Set" [ref=f1e49] [cursor=pointer]
+              - button "Done" [ref=f1e50] [cursor=pointer]
+        - generic [ref=f1e51]:
+          - generic [ref=f1e52]:
+            - generic [ref=f1e53]: Today's Events
+            - generic [ref=f1e54]: 0 events
+          - generic [ref=f1e55]: 📅 No events today
+        - generic [ref=f1e57]:
+          - generic [ref=f1e58]: 25:00
+          - generic [ref=f1e59]:
+            - button "Focus" [ref=f1e60] [cursor=pointer]
+            - button "Pause" [disabled] [ref=f1e61]
+            - button "Reset" [ref=f1e62] [cursor=pointer]
+          - generic [ref=f1e63]: Ready
+        - generic [ref=f1e64]:
+          - generic [ref=f1e65]:
+            - generic [ref=f1e66]: ⏱️
+            - generic [ref=f1e67]: "0"
+            - generic [ref=f1e68]: min
+          - generic [ref=f1e69]:
+            - generic [ref=f1e70]: 🚫
+            - generic [ref=f1e71]: "0"
+            - generic [ref=f1e72]: distracted
+          - generic [ref=f1e73]:
+            - generic [ref=f1e74]: 📊
+            - generic [ref=f1e75]: "--"
+            - generic [ref=f1e76]: min/dist
+          - generic [ref=f1e77] [cursor=pointer]:
+            - generic [ref=f1e78]: 😴
+            - generic [ref=f1e79]: 9h 0m
+            - generic [ref=f1e80]: sleep
+          - button "🚫 Distracted" [ref=f1e81] [cursor=pointer]
+        - button "Reset today's data" [ref=f1e83] [cursor=pointer]
+  - generic [ref=f1e85]:
+    - generic [ref=f1e86]:
+      - generic [ref=f1e87]: 👋
+      - heading "Welcome to BlockFlow" [level=2] [ref=f1e88]
+      - paragraph [ref=f1e89]: A simple system to balance your day — focus, rest, and everything in between.
+      - list [ref=f1e90]:
+        - listitem [ref=f1e91]:
+          - generic [ref=f1e92]: 📋
+          - text: "Set 3 daily blocks: Focus, Personal, Recovery"
+        - listitem [ref=f1e93]:
+          - generic [ref=f1e94]: ⏱️
+          - text: Use the timer to work distraction-free
+        - listitem [ref=f1e95]:
+          - generic [ref=f1e96]: 🚫
+          - text: Track distractions to build awareness
+        - listitem [ref=f1e97]:
+          - generic [ref=f1e98]: 📅
+          - text: Plan events with AI in the Calendar tab
+    - button "Next" [ref=f1e105] [cursor=pointer]
+  - button "Open AI Assistant" [ref=f1e106] [cursor=pointer]
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic: 🤖
+          - generic: BlockFlow Assistant
+        - generic:
+          - combobox:
+            - option "Llama 3.1 8B - Fast general chat" [selected]
+            - option "Nemotron Super 49B - Stronger reasoning"
+            - option "Gemma 4 31B - Balanced instruction model"
+            - option "Gemma 2 2B - Lightweight and quick"
+        - generic:
+          - button "Memory": 🧠
+          - button "Close": x
+      - generic:
+        - generic:
+          - text: Good morning! I'm your assistant. Your calendar looks clear. Want to plan something?
+          - button "Copy message"
+      - generic:
+        - button "Clear my afternoon"
+        - button "Reschedule slipped focus"
+        - button "Find deep work windows"
+      - generic:
+        - generic:
+          - textbox "Ask me anything..."
+          - button "Attach file": 📎
+          - button "Voice input": 🎤
+          - button "Send"
+        - paragraph: BlockFlow Assistant may produce inaccurate information.

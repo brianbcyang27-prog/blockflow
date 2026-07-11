@@ -7,6 +7,7 @@
 <meta name="description" content="BlockFlow settings and preferences">
 <meta name="theme-color" content="#667eea">
 <link rel="stylesheet" href="css/style.css?v=2.0.0">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
@@ -516,6 +517,66 @@ border: 1px solid #e5e7eb;
 font-family: 'SF Mono', 'Monaco', monospace;
 }
 
+/* ─── AI Assistant Settings ─── */
+.ai-memory-section { margin-bottom: 24px; }
+.ai-memory-section:last-child { margin-bottom: 0; }
+.ai-memory-section h4 {
+  font-size: 0.95rem; color: #374151; margin: 0 0 6px; font-weight: 600;
+}
+.ai-memory-section p { font-size: 0.82rem; color: #9ca3af; margin: 0 0 12px; }
+
+.ai-memory-list {
+  max-height: 220px; overflow-y: auto; margin-bottom: 10px;
+  border: 1px solid #f3f4f6; border-radius: 12px; padding: 4px;
+}
+.ai-memory-list:empty { display: none; }
+.ai-memory-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-radius: 8px; margin-bottom: 2px;
+  background: #f9fafb; font-size: 0.85rem; color: #374151;
+}
+.ai-memory-item:last-child { margin-bottom: 0; }
+.ai-memory-item:hover { background: #f3f4f6; }
+.ai-memory-item .text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ai-memory-item .del {
+  background: none; border: none; color: #d1d5db; cursor: pointer;
+  font-size: 1.1rem; padding: 0 4px; line-height: 1; flex-shrink: 0;
+}
+.ai-memory-item .del:hover { color: #ef4444; }
+
+.ai-memory-add-row {
+  display: flex; gap: 8px;
+}
+.ai-memory-add-row input {
+  flex: 1; border: 1px solid #e5e7eb; border-radius: 10px; padding: 8px 12px;
+  font-size: 0.85rem; outline: none; font-family: inherit;
+}
+.ai-memory-add-row input:focus { border-color: #667eea; }
+.ai-memory-empty {
+  text-align: center; color: #9ca3af; font-size: 0.85rem; padding: 20px;
+  border: 1px dashed #e5e7eb; border-radius: 12px; margin-bottom: 10px;
+}
+
+.ai-prompt-textarea {
+  width: 100%; min-height: 160px; border: 1px solid #e5e7eb;
+  border-radius: 12px; padding: 12px; font-size: 0.82rem;
+  font-family: 'SF Mono', 'Monaco', monospace; line-height: 1.6;
+  resize: vertical; outline: none; box-sizing: border-box;
+}
+.ai-prompt-textarea:focus { border-color: #667eea; }
+.ai-prompt-actions {
+  display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+}
+.ai-prompt-actions .btn { flex: 1; min-width: 120px; }
+
+/* Dark theme overrides for AI settings */
+body.dstyle-dark .ai-memory-item { background: #0f172a; color: #cbd5e1; }
+body.dstyle-dark .ai-memory-item:hover { background: #1e293b; }
+body.dstyle-dark .ai-memory-empty { border-color: #334155; color: #64748b; }
+body.dstyle-dark .ai-memory-add-row input { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+body.dstyle-dark .ai-prompt-textarea { background: #0f172a; border-color: #334155; color: #e2e8f0; }
+body.dstyle-dark .ai-memory-section h4 { color: #e2e8f0; }
+
 /* ─── API Keys ─── */
 .free-badge {
   display:inline-block; font-size:0.65rem; font-weight:700;
@@ -662,9 +723,10 @@ Get Free API Key
 <strong>Choose AI Model</strong>
 <p>Select which model to use for event analysis.</p>
 <select id="nvidiaModel">
-<option value="nvidia/llama-3.1-nemotron-nano-8b-v1">Llama Nemotron Nano 8B (Fast)</option>
-<option value="meta/llama-3.3-70b-instruct">Llama 3.3 70B (Accurate)</option>
-<option value="nvidia/llama-3.3-nemotron-super-49b-v1">Nemotron Super 49B (Most Accurate)</option>
+<option value="meta/llama-3.1-8b-instruct">Llama 3.1 8B (Fast)</option>
+<option value="nvidia/llama-3.3-nemotron-super-49b-v1">Nemotron Super 49B (Accurate)</option>
+<option value="google/gemma-4-31b-it">Gemma 4 31B (Balanced)</option>
+<option value="google/gemma-2-2b-it">Gemma 2 2B (Lightweight)</option>
 </select>
 </div>
 </div>
@@ -855,6 +917,32 @@ Get Free API Key
 </section>
 
 <section class="settings-section">
+<h3>🧠 AI Assistant</h3>
+<p class="section-intro">Manage your AI assistant's memory and custom behavior. Changes apply to the BlockFlow Assistant chatbot.</p>
+
+<div class="ai-memory-section">
+  <h4>🧠 Memory Points</h4>
+  <p>Things the AI should remember about you — like preferences, goals, or ongoing projects. Up to 10 points.</p>
+  <div class="ai-memory-list" id="aiSettingsMemoryList"></div>
+  <div class="ai-memory-empty" id="aiSettingsMemoryEmpty">No memory points yet. Add something important for the AI to remember.</div>
+  <div class="ai-memory-add-row">
+    <input type="text" id="aiSettingsMemoryInput" placeholder="e.g. I'm preparing a product demo this week..." autocomplete="off">
+    <button class="btn btn-primary" id="aiSettingsMemoryAdd">Add</button>
+  </div>
+</div>
+
+<div class="ai-memory-section">
+  <h4>✏️ Custom System Prompt</h4>
+  <p>Override the AI's default instructions. Leave empty to use the built-in default prompt. Changes take effect on the next message.</p>
+  <textarea class="ai-prompt-textarea" id="aiSettingsPrompt" placeholder="Enter custom instructions for the AI assistant..."></textarea>
+  <div class="ai-prompt-actions">
+    <button class="btn btn-primary" id="aiSettingsPromptSave">💾 Save Prompt</button>
+    <button class="btn btn-secondary" id="aiSettingsPromptReset">↩️ Reset to Default</button>
+  </div>
+</div>
+</section>
+
+<section class="settings-section">
 <h3>Help & Walkthrough</h3>
 <div class="setting-item">
 <div class="setting-label">
@@ -928,6 +1016,8 @@ Get Free API Key
 <script src="js/firebase-auth.js"></script>
 <script src="js/firebase-db.js"></script>
 <script src="js/storage.js"></script>
+<script src="js/nvidia-config.js?v=1.0.0"></script>
+<script src="js/ai-assistant.js"></script>
 <script src="js/google-calendar.js"></script>
 <script>
 FirebaseAuth.init();
@@ -956,6 +1046,7 @@ const Settings = {
         this.loadApiKeys();
         this.initDashPreview();
         this.initLayoutPreview();
+        this.initAiSettings();
         this.setupEventListeners();
     },
 
@@ -988,35 +1079,53 @@ const Settings = {
     },
 
     cacheElements() {
+        var chartTitle = document.querySelector('#chartTitle');
+        chartTitle && (this.chartTitle = chartTitle);
+        var stylePicker = document.querySelector('#dashStylePicker');
+        stylePicker && (this.stylePicker = stylePicker);
+        var layoutPicker = document.querySelector('#dashLayoutPicker');
+        layoutPicker && (this.layoutPicker = layoutPicker);
+        var preview = document.querySelector('#dashPreview');
+        preview && (this.preview = preview);
+        var layoutPreview = document.querySelector('#layoutPreview');
+        layoutPreview && (this.layoutPreview = layoutPreview);
         this.elements = {
-            apiStatus: document.getElementById('apiStatus'),
-            apiStatusText: document.getElementById('apiStatusText'),
-            focusDuration: document.getElementById('focusDuration'),
-            autoBreak: document.getElementById('autoBreak'),
-            autoBreakLabel: document.getElementById('autoBreakLabel'),
-            soundNotifications: document.getElementById('soundNotifications'),
-            soundLabel: document.getElementById('soundLabel'),
             importSampleData: document.getElementById('importSampleData'),
             exportData: document.getElementById('exportData'),
             clearAllData: document.getElementById('clearAllData'),
             showWalkthrough: document.getElementById('showWalkthrough'),
+
             nvidiaApiKey: document.getElementById('nvidiaApiKey'),
             saveNvidiaKey: document.getElementById('saveNvidiaKey'),
             testNvidiaKey: document.getElementById('testNvidiaKey'),
             nvidiaKeyStatus: document.getElementById('nvidiaKeyStatus'),
             nvidiaModel: document.getElementById('nvidiaModel'),
+            apiStatus: document.getElementById('apiStatus'),
+            apiStatusText: document.getElementById('apiStatusText'),
+
+            focusDuration: document.getElementById('focusDuration'),
+            autoBreak: document.getElementById('autoBreak'),
+            soundNotifications: document.getElementById('soundNotifications'),
+            autoBreakLabel: document.getElementById('autoBreakLabel'),
+            soundLabel: document.getElementById('soundLabel'),
+
             autoCalendarNav: document.getElementById('autoCalendarNav'),
-            autoAddEvents: document.getElementById('autoAddEvents')
+            autoAddEvents: document.getElementById('autoAddEvents'),
+
+            aiMemoryList: document.getElementById('aiSettingsMemoryList'),
+            aiMemoryEmpty: document.getElementById('aiSettingsMemoryEmpty'),
+            aiMemoryInput: document.getElementById('aiSettingsMemoryInput'),
+            aiMemoryAdd: document.getElementById('aiSettingsMemoryAdd'),
+            aiPrompt: document.getElementById('aiSettingsPrompt'),
+            aiPromptSave: document.getElementById('aiSettingsPromptSave'),
+            aiPromptReset: document.getElementById('aiSettingsPromptReset'),
         };
     },
 
     loadSettings() {
         const appSettings = localStorage.getItem(this.appSettingsKey);
 
-        // Set default NVIDIA key so it works out of the box
-        if (!localStorage.getItem('blockflow_nvidia_key')) {
-            localStorage.setItem('blockflow_nvidia_key', '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');
-        }
+        // NVIDIA key — user must enter their own via Settings
         if (appSettings) {
             try {
                 const parsed = JSON.parse(appSettings);
@@ -1034,15 +1143,17 @@ const Settings = {
             this.updateToggleLabels();
         }
 
-        const savedKey = localStorage.getItem('blockflow_nvidia_key') || localStorage.getItem('bf_key_nvidia');
+        const savedKey = localStorage.getItem('blockflow_nvidia_key') || localStorage.getItem('bf_key_nvidia') || '';
         if (savedKey) {
             this.elements.nvidiaApiKey.value = savedKey;
             this.updateNvidiaStatus(true);
         }
 
-        const savedModel = localStorage.getItem('blockflow_nvidia_model');
-        if (savedModel && this.elements.nvidiaModel.querySelector('option[value="' + savedModel + '"]')) {
-            this.elements.nvidiaModel.value = savedModel;
+        const savedModel = (localStorage.getItem('blockflow_nvidia_model') || '').toLowerCase();
+        if (typeof NvidiaConfig !== 'undefined') {
+          NvidiaConfig.populateModelSelect(this.elements.nvidiaModel, savedModel);
+        } else if (savedModel && this.elements.nvidiaModel.querySelector('option[value="' + savedModel + '"]')) {
+          this.elements.nvidiaModel.value = savedModel;
         }
 
         const autoNav = localStorage.getItem('blockflow_auto_calendar_nav');
@@ -1079,7 +1190,10 @@ const Settings = {
         this.elements.saveNvidiaKey.addEventListener('click', () => this.saveNvidiaKey());
         this.elements.testNvidiaKey.addEventListener('click', () => this.testNvidiaKey());
         this.elements.nvidiaModel.addEventListener('change', () => {
-            localStorage.setItem('blockflow_nvidia_model', this.elements.nvidiaModel.value);
+          const model = typeof NvidiaConfig !== 'undefined'
+            ? NvidiaConfig.normalizeModelId(this.elements.nvidiaModel.value)
+            : this.elements.nvidiaModel.value.toLowerCase();
+          localStorage.setItem('blockflow_nvidia_model', model);
         });
         this.elements.autoCalendarNav.addEventListener('change', () => {
             localStorage.setItem('blockflow_auto_calendar_nav', this.elements.autoCalendarNav.checked);
@@ -1171,6 +1285,20 @@ const Settings = {
             preview.className = preview.className.split(' ').filter(function(c) { return c.indexOf('dlayout-') !== 0; }).join(' ');
             preview.classList.add('dlayout-' + layout);
         });
+
+        // AI Assistant - Memory add
+        this.elements.aiMemoryAdd.addEventListener('click', () => this.aiAddMemory());
+        this.elements.aiMemoryInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') this.aiAddMemory();
+        });
+        // AI Assistant - Memory delete (delegated)
+        this.elements.aiMemoryList.addEventListener('click', (e) => {
+            const btn = e.target.closest('.del');
+            if (btn) this.aiDeleteMemory(btn.dataset.index);
+        });
+        // AI Assistant - Prompt save/reset
+        this.elements.aiPromptSave.addEventListener('click', () => this.aiSavePrompt());
+        this.elements.aiPromptReset.addEventListener('click', () => this.aiResetPrompt());
     },
 
     saveNvidiaKey() {
@@ -1208,17 +1336,25 @@ const Settings = {
         this.elements.nvidiaKeyStatus.style.color = '#6b7280';
         this.elements.testNvidiaKey.disabled = true;
         try {
-            const apiUrl = 'https://integrate.api.nvidia.com/v1/chat/completions';
-            const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(apiUrl);
-            const res = await fetch(proxyUrl, {
+          const completion = typeof NvidiaConfig !== 'undefined'
+            ? await NvidiaConfig.postChatCompletion({
+              model: typeof NvidiaConfig !== 'undefined' ? NvidiaConfig.DEFAULT_MODEL : 'meta/llama-3.1-8b-instruct',
+              messages: [{ role: 'user', content: 'Say OK' }],
+              max_tokens: 10
+            }, { apiKey: key })
+            : {
+              response: await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
                 body: JSON.stringify({
-                    model: 'nvidia/llama-3.1-nemotron-nano-8b-v1',
-                    messages: [{ role: 'user', content: 'Say OK' }],
-                    max_tokens: 10
+                  model: 'meta/llama-3.1-8b-instruct',
+                  messages: [{ role: 'user', content: 'Say OK' }],
+                  max_tokens: 10
                 })
-            });
+              })
+            };
+
+          const res = completion.response;
             if (res.ok) {
                 this.elements.nvidiaKeyStatus.textContent = 'Connection OK! API key is valid.';
                 this.elements.nvidiaKeyStatus.style.color = '#059669';
@@ -1230,7 +1366,7 @@ const Settings = {
                 this.updateNvidiaStatus(false);
             }
         } catch (e) {
-            this.elements.nvidiaKeyStatus.textContent = 'Network error — proxy may be unavailable. Try again later.';
+            this.elements.nvidiaKeyStatus.textContent = 'Network error - the NVIDIA proxy is unavailable. Run ./start.sh locally or deploy Firebase hosting.';
             this.elements.nvidiaKeyStatus.style.color = '#dc2626';
             this.updateNvidiaStatus(false);
         }
@@ -1242,11 +1378,112 @@ const Settings = {
         this.elements.apiStatusText.textContent = connected ? 'AI configured' : 'AI not configured';
     },
 
-    loadApiKeys() {
-        // Set default NVIDIA key for new visitors
-        if (!localStorage.getItem('bf_key_nvidia') && !localStorage.getItem('blockflow_nvidia_key')) {
-            localStorage.setItem('bf_key_nvidia', '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');
+    /* ─── AI Assistant Settings ─── */
+
+    initAiSettings() {
+        this.renderAiMemory();
+        this.loadAiPrompt();
+    },
+
+    getAiMemory() {
+        try {
+            const raw = localStorage.getItem('blockflow_ai_memory');
+            return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+            return [];
         }
+    },
+
+    saveAiMemory(memory) {
+        localStorage.setItem('blockflow_ai_memory', JSON.stringify(memory));
+    },
+
+    renderAiMemory() {
+        const memory = this.getAiMemory();
+        const list = this.elements.aiMemoryList;
+        const empty = this.elements.aiMemoryEmpty;
+        list.innerHTML = '';
+        if (!memory || memory.length === 0) {
+            empty.style.display = 'block';
+            return;
+        }
+        empty.style.display = 'none';
+        memory.forEach((point, index) => {
+            const item = document.createElement('div');
+            item.className = 'ai-memory-item';
+            item.innerHTML = '<span class="text">' + this.escapeHtml(point) + '</span>' +
+                '<button class="del" data-index="' + index + '" title="Remove">✕</button>';
+            list.appendChild(item);
+        });
+    },
+
+    aiAddMemory() {
+        const input = this.elements.aiMemoryInput;
+        const text = input.value.trim();
+        if (!text) return;
+        const memory = this.getAiMemory();
+        if (memory.length >= 10) {
+            alert('Maximum 10 memory points allowed. Remove one before adding another.');
+            return;
+        }
+        memory.push(text);
+        this.saveAiMemory(memory);
+        this.renderAiMemory();
+        input.value = '';
+        input.focus();
+    },
+
+    aiDeleteMemory(index) {
+        const memory = this.getAiMemory();
+        if (index < 0 || index >= memory.length) return;
+        memory.splice(index, 1);
+        this.saveAiMemory(memory);
+        this.renderAiMemory();
+    },
+
+    loadAiPrompt() {
+        const saved = localStorage.getItem('blockflow_ai_system_prompt');
+        if (saved) {
+            this.elements.aiPrompt.value = saved;
+        } else {
+            this.elements.aiPrompt.value = '';
+        }
+    },
+
+    aiSavePrompt() {
+        const text = this.elements.aiPrompt.value.trim();
+        if (text) {
+            localStorage.setItem('blockflow_ai_system_prompt', text);
+        } else {
+            localStorage.removeItem('blockflow_ai_system_prompt');
+        }
+        // Visual feedback
+        const btn = this.elements.aiPromptSave;
+        const orig = btn.textContent;
+        btn.textContent = '✅ Saved!';
+        btn.disabled = true;
+        setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 1500);
+    },
+
+    aiResetPrompt() {
+        if (!confirm('Reset the system prompt to its default? This cannot be undone.')) return;
+        localStorage.removeItem('blockflow_ai_system_prompt');
+        this.elements.aiPrompt.value = '';
+        const btn = this.elements.aiPromptReset;
+        const orig = btn.textContent;
+        btn.textContent = '✅ Reset!';
+        btn.disabled = true;
+        setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 1500);
+    },
+
+    escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    },
+
+    loadApiKeys() {
+        // User must enter their own NVIDIA key via the settings form
         const apiKeys = ['bf_key_gemini','bf_key_groq','bf_key_openrouter','bf_key_cerebras','bf_key_mistral','bf_key_nvidia','bf_key_ocrspace'];
         apiKeys.forEach(key => {
             const input = document.getElementById(key);
@@ -1389,7 +1626,7 @@ navigator.serviceWorker.register('sw.js')
   dot.className = 'custom-cursor-dot';
   root.appendChild(cursor);
   root.appendChild(dot);
-  var posX = 0, posY = 0, dotX = 0, dotY = 0;
+  var posX = 0, posY = 0, dotX = 0, dotY = 0, cursorRunning = true, cursorRafId = null;
   var interactiveEls = 'a, button, .btn, .nav-tab, input, select, textarea';
   document.addEventListener('mousemove', function(e) {
     posX = e.clientX; posY = e.clientY;
@@ -1397,11 +1634,16 @@ navigator.serviceWorker.register('sw.js')
     cursor.classList.toggle('hover-link', !!e.target.closest(interactiveEls));
   });
   function animateDot() {
+    if (!cursorRunning) return;
     dotX += (posX - dotX) * 0.2; dotY += (posY - dotY) * 0.2;
     dot.style.left = dotX + 'px'; dot.style.top = dotY + 'px';
-    requestAnimationFrame(animateDot);
+    cursorRafId = requestAnimationFrame(animateDot);
   }
-  animateDot();
+  cursorRafId = requestAnimationFrame(animateDot);
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) { cursorRunning = false; if (cursorRafId) cancelAnimationFrame(cursorRafId); }
+    else { cursorRunning = true; cursorRafId = requestAnimationFrame(animateDot); }
+  });
   document.addEventListener('mousedown', function() { cursor.classList.add('active'); dot.classList.add('active'); });
   document.addEventListener('mouseup', function() { cursor.classList.remove('active'); dot.classList.remove('active'); });
   document.addEventListener('mouseleave', function() { cursor.style.opacity = '0'; dot.style.opacity = '0'; });

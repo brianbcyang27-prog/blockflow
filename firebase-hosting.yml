@@ -1,0 +1,263 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main"
+  - generic [ref=e87]:
+    - generic [ref=e88]:
+      - navigation "Firebase Console products" [ref=e90]:
+        - heading [level=2] [ref=e91]:
+          - link "Firebase console (Go to project list)" [ref=e92] [cursor=pointer]:
+            - /url: "#"
+            - img "Firebase logo" [ref=e95]
+        - generic [ref=e99]:
+          - img [ref=e100]: search
+          - combobox "Search products and features" [ref=e101]
+        - link "Project Overview" [ref=e103] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e104]: gmp_nav20_overview
+        - menu [ref=e106]:
+          - menuitem "Settings" [ref=e107]:
+            - generic [ref=e108] [cursor=pointer]:
+              - img [ref=e109]: settings
+              - generic [ref=e110]: Settings
+              - img [ref=e111]: chevron_right
+      - separator [ref=e112]
+      - generic [ref=e113]:
+        - generic [ref=e114]: Project shortcuts
+        - group "Project shortcuts" [ref=e115]:
+          - link "Storage" [ref=e117] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e118]: gmp_nav20_storage
+            - generic [ref=e120]:
+              - button "Hide Storage" [ref=e121]
+              - button "Pin Storage" [ref=e122]
+          - link "Firestore" [ref=e124] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e125]: gmp_firestore
+            - generic [ref=e127]:
+              - button "Hide Firestore" [ref=e128]
+              - button "Pin Firestore" [ref=e129]
+          - link "Authentication" [ref=e131] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e132]: gmp_nav20_auth
+            - generic [ref=e134]:
+              - button "Hide Authentication" [ref=e135]
+              - button "Pin Authentication" [ref=e136]
+      - separator [ref=e137]
+      - generic [ref=e138]:
+        - generic [ref=e139]: Product categories
+        - menu "Product categories" [ref=e140]:
+          - menuitem "Databases & Storage" [ref=e141]:
+            - generic [ref=e142] [cursor=pointer]:
+              - generic [ref=e143]: Databases & Storage
+              - img [ref=e144]: chevron_right
+          - menuitem "Security" [ref=e145]:
+            - generic [ref=e146] [cursor=pointer]:
+              - generic [ref=e147]: Security
+              - img [ref=e148]: chevron_right
+          - menuitem "AI services" [ref=e149]:
+            - generic [ref=e150] [cursor=pointer]:
+              - generic [ref=e151]: AI services
+              - img [ref=e152]: chevron_right
+          - menuitem "Hosting & Serverless" [ref=e153]:
+            - generic [ref=e154] [cursor=pointer]:
+              - generic [ref=e155]: Hosting & Serverless
+              - img [ref=e156]: chevron_right
+          - menuitem "DevOps & Engagement" [ref=e157]:
+            - generic [ref=e158] [cursor=pointer]:
+              - generic [ref=e159]: DevOps & Engagement
+              - img [ref=e160]: chevron_right
+          - menuitem "Analytics" [ref=e161]:
+            - generic [ref=e162] [cursor=pointer]:
+              - generic [ref=e163]: Analytics
+              - img [ref=e164]: chevron_right
+    - generic [ref=e165]:
+      - separator [ref=e166]
+      - 'group "Billing plan: Spark" [ref=e167]':
+        - generic [ref=e168]:
+          - generic "Billing plan name" [ref=e169]:
+            - generic [ref=e170]: "Billing plan:"
+            - text: Spark
+          - generic "Billing plan description" [ref=e171]: No-cost ($0/month)
+        - button "Upgrade billing plan" [ref=e173]:
+          - generic [ref=e174]:
+            - generic [ref=e175]: Upgrade
+            - generic [ref=e176]: New
+          - tooltip "Click upgrade to learn how to claim a $300 free credit!" [ref=e181]
+      - separator [ref=e184]
+      - button "Toggle navigation sidebar" [expanded] [ref=e186] [cursor=pointer]:
+        - img [ref=e187]: chevron_left
+  - banner:
+    - button "BlockFlow (Open select project menu)" [ref=e191] [cursor=pointer]:
+      - text: BlockFlow
+      - img [ref=e192]: arrow_drop_down
+  - main [ref=e13]:
+    - generic [ref=e197]:
+      - region "Product header" [ref=e199]:
+        - generic [ref=e200]:
+          - navigation "Breadcrumbs" [ref=e202]:
+            - generic [ref=e203] [cursor=pointer]:
+              - link "Hosting" [ref=e204]
+              - text: chevron_right
+          - generic [ref=e205]:
+            - generic [ref=e208]:
+              - heading "Manage site" [level=2] [ref=e209]
+              - button [ref=e212]:
+                - generic [ref=e214]:
+                  - img [ref=e215]: spark
+                  - text: Need help with Hosting? Ask Gemini
+            - tablist "Product features" [ref=e221]:
+              - generic [ref=e224]:
+                - 'tab "Selected Tab: Dashboard" [selected] [ref=e225] [cursor=pointer]':
+                  - generic [ref=e227]: Dashboard
+                - tab "Usage" [ref=e231] [cursor=pointer]
+      - generic [ref=e239]:
+        - generic [ref=e241]:
+          - heading "Current release" [level=3] [ref=e244]
+          - generic [ref=e245]:
+            - generic [ref=e246]:
+              - generic [ref=e248]:
+                - generic [ref=e249]: Current
+                - img [ref=e250]: grade
+              - generic [ref=e251]:
+                - generic [ref=e252]: firebase-adminsdk-fbsvc@blockflow-28d39.iam.gserviceaccount.com
+                - generic [ref=e253]: 7/10/26, 9:32 AM
+            - generic [ref=e254]: 308be2
+        - generic [ref=e257]:
+          - generic [ref=e258]: Previous releases
+          - generic [ref=e262]:
+            - table [ref=e263]:
+              - rowgroup:
+                - row [ref=e264]:
+                  - columnheader "Status" [ref=e265]
+                  - columnheader "Deploy" [ref=e266]
+                  - columnheader "Hash" [ref=e267]
+                  - columnheader "Actions" [ref=e268]
+              - rowgroup [ref=e269]:
+                - row [ref=e270]:
+                  - cell "Current" [ref=e271]:
+                    - generic [ref=e273]:
+                      - generic [ref=e274]: Current
+                      - img [ref=e275]: grade
+                  - cell "firebase-adminsdk-fbsvc@blockflow-28d39.iam.gserviceaccount.com 7/10/26, 9:32 AM" [ref=e276]:
+                    - generic [ref=e277]:
+                      - generic [ref=e278]: firebase-adminsdk-fbsvc@blockflow-28d39.iam.gserviceaccount.com
+                      - generic [ref=e279]: 7/10/26, 9:32 AM
+                  - cell "308be2" [ref=e280]
+                  - cell [ref=e285]
+                - row [ref=e286]:
+                  - cell "Deployed" [ref=e287]:
+                    - generic [ref=e289]:
+                      - generic [ref=e290]: Deployed
+                      - img [ref=e291]: file_upload
+                  - cell "firebase-adminsdk-fbsvc@blockflow-28d39.iam.gserviceaccount.com 7/10/26, 9:25 AM" [ref=e292]:
+                    - generic [ref=e293]:
+                      - generic [ref=e294]: firebase-adminsdk-fbsvc@blockflow-28d39.iam.gserviceaccount.com
+                      - generic [ref=e295]: 7/10/26, 9:25 AM
+                  - cell "208a1f" [ref=e296]
+                  - cell [ref=e301]:
+                    - button "Open 208a1f menu" [ref=e303] [cursor=pointer]:
+                      - img [ref=e304]: more_vert
+                - row [ref=e307]:
+                  - cell "Deployed" [ref=e308]:
+                    - generic [ref=e310]:
+                      - generic [ref=e311]: Deployed
+                      - img [ref=e312]: file_upload
+                  - cell "firebase-adminsdk-fbsvc@blockflow-28d39.iam.gserviceaccount.com 7/10/26, 8:33 AM" [ref=e313]:
+                    - generic [ref=e314]:
+                      - generic [ref=e315]: firebase-adminsdk-fbsvc@blockflow-28d39.iam.gserviceaccount.com
+                      - generic [ref=e316]: 7/10/26, 8:33 AM
+                  - cell "621417" [ref=e317]
+                  - cell [ref=e322]:
+                    - button "Open 621417 menu" [ref=e324] [cursor=pointer]:
+                      - img [ref=e325]: more_vert
+                - row [ref=e328]:
+                  - cell "Deployed" [ref=e329]:
+                    - generic [ref=e331]:
+                      - generic [ref=e332]: Deployed
+                      - img [ref=e333]: file_upload
+                  - cell "brian.bcyang27@gmail.com 6/10/26, 11:33 PM" [ref=e334]:
+                    - generic [ref=e335]:
+                      - generic [ref=e336]: brian.bcyang27@gmail.com
+                      - generic [ref=e337]: 6/10/26, 11:33 PM
+                  - cell "15a6e7" [ref=e338]
+                  - cell [ref=e343]:
+                    - button "Open 15a6e7 menu" [ref=e345] [cursor=pointer]:
+                      - img [ref=e346]: more_vert
+            - generic [ref=e349]:
+              - button "Release storage settings" [ref=e351]
+              - link "View full history" [ref=e355] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e356]: arrow_forward
+          - generic [ref=e360]: Domains
+          - generic [ref=e364]:
+            - table [ref=e366]:
+              - rowgroup:
+                - row [ref=e367]:
+                  - columnheader "Domain" [ref=e368]
+                  - columnheader "Status" [ref=e369]
+                  - columnheader "Actions" [ref=e370]
+              - rowgroup [ref=e371]:
+                - row [ref=e372]:
+                  - cell "blockflow-28d39.web.app (opens in new tab) Default" [ref=e373]:
+                    - generic [ref=e374]:
+                      - link "blockflow-28d39.web.app (opens in new tab)" [ref=e376] [cursor=pointer]:
+                        - /url: https://blockflow-28d39.web.app
+                        - text: blockflow-28d39.web.app open_in_new
+                      - generic [ref=e377]: Default
+                - row [ref=e378]:
+                  - cell "blockflow-28d39.firebaseapp.com (opens in new tab) Default" [ref=e379]:
+                    - generic [ref=e380]:
+                      - link "blockflow-28d39.firebaseapp.com (opens in new tab)" [ref=e382] [cursor=pointer]:
+                        - /url: https://blockflow-28d39.firebaseapp.com
+                        - text: blockflow-28d39.firebaseapp.com open_in_new
+                      - generic [ref=e383]: Default
+            - generic [ref=e384]:
+              - button "Add custom domain" [ref=e386]
+              - button "View all 2 domains" [ref=e390] [cursor=pointer]:
+                - img [ref=e391]: arrow_forward
+        - generic [ref=e396]:
+          - generic [ref=e398]:
+            - heading "Preview channels" [level=3] [ref=e399]
+            - button "Beta This feature (Hosting Channels) is currently in Beta" [ref=e401] [cursor=pointer]:
+              - generic [ref=e402]: Beta
+              - tooltip "This feature (Hosting Channels) is currently in Beta" [ref=e403]:
+                - generic [ref=e405]:
+                  - generic [ref=e406]: Beta
+                  - generic [ref=e407]: This feature (Hosting Channels) is currently in Beta
+          - generic [ref=e414]:
+            - heading "Use preview channels to test and share changes before going live" [level=4] [ref=e415]
+            - paragraph [ref=e416]:
+              - text: Each preview channel serves content at its own unique, temporary URL
+              - button "Additional release information" [ref=e418]:
+                - img [ref=e419]: help
+            - paragraph [ref=e420]: "Try it out! Run this command from your local project directory:"
+            - code [ref=e421]:
+              - text: firebase hosting:channel:deploy
+              - strong [ref=e422]: preview_name
+            - link "View the docs (opens Firebase documentation in new tab)" [ref=e423] [cursor=pointer]:
+              - /url: https://firebase.google.com/docs/hosting/test-preview-deploy?hl=en-US&authuser=0#preview-channels
+              - text: View the docs open_in_new
+        - generic [ref=e425]:
+          - separator [ref=e426]
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - heading "Firebase hosting supports multiple sites" [level=3] [ref=e429]
+              - generic [ref=e430]: You can associate multiple sites with one Firebase project. Each site hosts its own unique static assets, but shares Firebase resources with the other sites in the same Firebase project.
+            - button "Add another site" [ref=e431]
+  - generic "Gemini in Firebase" [ref=e32]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - 'button "Google Account: Brian Yang (brian.bcyang27@gmail.com)" [ref=e42] [cursor=pointer]'
+        - button "Open alerts" [ref=e46] [cursor=pointer]:
+          - img [ref=e47]: notifications
+        - button "Chat with Gemini (Option+G)" [ref=e55] [cursor=pointer]:
+          - img [ref=e57]: spark
+        - button "Help" [ref=e60] [cursor=pointer]:
+          - img [ref=e61]: contact_support
+        - separator [ref=e64]
+        - button "Activate Cloud Shell" [ref=e65] [cursor=pointer]:
+          - tooltip "Supercharge your development! Try Cloud Shell to access the built-in Firebase CLI and run Firebase emulators directly in a virtual machine." [ref=e71]
+        - button "Toggle Learn Panel" [ref=e74] [cursor=pointer]:
+          - img [ref=e75]: school
+      - 'button "Current theme: Light, adjust theme" [ref=e79] [cursor=pointer]':
+        - img [ref=e80]: dark_mode
