@@ -31,7 +31,7 @@ GitHub Pages (static hosting)
 3. Under **Source**, select:
    - **Deploy from a branch**
    - Branch: `main`
-   - Folder: `/web` (this is important — the `web/` directory contains the app)
+   - Folder: `/ (root)`
 4. Click **Save**
 
 Your site will be available at:
@@ -123,9 +123,10 @@ If it's not working:
 
 | File | Change | Reason |
 |------|--------|--------|
-| `web/manifest.json` | `start_url: "./"` | Relative path works on any host |
-| `web/js/calendar.js` | Removed `/api/chat` fallback | Dead code, Firebase Functions no longer used |
+| `manifest.json` | `start_url: "./"` | Relative path works on any host |
+| `js/calendar.js` | Removed `/api/chat` fallback | Dead code, Firebase Functions no longer used |
 | `firebase.json` | Removed `hosting` section | No longer using Firebase Hosting |
+| All files | Moved from `web/` to repo root | GitHub Pages deploys from root |
 
 ---
 
