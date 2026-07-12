@@ -280,6 +280,8 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     var conversation = document.createElement('div');
     conversation.className = 'ai-conversation';
     conversation.id = 'aiMessages';
+    conversation.setAttribute('aria-live', 'polite');
+    conversation.setAttribute('aria-label', 'Chat messages');
     container.appendChild(conversation);
 
     var dragOverlay = document.createElement('div');

@@ -61,8 +61,13 @@ const UI = {
 
     if (todayEvents.length === 0) {
       this.elements.eventsList.innerHTML =
-        '<div class="dc-events-empty">' +
-        '<span>📅</span> Clear slate — plan your day' +
+        '<div class="empty-state">' +
+        '<div class="empty-state-icon">📅</div>' +
+        '<div class="empty-state-title">No events today</div>' +
+        '<div class="empty-state-text">Add events in the calendar to see them here</div>' +
+        '<div class="empty-state-actions">' +
+        '<button class="btn btn-primary" onclick="window.location.href=\'calendar.html\'">Add Event</button>' +
+        '</div>' +
         '</div>';
       return;
     }
@@ -265,6 +270,20 @@ const UI = {
     });
 
     this.elements.historyContainer.innerHTML = aggHtml + html;
+  },
+
+  showToast(message, type) {
+    type = type || 'info';
+    var container = document.getElementById('toastContainer');
+    if (!container) return;
+    var toast = document.createElement('div');
+    toast.className = 'toast toast-' + type;
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(function() {
+      toast.classList.add('toast-exit');
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 3000);
   }
 };
 

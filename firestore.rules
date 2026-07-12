@@ -6,8 +6,6 @@ service cloud.firestore {
     // Set FIRESTORE_DEV_MODE=true in your settings to enable
     match /users/{userId}/{document=**} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
-      // Allow development access for testing
-      allow read, write: if request.auth != null && resource.path.size() == 0;
     }
 
     // Public demo data (for public access without auth)

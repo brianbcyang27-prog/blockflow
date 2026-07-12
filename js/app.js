@@ -149,7 +149,7 @@ const App = {
                     if (soundEnabled) {
                         this.playNotificationSound();
                     }
-                    alert('Break is over! Time to focus.');
+                    UI.showToast('Break is over! Time to focus.', 'info');
                 } else {
                     UI.updateTimerStatus('Focus session complete!');
                     UI.updateTimerButtons(false);
@@ -179,7 +179,7 @@ const App = {
                         UI.updateTimerMode(true);
                         UI.updateTimerButtons(true);
                     } else {
-                        alert('Great job! Focus session complete.');
+                        UI.showToast('Great job! Focus session complete.', 'success');
                     }
                 }
             },
