@@ -972,10 +972,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     if (!this._hasApiKey) {
       this.elements.input.value = '';
       this.elements.input.style.height = 'auto';
-      if (!this._noKeyNotified) {
-        this._noKeyNotified = true;
-        this.addAiMessage('Need an API key first — head to <button class="ai-chip" onclick="window.location.href=\'settings.html\'" style="padding:2px 10px;font-size:inherit;vertical-align:baseline">Settings</button> to set one up.', true);
-      }
+      this.addAiMessage('Need an API key first — head to <button class="ai-chip" onclick="window.location.href=\'settings.html\'" style="padding:2px 10px;font-size:inherit;vertical-align:baseline">Settings</button> to set one up.', true);
       return;
     }
     this.elements.input.value = '';
@@ -1019,8 +1016,12 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     container.appendChild(div);
     this.scrollToBottom();
     if (!isFirst) {
-      this.messages.push({ role: 'assistant', content: text });
-      this.saveMessageHistory();
+      // Strip tool call JSON blocks before saving to history
+      const cleanText = this._stripToolCalls(text);
+      if (cleanText) {
+        this.messages.push({ role: 'assistant', content: cleanText });
+        this.saveMessageHistory();
+      }
     }
   },
 
@@ -2251,7 +2252,6 @@ updateBlock
         }
       }
     } catch (error) {
-      clearTimeout(timeoutId);
       let errorMsg;
       if (error.name === 'AbortError') {
         errorMsg = 'I could not get a response in time. Please try again in a moment.';
@@ -2280,11 +2280,12 @@ updateBlock
 
       container.appendChild(div);
       this.scrollToBottom();
+    } finally {
+      clearTimeout(timeoutId);
+      this.isProcessing = false;
+      this.elements.sendBtn.disabled = false;
+      this.elements.input?.focus();
     }
-
-    this.isProcessing = false;
-    this.elements.sendBtn.disabled = false;
-    this.elements.input?.focus();
   },
 
   /**
@@ -2352,12 +2353,17 @@ updateBlock
     const finalContent = fullContent.trim() || this.getFallbackAssistantReply(userText);
     msgDiv.innerHTML = this.renderMarkdown(finalContent);
     this.addCopyButton(msgDiv);
-    this.messages.push({ role: 'assistant', content: finalContent });
-    this.saveMessageHistory();
+
+    const cleanContent = this._stripToolCalls(finalContent);
+    if (cleanContent) {
+      this.messages.push({ role: 'assistant', content: cleanContent });
+      this.saveMessageHistory();
+    }
     this.scrollToBottom();
+
     const toolResults = this._processToolCalls(finalContent);
     if (toolResults) {
-      this.addAiMessage(toolResults);
+      this.addAiMessage(toolResults, true);
     }
     this.showDynamicSuggestions(finalContent);
   },
