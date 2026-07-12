@@ -2,7 +2,7 @@
     "name": "BlockFlow - 3 Block Day",
     "short_name": "BlockFlow",
     "description": "A simple productivity app to reduce scrolling addiction and improve focus",
-    "start_url": "/",
+    "start_url": "./",
     "display": "standalone",
     "background_color": "#f8f9fa",
     "theme_color": "#4a6fa5",

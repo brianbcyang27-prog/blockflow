@@ -1,19 +1,4 @@
 {
-  "functions": {
-    "source": "functions"
-  },
-  "hosting": {
-    "site": "blockflow-28d39",
-    "public": "web",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      { "source": "/api/chat", "function": "chat" }
-    ]
-  },
   "firestore": {
     "rules": "firestore.rules"
   }

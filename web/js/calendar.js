@@ -450,35 +450,15 @@ const Calendar = {
         }
 
         try {
-            const completion = typeof NvidiaConfig !== 'undefined'
-                ? await NvidiaConfig.postChatCompletion({
-                    model: model,
-                    messages: [
-                        { role: 'system', content: systemPrompt },
-                        { role: 'user', content: userPrompt }
-                    ],
-                    temperature: 0.1,
-                    max_tokens: 200
-                }, { apiKey: apiKey, signal: controller.signal })
-                : {
-                    response: await fetch('/api/chat', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + apiKey
-                        },
-                        body: JSON.stringify({
-                            model: model,
-                            messages: [
-                                { role: 'system', content: systemPrompt },
-                                { role: 'user', content: userPrompt }
-                            ],
-                            temperature: 0.1,
-                            max_tokens: 200
-                        }),
-                        signal: controller.signal
-                    })
-                };
+            const completion = await NvidiaConfig.postChatCompletion({
+                model: model,
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: userPrompt }
+                ],
+                temperature: 0.1,
+                max_tokens: 200
+            }, { apiKey: apiKey, signal: controller.signal });
 
             const response = completion.response;
 
