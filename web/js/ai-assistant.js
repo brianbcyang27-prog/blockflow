@@ -2222,8 +2222,6 @@ updateBlock
         throw new Error(this._proxyError);
       }
 
-      clearTimeout(timeoutId);
-
       if (!response.ok) {
         let errText = '';
         try { errText = await response.text(); } catch(e) { console.warn('[AI] read error body:', e); }
@@ -2329,7 +2327,7 @@ updateBlock
               this.updateReasoning(fullContent);
               this.scrollToBottom();
             }
-            } catch(e) { console.warn('[AI] stream parse chunk:', e); }
+          } catch(e) { console.warn('[AI] stream parse chunk:', e); }
         }
       }
     } catch(e) {
