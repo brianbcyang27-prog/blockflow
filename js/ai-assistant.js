@@ -1653,6 +1653,19 @@ FINAL RULES
     this.renderMemoryList();
   },
 
+  editMemoryPoint(id) {
+    const point = this.memoryPoints.find(p => p.id === id);
+    if (!point) return;
+    
+    const newContent = prompt('Edit memory:', point.content);
+    if (newContent !== null && newContent.trim()) {
+      point.content = newContent.trim();
+      point.updatedAt = new Date().toISOString();
+      this.saveMemoryPoints();
+      this.renderMemoryList();
+    }
+  },
+
   /**
    * Render the memory points list in the modal
    */
@@ -1665,17 +1678,35 @@ FINAL RULES
       return;
     }
     
-    list.innerHTML = this.memoryPoints.map(point => `
+    const importanceColors = { high: '#ef4444', medium: '#f59e0b', low: '#6b7280' };
+    
+    list.innerHTML = this.memoryPoints.map(point => {
+      const importance = point.importance || 'medium';
+      const category = point.category || '';
+      const categoryBadge = category ? `<span class="memory-category">${category}</span>` : '';
+      const importanceIndicator = `<span class="memory-importance" style="color:${importanceColors[importance] || '#6b7280'}">●</span>`;
+      
+      return `
       <div class="memory-item" data-id="${point.id}">
-        <span class="memory-content">${this.escapeHtml(point.content)}</span>
-        <button class="memory-delete" data-id="${point.id}" title="Delete">×</button>
-      </div>
-    `).join('');
+        <span class="memory-content">${importanceIndicator} ${this.escapeHtml(point.content)}${categoryBadge}</span>
+        <div class="memory-actions">
+          <button class="memory-edit" data-id="${point.id}" title="Edit">✎</button>
+          <button class="memory-delete" data-id="${point.id}" title="Delete">×</button>
+        </div>
+      </div>`;
+    }).join('');
     
     list.querySelectorAll('.memory-delete').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.deleteMemoryPoint(btn.dataset.id);
+      });
+    });
+    
+    list.querySelectorAll('.memory-edit').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.editMemoryPoint(btn.dataset.id);
       });
     });
   },
@@ -1698,8 +1729,130 @@ FINAL RULES
    */
   getMemoryContext() {
     if (this.memoryPoints.length === 0) return '';
-    const items = this.memoryPoints.map((p, i) => `${i + 1}. ${p.content}`).join('\n');
+
+    const sorted = [...this.memoryPoints].sort((a, b) => {
+      const importanceOrder = { high: 0, medium: 1, low: 2 };
+      const aPriority = importanceOrder[a.importance] ?? 1;
+      const bPriority = importanceOrder[b.importance] ?? 1;
+      if (aPriority !== bPriority) return aPriority - bPriority;
+      return (b.updatedAt || b.createdAt || '').localeCompare(a.updatedAt || a.createdAt || '');
+    });
+
+    const items = sorted.slice(0, 10).map((p, i) => {
+      const category = p.category ? ` [${p.category}]` : '';
+      return `${i + 1}. ${p.content}${category}`;
+    }).join('\n');
+
     return `\n\nUser's saved memory points (important context):\n${items}`;
+  },
+
+  /**
+   * Extract memorable information from conversation (automatic memory extraction)
+   * @param {string} userMessage - The user's latest message
+   * @param {string} aiResponse - The assistant's response
+   * @returns {Promise<void>}
+   */
+  async extractMemoryFromConversation(userMessage, aiResponse) {
+    try {
+      const apiKey = this.getApiKey();
+      if (!apiKey) return;
+
+      const existingMemories = this.memoryPoints.map(m => `- ${m.content}`).join('\n') || 'None';
+
+      const extractionPrompt = `Analyze this conversation and determine if the user shared any lasting information worth remembering.
+
+EXISTING MEMORIES (avoid duplicates):
+${existingMemories}
+
+CONVERSATION:
+User: ${userMessage.slice(0, 500)}
+Assistant: ${aiResponse.slice(0, 500)}
+
+RULES:
+- ONLY save long-term useful information (name, occupation, interests, goals, projects, preferences, habits)
+- DO NOT save temporary events, greetings, thanks, or casual conversation
+- If similar information exists, return save: false
+- Return ONLY valid JSON, no other text
+
+Categories: profile, preferences, projects, interests, goals, work, education, productivity, other
+
+Response format:
+{"save": true, "category": "profile", "memory": "User's name is Brian.", "importance": "high"}
+or
+{"save": false}`;
+
+      const result = await NvidiaConfig.postChatCompletion({
+        model: this.getModel(),
+        messages: [
+          { role: 'system', content: 'You are a memory extraction assistant. Return only JSON.' },
+          { role: 'user', content: extractionPrompt }
+        ],
+        temperature: 0.1,
+        max_tokens: 150,
+        stream: false
+      }, { apiKey });
+
+      if (!result.response.ok) return;
+
+      const data = await result.response.json();
+      const content = data.choices?.[0]?.message?.content?.trim();
+      if (!content) return;
+
+      const extracted = JSON.parse(content);
+      if (extracted.save && extracted.memory) {
+        this.addAutomaticMemory(extracted);
+      }
+    } catch (e) {
+      console.warn('[AI] Memory extraction failed:', e.message);
+    }
+  },
+
+  /**
+   * Add a memory point from automatic extraction
+   * @param {Object} memoryData - { category, memory, importance }
+   */
+  addAutomaticMemory(memoryData) {
+    const { category = 'other', memory, importance = 'medium' } = memoryData;
+
+    const existingIndex = this.findSimilarMemory(memory);
+    if (existingIndex !== -1) {
+      this.memoryPoints[existingIndex].content = memory;
+      this.memoryPoints[existingIndex].category = category;
+      this.memoryPoints[existingIndex].importance = importance;
+      this.memoryPoints[existingIndex].updatedAt = new Date().toISOString();
+    } else {
+      const point = {
+        id: Date.now().toString(),
+        content: memory,
+        category: category,
+        importance: importance,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+      this.memoryPoints.unshift(point);
+    }
+
+    if (this.memoryPoints.length > this._maxMemoryPoints) {
+      this.memoryPoints = this.memoryPoints.slice(0, this._maxMemoryPoints);
+    }
+
+    this.saveMemoryPoints();
+    this.renderMemoryList();
+  },
+
+  /**
+   * Find a similar memory to avoid duplicates
+   * @param {string} newMemory - The new memory text
+   * @returns {number} - Index of similar memory, or -1 if none found
+   */
+  findSimilarMemory(newMemory) {
+    const normalized = newMemory.toLowerCase().trim();
+    for (let i = 0; i < this.memoryPoints.length; i++) {
+      const existing = this.memoryPoints[i].content.toLowerCase().trim();
+      if (existing === normalized) return i;
+      if (existing.includes(normalized) || normalized.includes(existing)) return i;
+    }
+    return -1;
   },
 
   /**
@@ -2312,6 +2465,7 @@ FINAL RULES
             this.addAiMessage(toolResults, true);
           }
           this.showDynamicSuggestions(content);
+          this.extractMemoryFromConversation(userText, content);
         } else {
           const fallbackReply = this.getFallbackAssistantReply();
           this.addAiMessage(fallbackReply);
@@ -2433,6 +2587,8 @@ FINAL RULES
       this.addAiMessage(toolResults, true);
     }
     this.showDynamicSuggestions(finalContent);
+
+    this.extractMemoryFromConversation(userText, cleanContent);
   },
 
   /**

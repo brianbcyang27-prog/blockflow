@@ -1872,11 +1872,23 @@ body.focus-mode .custom-cursor-dot { background: linear-gradient(135deg, #667eea
   background: #f9fafb; font-size: 0.85rem; color: #374151;
 }
 .memory-item:hover { background: #f3f4f6; }
-.memory-delete {
-  background: none; border: none; color: #d1d5db; cursor: pointer;
-  font-size: 1.1rem; padding: 0 4px; line-height: 1;
+.memory-actions {
+  display: flex; gap: 2px; align-items: center;
 }
+.memory-edit, .memory-delete {
+  background: none; border: none; color: #d1d5db; cursor: pointer;
+  font-size: 1rem; padding: 0 4px; line-height: 1;
+}
+.memory-edit:hover { color: #667eea; }
 .memory-delete:hover { color: #ef4444; }
+.memory-category {
+  font-size: 0.7rem; background: #e5e7eb; color: #6b7280;
+  padding: 1px 6px; border-radius: 4px; margin-left: 6px;
+  text-transform: capitalize;
+}
+.memory-importance {
+  font-size: 0.7rem; margin-right: 4px;
+}
 .ai-memory-input-row {
   display: flex; gap: 8px; padding: 8px 12px 12px; border-top: 1px solid #f3f4f6;
 }
@@ -2073,6 +2085,8 @@ body.dstyle-dark .ai-memory-modal-content { background: #1e293b; border-color: #
 body.dstyle-dark .ai-memory-modal-header strong { color: #e2e8f0; }
 body.dstyle-dark .memory-item { background: #0f172a; color: #cbd5e1; }
 body.dstyle-dark .memory-item:hover { background: #1e293b; }
+body.dstyle-dark .memory-category { background: #334155; color: #94a3b8; }
+body.dstyle-dark .memory-edit:hover { color: #818cf8; }
 body.dstyle-dark .ai-memory-input-row { border-color: #1e293b; }
 body.dstyle-dark .ai-memory-input-row input { background: #0f172a; border-color: #334155; color: #e2e8f0; }
 
