@@ -310,7 +310,8 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     memoryModal.id = 'aiMemoryModal';
     memoryModal.innerHTML =
       '<div class="ai-memory-modal-content">' +
-      '<div class="ai-memory-modal-header"><strong>🧠 Memory</strong><span style="font-size:0.78rem;color:#9ca3af;flex:1">Things I remember about you</span><button id="aiMemoryClose" style="background:none;border:none;cursor:pointer;color:#9ca3af;font-size:1.2rem;line-height:1;padding:0 4px">x</button></div>' +
+      '<div class="ai-memory-modal-header"><strong>🧠 Memory</strong><span style="font-size:0.78rem;color:#9ca3af;flex:1">Things Nova remembers</span><button id="aiMemoryClose" style="background:none;border:none;cursor:pointer;color:#9ca3af;font-size:1.2rem;line-height:1;padding:0 4px">x</button></div>' +
+      '<div class="ai-memory-search-row"><input type="text" id="aiMemorySearch" placeholder="Search memories..." autocomplete="off"></div>' +
       '<div class="ai-memory-list" id="aiMemoryList"></div>' +
       '<div class="ai-memory-input-row"><input type="text" id="aiMemoryInput" placeholder="Add a note about yourself..." autocomplete="off"><button id="aiMemoryAddBtn">Save</button></div>' +
       '</div>';
@@ -428,8 +429,9 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
       memoryModal: document.getElementById('aiMemoryModal'),
       memoryList: document.getElementById('aiMemoryList'),
       memoryAddBtn: document.getElementById('aiMemoryAddBtn'),
-      memoryInput: document.getElementById('aiMemoryInput'),
-      memoryClose: document.getElementById('aiMemoryClose'),
+        memoryInput: document.getElementById('aiMemoryInput'),
+        memorySearch: document.getElementById('aiMemorySearch'),
+        memoryClose: document.getElementById('aiMemoryClose'),
       attachBtn: document.getElementById('aiAttachBtn'),
       fileInput: document.getElementById('aiFileInput'),
       container: document.querySelector('.ai-container'),
@@ -527,6 +529,9 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     }
     if (this.elements.memoryClose) {
       this.elements.memoryClose.addEventListener('click', () => this.closeMemoryModal());
+    }
+    if (this.elements.memorySearch) {
+      this.elements.memorySearch.addEventListener('input', () => this.renderMemoryList());
     }
     if (this.elements.memoryModal) {
       this.elements.memoryModal.addEventListener('click', (e) => {
@@ -1219,6 +1224,14 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     div.className = 'ai-msg ai-msg-user';
     div.textContent = text;
     container.appendChild(div);
+
+    if (this.memoryPoints.length > 0) {
+      const indicator = document.createElement('div');
+      indicator.className = 'ai-memory-indicator';
+      indicator.textContent = `🧠 ${this.memoryPoints.length} memor${this.memoryPoints.length === 1 ? 'y' : 'ies'} loaded`;
+      container.appendChild(indicator);
+    }
+
     this.scrollToBottom();
     if (saveToHistory) {
       this.messages.push({ role: 'user', content: text });
@@ -1886,47 +1899,111 @@ FINAL RULES
     }
   },
 
+  togglePinMemory(id) {
+    const point = this.memoryPoints.find(p => p.id === id);
+    if (!point) return;
+    point.pinned = !point.pinned;
+    this.saveMemoryPoints();
+    this.renderMemoryList();
+  },
+
+  inlineEditMemory(id) {
+    const point = this.memoryPoints.find(p => p.id === id);
+    if (!point) return;
+    const itemEl = this.elements.memoryList?.querySelector(`.memory-item[data-id="${id}"]`);
+    if (!itemEl) return;
+
+    const textEl = itemEl.querySelector('.memory-text');
+    if (!textEl) return;
+
+    const currentText = point.content;
+    textEl.innerHTML = `<input type="text" class="memory-inline-edit" value="${this.escapeHtml(currentText)}" style="width:100%;border:1px solid #667eea;border-radius:6px;padding:2px 6px;font-size:.85rem;outline:none">`;
+    const input = textEl.querySelector('input');
+    input.focus();
+    input.select();
+
+    const save = () => {
+      const val = input.value.trim();
+      if (val && val !== currentText) {
+        point.content = val;
+        point.updatedAt = new Date().toISOString();
+        this.saveMemoryPoints();
+      }
+      this.renderMemoryList();
+    };
+
+    input.addEventListener('blur', save);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); input.blur(); }
+      if (e.key === 'Escape') { input.value = currentText; input.blur(); }
+    });
+  },
+
   /**
    * Render the memory points list in the modal
    */
   renderMemoryList() {
     const list = this.elements.memoryList;
     if (!list) return;
-    
-    if (this.memoryPoints.length === 0) {
-      list.innerHTML = '<p style="color:#9ca3af;text-align:center;padding:20px;">No memory points yet. Add something important to remember.</p>';
+
+    const searchQuery = (this.elements.memorySearch?.value || '').toLowerCase().trim();
+    let points = this.memoryPoints;
+    if (searchQuery) {
+      points = points.filter(p => p.content.toLowerCase().includes(searchQuery) || (p.category || '').toLowerCase().includes(searchQuery));
+    }
+
+    if (points.length === 0) {
+      list.innerHTML = searchQuery
+        ? '<p style="color:#9ca3af;text-align:center;padding:20px;">No matching memories.</p>'
+        : '<p style="color:#9ca3af;text-align:center;padding:20px;">No memory points yet. Add something important to remember.</p>';
       return;
     }
-    
+
     const importanceColors = { high: '#ef4444', medium: '#f59e0b', low: '#6b7280' };
-    
-    list.innerHTML = this.memoryPoints.map(point => {
+    const importanceLabels = { high: 'High', medium: 'Med', low: 'Low' };
+
+    const sorted = [...points].sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      return 0;
+    });
+
+    list.innerHTML = sorted.map(point => {
       const importance = point.importance || 'medium';
       const category = point.category || '';
       const categoryBadge = category ? `<span class="memory-category">${category}</span>` : '';
-      const importanceIndicator = `<span class="memory-importance" style="color:${importanceColors[importance] || '#6b7280'}">●</span>`;
-      
+      const pinClass = point.pinned ? ' pinned' : '';
+      const pinIcon = point.pinned ? '📌' : '🤍';
+
       return `
-      <div class="memory-item" data-id="${point.id}">
-        <span class="memory-content">${importanceIndicator} ${this.escapeHtml(point.content)}${categoryBadge}</span>
+      <div class="memory-item${pinClass}" data-id="${point.id}">
+        <span class="memory-content"><span class="memory-importance" style="color:${importanceColors[importance] || '#6b7280'}" title="${importanceLabels[importance] || 'Med'}">●</span> <span class="memory-text">${this.escapeHtml(point.content)}</span>${categoryBadge}</span>
         <div class="memory-actions">
+          <button class="memory-pin" data-id="${point.id}" title="Pin">${pinIcon}</button>
           <button class="memory-edit" data-id="${point.id}" title="Edit">✎</button>
           <button class="memory-delete" data-id="${point.id}" title="Delete">×</button>
         </div>
       </div>`;
     }).join('');
-    
+
     list.querySelectorAll('.memory-delete').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.deleteMemoryPoint(btn.dataset.id);
       });
     });
-    
+
     list.querySelectorAll('.memory-edit').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        this.editMemoryPoint(btn.dataset.id);
+        this.inlineEditMemory(btn.dataset.id);
+      });
+    });
+
+    list.querySelectorAll('.memory-pin').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.togglePinMemory(btn.dataset.id);
       });
     });
   },

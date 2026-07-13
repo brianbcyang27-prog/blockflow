@@ -19,10 +19,10 @@ This roadmap details the 11-phase transformation of BlockFlow's AI Assistant int
 | 1 | Voice Research | ✅ Complete | — | — |
 | 2 | Live Transcription | ⏳ Pending | High | Medium |
 | 3 | Premium Voice Output | ⏳ Pending | High | High |
-| 4 | Voice Settings Redesign | ⏳ Pending | High | Medium |
+| 4 | Voice Settings Redesign | ✅ Complete | High | Medium |
 | 5 | Voice Cloning Prep | ⏳ Pending | Low | High |
-| 6 | Assistant Rebrand ("Nova") | ⏳ Pending | Medium | Low |
-| 7 | Better Memory | ⏳ Pending | Medium | Medium |
+| 6 | Assistant Rebrand ("Nova") | ✅ Complete | Medium | Low |
+| 7 | Better Memory | ✅ Complete | Medium | Medium |
 | 8 | Voice + Memory Integration | ⏳ Pending | Medium | Medium |
 | 9 | Animations Upgrade | ⏳ Pending | High | Medium |
 | 10 | Performance Optimization | ⏳ Pending | Medium | Low |
