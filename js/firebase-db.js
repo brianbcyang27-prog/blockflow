@@ -182,6 +182,94 @@ var FirebaseDB = (function() {
                 }
                 return false;
             }
+        },
+
+        getAiHistory: async function() {
+            if (!isUserAuthenticated()) return null;
+            var uid = getUserId();
+            if (!uid) return null;
+            try {
+                var doc = await db.collection('users').doc(uid)
+                    .collection('data').doc('aiHistory').get();
+                return doc.exists ? doc.data().messages || [] : [];
+            } catch(e) {
+                console.error('Firestore getAiHistory error:', e.message);
+                return null;
+            }
+        },
+
+        saveAiHistory: async function(messages) {
+            if (!isUserAuthenticated()) return false;
+            var uid = getUserId();
+            if (!uid) return false;
+            try {
+                await db.collection('users').doc(uid)
+                    .collection('data').doc('aiHistory').set({ messages: messages });
+                return true;
+            } catch(e) {
+                console.error('Firestore saveAiHistory error:', e.message);
+                return false;
+            }
+        },
+
+        getAiMemory: async function() {
+            if (!isUserAuthenticated()) return null;
+            var uid = getUserId();
+            if (!uid) return null;
+            try {
+                var doc = await db.collection('users').doc(uid)
+                    .collection('data').doc('aiMemory').get();
+                return doc.exists ? doc.data().memoryPoints || [] : [];
+            } catch(e) {
+                console.error('Firestore getAiMemory error:', e.message);
+                return null;
+            }
+        },
+
+        saveAiMemory: async function(memoryPoints) {
+            if (!isUserAuthenticated()) return false;
+            var uid = getUserId();
+            if (!uid) return false;
+            try {
+                await db.collection('users').doc(uid)
+                    .collection('data').doc('aiMemory').set({ memoryPoints: memoryPoints });
+                return true;
+            } catch(e) {
+                console.error('Firestore saveAiMemory error:', e.message);
+                return false;
+            }
+        },
+
+        getMigrationStatus: async function() {
+            if (!isUserAuthenticated()) return null;
+            var uid = getUserId();
+            if (!uid) return null;
+            try {
+                var doc = await db.collection('users').doc(uid)
+                    .collection('metadata').doc('migration').get();
+                return doc.exists ? doc.data() : null;
+            } catch(e) {
+                console.error('Firestore getMigrationStatus error:', e.message);
+                return null;
+            }
+        },
+
+        setMigrationComplete: async function(version) {
+            if (!isUserAuthenticated()) return false;
+            var uid = getUserId();
+            if (!uid) return false;
+            try {
+                await db.collection('users').doc(uid)
+                    .collection('metadata').doc('migration').set({
+                        completed: true,
+                        version: version,
+                        completedAt: new Date().toISOString()
+                    });
+                return true;
+            } catch(e) {
+                console.error('Firestore setMigrationComplete error:', e.message);
+                return false;
+            }
         }
     };
 })();

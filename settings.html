@@ -888,25 +888,58 @@ Get Free API Key
 <section class="settings-section" id="accountSection">
 <h3>Account</h3>
 <div id="accountInfo" style="display:none;">
-  <div class="setting-item">
-    <div class="setting-label">
-      <strong id="accountName">Signed in</strong>
-      <span id="accountEmail"></span>
+  <div class="account-profile">
+    <div class="account-avatar" id="accountAvatar"></div>
+    <div class="account-details">
+      <div class="account-name" id="accountName">Signed in</div>
+      <div class="account-email" id="accountEmail"></div>
+      <div class="account-status"><span class="account-status-dot"></span> Synced to cloud</div>
     </div>
-    <div class="setting-control">
-      <button class="btn btn-danger" id="signOutBtn">Sign Out</button>
+  </div>
+  <div class="account-stats" id="accountStats">
+    <div class="account-stat">
+      <span class="account-stat-value" id="statEvents">0</span>
+      <span class="account-stat-label">Events</span>
     </div>
+    <div class="account-stat">
+      <span class="account-stat-value" id="statMessages">0</span>
+      <span class="account-stat-label">AI Messages</span>
+    </div>
+    <div class="account-stat">
+      <span class="account-stat-value" id="statMemories">0</span>
+      <span class="account-stat-label">Memories</span>
+    </div>
+  </div>
+  <div class="account-actions">
+    <button class="btn btn-secondary" id="exportDataAccount">Export Data</button>
+    <button class="btn btn-danger" id="signOutBtn">Sign Out</button>
   </div>
 </div>
 <div id="accountLocal" style="display:none;">
-  <div class="setting-item">
-    <div class="setting-label">
-      <strong>Local Mode</strong>
-      <span>Data is stored locally on this device only</span>
+  <div class="account-profile">
+    <div class="account-avatar account-avatar-local">?</div>
+    <div class="account-details">
+      <div class="account-name">Local Mode</div>
+      <div class="account-email">Data stored on this device only</div>
+      <div class="account-status account-status-local"><span class="account-status-dot"></span> Not synced</div>
     </div>
-    <div class="setting-control">
-      <button class="btn btn-primary" id="signInFromSettings">Sign In</button>
+  </div>
+  <div class="account-stats" id="localStats">
+    <div class="account-stat">
+      <span class="account-stat-value" id="localStatEvents">0</span>
+      <span class="account-stat-label">Events</span>
     </div>
+    <div class="account-stat">
+      <span class="account-stat-value" id="localStatMessages">0</span>
+      <span class="account-stat-label">AI Messages</span>
+    </div>
+    <div class="account-stat">
+      <span class="account-stat-value" id="localStatMemories">0</span>
+      <span class="account-stat-label">Memories</span>
+    </div>
+  </div>
+  <div class="account-actions">
+    <button class="btn btn-primary" id="signInFromSettings">Sign In to Sync</button>
   </div>
 </div>
 </section>
@@ -969,7 +1002,7 @@ Get Free API Key
 <section class="about-section">
 <h3>BlockFlow</h3>
 <p>A simple productivity app to reduce scrolling addiction and improve focus</p>
-<p class="version">Version 1.2.0</p>
+<p class="version">Version 3.0.0</p>
 </section>
 </div>
 
@@ -995,24 +1028,6 @@ FirebaseAuth.onAuthChange(function(user) {
     var overlay = document.getElementById('loginOverlay');
     if (overlay) overlay.classList.toggle('hidden', !!user);
     if (user) Storage.syncFromFirestore();
-
-    // Update account section
-    var infoEl = document.getElementById('accountInfo');
-    var localEl = document.getElementById('accountLocal');
-    if (user) {
-        infoEl.style.display = '';
-        localEl.style.display = 'none';
-        var name = user.displayName || 'Signed in';
-        var email = user.email || '';
-        document.getElementById('accountName').textContent = name;
-        document.getElementById('accountEmail').textContent = email;
-    } else if (FirebaseAuth.isBypassMode()) {
-        infoEl.style.display = 'none';
-        localEl.style.display = 'none';
-    } else {
-        infoEl.style.display = 'none';
-        localEl.style.display = '';
-    }
 });
 document.getElementById('loginBtn').addEventListener('click', function() {
     FirebaseAuth.signIn();
@@ -1029,6 +1044,60 @@ document.getElementById('signOutBtn').addEventListener('click', async function()
 document.getElementById('signInFromSettings').addEventListener('click', function() {
     FirebaseAuth.signIn();
 });
+document.getElementById('exportDataAccount').addEventListener('click', function() {
+    if (typeof Settings !== 'undefined' && Settings.exportData) Settings.exportData();
+});
+
+function populateAccountStats() {
+    var events = [];
+    try { events = JSON.parse(localStorage.getItem('blockflow_calendar_events') || '[]'); } catch(e) {}
+    var messages = [];
+    try { messages = JSON.parse(localStorage.getItem('blockflow_ai_history') || '[]'); } catch(e) {}
+    var memories = [];
+    try { memories = JSON.parse(localStorage.getItem('blockflow_ai_memory') || '[]'); } catch(e) {}
+
+    var isSignedIn = FirebaseAuth.isSignedIn() && !FirebaseAuth.isBypassMode();
+    var prefix = isSignedIn ? '' : 'local';
+    var eventsEl = document.getElementById(prefix + 'StatEvents') || document.getElementById('statEvents');
+    var messagesEl = document.getElementById(prefix + 'StatMessages') || document.getElementById('statMessages');
+    var memoriesEl = document.getElementById(prefix + 'StatMemories') || document.getElementById('statMemories');
+    if (eventsEl) eventsEl.textContent = events.length;
+    if (messagesEl) messagesEl.textContent = messages.length;
+    if (memoriesEl) memoriesEl.textContent = memories.length;
+}
+
+function updateAccountUI(user) {
+    var infoEl = document.getElementById('accountInfo');
+    var localEl = document.getElementById('accountLocal');
+    if (!infoEl || !localEl) return;
+
+    if (user && !user.isAnonymous) {
+        var name = (user.displayName || '').trim() || 'User';
+        var email = user.email || '';
+        var avatarEl = document.getElementById('accountAvatar');
+        var nameEl = document.getElementById('accountName');
+        var emailEl = document.getElementById('accountEmail');
+
+        if (user.photoURL && avatarEl) {
+            avatarEl.innerHTML = '<img src="' + user.photoURL + '" alt="' + name + '" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';
+        } else if (avatarEl) {
+            var initials = name.length >= 2 ? (name[0] + name.split(' ').pop()[0]).toUpperCase() : name.substring(0,2).toUpperCase();
+            avatarEl.textContent = initials;
+        }
+        if (nameEl) nameEl.textContent = name;
+        if (emailEl) emailEl.textContent = email;
+
+        infoEl.style.display = '';
+        localEl.style.display = 'none';
+    } else {
+        infoEl.style.display = 'none';
+        localEl.style.display = '';
+    }
+    populateAccountStats();
+}
+
+FirebaseAuth.onAuthChange(updateAccountUI);
+updateAccountUI(FirebaseAuth.getUser());
 </script>
 <script>
 const Settings = {
@@ -1603,6 +1672,8 @@ const Settings = {
 
 document.addEventListener('DOMContentLoaded', () => Settings.init());
 </script>
+<script src="js/sidebar.js"></script>
+<script src="js/migration.js"></script>
 <script>
 window.addEventListener('pageshow', function(evt) {
   if (evt.persisted) window.location.reload();
