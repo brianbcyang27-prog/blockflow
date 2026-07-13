@@ -33,11 +33,6 @@ var FirebaseAuth = (function() {
 
     return {
         init: function() {
-            if (isBypassActive()) {
-                console.log('[FirebaseAuth] Initializing with bypass mode already active');
-                notifyListeners(getBypassUser());
-                return true;
-            }
             FirebaseApp.init();
             if (typeof firebase === 'undefined' || !firebase.auth) {
                 console.warn('[FirebaseAuth] Firebase Auth SDK not loaded — falling back to local mode');
@@ -47,6 +42,10 @@ var FirebaseAuth = (function() {
             }
             console.log('[FirebaseAuth] Initializing with Firebase SDK');
             auth = firebase.auth();
+            if (isBypassActive()) {
+                console.log('[FirebaseAuth] Firebase SDK loaded — clearing stale bypass flag');
+                setBypass(false);
+            }
             auth.onAuthStateChanged(function(user) {
                 if (user) {
                     console.log('[FirebaseAuth] Firebase user authenticated:', user.uid);
@@ -61,7 +60,7 @@ var FirebaseAuth = (function() {
                     console.log('[FirebaseAuth] No Firebase user - checking for stored user');
                     var stored = localStorage.getItem('blockflow_auth_user');
                     if (stored) {
-                        try { 
+                        try {
                             notifyListeners(JSON.parse(stored));
                         } catch(e) {
                             console.error('[FirebaseAuth] Failed to parse stored user:', e);
@@ -94,10 +93,8 @@ var FirebaseAuth = (function() {
                 return { success: true, user: currentUser };
             }
             if (!auth) {
-                console.log('[FirebaseAuth] SignIn: no auth available, enabling bypass mode');
-                notifyListeners(getBypassUser());
-                setBypass(true);
-                return { success: true, user: currentUser };
+                console.log('[FirebaseAuth] SignIn: Firebase SDK not available');
+                return { success: false, error: 'Firebase SDK not loaded' };
             }
             try {
                 console.log('[FirebaseAuth] SignIn: initiating Google popup');
@@ -148,6 +145,7 @@ var FirebaseAuth = (function() {
             if (isBypassActive()) return true;
             return currentUser !== null && !currentUser.isAnonymous;
         },
+        isBypassMode: function() { return isBypassActive(); },
         getUserId: function() { return currentUser ? currentUser.uid : null; },
         getUserEmail: function() { return currentUser ? currentUser.email : null; },
         getUserName: function() { return currentUser ? currentUser.displayName : null; },
