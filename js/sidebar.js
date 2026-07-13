@@ -68,6 +68,13 @@
         el.className = 'sidebar-link' + (p.href === current ? ' active' : '');
         el.href = p.href;
         if (p.href === current) el.setAttribute('aria-current', 'page');
+        el.addEventListener('click', function (e) {
+          if (p.href === current) { e.preventDefault(); closeSidebar(); return; }
+          e.preventDefault();
+          var target = p.href;
+          closeSidebar();
+          setTimeout(function () { window.location.href = target; }, 650);
+        });
       }
       el.innerHTML = '<span class="sidebar-link-icon">' + p.icon + '</span><span class="sidebar-link-label">' + p.label + '</span>';
       el.style.transitionDelay = (i * 0.04) + 's';

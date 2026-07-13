@@ -13,7 +13,7 @@ Built by Brian Yang during his internship at Eways.
 ./start.sh
 
 # Option B: Manual
-cd web && python3 -m http.server 8000
+python3 -m http.server 8000
 ```
 
 Then open **http://localhost:8000**
@@ -96,29 +96,38 @@ The app will be live at **https://blockflow-28d39.web.app**
 
 ```
 BlockFlow/
-├── web/               ← The PWA app
-│   ├── index.html     ← Main dashboard
-│   ├── settings.html  ← API keys, preferences
-│   ├── calendar.html  ← Calendar + AI planning
-│   ├── api-verify/    ← API key verification hub
-│   ├── css/style.css  ← All styling
-│   ├── js/            ← JavaScript modules
-│   │   ├── app.js           ← Main controller
-│   │   ├── storage.js       ← localStorage + Firebase sync
-│   │   ├── timer.js         ← Pomodoro timer
-│   │   ├── ui.js            ← DOM rendering
-│   │   ├── calendar.js      ← Calendar logic
-│   │   ├── ai-assistant.js  ← AI chat window
-│   │   ├── google-calendar.js ← Google Calendar import
-│   │   ├── firebase-init.js ← Firebase config
-│   │   ├── firebase-auth.js ← Auth module
-│   │   └── firebase-db.js   ← Firestore CRUD
-│   ├── sw.js          ← Service Worker
-│   ├── manifest.json  ← PWA manifest
-│   └── icons/         ← PWA icons
-├── api-proxy.py       ← Local NVIDIA proxy for development
-├── start.sh           ← Dev startup script
-├── firebase.json      ← Firebase hosting config
-├── firestore.rules    ← Firestore security rules
-└── blockflow goal/    ← Docs, goals, & vision
+├── index.html          ← Main dashboard
+├── settings.html       ← API keys, preferences, account
+├── calendar.html       ← Calendar + AI planning
+├── docs.html           ← Documentation viewer
+├── css/style.css       ← All styling
+├── js/                 ← JavaScript modules
+│   ├── app.js              ← Main controller
+│   ├── storage.js          ← localStorage + Firebase sync
+│   ├── timer.js            ← Pomodoro timer
+│   ├── ui.js               ← DOM rendering, toasts
+│   ├── calendar.js         ← Calendar logic
+│   ├── ai-assistant.js     ← AI chat window
+│   ├── sidebar.js          ← Animated sidebar navigation
+│   ├── migration.js        ← localStorage → Firestore migration
+│   ├── firebase-init.js    ← Firebase config
+│   ├── firebase-auth.js    ← Auth module
+│   └── firebase-db.js      ← Firestore CRUD
+├── icons/              ← PWA icons
+├── sw.js               ← Service Worker
+├── manifest.json       ← PWA manifest
+├── firebase.json       ← Firebase config
+├── firestore.rules     ← Firestore security rules
+├── functions/          ← Cloud Functions
+├── api-proxy.py        ← Local NVIDIA proxy
+├── start.sh            ← Dev startup script
+├── docs/               ← Documentation
+│   ├── README.md           ← Documentation index
+│   ├── reports/            ← Technical reports
+│   ├── screenshots/        ← App screenshots
+│   └── development/        ← Config/debug files
+├── README.md           ← This file
+└── CHANGELOG.md        ← Version history
 ```
+
+See [docs/README.md](docs/README.md) for detailed documentation.
