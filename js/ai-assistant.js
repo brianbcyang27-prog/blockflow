@@ -38,6 +38,9 @@ const AIAssistant = {
   _lastUserMessage: '',
   _voiceSettings: { enabled: true, name: '', speed: 1.0, pitch: 1.0, volume: 1.0 },
   _isSpeaking: false,
+  _memoryExtractTimer: null,
+  _wasVoiceInput: false,
+  _pendingVoiceMemory: null,
   _storageKeys: {
     position: 'blockflow_ai_pos',
     model: 'blockflow_ai_model',
@@ -291,6 +294,12 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
       '<div class="ai-header-actions"><button class="ai-memory-btn" id="aiMemoryBtn" aria-label="Memory">🧠</button><button class="ai-close-btn" id="aiClose" aria-label="Close">x</button></div>';
     container.appendChild(header);
 
+    var waveCanvas = document.createElement('canvas');
+    waveCanvas.className = 'ai-waveform';
+    waveCanvas.id = 'aiWaveform';
+    waveCanvas.style.cssText = 'width:100%;height:24px;display:block;';
+    container.appendChild(waveCanvas);
+
     var conversation = document.createElement('div');
     conversation.className = 'ai-conversation';
     conversation.id = 'aiMessages';
@@ -395,6 +404,9 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     this.loadSystemPrompt();
     this.loadMemoryPoints();
     this.loadMessageHistory();
+    if (typeof NovaWaveform !== 'undefined') {
+      NovaWaveform.init(document.getElementById('aiWaveform'));
+    }
     this.addGreeting();
     this._attachedFiles = [];
     if (this.elements.speakBtn) {
@@ -606,6 +618,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     this.elements.voiceBtn.classList.add('listening');
     this.elements.voiceBtn.textContent = '⏹';
     this.elements.input.placeholder = 'Listening...';
+    if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.LISTENING);
 
     this._recognition = new SpeechRecognition();
     this._recognition.lang = 'en-US';
@@ -688,6 +701,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     if (transcript) {
       this.elements.input.value = transcript;
       this.autoResize();
+      this._wasVoiceInput = true;
       this.sendMessage();
     }
   },
@@ -704,6 +718,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
 
   stopVoice() {
     this.isListening = false;
+    if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.IDLE);
 
     if (this._voicePauseTimeout) {
       clearTimeout(this._voicePauseTimeout);
@@ -795,15 +810,18 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     const avatar = document.querySelector('.ai-avatar');
     this._isSpeaking = true;
     if (avatar) avatar.classList.add('speaking');
+    if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.SPEAKING);
 
     const onEnd = () => {
       this._isSpeaking = false;
       if (avatar) avatar.classList.remove('speaking');
+      if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.IDLE);
     };
 
     const onError = () => {
       this._isSpeaking = false;
       if (avatar) avatar.classList.remove('speaking');
+      if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.IDLE);
     };
 
     if (typeof NovaTTS !== 'undefined') {
@@ -1350,6 +1368,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
   showThinking() {
     const existing = document.getElementById('aiThinkingIndicator');
     if (existing) existing.remove();
+    if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.THINKING);
 
     const container = this.elements.conversation;
 
@@ -1565,6 +1584,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
   removeThinking() {
     clearTimeout(this._thinkingTimer);
     clearInterval(this._thinkingTimerInterval);
+    if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.IDLE);
     const el = document.getElementById('aiThinkingIndicator');
     if (el) {
       el.style.transition = 'opacity .2s, transform .2s';
@@ -1873,7 +1893,70 @@ FINAL RULES
     
     this.saveMemoryPoints();
     this.renderMemoryList();
-    this.elements.memoryInput.value = '';
+  },
+
+  _showVoiceMemoryConfirm() {
+    const existing = document.getElementById('nova-voice-mem-confirm');
+    if (existing) existing.remove();
+
+    const container = this.elements.conversation;
+    if (!container) return;
+
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const wrapper = document.createElement('div');
+    wrapper.id = 'nova-voice-mem-confirm';
+    wrapper.style.cssText = `
+      display:flex;align-items:center;gap:8px;padding:8px 12px;margin:4px 12px;
+      border-radius:12px;font-size:0.82rem;
+      background:${isDark ? '#1a1f36' : '#f8f9fa'};
+      border:1px solid ${isDark ? '#2d3348' : '#e5e7eb'};
+      color:${isDark ? '#e2e8f0' : '#1f2937'};
+      font-family:system-ui,-apple-system,sans-serif;
+      animation:fadeInUp .25s ease;
+    `;
+
+    const label = document.createElement('span');
+    label.style.cssText = 'flex:1;';
+    label.textContent = '🧠 Remember this?';
+    wrapper.appendChild(label);
+
+    const btnStyle = `padding:3px 12px;border-radius:8px;border:none;cursor:pointer;font-size:0.8rem;font-weight:500;font-family:inherit;`;
+
+    const yesBtn = document.createElement('button');
+    yesBtn.textContent = 'Yes';
+    yesBtn.style.cssText = btnStyle + `background:#667eea;color:#fff;`;
+    yesBtn.addEventListener('click', () => this._dismissVoiceMemoryConfirm(true));
+    wrapper.appendChild(yesBtn);
+
+    const noBtn = document.createElement('button');
+    noBtn.textContent = 'No';
+    noBtn.style.cssText = btnStyle + `background:${isDark ? '#2d3348' : '#e5e7eb'};color:${isDark ? '#9ca3af' : '#6b7280'};`;
+    noBtn.addEventListener('click', () => this._dismissVoiceMemoryConfirm(false));
+    wrapper.appendChild(noBtn);
+
+    container.appendChild(wrapper);
+    this.scrollToBottom();
+
+    this._voiceMemConfirmTimeout = setTimeout(() => this._dismissVoiceMemoryConfirm(true), 8000);
+  },
+
+  _dismissVoiceMemoryConfirm(accepted) {
+    if (this._voiceMemConfirmTimeout) {
+      clearTimeout(this._voiceMemConfirmTimeout);
+      this._voiceMemConfirmTimeout = null;
+    }
+
+    const el = document.getElementById('nova-voice-mem-confirm');
+    if (el && el.parentNode) {
+      el.style.opacity = '0';
+      el.style.transition = 'opacity .2s';
+      setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 200);
+    }
+
+    if (accepted && this._pendingVoiceMemory) {
+      this.addAutomaticMemory(this._pendingVoiceMemory);
+    }
+    this._pendingVoiceMemory = null;
   },
 
   /**
@@ -2097,7 +2180,15 @@ or
 
       const extracted = JSON.parse(content);
       if (extracted.save && extracted.memory) {
-        this.addAutomaticMemory(extracted);
+        if (this._wasVoiceInput) {
+          this._wasVoiceInput = false;
+          this._pendingVoiceMemory = extracted;
+          this._showVoiceMemoryConfirm();
+        } else {
+          this.addAutomaticMemory(extracted);
+        }
+      } else {
+        this._wasVoiceInput = false;
       }
     } catch (e) {
     }
@@ -2761,7 +2852,8 @@ or
             this.addAiMessage(toolResults, true);
           }
           this.showDynamicSuggestions(content);
-          this.extractMemoryFromConversation(userText, content);
+          if (this._memoryExtractTimer) clearTimeout(this._memoryExtractTimer);
+          this._memoryExtractTimer = setTimeout(() => this.extractMemoryFromConversation(userText, content), 2000);
           if (this._voiceSettings.enabled) {
             this.speak(content);
           }
@@ -2889,7 +2981,8 @@ or
     }
     this.showDynamicSuggestions(finalContent);
 
-    this.extractMemoryFromConversation(userText, cleanContent);
+    if (this._memoryExtractTimer) clearTimeout(this._memoryExtractTimer);
+    this._memoryExtractTimer = setTimeout(() => this.extractMemoryFromConversation(userText, cleanContent), 2000);
 
     if (this._voiceSettings.enabled && cleanContent) {
       this.speak(cleanContent);

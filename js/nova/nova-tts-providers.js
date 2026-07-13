@@ -59,6 +59,37 @@ const NovaTTS = {
     this.init();
     const provider = this.getProvider(providerName);
     return provider.listVoices();
+  },
+
+  _audioCache: new Map(),
+  _cacheMaxSize: 20,
+  _cacheMaxBytes: 10 * 1024 * 1024,
+  _cacheTotalBytes: 0,
+
+  _cacheGet(key) {
+    if (this._audioCache.has(key)) {
+      const entry = this._audioCache.get(key);
+      this._audioCache.delete(key);
+      this._audioCache.set(key, entry);
+      return entry.buffer;
+    }
+    return null;
+  },
+
+  _cacheSet(key, buffer) {
+    if (this._audioCache.has(key)) {
+      this._audioCache.delete(key);
+    }
+    const entry = { buffer, bytes: buffer.byteLength };
+    this._audioCache.set(key, entry);
+    this._cacheTotalBytes += entry.bytes;
+
+    while (this._audioCache.size > this._cacheMaxSize || this._cacheTotalBytes > this._cacheMaxBytes) {
+      const oldest = this._audioCache.keys().next().value;
+      const removed = this._audioCache.get(oldest);
+      this._cacheTotalBytes -= removed.bytes;
+      this._audioCache.delete(oldest);
+    }
   }
 };
 
