@@ -1477,7 +1477,8 @@ const Settings = {
         memory.forEach((point, index) => {
             const item = document.createElement('div');
             item.className = 'ai-memory-item';
-            item.innerHTML = '<span class="text">' + this.escapeHtml(point) + '</span>' +
+            const text = typeof point === 'string' ? point : (point.content || String(point));
+            item.innerHTML = '<span class="text">' + this.escapeHtml(text) + '</span>' +
                 '<button class="del" data-index="' + index + '" title="Remove">✕</button>';
             list.appendChild(item);
         });
@@ -1512,7 +1513,7 @@ const Settings = {
         if (saved) {
             this.elements.aiPrompt.value = saved;
         } else {
-            this.elements.aiPrompt.value = '';
+            this.elements.aiPrompt.value = AIAssistant.getDefaultSystemPrompt();
         }
     },
 
@@ -1534,7 +1535,7 @@ const Settings = {
     aiResetPrompt() {
         if (!confirm('Reset the system prompt to its default? This cannot be undone.')) return;
         localStorage.removeItem('blockflow_ai_system_prompt');
-        this.elements.aiPrompt.value = '';
+        this.elements.aiPrompt.value = AIAssistant.getDefaultSystemPrompt();
         const btn = this.elements.aiPromptReset;
         const orig = btn.textContent;
         btn.textContent = '✅ Reset!';
