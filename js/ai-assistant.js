@@ -286,7 +286,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     var header = document.createElement('div');
     header.className = 'ai-header';
     header.innerHTML =
-      '<div class="ai-header-left"><div class="ai-avatar">🤖</div><span class="ai-title">BlockFlow Assistant</span></div>' +
+      '<div class="ai-header-left"><div class="ai-avatar">✦</div><span class="ai-title">Nova</span></div>' +
       '<div class="ai-header-center"><select class="ai-model-select" id="aiModelSelect"></select></div>' +
       '<div class="ai-header-actions"><button class="ai-memory-btn" id="aiMemoryBtn" aria-label="Memory">🧠</button><button class="ai-close-btn" id="aiClose" aria-label="Close">x</button></div>';
     container.appendChild(header);
@@ -376,7 +376,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     var fab = document.createElement('button');
     fab.className = 'ai-fab';
     fab.id = 'aiBubble';
-    fab.setAttribute('aria-label', 'Open AI Assistant');
+    fab.setAttribute('aria-label', 'Open Nova');
     fab.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L3 9h7z"/></svg>';
     document.body.appendChild(fab);
   },
@@ -1118,7 +1118,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
       const m = this.memoryPoints[0];
       greeting = `Hey! How's "${m.content.slice(0, 40)}" going?`;
     } else {
-      const greetings = ['Hey!', 'Hi there!', "What's happening?"];
+      const greetings = ['Hey!', 'Hi there!', "What's happening?", 'Good to see you!'];
       greeting = greetings[Math.floor(Math.random() * greetings.length)];
     }
 
@@ -1671,7 +1671,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
    * @returns {string}
    */
   getDefaultSystemPrompt() {
-    return `You are BlockFlow, a productivity calendar assistant.
+    return `You are Nova, a voice-first productivity companion built into BlockFlow.
 
 Your only job: help the user manage their schedule. You can chat normally and use tools for calendar actions.
 

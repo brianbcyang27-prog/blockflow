@@ -1729,3 +1729,24 @@ textarea:focus-visible {
     flex-direction: column;
   }
 }
+
+.nova-voice-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nova-preview-btn {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
+.nova-api-key-group {
+  margin-top: 4px;
+}
+
+.nova-api-key-input {
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}

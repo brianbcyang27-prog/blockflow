@@ -859,8 +859,8 @@ Get Free API Key
 </section>
 
 <section class="settings-section">
-<h3>🧠 AI Assistant</h3>
-<p class="section-intro">Manage your AI assistant's memory and custom behavior. Changes apply to the BlockFlow Assistant chatbot.</p>
+<h3>✦ Nova</h3>
+<p class="section-intro">Manage Nova's memory and custom behavior. Changes apply to the Nova voice companion.</p>
 
 <div class="ai-memory-section">
   <h4>🧠 Memory Points</h4>
@@ -944,11 +944,11 @@ Get Free API Key
 </section>
 
 <section class="settings-section">
-<h3>Voice</h3>
+<h3>Voice Companion</h3>
 <div class="setting-item">
 <div class="setting-label">
-<strong>Enable Voice Replies</strong>
-<span>AI reads responses aloud after streaming completes</span>
+<strong>Enable Voice</strong>
+<span>AI reads responses aloud and accepts voice input</span>
 </div>
 <div class="setting-control">
 <label class="toggle-switch">
@@ -959,11 +959,47 @@ Get Free API Key
 </div>
 <div class="setting-item">
 <div class="setting-label">
-<strong>Voice</strong>
-<span>Browser voice for speech</span>
+<strong>Provider</strong>
+<span>Text-to-speech engine</span>
 </div>
 <div class="setting-control">
-<select id="voiceSelect" class="ai-model-select" style="min-width:200px"></select>
+<select id="novaProviderSelect" class="ai-model-select" style="min-width:200px"></select>
+</div>
+</div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Voice</strong>
+<span>Select a voice from the active provider</span>
+</div>
+<div class="setting-control">
+<div class="nova-voice-row">
+<select id="novaVoiceSelect" class="ai-model-select" style="min-width:180px"></select>
+<button id="novaVoicePreview" class="btn btn-secondary nova-preview-btn">Preview</button>
+</div>
+</div>
+</div>
+<div id="novaApiKeys">
+<div class="nova-api-key-group" data-provider="tts-ai">
+<div class="setting-item">
+<div class="setting-label">
+<strong>tts.ai API Key</strong>
+<span>Optional — 5K chars/day free without key</span>
+</div>
+<div class="setting-control">
+<input type="password" id="novaTtsAiKey" class="nova-api-key-input" placeholder="Optional" style="min-width:180px">
+</div>
+</div>
+</div>
+<div class="nova-api-key-group" data-provider="elevenlabs">
+<div class="setting-item">
+<div class="setting-label">
+<strong>ElevenLabs API Key</strong>
+<span>Required — get from elevenlabs.io</span>
+</div>
+<div class="setting-control">
+<input type="password" id="novaElevenLabsKey" class="nova-api-key-input" placeholder="sk-..." style="min-width:180px">
+</div>
+</div>
 </div>
 </div>
 <div class="setting-item">
@@ -1072,6 +1108,7 @@ Get Free API Key
 <script src="js/nvidia-config.js?v=1.0.0"></script>
 <script src="js/nova/nova-stt-providers.js"></script>
 <script src="js/nova/nova-tts-providers.js"></script>
+<script src="js/nova/nova-settings.js"></script>
 <script src="js/ai-assistant.js"></script>
 <script src="js/google-calendar.js"></script>
 <script>
@@ -1238,7 +1275,6 @@ const Settings = {
             aiPromptReset: document.getElementById('aiSettingsPromptReset'),
 
             voiceEnabled: document.getElementById('voiceEnabled'),
-            voiceSelect: document.getElementById('voiceSelect'),
             voiceSpeed: document.getElementById('voiceSpeed'),
             voicePitch: document.getElementById('voicePitch'),
             voiceVolume: document.getElementById('voiceVolume'),
@@ -1305,19 +1341,7 @@ const Settings = {
         this.elements.voicePitchLabel.textContent = savedPitch;
         this.elements.voiceVolumeLabel.textContent = Math.round(savedVolume * 100) + '%';
 
-        const populateVoices = () => {
-            const voices = (window.speechSynthesis ? speechSynthesis.getVoices() : []).filter(v => v.lang.startsWith('en'));
-            this.elements.voiceSelect.innerHTML = '';
-            voices.forEach(v => {
-                const opt = document.createElement('option');
-                opt.value = v.name;
-                opt.textContent = v.name;
-                if (v.name === savedVoiceName) opt.selected = true;
-                this.elements.voiceSelect.appendChild(opt);
-            });
-        };
-        populateVoices();
-        if (window.speechSynthesis) speechSynthesis.onvoiceschanged = populateVoices;
+        if (typeof NovaSettings !== 'undefined') NovaSettings.init();
     },
 
     updateToggleLabels() {
@@ -1357,9 +1381,6 @@ const Settings = {
 
         this.elements.voiceEnabled.addEventListener('change', () => {
             localStorage.setItem('blockflow_ai_voice_enabled', this.elements.voiceEnabled.checked);
-        });
-        this.elements.voiceSelect.addEventListener('change', () => {
-            localStorage.setItem('blockflow_ai_voice_name', this.elements.voiceSelect.value);
         });
         this.elements.voiceSpeed.addEventListener('input', () => {
             localStorage.setItem('blockflow_ai_voice_speed', this.elements.voiceSpeed.value);
@@ -1552,7 +1573,7 @@ const Settings = {
         this.elements.apiStatusText.textContent = connected ? 'AI configured' : 'AI not configured';
     },
 
-    /* ─── AI Assistant Settings ─── */
+/* ─── Nova Settings ─── */
 
     initAiSettings() {
         this.renderAiMemory();
