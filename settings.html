@@ -944,6 +944,58 @@ Get Free API Key
 </section>
 
 <section class="settings-section">
+<h3>Voice</h3>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Enable Voice Replies</strong>
+<span>AI reads responses aloud after streaming completes</span>
+</div>
+<div class="setting-control">
+<label class="toggle-switch">
+<input type="checkbox" id="voiceEnabled" checked>
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Voice</strong>
+<span>Browser voice for speech</span>
+</div>
+<div class="setting-control">
+<select id="voiceSelect" class="ai-model-select" style="min-width:200px"></select>
+</div>
+</div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Speed</strong>
+<span id="voiceSpeedLabel">1.0x</span>
+</div>
+<div class="setting-control">
+<input type="range" id="voiceSpeed" min="0.5" max="2" step="0.1" value="1">
+</div>
+</div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Pitch</strong>
+<span id="voicePitchLabel">1.0</span>
+</div>
+<div class="setting-control">
+<input type="range" id="voicePitch" min="0.5" max="2" step="0.1" value="1">
+</div>
+</div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Volume</strong>
+<span id="voiceVolumeLabel">100%</span>
+</div>
+<div class="setting-control">
+<input type="range" id="voiceVolume" min="0" max="1" step="0.1" value="1">
+</div>
+</div>
+</section>
+
+<section class="settings-section">
 <h3>Help & Walkthrough</h3>
 <div class="setting-item">
 <div class="setting-label">
@@ -1182,6 +1234,15 @@ const Settings = {
             aiPrompt: document.getElementById('aiSettingsPrompt'),
             aiPromptSave: document.getElementById('aiSettingsPromptSave'),
             aiPromptReset: document.getElementById('aiSettingsPromptReset'),
+
+            voiceEnabled: document.getElementById('voiceEnabled'),
+            voiceSelect: document.getElementById('voiceSelect'),
+            voiceSpeed: document.getElementById('voiceSpeed'),
+            voicePitch: document.getElementById('voicePitch'),
+            voiceVolume: document.getElementById('voiceVolume'),
+            voiceSpeedLabel: document.getElementById('voiceSpeedLabel'),
+            voicePitchLabel: document.getElementById('voicePitchLabel'),
+            voiceVolumeLabel: document.getElementById('voiceVolumeLabel'),
         };
     },
 
@@ -1228,6 +1289,33 @@ const Settings = {
         if (autoAdd === 'true') {
             this.elements.autoAddEvents.checked = true;
         }
+
+        const voiceEnabled = localStorage.getItem('blockflow_ai_voice_enabled');
+        this.elements.voiceEnabled.checked = voiceEnabled !== 'false';
+        const savedVoiceName = localStorage.getItem('blockflow_ai_voice_name') || '';
+        const savedSpeed = localStorage.getItem('blockflow_ai_voice_speed') || '1';
+        const savedPitch = localStorage.getItem('blockflow_ai_voice_pitch') || '1';
+        const savedVolume = localStorage.getItem('blockflow_ai_voice_volume') || '1';
+        this.elements.voiceSpeed.value = savedSpeed;
+        this.elements.voicePitch.value = savedPitch;
+        this.elements.voiceVolume.value = savedVolume;
+        this.elements.voiceSpeedLabel.textContent = savedSpeed + 'x';
+        this.elements.voicePitchLabel.textContent = savedPitch;
+        this.elements.voiceVolumeLabel.textContent = Math.round(savedVolume * 100) + '%';
+
+        const populateVoices = () => {
+            const voices = (window.speechSynthesis ? speechSynthesis.getVoices() : []).filter(v => v.lang.startsWith('en'));
+            this.elements.voiceSelect.innerHTML = '';
+            voices.forEach(v => {
+                const opt = document.createElement('option');
+                opt.value = v.name;
+                opt.textContent = v.name;
+                if (v.name === savedVoiceName) opt.selected = true;
+                this.elements.voiceSelect.appendChild(opt);
+            });
+        };
+        populateVoices();
+        if (window.speechSynthesis) speechSynthesis.onvoiceschanged = populateVoices;
     },
 
     updateToggleLabels() {
@@ -1263,6 +1351,25 @@ const Settings = {
         });
         this.elements.autoAddEvents.addEventListener('change', () => {
             localStorage.setItem('blockflow_ai_auto_add', this.elements.autoAddEvents.checked);
+        });
+
+        this.elements.voiceEnabled.addEventListener('change', () => {
+            localStorage.setItem('blockflow_ai_voice_enabled', this.elements.voiceEnabled.checked);
+        });
+        this.elements.voiceSelect.addEventListener('change', () => {
+            localStorage.setItem('blockflow_ai_voice_name', this.elements.voiceSelect.value);
+        });
+        this.elements.voiceSpeed.addEventListener('input', () => {
+            localStorage.setItem('blockflow_ai_voice_speed', this.elements.voiceSpeed.value);
+            this.elements.voiceSpeedLabel.textContent = this.elements.voiceSpeed.value + 'x';
+        });
+        this.elements.voicePitch.addEventListener('input', () => {
+            localStorage.setItem('blockflow_ai_voice_pitch', this.elements.voicePitch.value);
+            this.elements.voicePitchLabel.textContent = this.elements.voicePitch.value;
+        });
+        this.elements.voiceVolume.addEventListener('input', () => {
+            localStorage.setItem('blockflow_ai_voice_volume', this.elements.voiceVolume.value);
+            this.elements.voiceVolumeLabel.textContent = Math.round(this.elements.voiceVolume.value * 100) + '%';
         });
 
         // Needs-key filter toggle — shows only APIs without a saved key

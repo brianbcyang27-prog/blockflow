@@ -36,12 +36,19 @@ const AIAssistant = {
   _maxMemoryPoints: 10,
   _userScrolledUp: false,
   _lastUserMessage: '',
+  _voiceSettings: { enabled: true, name: '', speed: 1.0, pitch: 1.0, volume: 1.0 },
+  _isSpeaking: false,
   _storageKeys: {
     position: 'blockflow_ai_pos',
     model: 'blockflow_ai_model',
     history: 'blockflow_ai_history',
     systemPrompt: 'blockflow_ai_system_prompt',
-    memory: 'blockflow_ai_memory'
+    memory: 'blockflow_ai_memory',
+    voiceEnabled: 'blockflow_ai_voice_enabled',
+    voiceName: 'blockflow_ai_voice_name',
+    voiceSpeed: 'blockflow_ai_voice_speed',
+    voicePitch: 'blockflow_ai_voice_pitch',
+    voiceVolume: 'blockflow_ai_voice_volume'
   },
 
   /**
@@ -70,7 +77,9 @@ const AIAssistant = {
 .ai-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #e5e7eb;gap:12px;flex-shrink:0;cursor:grab;user-select:none}
 .ai-header:active{cursor:grabbing}
 .ai-header-left{display:flex;align-items:center;gap:10px}
-.ai-avatar{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.ai-avatar{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:transform .2s,box-shadow .2s}
+.ai-avatar.speaking{animation:speakPulse 1.2s ease-in-out infinite}
+@keyframes speakPulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(102,126,234,.4)}50%{transform:scale(1.05);box-shadow:0 0 0 8px rgba(102,126,234,0)}}
 .ai-title{font-weight:700;color:#1f2937;font-size:.95rem;white-space:nowrap}
 .ai-model-select{padding:6px 28px 6px 12px;border-radius:20px;border:1.5px solid #e5e7eb;background:#f9fafb url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 8px center;font-size:.78rem;color:#1f2937;cursor:pointer;appearance:none;-webkit-appearance:none;outline:none;font-family:inherit}
 .ai-model-select:focus{border-color:#667eea}
@@ -163,6 +172,9 @@ body.dstyle-dark .ai-thinking-reasoning em{color:#64748b}
 .ai-voice-btn{width:40px;height:40px;border-radius:50%;border:none;background:#f3f4f6;color:#6b7280;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .ai-voice-btn:hover{background:#e5e7eb;color:#374151}
 .ai-voice-btn.listening{background:#fee2e2;color:#ef4444;animation:pulse 1s infinite}
+.ai-speak-btn{width:36px;height:36px;border-radius:50%;border:none;background:transparent;color:#6b7280;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.ai-speak-btn:hover{background:#f3f4f6}
+.ai-speak-btn.muted{opacity:.5}
 .ai-attach-btn{width:36px;height:36px;border-radius:50%;border:none;background:transparent;color:#9ca3af;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .ai-attach-btn:hover{background:#f3f4f6;color:#6b7280}
 .ai-drag-overlay{display:none;position:absolute;inset:0;z-index:10;background:rgba(102,126,234,.08);border-radius:20px;border:3px dashed #667eea;align-items:center;justify-content:center;pointer-events:none}
@@ -321,6 +333,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
       '<button class="ai-attach-btn" id="aiAttachBtn" aria-label="Attach file">📎</button>' +
       '<input type="file" id="aiFileInput" multiple accept=".txt,.md,.csv,.json,.xml,.html,.js,.py,.css,.yaml,.yml,.log,.ini,.cfg,.env" style="display:none">' +
       '<button class="ai-voice-btn" id="aiVoiceBtn" aria-label="Voice input">🎤</button>' +
+      '<button class="ai-speak-btn" id="aiSpeakBtn" aria-label="Toggle voice replies">🔊</button>' +
       '<button class="ai-send-btn" id="aiSend" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>';
     inputWrap.appendChild(inputArea);
 
@@ -345,6 +358,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
   init() {
     this._hasApiKey = !!this.getApiKey();
     this._lazyLoaded = false;
+    this._loadVoiceSettings();
     // Create just the tiny FAB button eagerly; defer the heavy DOM/CSS
     this._createFab();
     var fab = document.getElementById('aiBubble');
@@ -380,6 +394,10 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     this.loadMessageHistory();
     this.addGreeting();
     this._attachedFiles = [];
+    if (this.elements.speakBtn) {
+      this.elements.speakBtn.textContent = this._voiceSettings.enabled ? '🔊' : '🔇';
+      this.elements.speakBtn.classList.toggle('muted', !this._voiceSettings.enabled);
+    }
   },
 
   /**
@@ -393,6 +411,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
       input: document.getElementById('aiInput'),
       sendBtn: document.getElementById('aiSend'),
       voiceBtn: document.getElementById('aiVoiceBtn'),
+      speakBtn: document.getElementById('aiSpeakBtn'),
       closeBtn: document.getElementById('aiClose'),
       modelSelect: document.getElementById('aiModelSelect'),
       suggestions: document.getElementById('aiSuggestions'),
@@ -446,6 +465,9 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
 
     if (this.elements.voiceBtn) {
       this.elements.voiceBtn.addEventListener('click', () => this.toggleVoice());
+    }
+    if (this.elements.speakBtn) {
+      this.elements.speakBtn.addEventListener('click', () => this._toggleVoiceReply());
     }
     if (this.elements.modelSelect) {
       this.syncModelSelect();
@@ -566,6 +588,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
   },
 
   startVoice() {
+    this.stopSpeaking();
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
       this.addAiMessage('Voice input is not supported in this browser. Try Chrome or Edge.');
@@ -615,6 +638,105 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
       try { this._recognition.stop(); } catch (e) { /* silent */ }
       this._recognition = null;
     }
+  },
+
+  _loadVoiceSettings() {
+    if (!window.speechSynthesis) {
+      this._voiceSettings.enabled = false;
+      if (this.elements.speakBtn) this.elements.speakBtn.style.display = 'none';
+      return;
+    }
+    const s = this._voiceSettings;
+    const k = this._storageKeys;
+    s.enabled = localStorage.getItem(k.voiceEnabled) !== 'false';
+    s.name = localStorage.getItem(k.voiceName) || '';
+    s.speed = parseFloat(localStorage.getItem(k.voiceSpeed)) || 1.0;
+    s.pitch = parseFloat(localStorage.getItem(k.voicePitch)) || 1.0;
+    s.volume = parseFloat(localStorage.getItem(k.voiceVolume)) || 1.0;
+    if (this.elements.speakBtn) {
+      this.elements.speakBtn.textContent = s.enabled ? '🔊' : '🔇';
+      this.elements.speakBtn.classList.toggle('muted', !s.enabled);
+    }
+  },
+
+  _saveVoiceSettings() {
+    const s = this._voiceSettings;
+    const k = this._storageKeys;
+    localStorage.setItem(k.voiceEnabled, s.enabled);
+    localStorage.setItem(k.voiceName, s.name);
+    localStorage.setItem(k.voiceSpeed, s.speed);
+    localStorage.setItem(k.voicePitch, s.pitch);
+    localStorage.setItem(k.voiceVolume, s.volume);
+  },
+
+  _toggleVoiceReply() {
+    this._voiceSettings.enabled = !this._voiceSettings.enabled;
+    this._saveVoiceSettings();
+    if (this.elements.speakBtn) {
+      this.elements.speakBtn.textContent = this._voiceSettings.enabled ? '🔊' : '🔇';
+      this.elements.speakBtn.classList.toggle('muted', !this._voiceSettings.enabled);
+    }
+    if (!this._voiceSettings.enabled) {
+      this.stopSpeaking();
+    }
+  },
+
+  _stripForSpeech(text) {
+    let t = text;
+    t = t.replace(/```[\s\S]*?```/g, '');
+    t = t.replace(/`[^`]+`/g, '');
+    t = t.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');
+    t = t.replace(/!\[([^\]]*)\]\([^)]*\)/g, '');
+    t = t.replace(/^#{1,6}\s+/gm, '');
+    t = t.replace(/\*\*([^*]+)\*\*/g, '$1');
+    t = t.replace(/\*([^*]+)\*/g, '$1');
+    t = t.replace(/^>\s+/gm, '');
+    t = t.replace(/^---+$/gm, '');
+    t = t.replace(/^[-*+]\s+/gm, '');
+    t = t.replace(/^\d+\.\s+/gm, '');
+    t = t.replace(/```json[\s\S]*?```/g, '');
+    t = t.replace(/\{[\s\S]*?"tool"[\s\S]*?\}/g, '');
+    t = t.replace(/\s+/g, ' ');
+    return t.trim();
+  },
+
+  speak(text) {
+    if (!this._voiceSettings.enabled || !window.speechSynthesis) return;
+    const clean = this._stripForSpeech(text);
+    if (!clean) return;
+    this.stopSpeaking();
+    const utter = new SpeechSynthesisUtterance(clean);
+    const voices = speechSynthesis.getVoices();
+    if (this._voiceSettings.name) {
+      const found = voices.find(v => v.name === this._voiceSettings.name);
+      if (found) utter.voice = found;
+    }
+    utter.rate = this._voiceSettings.speed;
+    utter.pitch = this._voiceSettings.pitch;
+    utter.volume = this._voiceSettings.volume;
+    const avatar = document.querySelector('.ai-avatar');
+    utter.onstart = () => {
+      this._isSpeaking = true;
+      if (avatar) avatar.classList.add('speaking');
+    };
+    utter.onend = () => {
+      this._isSpeaking = false;
+      if (avatar) avatar.classList.remove('speaking');
+    };
+    utter.onerror = () => {
+      this._isSpeaking = false;
+      if (avatar) avatar.classList.remove('speaking');
+    };
+    speechSynthesis.speak(utter);
+  },
+
+  stopSpeaking() {
+    if (window.speechSynthesis) {
+      try { speechSynthesis.cancel(); } catch (e) { /* silent */ }
+    }
+    this._isSpeaking = false;
+    const avatar = document.querySelector('.ai-avatar');
+    if (avatar) avatar.classList.remove('speaking');
   },
 
   toggle() {
@@ -967,6 +1089,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
   },
 
   sendMessage() {
+    this.stopSpeaking();
     const text = this.elements.input.value.trim();
     if (!text || this.isProcessing) return;
     if (!this._hasApiKey) {
@@ -2465,10 +2588,16 @@ or
           }
           this.showDynamicSuggestions(content);
           this.extractMemoryFromConversation(userText, content);
+          if (this._voiceSettings.enabled) {
+            this.speak(content);
+          }
         } else {
           const fallbackReply = this.getFallbackAssistantReply();
           this.addAiMessage(fallbackReply);
           this.showDynamicSuggestions(fallbackReply);
+          if (this._voiceSettings.enabled) {
+            this.speak(fallbackReply);
+          }
         }
       }
     } catch (error) {
@@ -2587,6 +2716,10 @@ or
     this.showDynamicSuggestions(finalContent);
 
     this.extractMemoryFromConversation(userText, cleanContent);
+
+    if (this._voiceSettings.enabled && cleanContent) {
+      this.speak(cleanContent);
+    }
   },
 
   /**
