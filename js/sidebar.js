@@ -108,18 +108,24 @@
   }
 
   function openSidebar() {
+    document.body.classList.remove('sidebar-closing');
     document.body.classList.add('sidebar-open');
     var toggle = document.getElementById('sidebarToggle');
     if (toggle) toggle.setAttribute('aria-expanded', 'true');
   }
 
   function closeSidebar() {
-    document.body.classList.remove('sidebar-open');
+    if (!document.body.classList.contains('sidebar-open')) return;
+    document.body.classList.add('sidebar-closing');
     var toggle = document.getElementById('sidebarToggle');
     if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    setTimeout(function () {
+      document.body.classList.remove('sidebar-open', 'sidebar-closing');
+    }, 650);
   }
 
   function toggleSidebar() {
+    if (document.body.classList.contains('sidebar-closing')) return;
     if (document.body.classList.contains('sidebar-open')) closeSidebar();
     else openSidebar();
   }
@@ -176,7 +182,7 @@
     container.insertBefore(toggle, container.firstChild);
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && document.body.classList.contains('sidebar-open')) closeSidebar();
+      if (e.key === 'Escape' && document.body.classList.contains('sidebar-open') && !document.body.classList.contains('sidebar-closing')) closeSidebar();
     });
 
     if (typeof FirebaseAuth !== 'undefined') {
