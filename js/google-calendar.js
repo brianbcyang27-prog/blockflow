@@ -28,7 +28,6 @@ const GoogleCalendar = {
         scope: this.SCOPE,
         callback: (response) => this.handleTokenResponse(response),
         error_callback: (error) => {
-          console.error('GIS error:', error);
           this.updateStatus('Authentication failed. Please try again.', 'error');
           this.importInProgress = false;
           this.elements.btn.disabled = false;
@@ -37,8 +36,7 @@ const GoogleCalendar = {
       });
       return true;
     } catch (e) {
-      console.error('Failed to init token client:', e);
-      this.updateStatus('Failed to initialize. Check console.', 'error');
+      this.updateStatus('Failed to initialize Google Calendar.', 'error');
       return false;
     }
   },
@@ -116,7 +114,7 @@ const GoogleCalendar = {
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => { console.warn('[GoogleCalendar] Failed to parse error response'); return {}; });
+        const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.error?.message || 'HTTP ' + response.status);
       }
 
@@ -124,7 +122,6 @@ const GoogleCalendar = {
       const items = data.items || [];
       this.importEvents(items);
     } catch (error) {
-      console.error('Calendar API error:', error);
       this.updateStatus('Failed to import: ' + error.message, 'error');
       this.importInProgress = false;
       this.elements.btn.disabled = false;

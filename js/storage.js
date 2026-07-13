@@ -20,7 +20,6 @@ const Storage = {
         try {
             return localStorage.getItem(key);
         } catch (e) {
-            console.error('localStorage read error:', e);
             return null;
         }
     },
@@ -30,15 +29,18 @@ const Storage = {
             localStorage.setItem(key, value);
             return true;
         } catch (e) {
-            console.error('localStorage write error:', e);
-            alert('Storage error: Unable to save data. Please clear some browser storage and try again.');
+            if (typeof UI !== 'undefined' && UI.showToast) {
+                UI.showToast('Storage full. Clear some browser storage and try again.', 'error');
+            }
             return false;
         }
     },
 
     getData() {
         if (!this.isLocalStorageAvailable()) {
-            alert('localStorage is not available. Your data will not be saved.');
+            if (typeof UI !== 'undefined' && UI.showToast) {
+                UI.showToast('Storage unavailable. Your data will not be saved.', 'error');
+            }
             return this.getDefaultData();
         }
         const data = this.safeGetItem(this.STORAGE_KEY);
@@ -46,7 +48,6 @@ const Storage = {
             try {
                 return JSON.parse(data);
             } catch (e) {
-                console.error('Failed to parse stored data:', e);
                 return this.getDefaultData();
             }
         }
@@ -115,7 +116,6 @@ const Storage = {
         try {
             return JSON.parse(history);
         } catch (e) {
-            console.error('Failed to parse history:', e);
             return [];
         }
     },
@@ -180,7 +180,6 @@ const Storage = {
         try {
             return JSON.parse(data);
         } catch (e) {
-            console.error('Failed to parse calendar events:', e);
             return [];
         }
     },

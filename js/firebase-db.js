@@ -11,7 +11,6 @@ var FirebaseDB = (function() {
     function isUserAuthenticated() {
         var uid = getUserId();
         if (!uid) {
-            console.warn('FirebaseDB: No user ID found. User may not be authenticated.');
             return false;
         }
         return true;
@@ -21,7 +20,6 @@ var FirebaseDB = (function() {
         init: function() {
             FirebaseApp.init();
             if (typeof firebase === 'undefined' || !firebase.firestore) {
-                console.warn('Firestore SDK not available');
                 return false;
             }
             db = firebase.firestore();
@@ -34,7 +32,6 @@ var FirebaseDB = (function() {
 
         getEvents: async function() {
             if (!isUserAuthenticated()) {
-                console.warn('FirebaseDB.getEvents: User not authenticated');
                 return null;
             }
             var uid = getUserId();
@@ -50,9 +47,7 @@ var FirebaseDB = (function() {
                 });
                 return events;
             } catch(e) {
-                console.error('Firestore getEvents error:', e.message, 'Code:', e.code);
                 if (e.code === 'permission-denied') {
-                    console.warn('Check Firestore rules and user authentication');
                 }
                 return null;
             }
@@ -60,7 +55,6 @@ var FirebaseDB = (function() {
 
         saveEvent: async function(event) {
             if (!isUserAuthenticated()) {
-                console.warn('FirebaseDB.saveEvent: User not authenticated');
                 return false;
             }
             var uid = getUserId();
@@ -76,9 +70,7 @@ var FirebaseDB = (function() {
                 }
                 return true;
             } catch(e) {
-                console.error('Firestore saveEvent error:', e.message, 'Code:', e.code);
                 if (e.code === 'permission-denied') {
-                    console.warn('Check Firestore rules and user authentication');
                 }
                 return false;
             }
@@ -86,7 +78,6 @@ var FirebaseDB = (function() {
 
         deleteEvent: async function(eventId) {
             if (!isUserAuthenticated()) {
-                console.warn('FirebaseDB.deleteEvent: User not authenticated');
                 return false;
             }
             var uid = getUserId();
@@ -96,9 +87,7 @@ var FirebaseDB = (function() {
                     .collection('events').doc(eventId).delete();
                 return true;
             } catch(e) {
-                console.error('Firestore deleteEvent error:', e.message, 'Code:', e.code);
                 if (e.code === 'permission-denied') {
-                    console.warn('Check Firestore rules and user authentication');
                 }
                 return false;
             }
@@ -106,7 +95,6 @@ var FirebaseDB = (function() {
 
         getHistory: async function() {
             if (!isUserAuthenticated()) {
-                console.warn('FirebaseDB.getHistory: User not authenticated');
                 return null;
             }
             var uid = getUserId();
@@ -116,9 +104,7 @@ var FirebaseDB = (function() {
                     .collection('data').doc('history').get();
                 return doc.exists ? doc.data().records || [] : [];
             } catch(e) {
-                console.error('Firestore getHistory error:', e.message, 'Code:', e.code);
                 if (e.code === 'permission-denied') {
-                    console.warn('Check Firestore rules and user authentication');
                 }
                 return null;
             }
@@ -126,7 +112,6 @@ var FirebaseDB = (function() {
 
         saveHistory: async function(records) {
             if (!isUserAuthenticated()) {
-                console.warn('FirebaseDB.saveHistory: User not authenticated');
                 return false;
             }
             var uid = getUserId();
@@ -136,9 +121,7 @@ var FirebaseDB = (function() {
                     .collection('data').doc('history').set({ records: records });
                 return true;
             } catch(e) {
-                console.error('Firestore saveHistory error:', e.message, 'Code:', e.code);
                 if (e.code === 'permission-denied') {
-                    console.warn('Check Firestore rules and user authentication');
                 }
                 return false;
             }
@@ -146,7 +129,6 @@ var FirebaseDB = (function() {
 
         getSettings: async function() {
             if (!isUserAuthenticated()) {
-                console.warn('FirebaseDB.getSettings: User not authenticated');
                 return null;
             }
             var uid = getUserId();
@@ -156,9 +138,7 @@ var FirebaseDB = (function() {
                     .collection('data').doc('settings').get();
                 return doc.exists ? doc.data() : null;
             } catch(e) {
-                console.error('Firestore getSettings error:', e.message, 'Code:', e.code);
                 if (e.code === 'permission-denied') {
-                    console.warn('Check Firestore rules and user authentication');
                 }
                 return null;
             }
@@ -166,7 +146,6 @@ var FirebaseDB = (function() {
 
         saveSettings: async function(settings) {
             if (!isUserAuthenticated()) {
-                console.warn('FirebaseDB.saveSettings: User not authenticated');
                 return false;
             }
             var uid = getUserId();
@@ -176,9 +155,7 @@ var FirebaseDB = (function() {
                     .collection('data').doc('settings').set(settings, { merge: true });
                 return true;
             } catch(e) {
-                console.error('Firestore saveSettings error:', e.message, 'Code:', e.code);
                 if (e.code === 'permission-denied') {
-                    console.warn('Check Firestore rules and user authentication');
                 }
                 return false;
             }
@@ -193,7 +170,6 @@ var FirebaseDB = (function() {
                     .collection('data').doc('aiHistory').get();
                 return doc.exists ? doc.data().messages || [] : [];
             } catch(e) {
-                console.error('Firestore getAiHistory error:', e.message);
                 return null;
             }
         },
@@ -207,7 +183,6 @@ var FirebaseDB = (function() {
                     .collection('data').doc('aiHistory').set({ messages: messages });
                 return true;
             } catch(e) {
-                console.error('Firestore saveAiHistory error:', e.message);
                 return false;
             }
         },
@@ -221,7 +196,6 @@ var FirebaseDB = (function() {
                     .collection('data').doc('aiMemory').get();
                 return doc.exists ? doc.data().memoryPoints || [] : [];
             } catch(e) {
-                console.error('Firestore getAiMemory error:', e.message);
                 return null;
             }
         },
@@ -235,7 +209,6 @@ var FirebaseDB = (function() {
                     .collection('data').doc('aiMemory').set({ memoryPoints: memoryPoints });
                 return true;
             } catch(e) {
-                console.error('Firestore saveAiMemory error:', e.message);
                 return false;
             }
         },
@@ -249,7 +222,6 @@ var FirebaseDB = (function() {
                     .collection('metadata').doc('migration').get();
                 return doc.exists ? doc.data() : null;
             } catch(e) {
-                console.error('Firestore getMigrationStatus error:', e.message);
                 return null;
             }
         },
@@ -267,7 +239,6 @@ var FirebaseDB = (function() {
                     });
                 return true;
             } catch(e) {
-                console.error('Firestore setMigrationComplete error:', e.message);
                 return false;
             }
         }

@@ -15,7 +15,6 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
 .settings-container {
-.settings-container {
 max-width: 650px;
 margin: 0 auto;
 display: flex;
@@ -1002,7 +1001,7 @@ Get Free API Key
 <section class="about-section">
 <h3>BlockFlow</h3>
 <p>A simple productivity app to reduce scrolling addiction and improve focus</p>
-<p class="version">Version 3.0.0</p>
+<p class="version">Version 2.1.0</p>
 </section>
 </div>
 
@@ -1660,8 +1659,10 @@ const Settings = {
             localStorage.removeItem('blockflow_nvidia_model');
             localStorage.removeItem('blockflow_calendar_events');
             ['bf_key_gemini','bf_key_groq','bf_key_openrouter','bf_key_cerebras','bf_key_mistral','bf_key_nvidia','bf_key_ocrspace'].forEach(k => localStorage.removeItem(k));
-            alert('All data cleared. Please refresh the page.');
-            location.reload();
+            if (typeof UI !== 'undefined' && UI.showToast) {
+                UI.showToast('All data cleared. Refreshing...', 'success');
+            }
+            setTimeout(function() { location.reload(); }, 800);
         }
     },
 
@@ -1719,5 +1720,6 @@ navigator.serviceWorker.register('sw.js')
   document.addEventListener('mouseenter', function() { cursor.style.opacity = '1'; dot.style.opacity = '1'; });
 })();
 </script>
+<div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>

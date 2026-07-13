@@ -29,24 +29,20 @@
 
     var status = await FirebaseDB.getMigrationStatus();
     if (status && status.completed && status.version >= MIGRATION_VERSION) {
-      console.log('[Migration] Already completed (v' + status.version + ')');
       return;
     }
 
     if (!hasLocalData()) {
-      console.log('[Migration] No local data to migrate');
       await FirebaseDB.setMigrationComplete(MIGRATION_VERSION);
       return;
     }
 
-    console.log('[Migration] Starting localStorage → Firestore migration');
 
     var aiHistory = getLocal(STORAGE_KEYS.history);
     if (aiHistory && Array.isArray(aiHistory) && aiHistory.length > 0) {
       var existing = await FirebaseDB.getAiHistory();
       if (!existing || existing.length === 0) {
         await FirebaseDB.saveAiHistory(aiHistory);
-        console.log('[Migration] Migrated ' + aiHistory.length + ' AI history messages');
       }
     }
 
@@ -55,7 +51,6 @@
       var existingMem = await FirebaseDB.getAiMemory();
       if (!existingMem || existingMem.length === 0) {
         await FirebaseDB.saveAiMemory(aiMemory);
-        console.log('[Migration] Migrated ' + aiMemory.length + ' AI memory points');
       }
     }
 
@@ -66,7 +61,6 @@
         for (var i = 0; i < events.length; i++) {
           await FirebaseDB.saveEvent(events[i]);
         }
-        console.log('[Migration] Migrated ' + events.length + ' calendar events');
       }
     }
 
@@ -75,12 +69,10 @@
       var existingHistory = await FirebaseDB.getHistory();
       if (!existingHistory || existingHistory.length === 0) {
         await FirebaseDB.saveHistory(historyRecords);
-        console.log('[Migration] Migrated ' + historyRecords.length + ' history records');
       }
     }
 
     await FirebaseDB.setMigrationComplete(MIGRATION_VERSION);
-    console.log('[Migration] Migration complete');
   }
 
   async function syncFromFirestoreToLocalStorage() {
@@ -93,7 +85,6 @@
         var localHistory = getLocal(STORAGE_KEYS.history);
         if (!localHistory || localHistory.length === 0) {
           localStorage.setItem(STORAGE_KEYS.history, JSON.stringify(firestoreHistory));
-          console.log('[Sync] Loaded AI history from Firestore');
         }
       }
 
@@ -102,11 +93,9 @@
         var localMemory = getLocal(STORAGE_KEYS.memory);
         if (!localMemory || localMemory.length === 0) {
           localStorage.setItem(STORAGE_KEYS.memory, JSON.stringify(firestoreMemory));
-          console.log('[Sync] Loaded AI memory from Firestore');
         }
       }
     } catch (e) {
-      console.warn('[Sync] Error syncing from Firestore:', e);
     }
   }
 

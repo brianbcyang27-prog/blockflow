@@ -118,9 +118,7 @@ const App = {
             try {
                 const parsed = JSON.parse(savedSettings);
                 defaultDuration = parseInt(parsed.focusDuration) || 25;
-            } catch (e) {
-                console.error('Failed to load timer settings:', e);
-            }
+            } catch (e) { /* silent */ }
         }
 
         const focusBlockDuration = this.currentData.blocks.focus.duration;
@@ -144,7 +142,7 @@ const App = {
                     if (appSettings) {
                         try {
                             soundEnabled = JSON.parse(appSettings).soundNotifications !== false;
-                        } catch (e) { console.warn('[App] parse settings (break):', e); }
+                        } catch (e) { /* silent */ }
                     }
                     if (soundEnabled) {
                         this.playNotificationSound();
@@ -167,7 +165,7 @@ const App = {
                             const parsed = JSON.parse(appSettings);
                             soundEnabled = parsed.soundNotifications !== false;
                             autoBreak = parsed.autoBreak === true;
-                        } catch (e) { console.warn('[App] parse settings (focus):', e); }
+                        } catch (e) { /* silent */ }
                     }
                     if (soundEnabled) {
                         this.playNotificationSound();

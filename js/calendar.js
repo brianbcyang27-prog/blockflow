@@ -403,7 +403,7 @@ const Calendar = {
             this.pendingAiResult = null;
             this.pendingAiValues = null;
             if (timedOut) {
-                console.warn('AI analysis timed out');
+
             }
         };
         if (!apiKey) { noAi(); return; }
@@ -485,7 +485,8 @@ const Calendar = {
         } catch (error) {
             clearTimeout(this._aiTimeoutId);
             if (error.name === 'AbortError') { noAi(true); return; }
-            console.error('AI analysis failed:', error);
+
+
             noAi();
         }
     },

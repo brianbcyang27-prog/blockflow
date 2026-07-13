@@ -591,7 +591,6 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     };
 
     this._recognition.onerror = (event) => {
-      console.error('Speech error:', event.error);
       this.stopVoice();
       if (event.error !== 'no-speech') {
         this.addAiMessage('Could not hear you. Please try typing instead.');
@@ -613,7 +612,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     }
     this.elements.input.placeholder = 'Ask me anything...';
     if (this._recognition) {
-      try { this._recognition.stop(); } catch (e) { console.warn('[AI] recognition stop:', e); }
+      try { this._recognition.stop(); } catch (e) { /* silent */ }
       this._recognition = null;
     }
   },
@@ -702,14 +701,14 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
   },
 
   savePosition(pos) {
-    try { localStorage.setItem(this._storageKeys.position, JSON.stringify(pos)); } catch (e) { console.warn('[AI] save position:', e); }
+    try { localStorage.setItem(this._storageKeys.position, JSON.stringify(pos)); } catch (e) { /* silent */ }
   },
 
   loadPosition() {
     try {
       const saved = localStorage.getItem(this._storageKeys.position);
       return saved ? JSON.parse(saved) : null;
-    } catch (e) { console.warn('[AI] load position:', e); return null; }
+    } catch (e) { return null; }
   },
 
   initDrag() {
@@ -925,7 +924,6 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
       if (!raw) return;
       // Check if the stored data is too large and trim it
       if (raw.length > 500000) {
-        console.warn('[AI] history too large (' + (raw.length / 1024).toFixed(0) + 'KB), truncating');
         const parsed = JSON.parse(raw);
         const trimmed = parsed.slice(-50); // keep last 50 messages
         this.messages = trimmed;
@@ -956,7 +954,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
         container.appendChild(div);
       });
       this.scrollToBottom();
-    } catch (e) { console.warn('[AI] load message history:', e); }
+    } catch (e) { /* silent */ }
   },
 
   /**
@@ -965,7 +963,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
   saveMessageHistory() {
     try {
       localStorage.setItem(this._storageKeys.history, JSON.stringify(this.messages));
-    } catch (e) { console.warn('[AI] save history:', e); }
+    } catch (e) { /* silent */ }
   },
 
   sendMessage() {
@@ -1097,7 +1095,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
           btn.classList.remove('copied');
           btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
         }, 2000);
-      }).catch(() => console.warn('[AI] clipboard copy failed'));
+      }).catch(() => {});
     });
     msgEl.appendChild(btn);
   },
@@ -1619,7 +1617,7 @@ FINAL RULES
   saveMemoryPoints() {
     try {
       localStorage.setItem(this._storageKeys.memory, JSON.stringify(this.memoryPoints));
-    } catch (e) { console.warn('[AI] save memory:', e); }
+    } catch (e) { /* silent */ }
   },
 
   /**
@@ -1805,7 +1803,6 @@ or
         this.addAutomaticMemory(extracted);
       }
     } catch (e) {
-      console.warn('[AI] Memory extraction failed:', e.message);
     }
   },
 
@@ -1945,7 +1942,7 @@ or
         if (parsed.tool && typeof parsed.tool === 'string') {
           calls.push(parsed);
         }
-      } catch(e) { console.warn('[AI] parse tool call:', e); }
+      } catch(e) { /* silent */ }
     }
     return calls;
   },
@@ -2448,7 +2445,7 @@ or
 
       if (!response.ok) {
         let errText = '';
-        try { errText = await response.text(); } catch(e) { console.warn('[AI] read error body:', e); }
+        try { errText = await response.text(); } catch(e) { /* silent */ }
         const detail = errText ? errText.slice(0, 120) : 'No additional details';
         throw new Error(`API error: ${response.status}\n${detail}`);
       }
@@ -2552,11 +2549,10 @@ or
               this.updateReasoning(fullContent);
               this.scrollToBottom();
             }
-          } catch(e) { console.warn('[AI] stream parse chunk:', e); }
+          } catch(e) { /* silent */ }
         }
       }
     } catch(e) {
-      console.error('Stream error:', e);
     }
 
     if (buffer) {
@@ -2568,7 +2564,7 @@ or
             const parsed = JSON.parse(data);
             const delta = parsed.choices?.[0]?.delta;
             if (delta?.content) fullContent += delta.content;
-          } catch(e) { console.warn('[AI] stream parse final:', e); }
+          } catch(e) { /* silent */ }
         }
       }
     }

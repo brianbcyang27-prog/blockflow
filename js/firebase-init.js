@@ -17,7 +17,7 @@ const FirebaseApp = (function() {
         init() {
             if (initialized) return true;
             if (typeof firebase === 'undefined') {
-                console.warn('Firebase SDK not loaded yet — will init on first use');
+                /* Firebase SDK not loaded yet — will init on first use */
                 return false;
             }
             if (!firebase.apps.length) {

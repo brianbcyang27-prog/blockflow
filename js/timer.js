@@ -61,9 +61,7 @@ const Timer = {
     };
     try {
       localStorage.setItem(this.TIMER_STATE_KEY, JSON.stringify(state));
-    } catch (e) {
-      console.error('Failed to save timer state:', e);
-    }
+    } catch (e) { /* silent */ }
   },
 
   clearState() {

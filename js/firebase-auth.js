@@ -15,7 +15,6 @@ var FirebaseAuth = (function() {
     function setBypass(active) {
         if (active) {
             localStorage.setItem(BYPASS_KEY, 'true');
-            console.log('[FirebaseAuth] Local/bypass authentication mode enabled (uid: local)');
         } else {
             localStorage.removeItem(BYPASS_KEY);
         }
@@ -24,9 +23,7 @@ var FirebaseAuth = (function() {
     function notifyListeners(user) {
         currentUser = user;
         if (user) {
-            console.log('[FirebaseAuth] User updated:', user.uid, '(authenticated:', !user.isAnonymous, ')');
         } else {
-            console.log('[FirebaseAuth] User signed out');
         }
         authListeners.forEach(function(cb) { cb(user); });
     }
@@ -35,20 +32,16 @@ var FirebaseAuth = (function() {
         init: function() {
             FirebaseApp.init();
             if (typeof firebase === 'undefined' || !firebase.auth) {
-                console.warn('[FirebaseAuth] Firebase Auth SDK not loaded — falling back to local mode');
                 notifyListeners(getBypassUser());
                 setBypass(true);
                 return true;
             }
-            console.log('[FirebaseAuth] Initializing with Firebase SDK');
             auth = firebase.auth();
             if (isBypassActive()) {
-                console.log('[FirebaseAuth] Firebase SDK loaded — clearing stale bypass flag');
                 setBypass(false);
             }
             auth.onAuthStateChanged(function(user) {
                 if (user) {
-                    console.log('[FirebaseAuth] Firebase user authenticated:', user.uid);
                     localStorage.setItem('blockflow_auth_user', JSON.stringify({
                         uid: user.uid,
                         email: user.email,
@@ -57,13 +50,11 @@ var FirebaseAuth = (function() {
                     }));
                     notifyListeners(user);
                 } else {
-                    console.log('[FirebaseAuth] No Firebase user - checking for stored user');
                     var stored = localStorage.getItem('blockflow_auth_user');
                     if (stored) {
                         try {
                             notifyListeners(JSON.parse(stored));
                         } catch(e) {
-                            console.error('[FirebaseAuth] Failed to parse stored user:', e);
                             notifyListeners(null);
                         }
                     } else {
@@ -73,7 +64,6 @@ var FirebaseAuth = (function() {
             });
             var stored = localStorage.getItem('blockflow_auth_user');
             if (stored && !currentUser) {
-                try { currentUser = JSON.parse(stored); } catch(e) { console.warn('[FirebaseAuth] Failed to parse stored user (init):', e); }
             }
             return true;
         },
@@ -89,18 +79,14 @@ var FirebaseAuth = (function() {
 
         signIn: async function() {
             if (isBypassActive()) {
-                console.log('[FirebaseAuth] SignIn: using bypass mode');
                 return { success: true, user: currentUser };
             }
             if (!auth) {
-                console.log('[FirebaseAuth] SignIn: Firebase SDK not available');
                 return { success: false, error: 'Firebase SDK not loaded' };
             }
             try {
-                console.log('[FirebaseAuth] SignIn: initiating Google popup');
                 var provider = new firebase.auth.GoogleAuthProvider();
                 var result = await auth.signInWithPopup(provider);
-                console.log('[FirebaseAuth] SignIn: successful -', result.user.uid);
                 localStorage.setItem('blockflow_auth_user', JSON.stringify({
                     uid: result.user.uid,
                     email: result.user.email,
@@ -109,7 +95,6 @@ var FirebaseAuth = (function() {
                 }));
                 return { success: true, user: result.user };
             } catch (error) {
-                console.error('[FirebaseAuth] Sign-in error:', error.message);
                 return { success: false, error: error.message };
             }
         },
@@ -121,7 +106,6 @@ var FirebaseAuth = (function() {
                 return { success: true };
             }
             try {
-                console.log('[FirebaseAuth] Signing out from Firebase');
                 await auth.signOut();
                 currentUser = null;
                 localStorage.removeItem('blockflow_auth_user');
@@ -129,13 +113,11 @@ var FirebaseAuth = (function() {
                 notifyListeners(null);
                 return { success: true };
             } catch (error) {
-                console.error('[FirebaseAuth] Sign-out error:', error);
                 return { success: false, error: error.message };
             }
         },
 
         skipSignIn: function() {
-            console.log('[FirebaseAuth] User skipped sign-in, enabling bypass mode');
             setBypass(true);
             notifyListeners(getBypassUser());
         },
