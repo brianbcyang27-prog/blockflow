@@ -6,6 +6,16 @@ Built by Brian Yang during his internship at Eways.
 
 ---
 
+## Latest Release
+
+**BlockFlow v2.1.0 — Flow Navigation Update**
+
+A UX-focused update introducing a redesigned navigation experience with animated sidebar transitions and improved application usability.
+
+[View Release Notes](docs/releases/v2.1.0/RELEASE_NOTES.md)
+
+---
+
 ## Quick Start
 
 ```bash
@@ -28,8 +38,33 @@ Then open **http://localhost:8000**
 - **Calendar** — Event management with AI-powered categorization
 - **Google Calendar Import** — OAuth-based event import
 - **7-day History** — Track focus time, distractions, and completion rates
-- **PWA** — Installable on mobile/desktop, offline-capable
-- **Firebase Sync** — Optional cloud backup via Google Sign-In
+- **Animated Sidebar Navigation** — Smooth transitions, premium feel
+- **Firebase Account System** — Optional cloud backup via Google Sign-In
+- **PWA Support** — Installable on mobile/desktop, offline-capable
+
+---
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+### Calendar
+
+![Calendar](docs/screenshots/calendar.png)
+
+### AI Assistant
+
+![AI Assistant](docs/screenshots/ai-assistant.png)
+
+### Sidebar Navigation
+
+![Sidebar](docs/screenshots/sidebar.png)
+
+### Settings
+
+![Settings](docs/screenshots/settings.png)
 
 ---
 
@@ -125,9 +160,28 @@ BlockFlow/
 │   ├── README.md           ← Documentation index
 │   ├── reports/            ← Technical reports
 │   ├── screenshots/        ← App screenshots
-│   └── development/        ← Config/debug files
+│   └── releases/           ← Release documentation
 ├── README.md           ← This file
 └── CHANGELOG.md        ← Version history
 ```
 
 See [docs/README.md](docs/README.md) for detailed documentation.
+
+---
+
+## Version History
+
+See [CHANGELOG.md](CHANGELOG.md) for full version history.
+
+| Version | Release | Highlights |
+|---------|---------|------------|
+| v2.1.0 | 2026-07-13 | Animated sidebar navigation, UX improvements |
+| v2.0.0 | — | Memory system, UI/UX upgrade |
+| v1.2.0 | — | Streaming fixes, AI stabilization |
+| v1.0.0 | — | Initial release |
+
+---
+
+## License
+
+See [LICENSE](LICENSE) for details.

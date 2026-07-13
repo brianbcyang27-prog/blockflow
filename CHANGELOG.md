@@ -4,7 +4,34 @@ All notable changes to BlockFlow are documented here.
 
 ---
 
-## v3.1.0 — Sidebar Navigation Fix + Project Cleanup
+## [2.1.0] - 2026-07-13
+
+### Added
+- Animated sidebar navigation with toggle button (hamburger → X morph)
+- Multi-phase closing animation with spring easing
+- AI Assistant and Analytics actions in sidebar
+- User profile section with Firebase auth integration
+- localStorage → Firestore migration system
+- Escape key and overlay click to close sidebar
+- Staggered animation delays for premium feel
+
+### Changed
+- Updated navigation layout from horizontal tabs to animated sidebar
+- Improved user interface flow and transitions
+- Enhanced sidebar interaction with state management
+- Header padding adjusted for toggle button clearance
+
+### Fixed
+- Sidebar navigation links (Home, Calendar, Settings) now respond correctly
+- Click handlers prevent default, close sidebar, then navigate after animation
+- Current page links close sidebar without unnecessary navigation
+- Animation state conflicts resolved
+- Overlay pointer events handled correctly
+- Rapid toggle prevention during transitions
+
+---
+
+## [3.1.0] - Sidebar Navigation Fix + Project Cleanup
 
 ### Fixed
 - Sidebar navigation links (Home, Calendar, Settings) now navigate correctly with closing animation
@@ -17,7 +44,7 @@ All notable changes to BlockFlow are documented here.
 
 ---
 
-## v3.0.0 — Sidebar Shell + Account Management
+## [3.0.0] - Sidebar Shell + Account Management
 
 ### Added
 - Animated sidebar navigation with toggle button (hamburger → X morph)
@@ -33,7 +60,7 @@ All notable changes to BlockFlow are documented here.
 
 ---
 
-## v2.x — Memory System + UI/UX Upgrade
+## [2.x] - Memory System + UI/UX Upgrade
 
 ### Added
 - Intelligent long-term memory system for AI assistant
@@ -53,7 +80,7 @@ All notable changes to BlockFlow are documented here.
 
 ---
 
-## v1.0.0 — Initial Release
+## [1.0.0] - Initial Release
 
 ### Added
 - 3-Block Planner (Focus, Personal, Recovery)
