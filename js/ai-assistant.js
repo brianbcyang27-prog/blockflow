@@ -171,7 +171,9 @@ body.dstyle-dark .ai-thinking-reasoning em{color:#64748b}
 .ai-input::placeholder{color:#9ca3af}
 .ai-voice-btn{width:40px;height:40px;border-radius:50%;border:none;background:#f3f4f6;color:#6b7280;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .ai-voice-btn:hover{background:#e5e7eb;color:#374151}
-.ai-voice-btn.listening{background:#fee2e2;color:#ef4444;animation:pulse 1s infinite}
+.ai-voice-btn.listening{background:#fee2e2;color:#ef4444;animation:micPulse 1s ease-in-out infinite}
+@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 12px rgba(239,68,68,0)}}
+.ai-input.interim{color:#6b7280;font-style:italic}
 .ai-speak-btn{width:36px;height:36px;border-radius:50%;border:none;background:transparent;color:#6b7280;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .ai-speak-btn:hover{background:#f3f4f6}
 .ai-speak-btn.muted{opacity:.5}
@@ -602,38 +604,117 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
 
     this._recognition = new SpeechRecognition();
     this._recognition.lang = 'en-US';
-    this._recognition.continuous = false;
-    this._recognition.interimResults = false;
+    this._recognition.continuous = true;
+    this._recognition.interimResults = true;
+    this._recognition.maxAlternatives = 1;
+
+    this._voiceFinalTranscript = '';
+    this._voiceLastResultIndex = 0;
+    this._voicePauseTimeout = null;
 
     this._recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      this.elements.input.value = transcript;
-      this.autoResize();
-      this.stopVoice();
-      this.sendMessage();
-    };
+      let interimTranscript = '';
 
-    this._recognition.onerror = (event) => {
-      this.stopVoice();
-      if (event.error !== 'no-speech') {
-        this.addAiMessage('Could not hear you. Please try typing instead.');
+      for (let i = this._voiceLastResultIndex; i < event.results.length; i++) {
+        const result = event.results[i];
+        const transcript = result[0].transcript;
+
+        if (result.isFinal) {
+          this._voiceFinalTranscript += transcript;
+        } else {
+          interimTranscript += transcript;
+        }
+      }
+
+      this._voiceLastResultIndex = event.results.length;
+
+      const displayText = this._voiceFinalTranscript + interimTranscript;
+      this.elements.input.value = displayText;
+      this.autoResize();
+
+      if (interimTranscript) {
+        this.elements.input.classList.add('interim');
+      } else {
+        this.elements.input.classList.remove('interim');
+      }
+
+      if (this._voiceFinalTranscript) {
+        this._resetVoicePauseTimeout();
       }
     };
 
-    this._recognition.onend = () => {
+    this._recognition.onerror = (event) => {
+      if (event.error === 'no-speech' || event.error === 'aborted') {
+        return;
+      }
       this.stopVoice();
+      this.addAiMessage('Could not hear you. Please try typing instead.');
+    };
+
+    this._recognition.onend = () => {
+      if (this.isListening && this._voiceFinalTranscript) {
+        this._sendVoiceTranscript();
+      } else if (this.isListening) {
+        this._restartVoiceRecognition();
+      }
     };
 
     this._recognition.start();
   },
 
+  _resetVoicePauseTimeout() {
+    if (this._voicePauseTimeout) {
+      clearTimeout(this._voicePauseTimeout);
+    }
+    this._voicePauseTimeout = setTimeout(() => {
+      this._sendVoiceTranscript();
+    }, 1500);
+  },
+
+  _sendVoiceTranscript() {
+    if (this._voicePauseTimeout) {
+      clearTimeout(this._voicePauseTimeout);
+      this._voicePauseTimeout = null;
+    }
+
+    const transcript = this._voiceFinalTranscript.trim();
+    this.stopVoice();
+
+    if (transcript) {
+      this.elements.input.value = transcript;
+      this.autoResize();
+      this.sendMessage();
+    }
+  },
+
+  _restartVoiceRecognition() {
+    if (!this.isListening) return;
+
+    try {
+      this._recognition.start();
+    } catch (error) {
+      // Already started, ignore
+    }
+  },
+
   stopVoice() {
     this.isListening = false;
+
+    if (this._voicePauseTimeout) {
+      clearTimeout(this._voicePauseTimeout);
+      this._voicePauseTimeout = null;
+    }
+
+    this._voiceFinalTranscript = '';
+    this._voiceLastResultIndex = 0;
+
     if (this.elements.voiceBtn) {
       this.elements.voiceBtn.classList.remove('listening');
       this.elements.voiceBtn.textContent = '🎤';
     }
     this.elements.input.placeholder = 'Ask me anything...';
+    this.elements.input.classList.remove('interim');
+
     if (this._recognition) {
       try { this._recognition.stop(); } catch (e) { /* silent */ }
       this._recognition = null;
@@ -701,33 +782,49 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
   },
 
   speak(text) {
-    if (!this._voiceSettings.enabled || !window.speechSynthesis) return;
+    if (!this._voiceSettings.enabled) return;
     const clean = this._stripForSpeech(text);
     if (!clean) return;
     this.stopSpeaking();
-    const utter = new SpeechSynthesisUtterance(clean);
-    const voices = speechSynthesis.getVoices();
-    if (this._voiceSettings.name) {
-      const found = voices.find(v => v.name === this._voiceSettings.name);
-      if (found) utter.voice = found;
-    }
-    utter.rate = this._voiceSettings.speed;
-    utter.pitch = this._voiceSettings.pitch;
-    utter.volume = this._voiceSettings.volume;
+
     const avatar = document.querySelector('.ai-avatar');
-    utter.onstart = () => {
-      this._isSpeaking = true;
-      if (avatar) avatar.classList.add('speaking');
-    };
-    utter.onend = () => {
+    this._isSpeaking = true;
+    if (avatar) avatar.classList.add('speaking');
+
+    const onEnd = () => {
       this._isSpeaking = false;
       if (avatar) avatar.classList.remove('speaking');
     };
-    utter.onerror = () => {
+
+    const onError = () => {
       this._isSpeaking = false;
       if (avatar) avatar.classList.remove('speaking');
     };
-    speechSynthesis.speak(utter);
+
+    if (typeof NovaTTS !== 'undefined') {
+      NovaTTS.speak(clean, {
+        provider: this._voiceSettings.provider || 'browser',
+        voiceName: this._voiceSettings.name,
+        speed: this._voiceSettings.speed,
+        pitch: this._voiceSettings.pitch,
+        volume: this._voiceSettings.volume
+      }).then(onEnd).catch(onError);
+    } else if (window.speechSynthesis) {
+      const utter = new SpeechSynthesisUtterance(clean);
+      const voices = speechSynthesis.getVoices();
+      if (this._voiceSettings.name) {
+        const found = voices.find(v => v.name === this._voiceSettings.name);
+        if (found) utter.voice = found;
+      }
+      utter.rate = this._voiceSettings.speed;
+      utter.pitch = this._voiceSettings.pitch;
+      utter.volume = this._voiceSettings.volume;
+      utter.onend = onEnd;
+      utter.onerror = onError;
+      speechSynthesis.speak(utter);
+    } else {
+      onEnd();
+    }
   },
 
   stopSpeaking() {
