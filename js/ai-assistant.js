@@ -809,31 +809,44 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     if (!clean) return;
     this.stopSpeaking();
 
-    const avatar = document.querySelector('.ai-avatar');
+    this._voiceSettings.provider = localStorage.getItem(this._storageKeys.voiceProvider) || 'browser';
+    var log = function() { var a = ['[Nova Voice]'].concat(Array.prototype.slice.call(arguments)); console.log.apply(console, a); };
+
+    var provider = this._voiceSettings.provider;
+    log('Selected Engine:', provider === 'kokoro' ? 'Kokoro Local AI' : 'Browser Voice');
+
+    var avatar = document.querySelector('.ai-avatar');
     this._isSpeaking = true;
     if (avatar) avatar.classList.add('speaking');
     if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.SPEAKING);
 
-    const onEnd = () => {
-      this._isSpeaking = false;
+    var self = this;
+
+    var onEnd = function() {
+      self._isSpeaking = false;
       if (avatar) avatar.classList.remove('speaking');
       if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.IDLE);
     };
 
-    const onError = () => {
-      this._isSpeaking = false;
+    var onError = function(err) {
+      log('Voice error:', err && err.message ? err.message : err);
+      self._isSpeaking = false;
       if (avatar) avatar.classList.remove('speaking');
       if (typeof NovaWaveform !== 'undefined') NovaWaveform.setState(NovaWaveform.STATES.IDLE);
     };
 
     if (typeof NovaTTS !== 'undefined') {
       NovaTTS.speak(clean, {
-        provider: this._voiceSettings.provider || 'browser',
+        provider: provider,
         voiceName: this._voiceSettings.name,
+        kokoroVoice: this._voiceSettings.name,
         speed: this._voiceSettings.speed,
         pitch: this._voiceSettings.pitch,
         volume: this._voiceSettings.volume
-      }).then(onEnd).catch(onError);
+      }).then(function() { log('Playback complete'); onEnd(); }).catch(function(err) {
+        log('TTS failed, reason:', err && err.message ? err.message : err);
+        onError(err);
+      });
     } else if (window.speechSynthesis) {
       const utter = new SpeechSynthesisUtterance(clean);
       const voices = speechSynthesis.getVoices();

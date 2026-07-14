@@ -17,11 +17,18 @@ const NovaTTS = {
     this.providers.kokoro = KokoroTTSProvider;
     this.providers['tts-ai'] = TtsAiProvider;
     this.providers.elevenlabs = ElevenLabsProvider;
+    var log = function() { var a = ['[Nova Voice]'].concat(Array.prototype.slice.call(arguments)); console.log.apply(console, a); };
+    log('NovaTTS initialized — providers: browser, kokoro, tts-ai, elevenlabs');
   },
 
   getProvider(name) {
     this.init();
-    return this.providers[name] || this.providers.browser;
+    var p = this.providers[name] || this.providers.browser;
+    if (!p) {
+      var log = function() { var a = ['[Nova Voice]'].concat(Array.prototype.slice.call(arguments)); console.log.apply(console, a); };
+      log('getProvider(' + name + ') → NOT FOUND, using browser');
+    }
+    return p;
   },
 
   async selectBestProvider() {
@@ -42,13 +49,21 @@ const NovaTTS = {
 
   async speak(text, options = {}) {
     this.init();
-    const providerName = options.provider || this._currentProvider?.name || 'browser';
-    const provider = this.getProvider(providerName);
+    var providerName = options.provider || this._currentProvider?.name || 'browser';
+    var provider = this.getProvider(providerName);
+    var log = function() { var a = ['[Nova Voice]'].concat(Array.prototype.slice.call(arguments)); console.log.apply(console, a); };
+
+    log('NovaTTS.speak() → providerName=' + providerName + ', provider.name=' + (provider && provider.name));
 
     try {
-      return await provider.generate(text, options);
+      log('Generating speech with ' + provider.name + '...');
+      var result = await provider.generate(text, options);
+      log(provider.name + ' speech generated successfully');
+      return result;
     } catch (error) {
+      log(provider.name + ' FAILED: ' + (error.message || error));
       if (provider.name !== 'browser') {
+        log('Falling back to Browser Voice');
         if (typeof showToast === 'function') {
           showToast(provider.name + ' voice unavailable. Using Browser Voice.', 'warning');
         }
@@ -103,25 +118,30 @@ const BrowserTTSProvider = {
   name: 'browser',
 
   async generate(text, options = {}) {
-    return new Promise((resolve, reject) => {
+    var log = function() { var a = ['[Nova Voice]'].concat(Array.prototype.slice.call(arguments)); console.log.apply(console, a); };
+    log('BrowserTTS.generate() — text=' + text.length + ' chars');
+
+    return new Promise(function(resolve, reject) {
       if (!window.speechSynthesis) {
         reject(new Error('SpeechSynthesis not supported'));
         return;
       }
 
-      const utter = new SpeechSynthesisUtterance(text);
+      var utter = new SpeechSynthesisUtterance(text);
       utter.rate = options.speed || 1;
       utter.pitch = options.pitch || 1;
       utter.volume = options.volume || 1;
 
       if (options.voiceName) {
-        const voices = speechSynthesis.getVoices();
-        const found = voices.find(v => v.name === options.voiceName);
+        var voices = speechSynthesis.getVoices();
+        var found = voices.find(function(v) { return v.name === options.voiceName; });
         if (found) utter.voice = found;
       }
 
-      utter.onend = () => resolve({ type: 'browser' });
-      utter.onerror = (e) => reject(new Error(e.error || 'Speech synthesis error'));
+      log('Playing via Browser SpeechSynthesis');
+
+      utter.onend = function() { resolve({ type: 'browser' }); };
+      utter.onerror = function(e) { reject(new Error(e.error || 'Speech synthesis error')); };
 
       speechSynthesis.speak(utter);
     });
@@ -254,62 +274,74 @@ const KokoroTTSProvider = {
   },
 
   async _ensureLoaded() {
-    if (this._tts) return this._tts;
-    if (this._loadPromise) return this._loadPromise;
+    if (this._tts) {
+      this._log('Model already loaded — reusing');
+      return this._tts;
+    }
+    if (this._loadPromise) {
+      this._log('Model loading in progress — waiting');
+      return this._loadPromise;
+    }
 
-    this._loadPromise = (async () => {
-      const device = await this._detectDevice();
-      const dtype = device === 'webgpu' ? 'fp32' : 'q8';
-      this._log('Loading model (device=' + device + ', dtype=' + dtype + ')...');
+    var self = this;
+    this._loadPromise = (async function() {
+      var device = await self._detectDevice();
+      var dtype = device === 'webgpu' ? 'fp32' : 'q8';
+      self._log('Device: ' + device + ', dtype: ' + dtype);
 
-      this._showOverlay();
-      this._status = this.STATUSES.DOWNLOADING;
-      this._updateOverlay('Downloading voice model...', '0%');
+      self._showOverlay();
+      self._status = self.STATUSES.DOWNLOADING;
+      self._updateOverlay('Downloading voice model...', '0%');
 
       try {
-        const { KokoroTTS } = await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm');
-        this._log('kokoro-js loaded');
+        self._log('Importing kokoro-js...');
+        var mod = await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm');
+        var KokoroTTS = mod.KokoroTTS;
+        self._log('kokoro-js imported successfully');
 
-        this._updateOverlay('Loading AI model...', 'Checking cache...');
-        this._status = this.STATUSES.LOADING;
+        self._updateOverlay('Loading AI model...', 'Checking cache...');
+        self._status = self.STATUSES.LOADING;
 
-        const tts = await KokoroTTS.from_pretrained(
+        var tts = await KokoroTTS.from_pretrained(
           'onnx-community/Kokoro-82M-v1.0-ONNX',
           {
-            dtype,
-            device,
-            progress_callback: (data) => {
+            dtype: dtype,
+            device: device,
+            progress_callback: function(data) {
               if (data.status === 'progress' && data.total) {
-                const pct = Math.round((data.loaded / data.total) * 100);
-                const mb = (data.loaded / 1024 / 1024).toFixed(0);
-                const totalMb = (data.total / 1024 / 1024).toFixed(0);
-                this._updateOverlay('Downloading voice model...', pct + '% (' + mb + '/' + totalMb + ' MB)');
+                var pct = Math.round((data.loaded / data.total) * 100);
+                var mb = (data.loaded / 1024 / 1024).toFixed(0);
+                var totalMb = (data.total / 1024 / 1024).toFixed(0);
+                self._updateOverlay('Downloading voice model...', pct + '% (' + mb + '/' + totalMb + ' MB)');
               } else if (data.status === 'initiate') {
-                this._updateOverlay('Preparing download...', data.name || '');
+                self._log('Download initiated: ' + (data.name || 'unknown'));
+                self._updateOverlay('Preparing download...', data.name || '');
               } else if (data.status === 'done') {
-                this._updateOverlay('Download complete', '100%');
+                self._log('Download complete: ' + (data.name || ''));
+                self._updateOverlay('Download complete', '100%');
               } else if (data.status === 'ready') {
-                this._updateOverlay('Compiling AI model...', '');
+                self._log('Model ready');
+                self._updateOverlay('Compiling AI model...', '');
               }
             }
           }
         );
 
-        this._status = this.STATUSES.READY;
-        this._updateOverlay('Voice engine ready!', '');
-        this._log('Model loaded successfully');
+        self._status = self.STATUSES.READY;
+        self._updateOverlay('Voice engine ready!', '');
+        self._log('Model loaded and ready');
 
-        await new Promise(r => setTimeout(r, 600));
-        this._hideOverlay();
+        await new Promise(function(r) { setTimeout(r, 600); });
+        self._hideOverlay();
 
-        this._tts = tts;
+        self._tts = tts;
         return tts;
       } catch (error) {
-        this._status = this.STATUSES.ERROR;
-        this._lastError = error;
-        this._hideOverlay();
-        this._loadPromise = null;
-        this._log('FAILED: ' + error.message);
+        self._status = self.STATUSES.ERROR;
+        self._lastError = error;
+        self._hideOverlay();
+        self._loadPromise = null;
+        self._log('FAILED: ' + (error.message || error));
         throw error;
       }
     })();
@@ -318,27 +350,60 @@ const KokoroTTSProvider = {
   },
 
   async generate(text, options = {}) {
-    const tts = await this._ensureLoaded();
-    const voice = options.kokoroVoice || 'af_bella';
-    this._log('Generating speech (voice=' + voice + ', text=' + text.length + ' chars)');
+    var voice = options.kokoroVoice || options.voiceName || 'af_bella';
+    this._log('generate() called — voice=' + voice + ', text=' + text.length + ' chars');
 
-    const result = await tts.generate(text, { voice });
+    var tts;
+    try {
+      this._log('Loading model...');
+      tts = await this._ensureLoaded();
+      this._log('Model loaded, generating audio...');
+    } catch (e) {
+      this._log('Model load FAILED: ' + (e.message || e));
+      throw e;
+    }
 
-    const audioContext = new AudioContext();
-    const audioBlob = new Blob([result.audio], { type: 'audio/wav' });
-    const arrayBuffer = await audioBlob.arrayBuffer();
-    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    var result;
+    try {
+      result = await tts.generate(text, { voice });
+      this._log('Audio generated — sampleRate=' + result.audio.sampleRate + ', samples=' + result.audio.audio.length);
+    } catch (e) {
+      this._log('tts.generate() FAILED: ' + (e.message || e));
+      throw e;
+    }
 
-    const source = audioContext.createBufferSource();
+    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioContext.state === 'suspended') {
+      this._log('AudioContext suspended — resuming');
+      await audioContext.resume();
+    }
+
+    var audioBlob = new Blob([result.audio], { type: 'audio/wav' });
+    var arrayBuffer = await audioBlob.arrayBuffer();
+    var audioBuffer;
+    try {
+      audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+    } catch (e) {
+      this._log('decodeAudioData FAILED: ' + (e.message || e));
+      audioContext.close();
+      throw e;
+    }
+
+    var source = audioContext.createBufferSource();
     source.buffer = audioBuffer;
     source.connect(audioContext.destination);
 
-    return new Promise((resolve, reject) => {
-      source.onended = () => {
+    this._log('Playing audio...');
+
+    var log = this._log.bind(this);
+    return new Promise(function(resolve, reject) {
+      source.onended = function() {
+        log('Playback finished');
         audioContext.close();
         resolve({ type: 'kokoro' });
       };
-      source.onerror = (e) => {
+      source.onerror = function(e) {
+        log('Audio playback error');
         audioContext.close();
         reject(e);
       };
