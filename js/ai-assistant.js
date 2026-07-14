@@ -36,7 +36,7 @@ const AIAssistant = {
   _maxMemoryPoints: 10,
   _userScrolledUp: false,
   _lastUserMessage: '',
-  _voiceSettings: { enabled: true, name: '', speed: 1.0, pitch: 1.0, volume: 1.0 },
+  _voiceSettings: { enabled: true, name: '', speed: 1.0, pitch: 1.0, volume: 1.0, provider: 'browser' },
   _isSpeaking: false,
   _memoryExtractTimer: null,
   _wasVoiceInput: false,
@@ -51,7 +51,8 @@ const AIAssistant = {
     voiceName: 'blockflow_ai_voice_name',
     voiceSpeed: 'blockflow_ai_voice_speed',
     voicePitch: 'blockflow_ai_voice_pitch',
-    voiceVolume: 'blockflow_ai_voice_volume'
+    voiceVolume: 'blockflow_ai_voice_volume',
+    voiceProvider: 'blockflow_nova_tts_provider'
   },
 
   /**
@@ -754,6 +755,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     s.speed = parseFloat(localStorage.getItem(k.voiceSpeed)) || 1.0;
     s.pitch = parseFloat(localStorage.getItem(k.voicePitch)) || 1.0;
     s.volume = parseFloat(localStorage.getItem(k.voiceVolume)) || 1.0;
+    s.provider = localStorage.getItem(k.voiceProvider) || 'browser';
     if (this.elements.speakBtn) {
       this.elements.speakBtn.textContent = s.enabled ? '🔊' : '🔇';
       this.elements.speakBtn.classList.toggle('muted', !s.enabled);

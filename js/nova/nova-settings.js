@@ -22,8 +22,8 @@ const NovaSettings = {
   PROVIDERS: [
     { id: 'browser', name: 'Browser (Built-in)', requiresKey: false, requiresWebGPU: false },
     { id: 'kokoro', name: 'Kokoro (Local AI)', requiresKey: false, requiresWebGPU: true },
-    { id: 'tts-ai', name: 'tts.ai (Free Cloud)', requiresKey: false, requiresWebGPU: false },
-    { id: 'elevenlabs', name: 'ElevenLabs (Premium)', requiresKey: true, requiresWebGPU: false }
+    { id: 'tts-ai', name: 'tts.ai (Free Cloud)', requiresKey: false, requiresWebGPU: false, comingSoon: true },
+    { id: 'elevenlabs', name: 'ElevenLabs (Premium)', requiresKey: true, requiresWebGPU: false, comingSoon: true }
   ],
 
   init() {
@@ -60,7 +60,10 @@ const NovaSettings = {
       const opt = document.createElement('option');
       opt.value = p.id;
       opt.textContent = p.name;
-      if (p.requiresWebGPU && !('webgpu' in navigator)) {
+      if (p.comingSoon) {
+        opt.textContent += ' (Coming Soon)';
+        opt.disabled = true;
+      } else if (p.requiresWebGPU && !('webgpu' in navigator)) {
         opt.textContent += ' (requires WebGPU)';
         opt.disabled = true;
       }

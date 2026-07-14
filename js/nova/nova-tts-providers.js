@@ -49,6 +49,9 @@ const NovaTTS = {
       return await provider.generate(text, options);
     } catch (error) {
       if (provider.name !== 'browser') {
+        if (typeof showToast === 'function') {
+          showToast(provider.name + ' voice unavailable. Using Browser Voice.', 'warning');
+        }
         return await this.providers.browser.generate(text, options);
       }
       throw error;
@@ -202,6 +205,9 @@ const KokoroTTSProvider = {
   },
 
   async generate(text, options = {}) {
+    if (typeof showToast === 'function' && !this._tts) {
+      showToast('Loading Nova AI voice (first time only)...', 'info');
+    }
     const tts = await this._ensureLoaded();
     const voice = options.kokoroVoice || 'af_bella';
     const result = await tts.generate(text, { voice });
