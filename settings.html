@@ -960,10 +960,11 @@ Get Free API Key
 <div class="setting-item">
 <div class="setting-label">
 <strong>Provider</strong>
-<span>Text-to-speech engine</span>
+<span id="novaProviderDesc">Text-to-speech engine</span>
 </div>
 <div class="setting-control">
 <select id="novaProviderSelect" class="ai-model-select" style="min-width:200px"></select>
+<div id="novaProviderStatus" class="nova-provider-status" style="display:none;margin-top:6px;font-size:0.8rem;color:#6b7280;"></div>
 </div>
 </div>
 <div class="setting-item">
@@ -975,6 +976,7 @@ Get Free API Key
 <div class="nova-voice-row">
 <select id="novaVoiceSelect" class="ai-model-select" style="min-width:180px"></select>
 <button id="novaVoicePreview" class="btn btn-secondary nova-preview-btn">Preview</button>
+<button id="novaVoiceTest" class="btn btn-primary nova-preview-btn">Test Voice</button>
 </div>
 </div>
 </div>

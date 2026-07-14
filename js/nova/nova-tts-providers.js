@@ -170,33 +170,146 @@ const BrowserTTSProvider = {
 };
 
 /**
- * Kokoro TTS Provider — Local WebGPU/WASM
+ * Kokoro TTS Provider — Local WebGPU/WASM via kokoro-js + Transformers.js
  */
 const KokoroTTSProvider = {
   name: 'kokoro',
   _tts: null,
   _loading: false,
   _loadPromise: null,
+  _device: null,
+  _status: 'idle',
+  _lastError: null,
+
+  STATUSES: { IDLE: 'idle', DOWNLOADING: 'downloading', LOADING: 'loading', READY: 'ready', ERROR: 'error' },
+
+  _log(msg) {
+    const ts = new Date().toLocaleTimeString();
+    if (typeof console !== 'undefined') console.log('[Kokoro ' + ts + '] ' + msg);
+  },
+
+  _updateOverlay(status, detail) {
+    const overlay = document.getElementById('kokoro-loading-overlay');
+    if (!overlay) return;
+    const statusEl = overlay.querySelector('.kokoro-status');
+    const detailEl = overlay.querySelector('.kokoro-detail');
+    const progressFill = overlay.querySelector('.kokoro-progress-fill');
+    if (statusEl) statusEl.textContent = status;
+    if (detailEl) detailEl.textContent = detail || '';
+    if (progressFill && typeof detail === 'number') {
+      progressFill.style.width = detail + '%';
+    }
+  },
+
+  _showOverlay() {
+    if (document.getElementById('kokoro-loading-overlay')) return;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const bg = isDark ? '#0f172a' : '#ffffff';
+    const text = isDark ? '#e2e8f0' : '#1f2937';
+    const sub = isDark ? '#94a3b8' : '#6b7280';
+    const track = isDark ? '#1e293b' : '#f3f4f6';
+
+    const overlay = document.createElement('div');
+    overlay.id = 'kokoro-loading-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:10001;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);';
+    overlay.innerHTML = `
+      <div style="background:${bg};border-radius:20px;padding:36px 40px;max-width:420px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);text-align:center;font-family:system-ui,-apple-system,sans-serif;">
+        <div style="font-size:2rem;margin-bottom:12px;">✦</div>
+        <div style="font-size:1.1rem;font-weight:600;color:${text};margin-bottom:6px;">Initializing Nova Voice Engine</div>
+        <div class="kokoro-status" style="font-size:0.88rem;color:${sub};margin-bottom:16px;">Preparing...</div>
+        <div style="background:${track};border-radius:8px;height:8px;overflow:hidden;margin-bottom:8px;">
+          <div class="kokoro-progress-fill" style="height:100%;background:linear-gradient(90deg,#667eea,#764ba2);border-radius:8px;width:0%;transition:width 0.3s ease;"></div>
+        </div>
+        <div class="kokoro-detail" style="font-size:0.78rem;color:${sub};min-height:1.2em;"></div>
+      </div>`;
+    document.body.appendChild(overlay);
+  },
+
+  _hideOverlay() {
+    const overlay = document.getElementById('kokoro-loading-overlay');
+    if (overlay) {
+      overlay.style.opacity = '0';
+      overlay.style.transition = 'opacity 0.3s';
+      setTimeout(() => { if (overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 300);
+    }
+  },
+
+  async _detectDevice() {
+    if (this._device) return this._device;
+    if (navigator.gpu) {
+      try {
+        const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'high-performance' });
+        if (adapter) {
+          this._device = 'webgpu';
+          this._log('WebGPU detected — using GPU acceleration');
+          return 'webgpu';
+        }
+      } catch (e) {
+        this._log('WebGPU adapter request failed: ' + e.message);
+      }
+    }
+    this._device = 'wasm';
+    this._log('WebGPU unavailable — falling back to WASM (CPU)');
+    return 'wasm';
+  },
 
   async _ensureLoaded() {
     if (this._tts) return this._tts;
     if (this._loadPromise) return this._loadPromise;
 
     this._loadPromise = (async () => {
-      try {
-        const { KokoroTTS } = await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.0.1/+esm');
+      const device = await this._detectDevice();
+      const dtype = device === 'webgpu' ? 'fp32' : 'q8';
+      this._log('Loading model (device=' + device + ', dtype=' + dtype + ')...');
 
-        this._tts = await KokoroTTS.from_pretrained(
+      this._showOverlay();
+      this._status = this.STATUSES.DOWNLOADING;
+      this._updateOverlay('Downloading voice model...', '0%');
+
+      try {
+        const { KokoroTTS } = await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm');
+        this._log('kokoro-js loaded');
+
+        this._updateOverlay('Loading AI model...', 'Checking cache...');
+        this._status = this.STATUSES.LOADING;
+
+        const tts = await KokoroTTS.from_pretrained(
           'onnx-community/Kokoro-82M-v1.0-ONNX',
           {
-            dtype: 'q8',
-            device: 'webgpu' in navigator ? 'webgpu' : 'wasm',
+            dtype,
+            device,
+            progress_callback: (data) => {
+              if (data.status === 'progress' && data.total) {
+                const pct = Math.round((data.loaded / data.total) * 100);
+                const mb = (data.loaded / 1024 / 1024).toFixed(0);
+                const totalMb = (data.total / 1024 / 1024).toFixed(0);
+                this._updateOverlay('Downloading voice model...', pct + '% (' + mb + '/' + totalMb + ' MB)');
+              } else if (data.status === 'initiate') {
+                this._updateOverlay('Preparing download...', data.name || '');
+              } else if (data.status === 'done') {
+                this._updateOverlay('Download complete', '100%');
+              } else if (data.status === 'ready') {
+                this._updateOverlay('Compiling AI model...', '');
+              }
+            }
           }
         );
 
-        return this._tts;
+        this._status = this.STATUSES.READY;
+        this._updateOverlay('Voice engine ready!', '');
+        this._log('Model loaded successfully');
+
+        await new Promise(r => setTimeout(r, 600));
+        this._hideOverlay();
+
+        this._tts = tts;
+        return tts;
       } catch (error) {
+        this._status = this.STATUSES.ERROR;
+        this._lastError = error;
+        this._hideOverlay();
         this._loadPromise = null;
+        this._log('FAILED: ' + error.message);
         throw error;
       }
     })();
@@ -205,11 +318,10 @@ const KokoroTTSProvider = {
   },
 
   async generate(text, options = {}) {
-    if (typeof showToast === 'function' && !this._tts) {
-      showToast('Loading Nova AI voice (first time only)...', 'info');
-    }
     const tts = await this._ensureLoaded();
     const voice = options.kokoroVoice || 'af_bella';
+    this._log('Generating speech (voice=' + voice + ', text=' + text.length + ' chars)');
+
     const result = await tts.generate(text, { voice });
 
     const audioContext = new AudioContext();
@@ -222,8 +334,14 @@ const KokoroTTSProvider = {
     source.connect(audioContext.destination);
 
     return new Promise((resolve, reject) => {
-      source.onended = () => resolve({ type: 'kokoro' });
-      source.onerror = (e) => reject(e);
+      source.onended = () => {
+        audioContext.close();
+        resolve({ type: 'kokoro' });
+      };
+      source.onerror = (e) => {
+        audioContext.close();
+        reject(e);
+      };
       source.start();
     });
   },
@@ -245,6 +363,10 @@ const KokoroTTSProvider = {
     return 'webgpu' in navigator || 'WebAssembly' in window;
   },
 
+  getStatus() {
+    return this._status;
+  },
+
   getCapabilities() {
     return {
       streaming: false,
@@ -253,8 +375,9 @@ const KokoroTTSProvider = {
       languages: ['en-US', 'en-GB', 'zh-CN', 'ja-JP'],
       maxTextLength: Infinity,
       requiresNetwork: true,
-      modelSize: '86MB',
-      requiresWebGPU: true
+      modelSize: '86MB (q8) / 300MB (fp32)',
+      requiresWebGPU: false,
+      localProcessing: true
     };
   }
 };
