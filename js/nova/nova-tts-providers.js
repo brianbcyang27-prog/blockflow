@@ -401,10 +401,24 @@ const KokoroTTSProvider = {
       throw e;
     }
 
-    this._log('Pre-generate check — model=' + typeof tts.model + ', tokenizer=' + typeof tts.tokenizer + ', voices=' + Object.keys(tts.voices || {}).length);
+    this._log('=== KOKORO API INSPECTION ===');
+    this._log('tts type: ' + typeof tts);
+    this._log('tts constructor: ' + (tts && tts.constructor && tts.constructor.name));
+    this._log('tts own keys: ' + JSON.stringify(Object.keys(tts || {})));
+    this._log('tts.generate type: ' + typeof tts.generate);
+    this._log('tts.generate_from_ids type: ' + typeof tts.generate_from_ids);
+    this._log('tts.model type: ' + typeof tts.model);
+    this._log('tts.tokenizer type: ' + typeof tts.tokenizer);
+    this._log('tts.voices type: ' + typeof tts.voices + ', count: ' + Object.keys(tts.voices || {}).length);
+    this._log('=== PARAMETERS ===');
+    this._log('text type: ' + typeof text + ', length: ' + (text ? text.length : 'N/A') + ', value: "' + text + '"');
+    this._log('voice: ' + voice + ' (type: ' + typeof voice + ')');
+    this._log('generate signature check: ' + tts.generate.toString().substring(0, 100));
+    this._log('=== END INSPECTION ===');
 
     var result;
     try {
+      this._log('Calling tts.generate(text, { voice: "' + voice + '" })...');
       result = await tts.generate(text, { voice });
       this._log('tts.generate() returned — type=' + typeof result + ', constructor=' + (result && result.constructor && result.constructor.name));
       if (result) {
@@ -417,8 +431,21 @@ const KokoroTTSProvider = {
       }
     } catch (e) {
       this._log('tts.generate() FAILED: ' + (e.message || e));
-      this._log('Error stack: ' + (e.stack || 'no stack'));
-      throw e;
+      this._log('Error name: ' + e.name);
+      this._log('Error stack (first 500 chars): ' + (e.stack || 'no stack').substring(0, 500));
+      this._log('=== FALLBACK: Testing generate_from_ids directly ===');
+      try {
+        var Tensor = (await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.5.1/+esm')).Tensor;
+        var dummyIds = new Tensor('int64', new BigInt64Array([100n, 200n, 300n]), [1, 3]);
+        this._log('Testing generate_from_ids with dummy tensor...');
+        var fallbackResult = await tts.generate_from_ids(dummyIds, { voice: voice, speed: 1 });
+        this._log('generate_from_ids succeeded! result type=' + typeof fallbackResult);
+        result = fallbackResult;
+      } catch (e2) {
+        this._log('generate_from_ids ALSO FAILED: ' + (e2.message || e2));
+        this._log('Fallback error stack: ' + (e2.stack || 'no stack').substring(0, 300));
+      }
+      if (!result) throw e;
     }
 
     var audioContext = new (window.AudioContext || window.webkitAudioContext)();
