@@ -190,6 +190,44 @@ const BrowserTTSProvider = {
 };
 
 /**
+ * Encode Float32Array PCM samples into a WAV Blob (fallback if toBlob unavailable)
+ */
+function encodeWav(samples, sampleRate) {
+  var numChannels = 1;
+  var bitsPerSample = 16;
+  var byteRate = sampleRate * numChannels * (bitsPerSample / 8);
+  var blockAlign = numChannels * (bitsPerSample / 8);
+  var dataSize = samples.length * (bitsPerSample / 8);
+  var buffer = new ArrayBuffer(44 + dataSize);
+  var view = new DataView(buffer);
+
+  function writeString(offset, str) {
+    for (var i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+  }
+
+  writeString(0, 'RIFF');
+  view.setUint32(4, 36 + dataSize, true);
+  writeString(8, 'WAVE');
+  writeString(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, numChannels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, byteRate, true);
+  view.setUint16(32, blockAlign, true);
+  view.setUint16(34, bitsPerSample, true);
+  writeString(36, 'data');
+  view.setUint32(40, dataSize, true);
+
+  for (var i = 0; i < samples.length; i++) {
+    var s = Math.max(-1, Math.min(1, samples[i]));
+    view.setInt16(44 + i * 2, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+  }
+
+  return new Blob([buffer], { type: 'audio/wav' });
+}
+
+/**
  * Kokoro TTS Provider — Local WebGPU/WASM via kokoro-js + Transformers.js
  */
 const KokoroTTSProvider = {
@@ -363,12 +401,23 @@ const KokoroTTSProvider = {
       throw e;
     }
 
+    this._log('Pre-generate check — model=' + typeof tts.model + ', tokenizer=' + typeof tts.tokenizer + ', voices=' + Object.keys(tts.voices || {}).length);
+
     var result;
     try {
       result = await tts.generate(text, { voice });
-      this._log('Audio generated — sampleRate=' + result.audio.sampleRate + ', samples=' + result.audio.audio.length);
+      this._log('tts.generate() returned — type=' + typeof result + ', constructor=' + (result && result.constructor && result.constructor.name));
+      if (result) {
+        var keys = Object.keys(result);
+        this._log('result keys: [' + keys.join(', ') + ']');
+        this._log('result.audio type=' + typeof result.audio + ', result.sampling_rate=' + result.sampling_rate);
+        if (result.audio) {
+          this._log('result.audio.length=' + result.audio.length + ', result.audio.constructor=' + result.audio.constructor.name);
+        }
+      }
     } catch (e) {
       this._log('tts.generate() FAILED: ' + (e.message || e));
+      this._log('Error stack: ' + (e.stack || 'no stack'));
       throw e;
     }
 
@@ -378,7 +427,14 @@ const KokoroTTSProvider = {
       await audioContext.resume();
     }
 
-    var audioBlob = new Blob([result.audio], { type: 'audio/wav' });
+    var audioBlob;
+    try {
+      audioBlob = result.toBlob();
+    } catch (e) {
+      this._log('toBlob() failed, falling back to manual encoding: ' + e.message);
+      var wavBlob = encodeWav(result.audio, result.sampling_rate);
+      audioBlob = wavBlob;
+    }
     var arrayBuffer = await audioBlob.arrayBuffer();
     var audioBuffer;
     try {
