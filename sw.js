@@ -1,9 +1,10 @@
-const CACHE_NAME = 'blockflow-v15';
+const CACHE_NAME = 'blockflow-v16';
 const urlsToCache = [
     './',
     'index.html',
     'calendar.html',
     'settings.html',
+    'materials.html',
     'css/style.css',
     'js/app.js',
     'js/storage.js',
@@ -11,6 +12,8 @@ const urlsToCache = [
     'js/ui.js',
     'js/calendar.js',
     'js/ai-assistant.js',
+    'js/materials.js',
+    'js/notifications.js',
     'js/nova/nova-stt-providers.js',
     'js/nova/nova-tts-providers.js',
     'js/nova/nova-settings.js',
@@ -20,6 +23,7 @@ const urlsToCache = [
     'js/firebase-init.js',
     'js/firebase-auth.js',
     'js/firebase-db.js',
+    'js/nvidia-config.js',
     'manifest.json',
     'icons/icon-192.png',
     'icons/icon-512.png',

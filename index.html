@@ -2164,6 +2164,7 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
     <nav class="nav-tabs">
         <button class="nav-tab active">🏠 Dashboard</button>
         <button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
+        <button class="nav-tab" onclick="window.location.href='materials.html'">📚 Materials</button>
         <button class="nav-tab" onclick="window.location.href='settings.html'">⚙️ Settings</button>
     </nav>
 
@@ -2331,6 +2332,7 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
 <script src="js/nvidia-config.js?v=1.0.0"></script>
 <script src="js/app.js?v=1.2.0"></script>
 <script src="js/storage.js"></script>
+<script src="js/sync-engine.js"></script>
 <script src="js/timer.js"></script>
 <script src="js/ui.js?v=1.3.0"></script>
 <script src="js/nova/nova-stt-providers.js"></script>
@@ -2338,6 +2340,7 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
 <script src="js/nova/nova-waveform.js"></script>
 <script src="js/ai-assistant.js?v=2.5.0"></script>
 <script>
+SyncEngine.init();
 FirebaseAuth.init();
 FirebaseDB.init();
 

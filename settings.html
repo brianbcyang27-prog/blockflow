@@ -623,10 +623,22 @@ width: 100%;
 <nav class="nav-tabs">
 <button class="nav-tab" onclick="window.location.href='index.html'">🏠 Dashboard</button>
 <button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
+<button class="nav-tab" onclick="window.location.href='materials.html'">📚 Materials</button>
 <button class="nav-tab active">⚙️ Settings</button>
 </nav>
 
 <div class="settings-container">
+
+<div class="settings-tab-bar">
+  <button class="settings-tab-btn active" data-tab="general">⚙️ General</button>
+  <button class="settings-tab-btn" data-tab="ai">🤖 AI</button>
+  <button class="settings-tab-btn" data-tab="calendar">📅 Calendar</button>
+  <button class="settings-tab-btn" data-tab="voice">🎙️ Voice</button>
+  <button class="settings-tab-btn" data-tab="data">💾 Data</button>
+  <button class="settings-tab-btn" data-tab="account">👤 Account</button>
+</div>
+
+<div class="settings-tab-panel active" id="tab-ai">
 <section class="settings-section" id="apiKeysSection">
 <div class="api-section-header">
 <h3>API Keys</h3>
@@ -716,7 +728,9 @@ Get Free API Key
 </div>
 </div>
 </section>
+</div>
 
+<div class="settings-tab-panel" id="tab-general">
 <section class="settings-section">
 <h3>Timer Settings</h3>
 <div class="setting-item">
@@ -882,7 +896,9 @@ Get Free API Key
 </div>
 </div>
 </section>
+</div>
 
+<div class="settings-tab-panel" id="tab-ai-nova">
 <section class="settings-section">
 <h3>✦ Nova</h3>
 <p class="section-intro">Manage Nova's memory and custom behavior. Changes apply to the Nova voice companion.</p>
@@ -908,7 +924,9 @@ Get Free API Key
   </div>
 </div>
 </section>
+</div>
 
+<div class="settings-tab-panel" id="tab-account">
 <section class="settings-section" id="accountSection">
 <h3>Account</h3>
 <div id="accountInfo" style="display:none;">
@@ -967,7 +985,9 @@ Get Free API Key
   </div>
 </div>
 </section>
+</div>
 
+<div class="settings-tab-panel" id="tab-voice">
 <section class="settings-section">
 <h3>Voice Companion</h3>
 <div class="setting-item">
@@ -1057,7 +1077,9 @@ Get Free API Key
 </div>
 </div>
 </section>
+</div>
 
+<div class="settings-tab-panel" id="tab-data">
 <section class="settings-section">
 <h3>Help & Walkthrough</h3>
 <div class="setting-item">
@@ -1125,6 +1147,7 @@ Get Free API Key
 <p class="version">Version 2.3.0</p>
 </section>
 </div>
+</div>
 
 <footer class="footer">
 <p>BlockFlow &copy; 2025 - Simple focus tool</p>
@@ -1144,6 +1167,8 @@ Get Free API Key
 <script src="js/nova/nova-settings.js"></script>
 <script src="js/nova/nova-waveform.js"></script>
 <script src="js/ai-assistant.js"></script>
+<script src="js/materials.js"></script>
+<script src="js/notifications.js"></script>
 <script src="js/sync-engine.js"></script>
 <script src="js/google-calendar.js"></script>
 <script>
@@ -1884,6 +1909,40 @@ navigator.serviceWorker.register('sw.js')
   document.addEventListener('mouseup', function() { cursor.classList.remove('active'); dot.classList.remove('active'); });
   document.addEventListener('mouseleave', function() { cursor.style.opacity = '0'; dot.style.opacity = '0'; });
   document.addEventListener('mouseenter', function() { cursor.style.opacity = '1'; dot.style.opacity = '1'; });
+})();
+
+// Settings tab switching
+(function() {
+  var tabs = document.querySelectorAll('.settings-tab-btn');
+  var panels = document.querySelectorAll('.settings-tab-panel');
+  
+  // Map tab buttons to their corresponding panel(s)
+  var tabMap = {
+    'general': ['tab-general'],
+    'ai': ['tab-ai', 'tab-ai-nova'],
+    'calendar': ['tab-data'], // Data tab includes calendar sync
+    'voice': ['tab-voice'],
+    'data': ['tab-data'],
+    'account': ['tab-account']
+  };
+  
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var tabName = this.getAttribute('data-tab');
+      
+      // Update active tab button
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+      
+      // Show/hide panels
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      var targetPanels = tabMap[tabName] || [];
+      targetPanels.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.add('active');
+      });
+    });
+  });
 })();
 </script>
 <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
