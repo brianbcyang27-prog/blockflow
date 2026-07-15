@@ -142,6 +142,31 @@ color: white;
 .google-cal-error { background: rgba(239, 68, 68, 0.1); color: #dc2626; border: 1px solid rgba(239, 68, 68, 0.2); }
 .google-cal-loading { background: rgba(102, 126, 234, 0.08); color: #667eea; border: 1px solid rgba(102, 126, 234, 0.2); }
 
+.sync-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+.sync-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sync-status.synced .sync-status-dot { background: #10b981; }
+.sync-status.syncing .sync-status-dot { background: #f59e0b; animation: pulse 1s infinite; }
+.sync-status.error .sync-status-dot { background: #ef4444; }
+.sync-status.offline .sync-status-dot { background: #9ca3af; }
+.sync-status.conflict .sync-status-dot { background: #f97316; }
+.sync-status-text { font-weight: 500; color: #374151; }
+.sync-status-time { color: #9ca3af; margin-left: auto; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
 /* Dashboard style live preview */
 #dashPreview { transition: all 0.3s ease; }
 #dashPreview .pv-block {
@@ -1075,6 +1100,12 @@ Get Free API Key
       <div class="setting-control setting-control-wide">
         <button class="btn btn-primary btn-auto" id="importGoogleCalendar">Import from Google Calendar</button>
         <span id="googleCalStatus" class="google-cal-status"></span>
+        <div id="syncStatus" class="sync-status" style="display:none; margin-top:8px;">
+          <span class="sync-status-dot"></span>
+          <span class="sync-status-text"></span>
+          <span class="sync-status-time"></span>
+        </div>
+        <div id="calendarSelector" class="calendar-selector" style="display:none; margin-top:12px;"></div>
       </div>
     </div>
 <div class="setting-item">
@@ -1113,8 +1144,10 @@ Get Free API Key
 <script src="js/nova/nova-settings.js"></script>
 <script src="js/nova/nova-waveform.js"></script>
 <script src="js/ai-assistant.js"></script>
+<script src="js/sync-engine.js"></script>
 <script src="js/google-calendar.js"></script>
 <script>
+SyncEngine.init();
 FirebaseAuth.init();
 FirebaseDB.init();
 FirebaseAuth.onAuthChange(function(user) {

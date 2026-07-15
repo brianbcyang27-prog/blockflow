@@ -1145,7 +1145,14 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     const hour = now.getHours();
     const timeGreeting = hour < 12 ? 'morning' : hour < 18 ? 'afternoon' : 'evening';
 
-    const events = typeof Storage === 'object' ? Storage.getCalendarEvents() : [];
+    let events = [];
+    if (typeof SyncEngine !== 'undefined') {
+      events = SyncEngine.getEvents({ deleted: false }).map(function(e) {
+        return { id: e.id, title: e.title, date: e.start.split('T')[0], time: e.start.includes('T') ? e.start.split('T')[1].slice(0, 5) : '', source: e.provider };
+      });
+    } else if (typeof Storage === 'object') {
+      events = Storage.getCalendarEvents();
+    }
     const today = new Date().toISOString().split('T')[0];
     const todayEvents = events.filter(e => e.date === today);
     const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
@@ -1820,7 +1827,18 @@ listEvents:
 updateBlock:
 {"tool":"updateBlock","block":"focus|personal|recovery","duration":number}
 
-================================================================
+===============================================================
+EVENT SOURCES
+
+Events may come from multiple sources:
+- Local: Events created directly in BlockFlow
+- Google: Events synced from Google Calendar (marked with source: "google")
+- Apple: Events synced from Apple Calendar (marked with source: "apple")
+
+When listing events, include the source in parentheses if not local.
+When creating events, they will be added to the local calendar by default.
+
+===============================================================
 FINAL RULES
 
 - Respond naturally and briefly

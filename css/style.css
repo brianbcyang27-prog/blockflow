@@ -1828,6 +1828,100 @@ body.dstyle-dark .ai-memory-search-row input {
   opacity: 0.7;
 }
 
+.sync-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 0.85rem;
+}
+
+body.dstyle-dark .sync-status {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.sync-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #94a3b8;
+  flex-shrink: 0;
+}
+
+.sync-status.synced .sync-status-dot { background: #22c55e; }
+.sync-status.syncing .sync-status-dot { background: #f59e0b; animation: pulse 1s infinite; }
+.sync-status.conflict .sync-status-dot { background: #ef4444; }
+.sync-status.error .sync-status-dot { background: #ef4444; }
+.sync-status.offline .sync-status-dot { background: #94a3b8; }
+
+.sync-status-text { flex: 1; color: #475569; }
+body.dstyle-dark .sync-status-text { color: #cbd5e1; }
+
+.sync-status-time { color: #94a3b8; font-size: 0.8rem; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.calendar-selector {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fafafa;
+}
+
+body.dstyle-dark .calendar-selector {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.calendar-selector-header {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  color: #334155;
+}
+
+body.dstyle-dark .calendar-selector-header { color: #e2e8f0; }
+
+.calendar-selector-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 12px;
+}
+
+.calendar-selector-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+body.dstyle-dark .calendar-selector-item { color: #cbd5e1; }
+
+.calendar-selector-name { flex: 1; }
+
+.calendar-selector-badge {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #667eea;
+  color: white;
+}
+
+.calendar-selector-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

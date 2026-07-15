@@ -4,6 +4,35 @@ All notable changes to BlockFlow are documented here.
 
 ---
 
+## [2.3.0] - 2026-07-15
+
+### Added
+- Universal Calendar Sync Engine with unified event model
+- Two-way sync between BlockFlow and Google Calendar
+- Incremental sync using Google sync tokens for efficiency
+- Offline queue for pending changes when offline
+- Conflict detection and resolution UI
+- Sync status indicator showing connection state
+- Multiple Google calendar selection and sync
+- Background sync every 15 minutes
+- Event caching with TTL for performance
+- Automatic migration from legacy event format
+- AI assistant integration with unified event store
+- Pagination support for large calendars (5000+ events)
+
+### Changed
+- Calendar events now stored in unified format across all sources
+- AI assistant reads from unified event store instead of legacy storage
+- Google Calendar import now supports multiple calendars
+- Sync status displayed in settings page
+
+### Fixed
+- Google Calendar events now persist correctly across sessions
+- Offline changes are properly queued and replayed
+- Conflict detection prevents data loss during concurrent edits
+
+---
+
 ## [2.1.0] - 2026-07-13
 
 ### Added
