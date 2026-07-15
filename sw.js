@@ -1,4 +1,4 @@
-const CACHE_NAME = 'blockflow-v14';
+const CACHE_NAME = 'blockflow-v15';
 const urlsToCache = [
     './',
     'index.html',
@@ -16,6 +16,7 @@ const urlsToCache = [
     'js/nova/nova-settings.js',
     'js/nova/nova-waveform.js',
     'js/google-calendar.js',
+    'js/sync-engine.js',
     'js/firebase-init.js',
     'js/firebase-auth.js',
     'js/firebase-db.js',
