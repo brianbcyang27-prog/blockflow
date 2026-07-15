@@ -462,3 +462,6 @@ var SyncEngine = (function() {
     stopBackgroundSync: stopBackgroundSync
   };
 })();
+
+// Auto-initialize: load events from localStorage when script loads
+SyncEngine.init({ backgroundSync: true });
