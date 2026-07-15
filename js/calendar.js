@@ -86,7 +86,29 @@ const Calendar = {
     },
 
     loadEvents() {
-        this.events = Storage.getCalendarEvents();
+        var legacyEvents = Storage.getCalendarEvents();
+        if (typeof SyncEngine !== 'undefined') {
+            var unifiedEvents = SyncEngine.getEvents({ deleted: false });
+            unifiedEvents.forEach(function(e) {
+                var alreadyExists = legacyEvents.some(function(le) { return le.id === e.id; });
+                if (!alreadyExists) {
+                    legacyEvents.push({
+                        id: e.id,
+                        title: e.title,
+                        date: e.start.split('T')[0],
+                        time: e.start.includes('T') ? e.start.split('T')[1].slice(0, 5) : '',
+                        endTime: e.end.includes('T') ? e.end.split('T')[1].slice(0, 5) : '',
+                        description: e.description || '',
+                        importance: e.importance || 'medium',
+                        block: e.block || 'focus',
+                        aiAnalyzed: false,
+                        source: e.provider,
+                        createdAt: e.createdAt
+                    });
+                }
+            });
+        }
+        this.events = legacyEvents;
     },
 
     render() {
