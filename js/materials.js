@@ -35,6 +35,9 @@ var Materials = (function() {
     if (mime === 'application/pdf' || ext === 'pdf') {
       return 'pdf';
     }
+    if (mime.indexOf('video/') === 0 || ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'].indexOf(ext) !== -1) {
+      return 'video';
+    }
     if (['xlsx', 'xls'].indexOf(ext) !== -1) {
       return 'spreadsheet';
     }
@@ -60,6 +63,51 @@ var Materials = (function() {
       reader.onload = function() { resolve(reader.result); };
       reader.onerror = function() { reject(new Error('Failed to read file')); };
       reader.readAsText(file);
+    });
+  }
+
+  async function extractTextFromPDF(file) {
+    if (typeof pdfjsLib === 'undefined') {
+      throw new Error('PDF.js library not loaded');
+    }
+
+    var arrayBuffer = await file.arrayBuffer();
+    var pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    var textContent = '';
+
+    for (var i = 1; i <= pdf.numPages; i++) {
+      var page = await pdf.getPage(i);
+      var content = await page.getTextContent();
+      var pageText = content.items.map(function(item) { return item.str; }).join(' ');
+      textContent += pageText + '\n\n';
+    }
+
+    return textContent.trim();
+  }
+
+  async function extractVideoMetadata(file) {
+    return new Promise(function(resolve, reject) {
+      var video = document.createElement('video');
+      video.preload = 'metadata';
+
+      video.onloadedmetadata = function() {
+        var metadata = {
+          duration: video.duration,
+          width: video.videoWidth,
+          height: video.videoHeight,
+          name: file.name,
+          size: file.size,
+          type: file.type
+        };
+        URL.revokeObjectURL(video.src);
+        resolve(metadata);
+      };
+
+      video.onerror = function() {
+        reject(new Error('Failed to load video metadata'));
+      };
+
+      video.src = URL.createObjectURL(file);
     });
   }
 
@@ -179,27 +227,34 @@ var Materials = (function() {
   async function processFile(file) {
     var fileType = detectFileType(file);
 
-    if (fileType === 'pdf') {
-      throw new Error('PDF support coming soon');
-    }
-
     var sizeLimit = fileType === 'image' ? MAX_IMAGE_SIZE : MAX_TEXT_SIZE;
+    if (fileType === 'video') sizeLimit = 50 * 1024 * 1024;
     if (file.size > sizeLimit) {
       throw new Error('File too large (' + Math.round(file.size / 1024) + 'KB). Max: ' + Math.round(sizeLimit / 1024) + 'KB');
     }
 
     var extractedText = '';
+    var metadata = {};
 
     if (fileType === 'image') {
       var base64 = await readAsBase64(file);
       extractedText = await extractTextFromImage(base64, file.type || 'image/png');
+    } else if (fileType === 'pdf') {
+      extractedText = await extractTextFromPDF(file);
+    } else if (fileType === 'video') {
+      metadata = await extractVideoMetadata(file);
+      extractedText = 'Video file: ' + file.name + '\nDuration: ' + formatDuration(metadata.duration) + '\nResolution: ' + metadata.width + 'x' + metadata.height;
     } else {
       extractedText = await readAsText(file);
     }
 
     var summary = '';
     try {
-      summary = await summarizeText(extractedText, file.name);
+      if (fileType === 'video') {
+        summary = 'Video material: ' + file.name + ' (' + formatDuration(metadata.duration) + ', ' + metadata.width + 'x' + metadata.height + ')';
+      } else {
+        summary = await summarizeText(extractedText, file.name);
+      }
     } catch (e) {
       summary = 'Summarization failed: ' + e.message;
     }
@@ -214,12 +269,19 @@ var Materials = (function() {
       summary: summary,
       tags: generateTags(file.name, extractedText),
       source: 'upload',
+      metadata: metadata,
       createdAt: Date.now(),
       updatedAt: Date.now()
     };
 
     addMaterial(material);
     return material;
+  }
+
+  function formatDuration(seconds) {
+    var mins = Math.floor(seconds / 60);
+    var secs = Math.floor(seconds % 60);
+    return mins + ':' + (secs < 10 ? '0' : '') + secs;
   }
 
   function generateTags(fileName, text) {

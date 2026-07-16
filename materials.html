@@ -84,8 +84,8 @@
           <div class="upload-icon">📄</div>
           <h3>Drop files here</h3>
           <p>or click to browse</p>
-          <p class="upload-formats">Supports: TXT, MD, CSV, JSON, PNG, JPG, JPEG</p>
-          <input type="file" id="fileInput" multiple accept=".txt,.md,.csv,.json,.xml,.html,.js,.py,.css,.yaml,.yml,.log,.png,.jpg,.jpeg,.gif,.webp" style="display:none">
+          <p class="upload-formats">Supports: TXT, MD, CSV, JSON, PNG, JPG, JPEG, PDF, MP4, WebM</p>
+          <input type="file" id="fileInput" multiple accept=".txt,.md,.csv,.json,.xml,.html,.js,.py,.css,.yaml,.yml,.log,.pdf,.mp4,.webm,.ogg,.mov,.avi,.mkv,.png,.jpg,.jpeg,.gif,.webp" style="display:none">
         </div>
       </div>
 
@@ -95,6 +95,8 @@
           <button class="filter-btn active" data-filter="all">All</button>
           <button class="filter-btn" data-filter="text">Text</button>
           <button class="filter-btn" data-filter="image">Images</button>
+          <button class="filter-btn" data-filter="pdf">PDF</button>
+          <button class="filter-btn" data-filter="video">Video</button>
         </div>
       </div>
 
@@ -145,6 +147,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="js/firebase-init.js"></script>
 <script src="js/firebase-auth.js"></script>
 <script src="js/firebase-db.js"></script>
@@ -157,6 +160,11 @@ SyncEngine.init();
 Materials.init();
 FirebaseAuth.init();
 FirebaseDB.init();
+
+if (typeof pdfjsLib !== 'undefined') {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
 FirebaseAuth.onAuthChange(function(user) {
   var overlay = document.getElementById('loginOverlay');
   if (overlay) overlay.style.display = user ? 'none' : 'flex';
@@ -223,7 +231,10 @@ function renderMaterials(filter, query) {
   empty.style.display = 'none';
 
   grid.innerHTML = mats.map(function(m) {
-    var icon = m.type === 'image' ? '🖼️' : '📄';
+    var icon = '📄';
+    if (m.type === 'image') icon = '🖼️';
+    else if (m.type === 'pdf') icon = '📑';
+    else if (m.type === 'video') icon = '🎬';
     var date = new Date(m.createdAt).toLocaleDateString();
     var preview = (m.summary || m.extractedText || '').slice(0, 120);
     return '<div class="material-card" data-id="' + m.id + '">' +
@@ -247,7 +258,11 @@ function renderMaterials(filter, query) {
 function showDetail(id) {
   var m = Materials.getMaterial(id);
   if (!m) return;
-  document.getElementById('detailTypeIcon').textContent = m.type === 'image' ? '🖼️' : '📄';
+  var icon = '📄';
+  if (m.type === 'image') icon = '🖼️';
+  else if (m.type === 'pdf') icon = '📑';
+  else if (m.type === 'video') icon = '🎬';
+  document.getElementById('detailTypeIcon').textContent = icon;
   document.getElementById('detailTitle').textContent = m.name;
   document.getElementById('detailDate').textContent = new Date(m.createdAt).toLocaleString();
   document.getElementById('detailSummary').textContent = m.summary || 'No summary available';
