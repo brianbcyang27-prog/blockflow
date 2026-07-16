@@ -1,0 +1,8 @@
+Task,Priority,Status,Assigned To,Due Date
+Fix login bug,High,In Progress,Brian,2026-07-18
+Update documentation,Medium,To Do,Sarah,2026-07-20
+Review PR #42,High,To Do,Mike,2026-07-17
+Design new logo,Low,To Do,Lisa,2026-07-25
+Optimize database queries,High,In Progress,Brian,2026-07-19
+Write unit tests,Medium,To Do,Mike,2026-07-22
+Update dependencies,Low,To Do,Sarah,2026-07-21

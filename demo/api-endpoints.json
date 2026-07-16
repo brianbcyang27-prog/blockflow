@@ -1,0 +1,65 @@
+{
+  "api": "BlockFlow REST API",
+  "version": "1.0.0",
+  "baseUrl": "https://api.blockflow.app/v1",
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/materials",
+      "description": "List all materials",
+      "parameters": {
+        "type": "string",
+        "search": "string",
+        "page": "integer",
+        "limit": "integer"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/materials",
+      "description": "Upload a new material",
+      "body": {
+        "file": "binary",
+        "tags": "array"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/materials/:id",
+      "description": "Get material details"
+    },
+    {
+      "method": "DELETE",
+      "path": "/materials/:id",
+      "description": "Delete a material"
+    },
+    {
+      "method": "GET",
+      "path": "/materials/:id/summary",
+      "description": "Get AI-generated summary"
+    },
+    {
+      "method": "POST",
+      "path": "/chat",
+      "description": "Send message to AI assistant",
+      "body": {
+        "message": "string",
+        "context": "object"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/calendar/events",
+      "description": "List calendar events"
+    },
+    {
+      "method": "POST",
+      "path": "/calendar/events",
+      "description": "Create a calendar event"
+    }
+  ],
+  "authentication": {
+    "type": "Bearer Token",
+    "header": "Authorization"
+  }
+}

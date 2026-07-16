@@ -1,0 +1,22 @@
+{
+  "appName": "BlockFlow",
+  "version": "2.1.0",
+  "features": {
+    "pomodoroTimer": true,
+    "aiAssistant": true,
+    "calendar": true,
+    "materials": true,
+    "offlineMode": true
+  },
+  "settings": {
+    "defaultFocusDuration": 25,
+    "defaultBreakDuration": 5,
+    "soundEnabled": true,
+    "autoBreak": false,
+    "theme": "light"
+  },
+  "apiEndpoints": {
+    "nvidia": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "proxy": "http://127.0.0.1:8080"
+  }
+}

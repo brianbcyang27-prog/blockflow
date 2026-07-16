@@ -224,58 +224,93 @@ var Materials = (function() {
     return tryNext(0);
   }
 
-  async function processFile(file) {
+  function createPlaceholder(file) {
     var fileType = detectFileType(file);
-
-    var sizeLimit = fileType === 'image' ? MAX_IMAGE_SIZE : MAX_TEXT_SIZE;
-    if (fileType === 'video') sizeLimit = 50 * 1024 * 1024;
-    if (file.size > sizeLimit) {
-      throw new Error('File too large (' + Math.round(file.size / 1024) + 'KB). Max: ' + Math.round(sizeLimit / 1024) + 'KB');
-    }
-
-    var extractedText = '';
-    var metadata = {};
-
-    if (fileType === 'image') {
-      var base64 = await readAsBase64(file);
-      extractedText = await extractTextFromImage(base64, file.type || 'image/png');
-    } else if (fileType === 'pdf') {
-      extractedText = await extractTextFromPDF(file);
-    } else if (fileType === 'video') {
-      metadata = await extractVideoMetadata(file);
-      extractedText = 'Video file: ' + file.name + '\nDuration: ' + formatDuration(metadata.duration) + '\nResolution: ' + metadata.width + 'x' + metadata.height;
-    } else {
-      extractedText = await readAsText(file);
-    }
-
-    var summary = '';
-    try {
-      if (fileType === 'video') {
-        summary = 'Video material: ' + file.name + ' (' + formatDuration(metadata.duration) + ', ' + metadata.width + 'x' + metadata.height + ')';
-      } else {
-        summary = await summarizeText(extractedText, file.name);
-      }
-    } catch (e) {
-      summary = 'Summarization failed: ' + e.message;
-    }
-
     var material = {
       id: generateId(),
       name: file.name,
       type: fileType,
       mimeType: file.type || '',
       size: file.size,
-      extractedText: extractedText,
-      summary: summary,
-      tags: generateTags(file.name, extractedText),
+      extractedText: '',
+      summary: '',
+      tags: [],
       source: 'upload',
-      metadata: metadata,
+      metadata: {},
+      status: 'processing',
       createdAt: Date.now(),
       updatedAt: Date.now()
     };
-
-    addMaterial(material);
+    materials.unshift(material);
+    saveToStorage();
+    notifyListeners('add', material);
     return material;
+  }
+
+  function updateMaterial(id, updates) {
+    var idx = materials.findIndex(function(m) { return m.id === id; });
+    if (idx === -1) return null;
+    materials[idx] = Object.assign({}, materials[idx], updates);
+    saveToStorage();
+    notifyListeners('update', materials[idx]);
+    return materials[idx];
+  }
+
+  async function processFile(file, placeholderId) {
+    var fileType = detectFileType(file);
+
+    var sizeLimit = fileType === 'image' ? MAX_IMAGE_SIZE : MAX_TEXT_SIZE;
+    if (fileType === 'video') sizeLimit = 50 * 1024 * 1024;
+    if (file.size > sizeLimit) {
+      updateMaterial(placeholderId, { status: 'error', summary: 'File too large' });
+      throw new Error('File too large (' + Math.round(file.size / 1024) + 'KB). Max: ' + Math.round(sizeLimit / 1024) + 'KB');
+    }
+
+    var extractedText = '';
+    var metadata = {};
+
+    try {
+      if (fileType === 'image') {
+        var base64 = await readAsBase64(file);
+        extractedText = await extractTextFromImage(base64, file.type || 'image/png');
+      } else if (fileType === 'pdf') {
+        extractedText = await extractTextFromPDF(file);
+        if (!extractedText || extractedText.trim().length === 0) {
+          extractedText = '[PDF text extraction returned empty - the PDF may contain only images or scanned content]';
+        }
+      } else if (fileType === 'video') {
+        metadata = await extractVideoMetadata(file);
+        extractedText = 'Video file: ' + file.name + '\nDuration: ' + formatDuration(metadata.duration) + '\nResolution: ' + metadata.width + 'x' + metadata.height;
+      } else {
+        extractedText = await readAsText(file);
+      }
+    } catch (e) {
+      extractedText = '[Extraction failed: ' + e.message + ']';
+    }
+
+    var summary = '';
+    try {
+      if (fileType === 'video') {
+        summary = 'Video material: ' + file.name + ' (' + formatDuration(metadata.duration) + ', ' + metadata.width + 'x' + metadata.height + ')';
+      } else if (extractedText && extractedText.trim().length > 10) {
+        summary = await summarizeText(extractedText, file.name);
+      } else {
+        summary = 'No text content extracted from this file.';
+      }
+    } catch (e) {
+      summary = 'Summarization failed: ' + e.message;
+    }
+
+    updateMaterial(placeholderId, {
+      extractedText: extractedText,
+      summary: summary,
+      tags: generateTags(file.name, extractedText),
+      metadata: metadata,
+      status: 'complete',
+      updatedAt: Date.now()
+    });
+
+    return getMaterial(placeholderId);
   }
 
   function formatDuration(seconds) {
@@ -363,6 +398,8 @@ var Materials = (function() {
   return {
     init: init,
     processFile: processFile,
+    createPlaceholder: createPlaceholder,
+    updateMaterial: updateMaterial,
     addMaterial: addMaterial,
     deleteMaterial: deleteMaterial,
     getMaterials: getMaterials,

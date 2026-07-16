@@ -1,0 +1,22 @@
+Meeting Notes - Product Review
+Date: July 15, 2026
+
+Attendees: Brian, Sarah, Mike, Lisa
+
+Agenda:
+1. Q2 Results Review
+2. Q3 Planning
+3. Feature Priorities
+
+Key Decisions:
+- Approved budget for new marketing campaign
+- Launch date for v3.0 set to August 15th
+- Hiring 2 new developers for mobile team
+
+Action Items:
+- Brian: Finalize API documentation by July 20th
+- Sarah: Prepare Q3 roadmap presentation
+- Mike: Review security audit findings
+- Lisa: Schedule customer feedback sessions
+
+Next Meeting: July 22nd at 10:00 AM

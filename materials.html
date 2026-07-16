@@ -53,6 +53,12 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-overlay p { color: white; font-size: 0.95rem; font-weight: 500; }
     .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary); z-index: 1; }
+    .material-card.processing { opacity: 0.6; pointer-events: none; }
+    .material-card.processing .material-card-preview { color: var(--text-muted); }
+    .analysing-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 600; color: #667eea; background: rgba(102,126,234,0.1); padding: 4px 10px; border-radius: 6px; }
+    .analysing-dot { width: 6px; height: 6px; background: #667eea; border-radius: 50%; animation: pulse 1.2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .material-card.error { border-color: rgba(234,102,102,0.3); }
   </style>
 </head>
 <body>
@@ -132,11 +138,6 @@
     </div>
   </div>
 
-  <div class="loading-overlay" id="loadingOverlay" style="display:none">
-    <div class="loading-spinner"></div>
-    <p id="loadingText">Processing file...</p>
-  </div>
-
   <div class="toast-container" id="toastContainer"></div>
 
   <footer class="footer">
@@ -179,8 +180,6 @@ document.getElementById('skipLoginBtn').addEventListener('click', function() {
 
 var uploadZone = document.getElementById('uploadZone');
 var fileInput = document.getElementById('fileInput');
-var loadingOverlay = document.getElementById('loadingOverlay');
-var loadingText = document.getElementById('loadingText');
 var currentFilter = null;
 
 uploadZone.addEventListener('click', function() { fileInput.click(); });
@@ -194,19 +193,19 @@ uploadZone.addEventListener('drop', function(e) {
 fileInput.addEventListener('change', function(e) { handleFiles(e.target.files); e.target.value = ''; });
 
 async function handleFiles(files) {
+  renderMaterials();
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
-    loadingOverlay.style.display = 'flex';
-    loadingText.textContent = 'Processing ' + file.name + '...';
+    var placeholder = Materials.createPlaceholder(file);
+    renderMaterials();
     try {
-      await Materials.processFile(file);
+      await Materials.processFile(file, placeholder.id);
       showToast('Processed: ' + file.name, 'success');
     } catch (err) {
       showToast('Failed: ' + file.name + ' - ' + err.message, 'error');
     }
+    renderMaterials();
   }
-  loadingOverlay.style.display = 'none';
-  renderMaterials();
 }
 
 function renderMaterials(filter, query) {
@@ -237,13 +236,15 @@ function renderMaterials(filter, query) {
     else if (m.type === 'video') icon = '🎬';
     var date = new Date(m.createdAt).toLocaleDateString();
     var preview = (m.summary || m.extractedText || '').slice(0, 120);
-    return '<div class="material-card" data-id="' + m.id + '">' +
+    var statusClass = m.status === 'processing' ? ' processing' : (m.status === 'error' ? ' error' : '');
+    var badge = m.status === 'processing' ? '<span class="analysing-badge"><span class="analysing-dot"></span>Analysing</span>' : '';
+    return '<div class="material-card' + statusClass + '" data-id="' + m.id + '">' +
       '<div class="material-card-header">' +
         '<span class="material-card-icon">' + icon + '</span>' +
         '<span class="material-card-type">' + m.type + '</span>' +
       '</div>' +
       '<h4 class="material-card-title">' + escapeHtml(m.name) + '</h4>' +
-      '<p class="material-card-preview">' + escapeHtml(preview) + (preview.length >= 120 ? '...' : '') + '</p>' +
+      '<p class="material-card-preview">' + (badge || escapeHtml(preview) + (preview.length >= 120 ? '...' : '')) + '</p>' +
       '<div class="material-card-footer">' +
         '<span class="material-card-date">' + date + '</span>' +
       '</div>' +
