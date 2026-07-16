@@ -1,10 +1,11 @@
-const CACHE_NAME = 'blockflow-v16';
+const CACHE_NAME = 'blockflow-v17';
 const urlsToCache = [
     './',
     'index.html',
     'calendar.html',
     'settings.html',
     'materials.html',
+    'docs.html',
     'css/style.css',
     'js/app.js',
     'js/storage.js',
@@ -14,6 +15,8 @@ const urlsToCache = [
     'js/ai-assistant.js',
     'js/materials.js',
     'js/notifications.js',
+    'js/sidebar.js',
+    'js/migration.js',
     'js/nova/nova-stt-providers.js',
     'js/nova/nova-tts-providers.js',
     'js/nova/nova-settings.js',

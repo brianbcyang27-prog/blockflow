@@ -4,6 +4,7 @@
   var PAGES = [
     { href: 'index.html',    icon: '🏠', label: 'Home' },
     { href: 'calendar.html', icon: '📅', label: 'Calendar' },
+    { href: 'materials.html', icon: '📚', label: 'Materials' },
     { id: 'aiAssistant',     icon: '✦', label: 'Nova', action: 'ai' },
     { id: 'analytics',       icon: '📊', label: 'Analytics', action: 'analytics' },
     { href: 'settings.html', icon: '⚙️', label: 'Settings' }

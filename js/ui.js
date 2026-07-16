@@ -76,7 +76,7 @@ const UI = {
     todayEvents.forEach(evt => {
       const dotClass = evt.importance === 'high' ? 'dc-event-dot-high' : evt.importance === 'low' ? 'dc-event-dot-low' : 'dc-event-dot-medium';
       const blockClass = evt.block === 'personal' ? 'dc-event-block-p' : evt.block === 'recovery' ? 'dc-event-block-r' : 'dc-event-block-f';
-      const timeStr = evt.time || '--:--';
+      let timeStr = evt.time || '--:--';
       if (evt.endTime) timeStr += ' - ' + evt.endTime;
 
       html +=

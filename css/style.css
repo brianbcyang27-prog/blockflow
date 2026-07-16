@@ -1961,13 +1961,13 @@ body.dstyle-dark .calendar-selector-item { color: #cbd5e1; }
 
 .settings-tab-btn:hover {
   background: rgba(255,255,255,0.08);
-  color: var(--text-primary);
+  color: var(--page-text);
 }
 
 .settings-tab-btn.active {
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background: var(--tab-active-gradient);
   color: white;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--tab-active-shadow);
 }
 
 .settings-tab-panel {
