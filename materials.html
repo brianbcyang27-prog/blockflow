@@ -56,7 +56,7 @@
   </style>
 </head>
 <body class="cursor-area">
-  <div id="loginOverlay" class="modal" style="display:flex;">
+  <div id="loginOverlay" class="modal">
     <div class="modal-content">
       <h2>Welcome to BlockFlow</h2>
       <p>Sign in to sync your data across devices</p>
@@ -159,7 +159,7 @@ FirebaseAuth.init();
 FirebaseDB.init();
 FirebaseAuth.onAuthChange(function(user) {
   var overlay = document.getElementById('loginOverlay');
-  if (overlay) overlay.classList.toggle('hidden', !!user);
+  if (overlay) overlay.style.display = user ? 'none' : 'flex';
   if (user) Storage.syncFromFirestore();
 });
 document.getElementById('loginBtn').addEventListener('click', function() {
