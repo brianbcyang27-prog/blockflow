@@ -3,6 +3,7 @@ var FirebaseAuth = (function() {
     var currentUser = null;
     var authListeners = [];
     var BYPASS_KEY = 'blockflow_bypass_auth';
+    var authReady = false;
 
     function getBypassUser() {
         return { uid: 'local', email: null, displayName: 'Local User', photoURL: null, isAnonymous: true };
@@ -22,9 +23,7 @@ var FirebaseAuth = (function() {
 
     function notifyListeners(user) {
         currentUser = user;
-        if (user) {
-        } else {
-        }
+        authReady = true;
         authListeners.forEach(function(cb) { cb(user); });
     }
 
@@ -62,15 +61,12 @@ var FirebaseAuth = (function() {
                     }
                 }
             });
-            var stored = localStorage.getItem('blockflow_auth_user');
-            if (stored && !currentUser) {
-            }
             return true;
         },
 
         onAuthChange: function(callback) {
             authListeners.push(callback);
-            if (currentUser) callback(currentUser);
+            if (authReady) callback(currentUser);
             return function() {
                 var idx = authListeners.indexOf(callback);
                 if (idx > -1) authListeners.splice(idx, 1);
