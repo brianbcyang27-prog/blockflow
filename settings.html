@@ -1175,6 +1175,12 @@ Get Free API Key
 SyncEngine.init();
 FirebaseAuth.init();
 FirebaseDB.init();
+
+(function() {
+  var style = localStorage.getItem('blockflow_dashboard_style') || 'compact';
+  document.body.classList.add('dstyle-' + style);
+})();
+
 FirebaseAuth.onAuthChange(function(user) {
     var overlay = document.getElementById('loginOverlay');
     if (overlay) overlay.classList.toggle('hidden', !!user);

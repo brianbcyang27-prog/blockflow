@@ -162,6 +162,11 @@ Materials.init();
 FirebaseAuth.init();
 FirebaseDB.init();
 
+(function() {
+  var style = localStorage.getItem('blockflow_dashboard_style') || 'compact';
+  document.body.classList.add('dstyle-' + style);
+})();
+
 if (typeof pdfjsLib !== 'undefined') {
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 }
