@@ -59,6 +59,26 @@
     .analysing-dot { width: 6px; height: 6px; background: #667eea; border-radius: 50%; animation: pulse 1.2s ease-in-out infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     .material-card.error { border-color: rgba(234,102,102,0.3); }
+    
+    @media (max-width: 380px) {
+      .materials-container { padding: 0 10px; }
+      .upload-zone { padding: 24px 12px; border-radius: 14px; }
+      .upload-icon { font-size: 2rem; }
+      .upload-zone h3 { font-size: 0.95rem; }
+      .upload-zone p { font-size: 0.75rem; }
+      .materials-search { flex-direction: column; gap: 8px; }
+      .materials-filter { flex-wrap: wrap; gap: 4px; }
+      .filter-btn { padding: 6px 10px; font-size: 0.7rem; }
+      .materials-grid { grid-template-columns: 1fr; gap: 10px; }
+      .material-card { padding: 14px; border-radius: 12px; }
+      .material-card-title { font-size: 0.85rem; }
+      .material-card-preview { font-size: 0.75rem; }
+      .detail-header h2 { font-size: 1.1rem; }
+      .detail-summary { padding: 12px; font-size: 0.82rem; }
+      .detail-text { padding: 12px; font-size: 0.75rem; max-height: 200px; }
+      .detail-actions { flex-direction: column; gap: 8px; }
+      .detail-actions .btn { width: 100%; }
+    }
   </style>
 </head>
 <body>

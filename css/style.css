@@ -3398,3 +3398,343 @@ body.dstyle-dark .calendar-selector-item { color: #cbd5e1; }
     flex-direction: column;
   }
 }
+
+/* ═══════════════════════════════════════════
+   iPhone 7 / Small Phone Responsive (≤375px)
+   ═══════════════════════════════════════════ */
+@media (max-width: 380px) {
+  .container {
+    padding: 8px;
+    overflow-x: hidden;
+  }
+  
+  .header {
+    padding: 8px 10px 8px 50px;
+    border-radius: 12px;
+  }
+  
+  .header h1 {
+    font-size: 1rem;
+  }
+  
+  .subtitle {
+    font-size: 0.7rem;
+  }
+  
+  .date-display {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+  
+  .nav-tabs {
+    padding: 3px;
+    gap: 3px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .nav-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .nav-tab {
+    padding: 6px 8px;
+    font-size: 0.7rem;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  
+  .dc-blocks-row {
+    gap: 4px;
+  }
+  
+  .dc-block {
+    padding: 8px 6px 6px;
+    border-radius: 10px;
+    gap: 4px;
+  }
+  
+  .dc-block-icon {
+    font-size: 1rem;
+  }
+  
+  .dc-block-name {
+    font-size: 0.65rem;
+  }
+  
+  .dc-block-dur {
+    font-size: 0.55rem;
+    padding: 1px 4px;
+  }
+  
+  .dc-block-btn {
+    font-size: 0.55rem;
+    padding: 2px 6px;
+  }
+  
+  .dc-block-bar {
+    height: 3px;
+    margin: 2px 0;
+  }
+  
+  .dc-block-legend {
+    gap: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+  
+  .dc-block-legend-item {
+    font-size: 0.6rem;
+  }
+  
+  .dc-block-legend-dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .dc-timer {
+    padding: 8px 10px;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .dc-timer-face {
+    font-size: 1.2rem;
+    min-width: 70px;
+  }
+  
+  .dc-timer-controls {
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+  
+  .dc-timer-btn {
+    padding: 4px 8px !important;
+    font-size: 0.6rem !important;
+  }
+  
+  .dc-timer-status {
+    font-size: 0.6rem;
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 4px;
+  }
+  
+  .dc-section {
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+  
+  .dc-section-title {
+    font-size: 0.6rem;
+  }
+  
+  .dc-event-row {
+    padding: 5px 6px;
+    gap: 4px;
+  }
+  
+  .dc-event-time {
+    font-size: 0.6rem;
+    min-width: 40px;
+  }
+  
+  .dc-event-title {
+    font-size: 0.7rem;
+  }
+  
+  .dc-event-block {
+    font-size: 0.5rem;
+    padding: 1px 4px;
+  }
+  
+  .dc-metrics {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+  
+  .dc-metric-icon {
+    font-size: 0.7rem;
+  }
+  
+  .dc-metric-value {
+    font-size: 0.7rem;
+  }
+  
+  .dc-metric-label {
+    font-size: 0.5rem;
+  }
+  
+  .briefing-card,
+  .heatmap-card,
+  .report-card,
+  .nl-scheduling-card,
+  .demo-card {
+    padding: 12px;
+    border-radius: 14px;
+    margin-bottom: 8px;
+  }
+  
+  .briefing-title,
+  .heatmap-title,
+  .report-title,
+  .nl-scheduling-title,
+  .demo-title {
+    font-size: 0.95rem;
+  }
+  
+  .briefing-summary {
+    gap: 6px;
+  }
+  
+  .briefing-stat {
+    padding: 6px;
+  }
+  
+  .briefing-stat-icon {
+    font-size: 1.2rem;
+  }
+  
+  .briefing-stat-value {
+    font-size: 1rem;
+  }
+  
+  .briefing-stat-label {
+    font-size: 0.6rem;
+  }
+  
+  .heatmap-weekly-grid {
+    gap: 2px;
+  }
+  
+  .heatmap-day {
+    padding: 4px 1px;
+  }
+  
+  .heatmap-day-label {
+    font-size: 0.5rem;
+  }
+  
+  .heatmap-day-value {
+    font-size: 0.55rem;
+  }
+  
+  .heatmap-hourly-grid {
+    height: 40px;
+  }
+  
+  .nl-scheduling-input {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .nl-scheduling-suggestion-chips {
+    gap: 4px;
+  }
+  
+  .nl-suggestion-chip {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+  }
+  
+  .demo-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .demo-load-btn,
+  .demo-clear-btn {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .quick-capture-fab {
+    bottom: 70px;
+    right: 14px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+  
+  .quick-capture-content {
+    width: calc(100% - 16px);
+    max-height: 80vh;
+    border-radius: 16px;
+  }
+  
+  .quick-capture-input {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .modal-content {
+    padding: 16px;
+    margin: 8px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .ai-chat-window {
+    width: calc(100% - 16px) !important;
+    right: 8px !important;
+    bottom: 8px !important;
+    border-radius: 14px !important;
+  }
+  
+  .sidebar-overlay {
+    width: 100%;
+  }
+  
+  .login-card {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .login-title {
+    font-size: 1.5rem;
+  }
+  
+  .login-btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .toast-container {
+    bottom: 80px;
+    left: 8px;
+    right: 8px;
+  }
+  
+  .toast {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+  }
+}
+
+@media (min-width: 381px) and (max-width: 480px) {
+  .nav-tab {
+    padding: 7px 10px;
+    font-size: 0.75rem;
+  }
+  
+  .dc-block {
+    padding: 10px 8px 8px;
+  }
+  
+  .dc-block-name {
+    font-size: 0.7rem;
+  }
+  
+  .dc-timer-face {
+    font-size: 1.4rem;
+    min-width: 80px;
+  }
+  
+  .dc-timer-btn {
+    padding: 5px 10px !important;
+    font-size: 0.65rem !important;
+  }
+}
