@@ -37,3 +37,15 @@ blockflow goal/api-keys.txt
 
 # Graphify knowledge graph output
 graphify-out/
+
+# Test screenshots
+test-screenshots/
+
+# API verification
+api-verify/
+
+# Old reports
+*.md.bak
+
+# Demo mode data (keep demo/ folder for samples)
+blockflow goal/

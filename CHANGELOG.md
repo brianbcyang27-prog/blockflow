@@ -4,6 +4,29 @@ All notable changes to BlockFlow are documented here.
 
 ---
 
+## [4.0.0] - 2026-07-17
+
+### Added
+- **Daily Briefing** — AI-powered morning summary with energy planning and key tasks
+- **Productivity Heatmap** — Visual 7-day heatmap showing focus, personal, and recovery time
+- **AI Weekly Report** — One-click weekly summary with stats, insights, and CSV export
+- **Quick Capture** — Floating button (⚡) to instantly save ideas without leaving the page (Cmd/Ctrl+K)
+- **Natural Language Scheduling** — Type "Team standup tomorrow at 9am" and AI parses it into a calendar event
+- **Demo Mode** — Instant demo data loader with 7-day history, 30 events, and 3 sample materials
+- **Block Color Legend** — Visual guide showing Focus (blue), Personal (green), Recovery (amber)
+- **iPhone 7 Responsive Design** — Full mobile support at 375px width across all pages
+
+### Fixed
+- **Login overlay persistence** — "Continue without signing in" now persists across all tab switches
+- **Calendar delete functionality** — Event deletion now works correctly (Calendar.init() was never called)
+
+### Changed
+- Quick Capture positioned above Nova FAB for better mobile access
+- All dashboard cards adapted for small screens with reduced padding
+- Navigation tabs scroll horizontally on mobile devices
+
+---
+
 ## [2.3.0] - 2026-07-15
 
 ### Added

@@ -1,0 +1,117 @@
+# BlockFlow v4.0 Presentation Guide
+====================================
+
+## Opening (30 seconds)
+"Today I'm excited to show you BlockFlow v4.0 — a major update that transforms our productivity tool into an AI-powered personal assistant. We've added 6 new features that make planning your day effortless."
+
+---
+
+## Feature 1: Daily Briefing (1 minute)
+**What to say:**
+"Every morning, BlockFlow now generates a personalized briefing. It looks at your calendar, history, and goals to suggest how to plan your day — including energy management tips."
+
+**Demo steps:**
+1. Point to the "Daily Briefing" card on the dashboard
+2. Show the morning summary with suggested blocks
+3. Highlight the energy planning feature
+
+**Key point:** "This saves you 5-10 minutes every morning planning your day."
+
+---
+
+## Feature 2: Productivity Heatmap (1 minute)
+**What to say:**
+"The new heatmap gives you a visual overview of your week. You can instantly see where you spent your time — focus work, personal activities, or recovery."
+
+**Demo steps:**
+1. Scroll to the heatmap card
+2. Point out the color coding (blue=focus, green=personal, amber=recovery)
+3. Show how it visualizes your last 7 days
+
+**Key point:** "At a glance, you know if you had a balanced week."
+
+---
+
+## Feature 3: AI Weekly Report (1 minute)
+**What to say:**
+"At the end of each week, you can generate a comprehensive report with one click. It includes statistics, insights, and recommendations — and you can download it as a PDF."
+
+**Demo steps:**
+1. Click "Generate Report" button
+2. Show the generated insights
+3. Mention the PDF download option
+
+**Key point:** "No more manual reporting — AI does it for you."
+
+---
+
+## Feature 4: Quick Capture (1 minute)
+**What to say:**
+"Sometimes you just need to jot something down quickly. The Quick Capture button is always available — just click the lightning bolt or press Cmd+K."
+
+**Demo steps:**
+1. Click the ⚡ floating button
+2. Type a quick task
+3. Show it saves instantly
+
+**Key point:** "Capture ideas in 2 seconds without leaving what you're doing."
+
+---
+
+## Feature 5: Natural Language Scheduling (1 minute)
+**What to say:**
+"This is my favorite feature. Just type what you want in plain English — like 'Team standup tomorrow at 9am' — and AI creates the calendar event for you."
+
+**Demo steps:**
+1. Type a natural language event
+2. Click Parse
+3. Show the AI-analyzed preview
+4. Click Confirm
+
+**Key point:** "No more filling out forms — just say what you need."
+
+---
+
+## Feature 6: Demo Mode (30 seconds)
+**What to say:**
+"For presentations like this, we have a Demo Mode that instantly loads sample data so you can see all features in action."
+
+**Demo steps:**
+1. Click "Load Demo Data" if not already loaded
+2. Show the populated dashboard, calendar, and materials
+
+**Key point:** "Everything you see is real functionality — just with sample data."
+
+---
+
+## Closing (30 seconds)
+"To summarize: BlockFlow v4.0 adds Daily Briefing, Productivity Heatmap, AI Weekly Report, Quick Capture, Natural Language Scheduling, and Demo Mode. Plus we fixed bugs and added full iPhone 7 support. Thank you!"
+
+---
+
+## Quick Reference Card
+Keep this handy during the presentation:
+
+1. Daily Briefing → Dashboard, top card
+2. Heatmap → Dashboard, below briefing
+3. Weekly Report → Dashboard, generate button
+4. Quick Capture → ⚡ floating button (or Cmd+K)
+5. NL Scheduling → Dashboard, text input
+6. Demo Mode → Settings page button
+
+---
+
+## Backup Answers
+If asked technical questions:
+
+Q: How does the AI work?
+A: "We use NVIDIA's LLM API for natural language processing and event analysis."
+
+Q: Is this production-ready?
+A: "Yes — all features are fully functional with error handling and responsive design."
+
+Q: Does it work offline?
+A: "Core features work offline via PWA. AI features require internet."
+
+Q: What about security?
+A: "Firebase authentication with optional cloud sync. Data stays local by default."

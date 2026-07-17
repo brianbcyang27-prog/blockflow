@@ -1,0 +1,26 @@
+BlockFlow v4.0 — New Features
+==============================
+
+1. DAILY BRIEFING
+   AI-powered morning summary with energy planning
+
+2. PRODUCTIVITY HEATMAP
+   Visual 7-day overview of focus, personal, recovery time
+
+3. AI WEEKLY REPORT
+   One-click weekly summary with stats and PDF export
+
+4. QUICK CAPTURE
+   Floating button (⚡) to save ideas instantly (Cmd/Ctrl+K)
+
+5. NATURAL LANGUAGE SCHEDULING
+   Type "Team standup tomorrow at 9am" → AI creates event
+
+6. DEMO MODE
+   Instant demo data for presentations
+
+Plus:
+- Block color legend (Focus=blue, Personal=green, Recovery=amber)
+- Full iPhone 7 support (375px responsive)
+- Fixed login overlay persistence
+- Fixed calendar delete functionality
