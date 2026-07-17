@@ -37,7 +37,8 @@ var FirebaseAuth = (function() {
             }
             auth = firebase.auth();
             if (isBypassActive()) {
-                setBypass(false);
+                notifyListeners(getBypassUser());
+                return true;
             }
             auth.onAuthStateChanged(function(user) {
                 if (user) {

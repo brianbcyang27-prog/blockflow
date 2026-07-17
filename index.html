@@ -2169,12 +2169,14 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
     </nav>
 
     <main>
-      <!-- (home center removed for compact layout) -->
-
-      <!-- ─── Compact Dashboard ─── -->
       <div class="dashboard-compact">
 
-        <!-- Blocks Row (rendered by JS) -->
+        <div id="briefingContainer"></div>
+        <div id="heatmapContainer"></div>
+        <div id="reportContainer"></div>
+        <div id="nlSchedulingContainer"></div>
+        <div id="demoContainer"></div>
+
         <div class="dc-blocks-row" id="blocksContainer"></div>
 
         <!-- Events Section -->
@@ -2339,6 +2341,12 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
 <script src="js/nova/nova-tts-providers.js"></script>
 <script src="js/nova/nova-waveform.js"></script>
 <script src="js/ai-assistant.js?v=2.5.0"></script>
+<script src="js/daily-briefing.js"></script>
+<script src="js/productivity-heatmap.js"></script>
+<script src="js/ai-weekly-report.js"></script>
+<script src="js/quick-capture.js"></script>
+<script src="js/natural-language-scheduling.js"></script>
+<script src="js/demo-mode.js"></script>
 <script>
 SyncEngine.init();
 FirebaseAuth.init();
