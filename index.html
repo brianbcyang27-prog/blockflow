@@ -86,6 +86,27 @@
 .dc-block-bar-focus .dc-block-bar-fill { background: #4a7cf7; }
 .dc-block-bar-personal .dc-block-bar-fill { background: #10b981; }
 .dc-block-bar-recovery .dc-block-bar-fill { background: #f59e0b; }
+.dc-block-legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.dc-block-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+.dc-block-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 .dc-block-footer {
   display: flex;
   align-items: center;
@@ -2178,6 +2199,11 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
         <div id="demoContainer"></div>
 
         <div class="dc-blocks-row" id="blocksContainer"></div>
+        <div class="dc-block-legend">
+          <span class="dc-block-legend-item"><span class="dc-block-legend-dot" style="background:#4a7cf7"></span>Focus</span>
+          <span class="dc-block-legend-item"><span class="dc-block-legend-dot" style="background:#10b981"></span>Personal</span>
+          <span class="dc-block-legend-item"><span class="dc-block-legend-dot" style="background:#f59e0b"></span>Recovery</span>
+        </div>
 
         <!-- Events Section -->
         <div class="dc-section">
