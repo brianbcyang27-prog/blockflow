@@ -446,6 +446,67 @@
 
 ---
 
+### 12. AI Assistant Memory（記憶點）
+
+**功能說明：**
+- AI 助理具備長期記憶能力，使用者可以儲存重要資訊供後續對話參考
+- 支援手動新增記憶點、自動記憶（語音對話後詢問是否記住）、釘選、編輯、刪除
+- 記憶點包含重要性標籤（High / Medium / Low）和分類標籤
+- 記憶點同步至 Firebase Firestore，跨裝置保持一致
+
+**使用者體驗：**
+- 在 AI 助理面板中，使用者可以透過輸入框新增記憶點
+- 語音對話結束後，系統會自動詢問「🧠 Remember this?」，使用者可選擇 Yes 或 No
+- 記憶點列表支援搜尋功能，可依內容或分類快速篩選
+- 重要記憶點可釘選（📌）置頂，方便快速存取
+- 每個記憶點可進行行內編輯（inline edit），無需開啟新視窗
+
+**技術細節：**
+- 檔案：`js/ai-assistant.js`（`addMemoryPoint`、`deleteMemoryPoint`、`editMemoryPoint`、`togglePinMemory`、`inlineEditMemory` 函數）
+- 儲存：localStorage + Firebase Firestore（`firebase-db.js` 的 `getAiMemory` / `saveAiMemory`）
+- 記憶點格式：`{ id, content, createdAt, importance, category, pinned }`
+- 最大記憶點數量限制（`_maxMemoryPoints`）
+- 自動記憶確認對話框（`_showVoiceMemoryConfirm`），8 秒後自動接受
+
+**產品畫面截圖：**
+- 截圖 1：AI 助理面板，顯示記憶點輸入框和記憶點列表
+- 截圖 2：語音對話後的「🧠 Remember this?」確認對話框
+
+**簡報講稿：**
+> 「接下來是 AI 記憶點功能。BlockFlow 的 AI 助理不只是聊天機器人，它能記住你告訴它的重要資訊。比如你跟它說『我下週一有個重要報告』，它會自動記住，下次對話時就能參考。你也可以手動新增記憶點，像是專案截止日期、重要聯絡人等。這些記憶點會同步到雲端，換裝置也不會丟失。」
+
+---
+
+### 13. AI Assistant Voice（語音功能）
+
+**功能說明：**
+- AI 助理支援語音輸入（STT）和語音輸出（TTS），讓使用者可以用自然對話方式與 AI 互動
+- 多種 TTS 供應商：Browser Voice（內建）、Kokoro Local AI（本地運算）、tts.ai Cloud（雲端）、ElevenLabs Premium（高擬真）
+- 即時波形視覺化（Waveform），在聆聽、思考、說話時顯示不同動畫
+- 語音錄製功能（Voice Clone），為未來的聲音複製功能預留介面
+
+**使用者體驗：**
+- 使用者點擊麥克風按鈕即可開始語音輸入，說話時顯示「Listening...」狀態
+- AI 回應時自動播放語音，並顯示波形動畫（呼吸脈衝 → 思考旋轉 → 說話波形）
+- 在 Settings 頁面可選擇 TTS 供應商、預覽語音、測試語音品質
+- 支援語音記憶：語音對話結束後可選擇是否記住對話內容
+
+**技術細節：**
+- TTS 模組：`js/nova/nova-tts-providers.js`（BrowserTTSProvider、KokoroTTSProvider、TtsAiProvider、ElevenLabsProvider）
+- STT 模組：`js/nova/nova-stt-providers.js`（Browser Web Speech API）
+- 波形視覺化：`js/nova/nova-waveform.js`（Canvas 動畫，4 狀態：idle / listening / thinking / speaking）
+- 語音錄製：`js/nova/nova-voice-clone.js`（MediaRecorder API，支援 WebM/OGG/MP4 格式）
+- 設定管理：`js/nova/nova-settings.js`（供應商選擇、API Key 管理、語音預覽）
+
+**產品畫面截圖：**
+- 截圖 1：AI 助理面板，顯示語音輸入按鈕和波形動畫
+- 截圖 2：Settings 頁面的 Nova Voice 設定區塊
+
+**簡報講稿：**
+> 「最後是語音功能。BlockFlow 的 AI 助理不只能打字聊天，還能用聲音跟你對話。你點擊麥克風按鈕，直接說出你的需求，AI 就會聽懂並回應。它還會用聲音讀出回應，同時顯示波形動畫，讓你知道它正在說話。我們支援多種語音引擎，包括瀏覽器內建、本地 AI 運算、雲端服務等，使用者可以根據需求選擇。這個功能讓操作更直覺，特別是在雙手不方便打字的時候。」
+
+---
+
 ## 三、下一步開發計畫
 
 ### New Feature Goals
@@ -590,6 +651,8 @@
 - ✅ Bug Fixes - 登入覆蓋層和日曆刪除功能
 - ✅ iPhone 7 Responsive Design - 375px 響應式設計
 - ✅ Block Color Legend - 區塊顏色圖例
+- ✅ AI Assistant Memory - 記憶點功能
+- ✅ AI Assistant Voice - 語音功能
 
 ### 版本更新
 
