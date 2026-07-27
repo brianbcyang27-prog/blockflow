@@ -603,6 +603,12 @@ users/
 
 5. **Mixed ES5/ES6** — Some files use `var`, others use `const/let`. Inconsistent.
 
+6. **STT duplication** — AIAssistant uses browser `SpeechRecognition` directly while `NovaSTT` exists as a separate abstraction. These should be unified.
+
+7. **Dual calendar state models** — Legacy `Storage` calendar list and unified `SyncEngine` calendar store overlap and are only partially reconciled. Both exist in parallel.
+
+8. **Hardcoded secrets in source** — Firebase config and Google client IDs are hardcoded in `firebase-init.js` and `google-calendar.js`. Should use environment variables.
+
 ## Messy Code
 
 1. **Inline styles** — Many components create DOM with inline `style.cssText` instead of CSS classes.
@@ -612,6 +618,10 @@ users/
 3. **Duplicated code** — Theme application logic repeated across pages.
 
 4. **Dead code** — Old files like `cloudflare-worker.js` may still exist.
+
+5. **Inconsistent naming** — Storage keys use mixed patterns: `blockflow_proxy_url` vs `blockflow_nvidia_proxy_url`.
+
+6. **console.log in production** — Verbose logging paths throughout `ai-assistant.js` and `nova/` files.
 
 ## Performance Issues
 
