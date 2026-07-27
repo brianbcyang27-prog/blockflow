@@ -13,8 +13,8 @@ const QuickCapture = {
     const fab = document.createElement('button');
     fab.className = 'quick-capture-fab';
     fab.innerHTML = '⚡';
-    fab.title = 'Quick Capture';
-    fab.setAttribute('aria-label', 'Quick Capture');
+      fab.title = 'Idea Inbox';
+      fab.setAttribute('aria-label', 'Idea Inbox');
     document.body.appendChild(fab);
     
     const modal = document.createElement('div');
@@ -23,7 +23,7 @@ const QuickCapture = {
     modal.innerHTML = `
       <div class="quick-capture-content">
         <div class="quick-capture-header">
-          <h3>Quick Capture</h3>
+          <h3>Idea Inbox</h3>
           <button class="quick-capture-close" onclick="QuickCapture.close()">×</button>
         </div>
         <div class="quick-capture-input-area">

@@ -99,13 +99,13 @@ const DailyBriefing = {
     if (events.length === 0) {
       recommendations.push({
         icon: '📅',
-        text: 'No events scheduled today. Consider planning your day.',
+        text: 'No classes or tasks today. Plan your study sessions.',
         priority: 'medium'
       });
     } else if (events.length > 5) {
       recommendations.push({
         icon: '⚠️',
-        text: `Busy day with ${events.length} events. Focus on one task at a time.`,
+        text: `Busy day with ${events.length} classes/tasks. Take it one step at a time.`,
         priority: 'high'
       });
     }
@@ -113,13 +113,13 @@ const DailyBriefing = {
     if (focusPatterns.trend === 'declining') {
       recommendations.push({
         icon: '📉',
-        text: 'Focus time has been declining. Try shorter focus sessions today.',
+        text: 'Focus has been declining. Try shorter study sessions today.',
         priority: 'high'
       });
     } else if (focusPatterns.trend === 'improving') {
       recommendations.push({
         icon: '📈',
-        text: 'Great progress! Keep up the momentum.',
+        text: 'Great progress! Keep up the study momentum.',
         priority: 'low'
       });
     }
@@ -127,7 +127,7 @@ const DailyBriefing = {
     if (focusPatterns.avgDistractions > 3) {
       recommendations.push({
         icon: '🎯',
-        text: 'Average distractions are high. Consider turning off notifications.',
+        text: 'High distractions detected. Try turning off notifications while studying.',
         priority: 'medium'
       });
     }
@@ -135,7 +135,7 @@ const DailyBriefing = {
     if (materials.length > 0) {
       recommendations.push({
         icon: '📚',
-        text: `You have ${materials.length} materials. Review them during Personal block.`,
+        text: `You have ${materials.length} materials. Review them during your study block.`,
         priority: 'low'
       });
     }
@@ -143,7 +143,7 @@ const DailyBriefing = {
     if (recommendations.length === 0) {
       recommendations.push({
         icon: '✨',
-        text: 'Start with your most important task during peak focus hours.',
+        text: 'Start with your hardest subject during peak focus hours.',
         priority: 'medium'
       });
     }
@@ -177,23 +177,18 @@ const DailyBriefing = {
           <div class="briefing-stat">
             <span class="briefing-stat-icon">📅</span>
             <span class="briefing-stat-value">${data.eventCount}</span>
-            <span class="briefing-stat-label">events today</span>
+            <span class="briefing-stat-label">tasks today</span>
           </div>
           <div class="briefing-stat">
             <span class="briefing-stat-icon">⏱️</span>
             <span class="briefing-stat-value">${data.focusPatterns.avgFocusTime}</span>
             <span class="briefing-stat-label">avg focus min</span>
           </div>
-          <div class="briefing-stat">
-            <span class="briefing-stat-icon">📚</span>
-            <span class="briefing-stat-value">${data.materialsCount}</span>
-            <span class="briefing-stat-label">materials</span>
-          </div>
         </div>
 
         ${data.priorityTask ? `
           <div class="briefing-priority">
-            <div class="briefing-priority-label">Priority Task</div>
+            <div class="briefing-priority-label">Top Priority</div>
             <div class="briefing-priority-task">
               <span class="briefing-priority-time">${data.priorityTask.time || 'All day'}</span>
               <span class="briefing-priority-title">${data.priorityTask.title}</span>

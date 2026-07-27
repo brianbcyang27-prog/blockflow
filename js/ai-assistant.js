@@ -1163,7 +1163,7 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
       const m = this.memoryPoints[0];
       greeting = `Hey! How's "${m.content.slice(0, 40)}" going?`;
     } else {
-      const greetings = ['Hey!', 'Hi there!', "What's happening?", 'Good to see you!'];
+      const greetings = ['Hey! Ready to plan your day?', 'Hi there! What are you working on?', 'Good to see you! Need help planning?', 'Hey! Let\'s make today productive.'];
       greeting = greetings[Math.floor(Math.random() * greetings.length)];
     }
 
@@ -1171,9 +1171,9 @@ body.dstyle-warm .ai-copy-btn:hover{background:#f5efe6}
     if (todayEvents.length > 0) {
       const first = todayEvents[0];
       const label = first.title || first.task || 'something';
-      contextMsg = ` Good ${timeGreeting}, by the way. You've got ${todayEvents.length} thing${todayEvents.length > 1 ? 's' : ''} on today${first.time ? ' — starting with ' + label + ' at ' + first.time : '.'}`;
+      contextMsg = ` Good ${timeGreeting}, by the way. You've got ${todayEvents.length} task${todayEvents.length > 1 ? 's' : ''} today${first.time ? ' — starting with ' + label + ' at ' + first.time : '.'}`;
     } else if (tomorrowEvents.length > 0) {
-      contextMsg = ` Good ${timeGreeting}. You have ${tomorrowEvents.length} thing${tomorrowEvents.length > 1 ? 's' : ''} coming up tomorrow if you want to prep.`;
+      contextMsg = ` Good ${timeGreeting}. You have ${tomorrowEvents.length} task${tomorrowEvents.length > 1 ? 's' : ''} coming up tomorrow if you want to prep.`;
     }
 
     this.addAiMessage(greeting + contextMsg, true);

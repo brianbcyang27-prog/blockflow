@@ -139,7 +139,7 @@ const AIWeeklyReport = {
     container.innerHTML = `
       <div class="report-card">
         <div class="report-header">
-          <h3 class="report-title">Weekly Report</h3>
+          <h3 class="report-title">Weekly Reflection</h3>
           <button class="report-generate-btn" onclick="AIWeeklyReport.generateReport()">
             📊 Generate Report
           </button>
@@ -193,7 +193,7 @@ const AIWeeklyReport = {
     const stats = data.weeklyStats;
     
     return `
-BlockFlow Weekly Report
+BlockFlow Weekly Reflection
 Generated: ${data.generatedAt}
 
 ═══════════════════════════════════════

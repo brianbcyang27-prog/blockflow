@@ -13,17 +13,17 @@ const DemoMode = {
     container.innerHTML = `
       <div class="demo-card">
         <div class="demo-header">
-          <h3 class="demo-title">Demo Mode</h3>
-          <span class="demo-badge">Presentation Ready</span>
+          <h3 class="demo-title">Quick Start</h3>
+          <span class="demo-badge">Student Edition</span>
         </div>
         
         <div class="demo-description">
-          Load sample data to showcase all features for your presentation.
+          Load sample data to explore how BlockFlow helps you plan your study sessions.
         </div>
         
         <div class="demo-actions">
           <button class="demo-load-btn" onclick="DemoMode.loadDemoData()">
-            📊 Load Demo Data
+            📊 Load Sample Data
           </button>
           <button class="demo-clear-btn" onclick="DemoMode.clearDemoData()">
             🗑️ Clear Data
@@ -33,19 +33,15 @@ const DemoMode = {
         <div class="demo-features">
           <div class="demo-feature">
             <span class="demo-feature-icon">📅</span>
-            <span class="demo-feature-text">7-day history with focus patterns</span>
+            <span class="demo-feature-text">7-day study history with focus patterns</span>
           </div>
           <div class="demo-feature">
             <span class="demo-feature-icon">📋</span>
-            <span class="demo-feature-text">Calendar events across the week</span>
-          </div>
-          <div class="demo-feature">
-            <span class="demo-feature-icon">📚</span>
-            <span class="demo-feature-text">Sample materials for AI analysis</span>
+            <span class="demo-feature-text">Class schedule and study sessions</span>
           </div>
           <div class="demo-feature">
             <span class="demo-feature-icon">🎯</span>
-            <span class="demo-feature-text">Realistic distraction patterns</span>
+            <span class="demo-feature-text">Realistic distraction tracking</span>
           </div>
         </div>
         
@@ -129,12 +125,12 @@ const DemoMode = {
     const today = new Date();
     
     const sampleEvents = [
-      { title: 'Team Standup', time: '09:00', block: 'focus', importance: 'high' },
-      { title: 'Deep Work Session', time: '10:00', block: 'focus', importance: 'high' },
-      { title: 'Lunch with Client', time: '12:00', block: 'personal', importance: 'medium' },
-      { title: 'Project Review', time: '14:00', block: 'focus', importance: 'high' },
-      { title: 'Gym Workout', time: '17:00', block: 'recovery', importance: 'medium' },
-      { title: 'Evening Reading', time: '20:00', block: 'recovery', importance: 'low' }
+      { title: 'Morning Lecture', time: '09:00', block: 'focus', importance: 'high' },
+      { title: 'Study Session', time: '10:30', block: 'focus', importance: 'high' },
+      { title: 'Lunch Break', time: '12:00', block: 'personal', importance: 'medium' },
+      { title: 'Lab Work', time: '14:00', block: 'focus', importance: 'high' },
+      { title: 'Exercise', time: '17:00', block: 'recovery', importance: 'medium' },
+      { title: 'Evening Review', time: '20:00', block: 'recovery', importance: 'low' }
     ];
     
     for (let i = 0; i < 7; i++) {
@@ -166,30 +162,30 @@ const DemoMode = {
     const materials = [
       {
         id: 'mat_demo_1',
-        name: 'Project Requirements.pdf',
+        name: 'Lecture Notes - Week 5.pdf',
         type: 'pdf',
         size: 245000,
         uploadedAt: new Date(Date.now() - 86400000).toISOString(),
-        summary: 'Key requirements for Q3 project delivery including timeline and milestones.',
+        summary: 'Notes from this week\'s lectures covering key concepts and formulas.',
         block: 'focus'
       },
       {
         id: 'mat_demo_2',
-        name: 'Meeting Notes.md',
+        name: 'Assignment Brief.md',
         type: 'text',
         size: 12000,
         uploadedAt: new Date(Date.now() - 172800000).toISOString(),
-        summary: 'Notes from team planning session with action items and deadlines.',
-        block: 'personal'
+        summary: 'Assignment requirements with deadlines and submission guidelines.',
+        block: 'focus'
       },
       {
         id: 'mat_demo_3',
-        name: 'Training Video.mp4',
-        type: 'video',
-        size: 15000000,
+        name: 'Study Group Notes.txt',
+        type: 'text',
+        size: 8000,
         uploadedAt: new Date(Date.now() - 259200000).toISOString(),
-        summary: 'Onboarding training video covering company policies and procedures.',
-        block: 'recovery'
+        summary: 'Shared notes from study group session on difficult topics.',
+        block: 'personal'
       }
     ];
     

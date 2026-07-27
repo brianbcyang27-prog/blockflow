@@ -26,6 +26,32 @@
   width: 100%;
   overflow: hidden;
 }
+/* Show More Toggle */
+.dc-show-more-btn {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+}
+.dc-show-more-btn:hover {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+.dc-secondary-cards {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+.dc-secondary-cards.open {
+  display: flex;
+}
+
 /* Blocks Row */
 .dc-blocks-row {
   display: grid;
@@ -2185,7 +2211,6 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
     <nav class="nav-tabs">
         <button class="nav-tab active">🏠 Dashboard</button>
         <button class="nav-tab" onclick="window.location.href='calendar.html'">📅 Calendar</button>
-        <button class="nav-tab" onclick="window.location.href='materials.html'">📚 Materials</button>
         <button class="nav-tab" onclick="window.location.href='settings.html'">⚙️ Settings</button>
     </nav>
 
@@ -2193,10 +2218,16 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
       <div class="dashboard-compact">
 
         <div id="briefingContainer"></div>
-        <div id="heatmapContainer"></div>
-        <div id="reportContainer"></div>
-        <div id="nlSchedulingContainer"></div>
         <div id="demoContainer"></div>
+
+        <button class="dc-show-more-btn" id="showMoreBtn" onclick="document.getElementById('secondaryCards').classList.toggle('open'); this.textContent = this.textContent === 'Show more ▼' ? 'Show less ▲' : 'Show more ▼'">
+          Show more ▼
+        </button>
+        <div id="secondaryCards" class="dc-secondary-cards">
+          <div id="heatmapContainer"></div>
+          <div id="reportContainer"></div>
+          <div id="nlSchedulingContainer"></div>
+        </div>
 
         <div class="dc-blocks-row" id="blocksContainer"></div>
         <div class="dc-block-legend">

@@ -4,6 +4,18 @@ All notable changes to BlockFlow are documented here.
 
 ---
 
+## [4.1.0] - 2026-07-19
+
+### Changed
+- **Simplified Dashboard** — Secondary widgets (Heatmap, Weekly Report, Smart Scheduling) hidden behind "Show more" toggle
+- **Removed Materials from Navigation** — Materials page removed from sidebar and top nav tabs (still accessible via URL)
+- **Product Language Update** — "AI Weekly Report" → "Weekly Reflection", "Productivity Heatmap" → "Growth Overview", "Quick Capture" → "Idea Inbox"
+- **Student-Focused Demo Mode** — Demo renamed to "Quick Start" with student-focused sample data (classes, study sessions, assignments)
+- **Nova AI Greeting** — Updated to be more student-focused ("Ready to plan your day?", "What are you working on?")
+- **Daily Briefing** — Recommendations updated for student context (study sessions, classes, distractions)
+
+---
+
 ## [4.0.0] - 2026-07-17
 
 ### Added
