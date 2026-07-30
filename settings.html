@@ -1132,7 +1132,7 @@ FirebaseAuth.init();
 FirebaseDB.init();
 
 (function() {
-  var style = localStorage.getItem('blockflow_dashboard_style') || 'system';
+  var style = localStorage.getItem('blockflow_dashboard_style') || 'dark';
   document.body.classList.add('dstyle-' + style);
 })();
 
@@ -1227,7 +1227,7 @@ const Settings = {
     },
 
     initDashPreview() {
-        var style = localStorage.getItem('blockflow_dashboard_style') || 'system';
+        var style = localStorage.getItem('blockflow_dashboard_style') || 'dark';
         var preview = document.getElementById('dashPreview');
         if (preview) preview.classList.add('dstyle-' + style);
         // Highlight active option
