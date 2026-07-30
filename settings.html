@@ -658,17 +658,8 @@ Configure API keys for AI features. All providers listed have a <strong>free tie
 Keys are saved to your browser and never sent to any server except the API provider.
 </p>
 <div id="apiKeysContainer">
-<div class="setting-item"><div class="setting-label"><strong>Google Gemini</strong><span><span class="free-badge">🆓 FREE</span> 1500 req/day · <a href="https://ai.google.dev" target="_blank" class="link-accent">ai.google.dev</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_gemini" placeholder="AIza..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_gemini">Save</button><span class="key-status" data-key="bf_key_gemini"></span></div></div>
-<div class="setting-item"><div class="setting-label"><strong>Groq</strong><span><span class="free-badge">🆓 FREE</span> 30 RPM · <a href="https://console.groq.com" target="_blank" class="link-accent">console.groq.com</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_groq" placeholder="gsk_..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_groq">Save</button><span class="key-status" data-key="bf_key_groq"></span></div></div>
-<div class="setting-item"><div class="setting-label"><strong>OpenRouter</strong><span><span class="free-badge">🆓 FREE</span> 50 req/day · <a href="https://openrouter.ai/keys" target="_blank" class="link-accent">openrouter.ai/keys</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_openrouter" placeholder="sk-or-..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_openrouter">Save</button><span class="key-status" data-key="bf_key_openrouter"></span></div></div>
-<div class="setting-item"><div class="setting-label"><strong>Cerebras</strong><span><span class="free-badge">🆓 FREE</span> 1M tokens/day · <a href="https://cloud.cerebras.ai" target="_blank" class="link-accent">cloud.cerebras.ai</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_cerebras" placeholder="cerebras-..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_cerebras">Save</button><span class="key-status" data-key="bf_key_cerebras"></span></div></div>
-<div class="setting-item"><div class="setting-label"><strong>Mistral AI</strong><span><span class="free-badge">🆓 FREE</span> 1B tokens/month · <a href="https://console.mistral.ai" target="_blank" class="link-accent">console.mistral.ai</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_mistral" placeholder="MISTRAL_..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_mistral">Save</button><span class="key-status" data-key="bf_key_mistral"></span></div></div>
-<div class="setting-item"><div class="setting-label"><strong>NVIDIA NIM</strong><span><span class="free-badge">🆓 FREE</span> · <a href="https://build.nvidia.com" target="_blank" class="link-accent">build.nvidia.com</a> (also in AI section below)</span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_nvidia" placeholder="nvapi-..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_nvidia">Save</button><span class="key-status" data-key="bf_key_nvidia"></span></div></div>
-<div class="setting-item"><div class="setting-label"><strong>OCR.space</strong><span><span class="free-badge">🆓 FREE</span> 500 req/day · <a href="https://ocr.space" target="_blank" class="link-accent">ocr.space</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_ocrspace" placeholder="K8..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_ocrspace">Save</button><span class="key-status" data-key="bf_key_ocrspace"></span></div></div>
+<div class="setting-item"><div class="setting-label"><strong>NVIDIA NIM</strong><span><span class="free-badge">🆓 FREE</span> · <a href="https://build.nvidia.com" target="_blank" class="link-accent">build.nvidia.com</a></span></div><div class="setting-control key-control-group"><input type="password" id="bf_key_nvidia" placeholder="nvapi-..." class="key-input"><button class="btn btn-secondary key-save-btn" data-key="bf_key_nvidia">Save</button><span class="key-status" data-key="bf_key_nvidia"></span></div></div>
 </div>
-<p class="small-note">
-&#9432; These keys are shared with the <a href="api-verify/index.html" class="api-hub-link">API Verification Hub</a> — save once, use everywhere.
-</p>
 </section>
 
 
@@ -1711,7 +1702,7 @@ const Settings = {
 
     loadApiKeys() {
         // User must enter their own NVIDIA key via the settings form
-        const apiKeys = ['bf_key_gemini','bf_key_groq','bf_key_openrouter','bf_key_cerebras','bf_key_mistral','bf_key_nvidia','bf_key_ocrspace'];
+        const apiKeys = ['bf_key_nvidia'];
         apiKeys.forEach(key => {
             const input = document.getElementById(key);
             if (!input) return;
@@ -1819,7 +1810,7 @@ const Settings = {
             localStorage.removeItem('blockflow_nvidia_key');
             localStorage.removeItem('blockflow_nvidia_model');
             localStorage.removeItem('blockflow_calendar_events');
-            ['bf_key_gemini','bf_key_groq','bf_key_openrouter','bf_key_cerebras','bf_key_mistral','bf_key_nvidia','bf_key_ocrspace'].forEach(k => localStorage.removeItem(k));
+            ['bf_key_nvidia'].forEach(k => localStorage.removeItem(k));
             if (typeof UI !== 'undefined' && UI.showToast) {
                 UI.showToast('All data cleared. Refreshing...', 'success');
             }
