@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>BlockFlow - Settings</title>
-<meta name="description" content="BlockFlow settings and preferences">
+<meta name="description" content="Plan your day in 3 blocks. Execute with AI.">
 <meta name="theme-color" content="#667eea">
 <link rel="stylesheet" href="css/style.css?v=2.0.0">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -644,9 +644,6 @@ width: 100%;
 <div class="settings-tab-bar">
   <button class="settings-tab-btn active" data-tab="general">⚙️ General</button>
   <button class="settings-tab-btn" data-tab="ai">🤖 AI</button>
-  <button class="settings-tab-btn" data-tab="calendar">📅 Calendar</button>
-  <button class="settings-tab-btn" data-tab="voice">🎙️ Voice</button>
-  <button class="settings-tab-btn" data-tab="data">💾 Data</button>
   <button class="settings-tab-btn" data-tab="account">👤 Account</button>
 </div>
 
@@ -718,6 +715,8 @@ Get Free API Key
 <option value="nvidia/llama-3.3-nemotron-super-49b-v1">Nemotron Super 49B (Accurate)</option>
 <option value="google/gemma-4-31b-it">Gemma 4 31B (Balanced)</option>
 <option value="google/gemma-2-2b-it">Gemma 2 2B (Lightweight)</option>
+<option value="nvidia/nemotron-3-ultra">Nemotron 3 Ultra (Best Reasoning)</option>
+<option value="nvidia/nemotron-mini-4b-instruct">Nemotron Mini 4B (Low Latency)</option>
 </select>
 </div>
 </div>
@@ -791,40 +790,20 @@ Get Free API Key
         </div>
         <div class="setting-control">
             <div class="picker-group" id="dashStylePicker">
-                <label class="dstyle-option picker-card" data-style="compact">
-                    <span class="picker-card-icon">📋</span>
-                    <span class="picker-card-label">Compact</span>
-                    <input type="radio" name="dashStyle" value="compact">
-                </label>
-                <label class="dstyle-option picker-card" data-style="modern">
-                    <span class="picker-card-icon">✨</span>
-                    <span class="picker-card-label">Modern</span>
-                    <input type="radio" name="dashStyle" value="modern">
-                </label>
-                <label class="dstyle-option picker-card" data-style="agenda">
-                    <span class="picker-card-icon">📅</span>
-                    <span class="picker-card-label">Agenda</span>
-                    <input type="radio" name="dashStyle" value="agenda">
+                <label class="dstyle-option picker-card" data-style="light">
+                    <span class="picker-card-icon">☀️</span>
+                    <span class="picker-card-label">Light</span>
+                    <input type="radio" name="dashStyle" value="light">
                 </label>
                 <label class="dstyle-option picker-card" data-style="dark">
                     <span class="picker-card-icon">🌙</span>
                     <span class="picker-card-label">Dark</span>
                     <input type="radio" name="dashStyle" value="dark">
                 </label>
-                <label class="dstyle-option picker-card" data-style="bold">
-                    <span class="picker-card-icon">💥</span>
-                    <span class="picker-card-label">Bold</span>
-                    <input type="radio" name="dashStyle" value="bold">
-                </label>
-                <label class="dstyle-option picker-card" data-style="muted">
-                    <span class="picker-card-icon">🎨</span>
-                    <span class="picker-card-label">Muted</span>
-                    <input type="radio" name="dashStyle" value="muted">
-                </label>
-                <label class="dstyle-option picker-card" data-style="warm">
-                    <span class="picker-card-icon">☀️</span>
-                    <span class="picker-card-label">Warm</span>
-                    <input type="radio" name="dashStyle" value="warm">
+                <label class="dstyle-option picker-card" data-style="system">
+                    <span class="picker-card-icon">💻</span>
+                    <span class="picker-card-label">System</span>
+                    <input type="radio" name="dashStyle" value="system">
                 </label>
             </div>
             <!-- Live preview -->
@@ -908,6 +887,45 @@ Get Free API Key
 </div>
 </div>
 </section>
+
+<section class="settings-section">
+<h3>Data Management</h3>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Export Data</strong>
+<span>Download your BlockFlow data as JSON</span>
+</div>
+<div class="setting-control">
+<button class="btn btn-secondary" id="exportData">Export</button>
+</div>
+</div>
+<div class="setting-item setting-item-column">
+<div class="setting-label setting-label-wide">
+<strong>Import from Google Calendar</strong>
+<span>Fetch events from your Google Calendar for the next 30 days. Duplicate events will be skipped.</span>
+<p class="google-cal-note">Note: This requires the domain to be authorized in the Google Cloud Console. On localhost/custom domains, authentication may fail. You can still add events manually in the Calendar tab.</p>
+</div>
+<div class="setting-control setting-control-wide">
+<button class="btn btn-primary btn-auto" id="importGoogleCalendar">Import from Google Calendar</button>
+<span id="googleCalStatus" class="google-cal-status"></span>
+<div id="syncStatus" class="sync-status" style="display:none; margin-top:8px;">
+<span class="sync-status-dot"></span>
+<span class="sync-status-text"></span>
+<span class="sync-status-time"></span>
+</div>
+<div id="calendarSelector" class="calendar-selector" style="display:none; margin-top:12px;"></div>
+</div>
+</div>
+<div class="setting-item">
+<div class="setting-label">
+<strong>Clear All Data</strong>
+<span>Reset all data including history</span>
+</div>
+<div class="setting-control">
+<button class="btn btn-danger" id="clearAllData">Clear Data</button>
+</div>
+</div>
+</section>
 </div>
 
 <div class="settings-tab-panel" id="tab-ai-nova">
@@ -933,6 +951,97 @@ Get Free API Key
   <div class="ai-prompt-actions">
     <button class="btn btn-primary" id="aiSettingsPromptSave">💾 Save Prompt</button>
     <button class="btn btn-secondary" id="aiSettingsPromptReset">↩️ Reset to Default</button>
+  </div>
+</div>
+
+<div class="ai-memory-section">
+  <h4>🎙️ Voice Settings</h4>
+  <p>Configure Nova's voice output and input.</p>
+  <div class="setting-item">
+    <div class="setting-label">
+      <strong>Enable Voice</strong>
+      <span>AI reads responses aloud and accepts voice input</span>
+    </div>
+    <div class="setting-control">
+      <label class="toggle-switch">
+        <input type="checkbox" id="voiceEnabled" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+  <div class="setting-item">
+    <div class="setting-label">
+      <strong>Provider</strong>
+      <span id="novaProviderDesc">Text-to-speech engine</span>
+    </div>
+    <div class="setting-control">
+      <select id="novaProviderSelect" class="ai-model-select" style="min-width:200px"></select>
+      <div id="novaProviderStatus" class="nova-provider-status" style="display:none;margin-top:6px;font-size:0.8rem;color:#6b7280;"></div>
+    </div>
+  </div>
+  <div class="setting-item">
+    <div class="setting-label">
+      <strong>Voice</strong>
+      <span>Select a voice from the active provider</span>
+    </div>
+    <div class="setting-control">
+      <div class="nova-voice-row">
+        <select id="novaVoiceSelect" class="ai-model-select" style="min-width:180px"></select>
+        <button id="novaVoicePreview" class="btn btn-secondary nova-preview-btn">Preview</button>
+        <button id="novaVoiceTest" class="btn btn-primary nova-preview-btn">Test Voice</button>
+      </div>
+    </div>
+  </div>
+  <div id="novaApiKeys">
+    <div class="nova-api-key-group" data-provider="tts-ai">
+      <div class="setting-item">
+        <div class="setting-label">
+          <strong>tts.ai API Key</strong>
+          <span>Optional — 5K chars/day free without key</span>
+        </div>
+        <div class="setting-control">
+          <input type="password" id="novaTtsAiKey" class="nova-api-key-input" placeholder="Optional" style="min-width:180px">
+        </div>
+      </div>
+    </div>
+    <div class="nova-api-key-group" data-provider="elevenlabs">
+      <div class="setting-item">
+        <div class="setting-label">
+          <strong>ElevenLabs API Key</strong>
+          <span>Required — get from elevenlabs.io</span>
+        </div>
+        <div class="setting-control">
+          <input type="password" id="novaElevenLabsKey" class="nova-api-key-input" placeholder="sk-..." style="min-width:180px">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="setting-item">
+    <div class="setting-label">
+      <strong>Speed</strong>
+      <span id="voiceSpeedLabel">1.0x</span>
+    </div>
+    <div class="setting-control">
+      <input type="range" id="voiceSpeed" min="0.5" max="2" step="0.1" value="1">
+    </div>
+  </div>
+  <div class="setting-item">
+    <div class="setting-label">
+      <strong>Pitch</strong>
+      <span id="voicePitchLabel">1.0</span>
+    </div>
+    <div class="setting-control">
+      <input type="range" id="voicePitch" min="0.5" max="2" step="0.1" value="1">
+    </div>
+  </div>
+  <div class="setting-item">
+    <div class="setting-label">
+      <strong>Volume</strong>
+      <span id="voiceVolumeLabel">100%</span>
+    </div>
+    <div class="setting-control">
+      <input type="range" id="voiceVolume" min="0" max="1" step="0.1" value="1">
+    </div>
   </div>
 </div>
 </section>
@@ -999,166 +1108,9 @@ Get Free API Key
 </section>
 </div>
 
-<div class="settings-tab-panel" id="tab-voice">
-<section class="settings-section">
-<h3>Voice Companion</h3>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Enable Voice</strong>
-<span>AI reads responses aloud and accepts voice input</span>
-</div>
-<div class="setting-control">
-<label class="toggle-switch">
-<input type="checkbox" id="voiceEnabled" checked>
-<span class="toggle-slider"></span>
-</label>
-</div>
-</div>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Provider</strong>
-<span id="novaProviderDesc">Text-to-speech engine</span>
-</div>
-<div class="setting-control">
-<select id="novaProviderSelect" class="ai-model-select" style="min-width:200px"></select>
-<div id="novaProviderStatus" class="nova-provider-status" style="display:none;margin-top:6px;font-size:0.8rem;color:#6b7280;"></div>
-</div>
-</div>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Voice</strong>
-<span>Select a voice from the active provider</span>
-</div>
-<div class="setting-control">
-<div class="nova-voice-row">
-<select id="novaVoiceSelect" class="ai-model-select" style="min-width:180px"></select>
-<button id="novaVoicePreview" class="btn btn-secondary nova-preview-btn">Preview</button>
-<button id="novaVoiceTest" class="btn btn-primary nova-preview-btn">Test Voice</button>
-</div>
-</div>
-</div>
-<div id="novaApiKeys">
-<div class="nova-api-key-group" data-provider="tts-ai">
-<div class="setting-item">
-<div class="setting-label">
-<strong>tts.ai API Key</strong>
-<span>Optional — 5K chars/day free without key</span>
-</div>
-<div class="setting-control">
-<input type="password" id="novaTtsAiKey" class="nova-api-key-input" placeholder="Optional" style="min-width:180px">
-</div>
-</div>
-</div>
-<div class="nova-api-key-group" data-provider="elevenlabs">
-<div class="setting-item">
-<div class="setting-label">
-<strong>ElevenLabs API Key</strong>
-<span>Required — get from elevenlabs.io</span>
-</div>
-<div class="setting-control">
-<input type="password" id="novaElevenLabsKey" class="nova-api-key-input" placeholder="sk-..." style="min-width:180px">
-</div>
-</div>
-</div>
-</div>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Speed</strong>
-<span id="voiceSpeedLabel">1.0x</span>
-</div>
-<div class="setting-control">
-<input type="range" id="voiceSpeed" min="0.5" max="2" step="0.1" value="1">
-</div>
-</div>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Pitch</strong>
-<span id="voicePitchLabel">1.0</span>
-</div>
-<div class="setting-control">
-<input type="range" id="voicePitch" min="0.5" max="2" step="0.1" value="1">
-</div>
-</div>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Volume</strong>
-<span id="voiceVolumeLabel">100%</span>
-</div>
-<div class="setting-control">
-<input type="range" id="voiceVolume" min="0" max="1" step="0.1" value="1">
-</div>
-</div>
-</section>
-</div>
+<!-- Voice settings moved into AI tab, Data settings moved into General tab -->
+<!-- tab-voice and tab-data panels removed per v4.2 simplification -->
 
-<div class="settings-tab-panel" id="tab-data">
-<section class="settings-section">
-<h3>Help & Walkthrough</h3>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Show Walkthrough</strong>
-<span>Replay the introductory guide</span>
-</div>
-<div class="setting-control">
-<button class="btn btn-primary" id="showWalkthrough">Show Guide</button>
-</div>
-</div>
-</section>
-
-<section class="settings-section">
-<h3>Data Management</h3>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Import Sample Data</strong>
-<span>Populate with 21 sample events and 5 days of history to test the app</span>
-</div>
-<div class="setting-control">
-<button class="btn btn-secondary" id="importSampleData">Import Samples</button>
-</div>
-</div>
-    <div class="setting-item">
-      <div class="setting-label">
-        <strong>Export Data</strong>
-        <span>Download your BlockFlow data as JSON</span>
-      </div>
-      <div class="setting-control">
-        <button class="btn btn-secondary" id="exportData">Export</button>
-      </div>
-    </div>
-    <div class="setting-item setting-item-column">
-      <div class="setting-label setting-label-wide">
-        <strong>Import from Google Calendar</strong>
-        <span>Fetch events from your Google Calendar for the next 30 days. Duplicate events will be skipped.</span>
-        <p class="google-cal-note">Note: This requires the domain to be authorized in the Google Cloud Console. On localhost/custom domains, authentication may fail. You can still add events manually in the Calendar tab.</p>
-      </div>
-      <div class="setting-control setting-control-wide">
-        <button class="btn btn-primary btn-auto" id="importGoogleCalendar">Import from Google Calendar</button>
-        <span id="googleCalStatus" class="google-cal-status"></span>
-        <div id="syncStatus" class="sync-status" style="display:none; margin-top:8px;">
-          <span class="sync-status-dot"></span>
-          <span class="sync-status-text"></span>
-          <span class="sync-status-time"></span>
-        </div>
-        <div id="calendarSelector" class="calendar-selector" style="display:none; margin-top:12px;"></div>
-      </div>
-    </div>
-<div class="setting-item">
-<div class="setting-label">
-<strong>Clear All Data</strong>
-<span>Reset all data including history</span>
-</div>
-<div class="setting-control">
-<button class="btn btn-danger" id="clearAllData">Clear Data</button>
-</div>
-</div>
-</section>
-
-<section class="about-section">
-<h3>BlockFlow</h3>
-<p>A simple productivity app to reduce scrolling addiction and improve focus</p>
-<p class="version">Version 2.3.0</p>
-</section>
-</div>
 </div>
 
 <footer class="footer">
@@ -1189,7 +1141,7 @@ FirebaseAuth.init();
 FirebaseDB.init();
 
 (function() {
-  var style = localStorage.getItem('blockflow_dashboard_style') || 'compact';
+  var style = localStorage.getItem('blockflow_dashboard_style') || 'system';
   document.body.classList.add('dstyle-' + style);
 })();
 
@@ -1284,7 +1236,7 @@ const Settings = {
     },
 
     initDashPreview() {
-        var style = localStorage.getItem('blockflow_dashboard_style') || 'compact';
+        var style = localStorage.getItem('blockflow_dashboard_style') || 'system';
         var preview = document.getElementById('dashPreview');
         if (preview) preview.classList.add('dstyle-' + style);
         // Highlight active option
@@ -1938,9 +1890,6 @@ navigator.serviceWorker.register('sw.js')
   var tabMap = {
     'general': ['tab-general'],
     'ai': ['tab-ai', 'tab-ai-nova'],
-    'calendar': ['tab-data'], // Data tab includes calendar sync
-    'voice': ['tab-voice'],
-    'data': ['tab-data'],
     'account': ['tab-account']
   };
   

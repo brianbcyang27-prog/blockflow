@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>BlockFlow</title>
-<meta name="description" content="Balance your day in 3 blocks">
+<meta name="description" content="Plan your day in 3 blocks. Execute with AI.">
 <meta name="theme-color" content="#667eea">
 <link rel="stylesheet" href="css/style.css?v=2.0.0">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2204,7 +2204,7 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
 <div class="container">
     <header class="header">
         <h1>BlockFlow</h1>
-        <p class="subtitle">Balance your day in 3 blocks</p>
+        <p class="subtitle">Plan your day in 3 blocks. Execute with AI.</p>
         <div class="date-display" id="currentDate">Today: Loading...</div>
     </header>
 
@@ -2217,16 +2217,14 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
     <main>
       <div class="dashboard-compact">
 
-        <div id="briefingContainer"></div>
-        <div id="demoContainer"></div>
-
         <button class="dc-show-more-btn" id="showMoreBtn" onclick="document.getElementById('secondaryCards').classList.toggle('open'); this.textContent = this.textContent === 'Show more ▼' ? 'Show less ▲' : 'Show more ▼'">
           Show more ▼
         </button>
         <div id="secondaryCards" class="dc-secondary-cards">
+          <div id="briefingContainer"></div>
+          <div id="demoContainer"></div>
           <div id="heatmapContainer"></div>
           <div id="reportContainer"></div>
-          <div id="nlSchedulingContainer"></div>
         </div>
 
         <div class="dc-blocks-row" id="blocksContainer"></div>
@@ -2330,12 +2328,12 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
         <div class="walkthrough-step active" data-step="0">
             <div class="walkthrough-icon">👋</div>
             <h2>Welcome to BlockFlow</h2>
-            <p>A simple system to balance your day — focus, rest, and everything in between.</p>
+            <p>Plan your day in 3 blocks. Execute with AI.</p>
             <ul class="feature-list">
                 <li><span>📋</span> Set 3 daily blocks: Focus, Personal, Recovery</li>
-                <li><span>⏱️</span> Use the timer to work distraction-free</li>
-                <li><span>🚫</span> Track distractions to build awareness</li>
-                <li><span>📅</span> Plan events with AI in the Calendar tab</li>
+                <li><span>⏱️</span> Use the timer for focused study sessions</li>
+                <li><span>📅</span> Add classes/events with natural language</li>
+                <li><span>🤖</span> Ask Nova to manage your calendar</li>
             </ul>
         </div>
         <div class="walkthrough-step" data-step="1">
@@ -2343,30 +2341,20 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
             <h2>Your 3 Daily Blocks</h2>
             <p>Each day is split into 3 blocks. Set a time for each, work through them, and mark them done.</p>
             <ul class="feature-list">
-                <li><span>🎯</span> <strong>Focus Block</strong> — Work, study, deep tasks</li>
-                <li><span>📚</span> <strong>Personal Block</strong> — Hobbies, projects, learning</li>
-                <li><span>🧘</span> <strong>Recovery Block</strong> — Rest, social, unwind</li>
+                <li><span>🎯</span> <strong>Focus Block</strong> — Classes, deep study, assignments</li>
+                <li><span>📚</span> <strong>Personal Block</span> — Hobbies, projects, learning</li>
+                <li><span>🧘</span> <strong>Recovery Block</strong> — Rest, friends, unwind</li>
             </ul>
         </div>
         <div class="walkthrough-step" data-step="2">
             <div class="walkthrough-icon">⏱️</div>
-            <h2>Timer &amp; Auto-Break</h2>
-            <p>Use the timer to work in focused sprints. When it ends, auto-break gives you 5 minutes to rest.</p>
+            <h2>Timer & AI Assistant</h2>
+            <p>Use the timer for focused study sprints. Ask Nova to add events: "Math class tomorrow 9am" or "Study session 2pm".</p>
             <ul class="feature-list">
                 <li><span>▶️</span> Press <strong>Start Focus</strong> to begin</li>
                 <li><span>⏸️</span> Pause any time — focus time is saved</li>
-                <li><span>☕</span> Auto-break (toggle in Settings)</li>
+                <li><span>🤖</span> Ask Nova: "What's my schedule today?"</li>
                 <li><span>🔔</span> Sound notifications (toggle in Settings)</li>
-            </ul>
-        </div>
-        <div class="walkthrough-step" data-step="3">
-            <div class="walkthrough-icon">🚫</div>
-            <h2>Build Better Habits</h2>
-            <p>Tap <strong>"I got distracted"</strong> when you catch yourself scrolling. Track sleep, check your history, and plan events with AI in the Calendar tab.</p>
-            <ul class="feature-list">
-                <li><span>📊</span> Check 7-day history to see your progress</li>
-                <li><span>📅</span> Plan events with AI in Calendar</li>
-                <li><span>⚙️</span> Customize everything in Settings</li>
             </ul>
         </div>
         <div class="walkthrough-nav">
@@ -2375,7 +2363,6 @@ body.dstyle-warm .ai-copy-btn:hover { background: #f5efe6; }
                 <span class="walkthrough-dot active" data-dot="0"></span>
                 <span class="walkthrough-dot" data-dot="1"></span>
                 <span class="walkthrough-dot" data-dot="2"></span>
-                <span class="walkthrough-dot" data-dot="3"></span>
             </div>
             <button class="btn btn-primary" id="walkthroughNext">Next</button>
         </div>

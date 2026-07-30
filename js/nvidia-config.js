@@ -24,6 +24,16 @@ const NvidiaConfig = (function() {
       id: 'google/gemma-2-2b-it',
       label: 'Gemma 2 2B',
       description: 'Lightweight and quick'
+    },
+    {
+      id: 'nvidia/nemotron-3-ultra',
+      label: 'Nemotron 3 Ultra',
+      description: 'Best reasoning & tool calling'
+    },
+    {
+      id: 'nvidia/nemotron-mini-4b-instruct',
+      label: 'Nemotron Mini 4B',
+      description: 'Low latency, edge-ready'
     }
   ];
 
