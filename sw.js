@@ -1,4 +1,4 @@
-const CACHE_NAME = 'blockflow-v17';
+const CACHE_NAME = 'blockflow-v18';
 const urlsToCache = [
     './',
     'index.html',
@@ -28,6 +28,7 @@ const urlsToCache = [
     'js/firebase-db.js',
     'js/nvidia-config.js',
     'manifest.json',
+    'favicon.svg',
     'icons/icon-192.png',
     'icons/icon-512.png',
     'icons/icon-192.svg'

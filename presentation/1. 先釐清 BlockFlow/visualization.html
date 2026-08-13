@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlockFlow 產品介紹</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --focus:#3b82f6;
+  --focus-bg:#eff6ff;
+  --personal:#22c55e;
+  --personal-bg:#f0fdf4;
+  --recovery:#f59e0b;
+  --recovery-bg:#fffbeb;
+  --text:#1a1a2e;
+  --text-soft:#5a5a7a;
+  --bg:#fafaf9;
+  --card:#ffffff;
+  --border:#e8e8ec;
+  --accent:#1a1a2e;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Source Serif 4',Georgia,serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+/* Hero */
+.hero{
+  min-height:80vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:4rem 2rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 30% 50%,rgba(59,130,246,.06) 0%,transparent 50%),
+             radial-gradient(ellipse at 70% 30%,rgba(34,197,94,.06) 0%,transparent 50%),
+             radial-gradient(ellipse at 50% 80%,rgba(245,158,11,.06) 0%,transparent 50%);
+  pointer-events:none;
+}
+.hero-label{
+  font-size:.825rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--text-soft);
+  margin-bottom:1.5rem;
+  font-family:Georgia,serif;
+}
+.hero h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(3rem,8vw,6rem);
+  font-weight:900;
+  letter-spacing:-.02em;
+  line-height:1.05;
+  margin-bottom:1.5rem;
+  color:var(--accent);
+}
+.hero h1 span{display:block}
+.hero p{
+  font-size:clamp(1.1rem,2vw,1.35rem);
+  color:var(--text-soft);
+  max-width:640px;
+  line-height:1.8;
+  font-style:italic;
+}
+.hero-arrow{
+  margin-top:3rem;
+  animation:bounce 2s infinite;
+  opacity:.4;
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* Container */
+.container{max-width:880px;margin:0 auto;padding:0 2rem}
+
+/* Section */
+.section{padding:5rem 0}
+.section-header{margin-bottom:3rem}
+.section-number{
+  font-size:.75rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--text-soft);
+  margin-bottom:.5rem;
+  font-family:Georgia,serif;
+}
+.section h2{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.8rem,3vw,2.5rem);
+  font-weight:700;
+  letter-spacing:-.01em;
+  line-height:1.2;
+  color:var(--accent);
+}
+.section h2 .emoji{font-size:.9em}
+.section-intro{
+  font-size:1.1rem;
+  color:var(--text-soft);
+  margin-top:.75rem;
+  line-height:1.8;
+  max-width:600px;
+}
+
+/* Three blocks */
+.blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.block-card{
+  border-radius:1rem;
+  padding:2rem;
+  transition:transform .3s ease,box-shadow .3s ease;
+  cursor:default;
+}
+.block-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.block-card.focus{background:var(--focus-bg);border:1px solid rgba(59,130,246,.2)}
+.block-card.personal{background:var(--personal-bg);border:1px solid rgba(34,197,94,.2)}
+.block-card.recovery{background:var(--recovery-bg);border:1px solid rgba(245,158,11,.2)}
+.block-card .icon{font-size:2rem;margin-bottom:.75rem;display:block}
+.block-card h3{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;margin-bottom:.25rem}
+.block-card .time{font-size:.85rem;color:var(--text-soft);margin-bottom:.75rem}
+.block-card .desc{font-size:.95rem;line-height:1.7;color:var(--text-soft)}
+.block-card.note{
+  margin-top:1rem;
+  text-align:center;
+  font-size:.9rem;
+  font-style:italic;
+  color:var(--text-soft);
+  grid-column:1/-1;
+  background:transparent;
+  border:none;
+  padding:.5rem;
+}
+
+/* Feature cards */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+.feature-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:.75rem;
+  padding:1.75rem;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.feature-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.04)}
+.feature-card.full{grid-column:1/-1}
+.feature-card .icon{font-size:1.5rem;margin-bottom:.5rem;display:block}
+.feature-card h3{font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
+.feature-card p,.feature-card li{font-size:.9rem;color:var(--text-soft);line-height:1.7}
+.feature-card ul{list-style:none;padding:0}
+.feature-card ul li::before{content:'✦ ';color:var(--accent);font-size:.75rem}
+
+/* Flow */
+.flow{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-top:2rem}
+.flow-step{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:2rem;
+  padding:.75rem 1.5rem;
+  font-size:.9rem;
+  font-weight:500;
+  text-align:center;
+  white-space:nowrap;
+}
+.flow-step .e{font-size:1.1rem;margin-right:.3rem}
+.flow-arrow{font-size:1.25rem;color:var(--text-soft);opacity:.5}
+
+/* Tech grid */
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.tech-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:.5rem;
+  padding:1.25rem;
+  display:flex;
+  flex-direction:column;
+}
+.tech-item .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-soft);margin-bottom:.25rem}
+.tech-item .value{font-size:.95rem;font-weight:500}
+
+/* Positioning */
+.positioning{margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.positioning .not,.positioning .is{padding:1.5rem;border-radius:.75rem}
+.positioning .not{background:#fef2f2;border:1px solid #fecaca}
+.positioning .not h3{color:#dc2626;font-size:1rem;margin-bottom:.75rem}
+.positioning .not li{color:#7f1d1d;font-size:.9rem;line-height:1.8}
+.positioning .is{background:#f0fdf4;border:1px solid #bbf7d0}
+.positioning .is h3{color:#16a34a;font-size:1rem;margin-bottom:.75rem}
+.positioning .is li{color:#14532d;font-size:.9rem;line-height:1.8}
+.positioning ul{list-style:none}
+.positioning li::before{content:'✓ ';font-weight:700}
+
+/* Divider */
+hr{margin:0;border:none;border-top:1px solid var(--border);opacity:.5}
+
+/* Footer */
+.footer{
+  text-align:center;
+  padding:3rem 2rem;
+  color:var(--text-soft);
+  font-size:.85rem;
+  font-style:italic;
+}
+
+/* Responsive */
+@media(max-width:640px){
+  .blocks{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr}
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg)}
+  .tech-grid{grid-template-columns:1fr}
+  .positioning{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-label">BlockFlow</div>
+  <h1>
+    <span>AI 每日規劃助手</span>
+    <span>三區塊生活系統</span>
+  </h1>
+  <p>幫助學生用「三區塊系統」解決「今天要怎麼安排」的決策疲勞</p>
+  <div class="hero-arrow">↓</div>
+</header>
+
+<div class="container">
+
+  <!-- Section 1: 三區塊系統 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">Core Concept</div>
+      <h2>🧱 三區塊系統 <span style="font-weight:400;color:var(--text-soft);font-size:.7em">Focus · Personal · Recovery</span></h2>
+      <p class="section-intro">把一天分成三個區塊，不再被代辦事項追著跑。</p>
+    </div>
+    <div class="blocks">
+      <div class="block-card focus">
+        <span class="icon">🔵</span>
+        <h3 style="color:var(--focus)">Focus</h3>
+        <div class="time">☀️ 早上～下午</div>
+        <p class="desc">上課、讀書、寫作業<br>專注力高峰時段</p>
+      </div>
+      <div class="block-card personal">
+        <span class="icon">🟢</span>
+        <h3 style="color:var(--personal)">Personal</h3>
+        <div class="time">🌤️ 下午～傍晚</div>
+        <p class="desc">運動、興趣、社交<br>充電與連結時段</p>
+      </div>
+      <div class="block-card recovery">
+        <span class="icon">🟠</span>
+        <h3 style="color:var(--recovery)">Recovery</h3>
+        <div class="time">🌙 晚上</div>
+        <p class="desc">休息、放鬆、睡覺<br>恢復能量時段</p>
+      </div>
+      <div class="block-card note">📌 每個區塊可以包含多個事件，拖曳即可調整</div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 2: AI 助理 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">AI Feature</div>
+      <h2>🤖 AI 助理 — Nova</h2>
+      <p class="section-intro">NVIDIA 驅動的智慧對話機器人，不只是聊天，更能幫你管理生活。</p>
+    </div>
+    <div class="features">
+      <div class="feature-card"><span class="icon">💬</span><h3>自然對話</h3><p>問問題、聊天、查資料，就像跟朋友講話一樣自然。</p></div>
+      <div class="feature-card"><span class="icon">🧠</span><h3>記憶系統</h3><p>AI 會記住你講過的事，跟 ChatGPT 一樣的記憶體驗。</p></div>
+      <div class="feature-card"><span class="icon">🗓️</span><h3>行事曆操作</h3><p>直接對 AI 說「幫我把明天早上九點加入行事曆」。</p></div>
+      <div class="feature-card"><span class="icon">🎤</span><h3>語音輸入 / 輸出</h3><p>可以用說的，也能讓 AI 唸出來給你聽。</p></div>
+      <div class="feature-card full"><span class="icon">📎</span><h3>附件分析</h3><p>上傳檔案讓 AI 幫忙整理重點、提取摘要。</p></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 3: 其他功能 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">More Features</div>
+      <h2>完整功能生態系</h2>
+      <p class="section-intro">不只是 AI，BlockFlow 提供一系列環環相扣的生產力工具。</p>
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <span class="icon">⏱️</span>
+        <h3>專注計時器</h3>
+        <ul>
+          <li>Pomodoro 風格 Focus / Break 模式</li>
+          <li>自動記錄每天專注時間</li>
+          <li>一鍵記錄分心原因</li>
+          <li>狀態自動儲存，關掉瀏覽器也不怕</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <span class="icon">📅</span>
+        <h3>行事曆 + AI 分析</h3>
+        <ul>
+          <li>月曆檢視，支援事件 CRUD</li>
+          <li>拖曳事件到不同區塊</li>
+          <li>AI 自動判斷事件重要性與區塊建議</li>
+          <li>📥 Google 行事曆一鍵匯入</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🌅</span>
+        <h3>每日簡報 Daily Briefing</h3>
+        <p>每天早上打開，顯示今天的 Focus 區塊數量、專注趨勢、AI 今日建議。</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🗣️</span>
+        <h3>Nova 語音系統</h3>
+        <ul>
+          <li>語音輸入：瀏覽器語音辨識 + 第三方 Provider</li>
+          <li>語音輸出：Browser TTS / Kokoro / ElevenLabs</li>
+          <li>語音波形動畫：自訂 Canvas 繪製</li>
+        </ul>
+      </div>
+      <div class="feature-card full">
+        <span class="icon">⚡</span>
+        <h3>Quick Start 快速體驗</h3>
+        <p>一鍵載入學生範例資料（課表、作業、讀書計畫），立刻看到產品全貌。適合展示或初次試用。</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 4: 使用流程 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">User Flow</div>
+      <h2>一日使用流程</h2>
+      <p class="section-intro">從早到晚，BlockFlow 陪你度過每一天。</p>
+    </div>
+    <div class="flow">
+      <span class="flow-step"><span class="e">🌅</span> Daily Briefing</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step"><span class="e">🧱</span> 設定三區塊</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step"><span class="e">⏱️</span> 專注執行</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step"><span class="e">📝</span> 紀錄分心</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step"><span class="e">🌙</span> 晚間統計</span>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 5: 核心技術 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">Tech Stack</div>
+      <h2>核心技術</h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-item"><span class="label">前端</span><span class="value">純 JavaScript + HTML + CSS（PWA）</span></div>
+      <div class="tech-item"><span class="label">AI 模型</span><span class="value">NVIDIA Llama 3.1 8B（預設，可切換）</span></div>
+      <div class="tech-item"><span class="label">語音</span><span class="value">Web Speech API + Kokoro TTS + ElevenLabs</span></div>
+      <div class="tech-item"><span class="label">資料儲存</span><span class="value">localStorage + Firebase Firestore 雲端備份</span></div>
+      <div class="tech-item"><span class="label">帳號系統</span><span class="value">Google 登入 / 本機跳過</span></div>
+      <div class="tech-item"><span class="label">裝置支援</span><span class="value">電腦、手機、平板 RWD（最小 iPhone 7）</span></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 6: 產品定位 -->
+  <section class="section" style="padding-bottom:6rem">
+    <div class="section-header">
+      <div class="section-number">Positioning</div>
+      <h2>產品定位</h2>
+    </div>
+    <div class="positioning">
+      <div class="not">
+        <h3>BlockFlow 不是</h3>
+        <ul>
+          <li>❌ 筆記軟體</li>
+          <li>❌ 專案管理工具</li>
+          <li>❌ 社交平台</li>
+        </ul>
+      </div>
+      <div class="is">
+        <h3>BlockFlow 是</h3>
+        <ul>
+          <li>✅ 學生的每日規劃助手</li>
+          <li>✅ 解決「今天要怎麼安排」的決策疲勞</li>
+          <li>✅ 用三區塊 + AI 建立穩定的生活節奏</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer">BlockFlow — The 3-Block Life</div>
+
+</body>
+</html>

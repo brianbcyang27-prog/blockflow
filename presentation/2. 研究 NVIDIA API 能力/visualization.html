@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVIDIA API 能力研究 — BlockFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a12;
+  --surface:#12121e;
+  --surface2:#1a1a2e;
+  --border:#2a2a3e;
+  --text:#e8e8f0;
+  --text-soft:#8888aa;
+  --read:#60a5fa;
+  --see:#a78bfa;
+  --listen:#22d3ee;
+  --speak:#f472b6;
+  --think:#4ade80;
+  --remember:#fb923c;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 20% 20%,rgba(96,165,250,.08) 0%,transparent 50%),
+    radial-gradient(ellipse at 80% 30%,rgba(167,139,250,.06) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 70%,rgba(34,211,238,.06) 0%,transparent 50%),
+    radial-gradient(ellipse at 30% 80%,rgba(74,222,128,.06) 0%,transparent 50%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* Hero */
+.hero{
+  min-height:70vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:4rem 2rem;
+  position:relative;
+  z-index:1;
+}
+.hero-label{
+  font-family:'DM Mono',monospace;
+  font-size:.75rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--text-soft);
+  margin-bottom:1.5rem;
+}
+.hero h1{
+  font-weight:900;
+  font-size:clamp(2.5rem,6vw,5rem);
+  letter-spacing:-.03em;
+  line-height:1.05;
+  background:linear-gradient(135deg,#60a5fa,#a78bfa,#f472b6);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin-bottom:1.5rem;
+}
+.hero p{
+  font-size:clamp(1rem,1.8vw,1.25rem);
+  color:var(--text-soft);
+  max-width:600px;
+  font-weight:300;
+}
+.hero .capabilities-strip{
+  display:flex;
+  gap:1rem;
+  margin-top:2.5rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.hero .cap{
+  font-family:'DM Mono',monospace;
+  font-size:.8rem;
+  padding:.4rem 1rem;
+  border-radius:2rem;
+  border:1px solid;
+  background:rgba(255,255,255,.03);
+}
+
+/* Container */
+.container{max-width:960px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+
+/* Section */
+.section{padding:4rem 0}
+.section-header{margin-bottom:2.5rem}
+.section-number{
+  font-family:'DM Mono',monospace;
+  font-size:.7rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--text-soft);
+  margin-bottom:.5rem;
+}
+.section h2{
+  font-size:clamp(1.5rem,3vw,2.2rem);
+  font-weight:700;
+  letter-spacing:-.01em;
+}
+
+/* Capability cards grid */
+.cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem}
+.cap-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:.75rem;
+  padding:1.5rem;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.cap-card:hover{transform:translateY(-3px)}
+.cap-card[data-color="read"]{border-color:rgba(96,165,250,.2)}
+.cap-card[data-color="read"]:hover{box-shadow:0 8px 32px rgba(96,165,250,.1)}
+.cap-card[data-color="see"]{border-color:rgba(167,139,250,.2)}
+.cap-card[data-color="see"]:hover{box-shadow:0 8px 32px rgba(167,139,250,.1)}
+.cap-card[data-color="listen"]{border-color:rgba(34,211,238,.2)}
+.cap-card[data-color="listen"]:hover{box-shadow:0 8px 32px rgba(34,211,238,.1)}
+.cap-card[data-color="speak"]{border-color:rgba(244,114,182,.2)}
+.cap-card[data-color="speak"]:hover{box-shadow:0 8px 32px rgba(244,114,182,.1)}
+.cap-card[data-color="think"]{border-color:rgba(74,222,128,.2)}
+.cap-card[data-color="think"]:hover{box-shadow:0 8px 32px rgba(74,222,128,.1)}
+.cap-card[data-color="remember"]{border-color:rgba(251,146,60,.2)}
+.cap-card[data-color="remember"]:hover{box-shadow:0 8px 32px rgba(251,146,60,.1)}
+.cap-card .icon{font-size:1.5rem;margin-bottom:.5rem;display:block}
+.cap-card h3{font-size:1.1rem;font-weight:500;margin-bottom:.75rem}
+.cap-card .model{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.85rem}
+.cap-card .model:last-child{border-bottom:none}
+.cap-card .model .name{color:var(--text)}
+.cap-card .model .badge{font-size:.65rem;padding:.15rem .5rem;border-radius:1rem;font-family:'DM Mono',monospace}
+.badge.integrated{background:rgba(74,222,128,.15);color:#4ade80}
+.badge.pending{background:rgba(251,146,60,.15);color:#fb923c}
+.badge.new{background:rgba(96,165,250,.15);color:#60a5fa}
+
+/* Architecture diagram */
+.arch{margin-top:2rem;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:1rem}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:.75rem;flex-wrap:wrap;font-family:'DM Mono',monospace;font-size:.8rem}
+.arch-node{padding:.6rem 1.2rem;border-radius:.5rem;background:var(--surface2);border:1px solid var(--border);text-align:center;min-width:100px}
+.arch-node.highlight{border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.06)}
+.arch-arrow{color:var(--text-soft);font-size:1rem}
+.arch-gateway{margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.arch-gateway span{padding:.25rem .75rem;border-radius:2rem;font-size:.7rem;border:1px solid var(--border)}
+
+/* Ranking */
+.rank-list{margin-top:1.5rem;display:grid;gap:1.25rem}
+.rank-item{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:.75rem;
+  padding:1.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.rank-item .rank-num{
+  font-family:'DM Mono',monospace;
+  font-size:3rem;
+  font-weight:900;
+  position:absolute;
+  top:-.25rem;
+  right:1rem;
+  opacity:.06;
+  line-height:1;
+}
+.rank-item h3{font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
+.rank-item .tagline{font-size:.9rem;color:var(--text-soft);margin-bottom:.75rem;font-style:italic}
+.rank-item .details{font-size:.85rem;color:var(--text-soft);line-height:1.8}
+.rank-item .details strong{color:var(--text)}
+.rank-item .meta{display:flex;gap:1rem;margin-top:.75rem;font-size:.8rem}
+.rank-item .meta span{font-family:'DM Mono',monospace}
+
+/* Feature recommendation cards */
+.feat-rec{margin-top:1.5rem;display:grid;gap:1.25rem}
+.feat-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:.75rem;
+  padding:1.5rem;
+}
+.feat-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.5rem}
+.feat-card .pain{font-size:.85rem;color:var(--text-soft);margin-bottom:.75rem;padding:.5rem .75rem;background:rgba(255,255,255,.03);border-radius:.5rem}
+.feat-card .example{font-size:.85rem;line-height:1.7;color:var(--text-soft);padding:.75rem;background:rgba(255,255,255,.03);border-radius:.5rem;font-family:'DM Mono',monospace;margin-bottom:.75rem}
+.feat-card .tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.feat-card .tags span{font-size:.7rem;padding:.2rem .6rem;border-radius:2rem;font-family:'DM Mono',monospace}
+
+/* Roadmap */
+.roadmap{margin-top:2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;align-items:start}
+.roadmap-item{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:.75rem;
+  padding:1.25rem;
+  text-align:center;
+}
+.roadmap-item .version{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text-soft);margin-bottom:.25rem}
+.roadmap-item h4{font-size:.95rem;font-weight:600;margin-bottom:.5rem}
+.roadmap-item p{font-size:.8rem;color:var(--text-soft);line-height:1.6}
+.roadmap-connector{display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--text-soft)}
+
+/* Price */
+.price-box{margin-top:1.5rem;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:.75rem}
+.price-box h3{font-size:1rem;font-weight:600;margin-bottom:.75rem}
+.price-box table{width:100%;border-collapse:collapse;font-size:.85rem}
+.price-box td{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-soft)}
+.price-box td:first-child{font-weight:500;color:var(--text);width:40%}
+.price-box tr:last-child td{border-bottom:none}
+
+/* Divider */
+hr{margin:0;border:none;border-top:1px solid var(--border);opacity:.3}
+
+/* Footer */
+.footer{
+  text-align:center;
+  padding:3rem 2rem;
+  color:var(--text-soft);
+  font-size:.8rem;
+  font-family:'DM Mono',monospace;
+  opacity:.5;
+}
+
+@media(max-width:768px){
+  .cap-grid{grid-template-columns:1fr}
+  .roadmap{grid-template-columns:1fr 1fr}
+  .arch-flow{flex-direction:column}
+  .arch-arrow{transform:rotate(90deg)}
+}
+@media(max-width:480px){
+  .roadmap{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-label">NVIDIA API Research</div>
+  <h1>NVIDIA API 能力研究</h1>
+  <p>按照模型能力分類，而非傳統 API 分類。<br>六大能力光譜完整盤點。</p>
+  <div class="capabilities-strip">
+    <span class="cap" style="border-color:rgba(96,165,250,.3);color:var(--read)">📖 Read</span>
+    <span class="cap" style="border-color:rgba(167,139,250,.3);color:var(--see)">👁️ See</span>
+    <span class="cap" style="border-color:rgba(34,211,238,.3);color:var(--listen)">👂 Listen</span>
+    <span class="cap" style="border-color:rgba(244,114,182,.3);color:var(--speak)">🗣️ Speak</span>
+    <span class="cap" style="border-color:rgba(74,222,128,.3);color:var(--think)">🧠 Think</span>
+    <span class="cap" style="border-color:rgba(251,146,60,.3);color:var(--remember)">💾 Remember</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Section 1: API Inventory -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">01 · API Inventory</div>
+      <h2>已研究的 API 完整盤點</h2>
+    </div>
+    <div class="cap-grid">
+
+      <!-- Read -->
+      <div class="cap-card" data-color="read">
+        <span class="icon" style="color:var(--read)">📖</span>
+        <h3 style="color:var(--read)">Read — 閱讀理解</h3>
+        <div class="model"><span class="name">Llama 3.1 8B Instruct</span><span class="badge integrated">✅ 預設</span></div>
+        <div class="model"><span class="name">Llama 3.3 Nemotron Super 49B</span><span class="badge integrated">✅ 可切換</span></div>
+        <div class="model"><span class="name">Gemma 4 31B IT</span><span class="badge integrated">✅ 可切換</span></div>
+        <div class="model"><span class="name">Gemma 2 2B IT</span><span class="badge integrated">✅ 可切換</span></div>
+        <div class="model"><span class="name">Nemotron Nano 9B v2</span><span class="badge new">🆕 推薦</span></div>
+        <div class="model"><span class="name">Llama 3.1 Nemotron Nano 8B v1</span><span class="badge pending">🆕 未整合</span></div>
+      </div>
+
+      <!-- See -->
+      <div class="cap-card" data-color="see">
+        <span class="icon" style="color:var(--see)">👁️</span>
+        <h3 style="color:var(--see)">See — 視覺辨識</h3>
+        <div class="model"><span class="name">Llama 3.2 11B Vision</span><span class="badge integrated">✅ OCR</span></div>
+        <div class="model"><span class="name">Phi-4 Multimodal</span><span class="badge new">🆕 輕量高效</span></div>
+        <div class="model"><span class="name">Nemotron 3 Nano Omni 30B</span><span class="badge new">🆕 最強多模態</span></div>
+      </div>
+
+      <!-- Listen -->
+      <div class="cap-card" data-color="listen">
+        <span class="icon" style="color:var(--listen)">👂</span>
+        <h3 style="color:var(--listen)">Listen — 聽覺理解</h3>
+        <div class="model"><span class="name">Browser STT (Web Speech API)</span><span class="badge integrated">✅ Nova</span></div>
+        <div class="model"><span class="name">Phi-4 Multimodal (音訊)</span><span class="badge new">🆕 未整合</span></div>
+        <div class="model"><span class="name">Nemotron 3 Nano Omni (音訊)</span><span class="badge new">🆕 未整合</span></div>
+      </div>
+
+      <!-- Speak -->
+      <div class="cap-card" data-color="speak">
+        <span class="icon" style="color:var(--speak)">🗣️</span>
+        <h3 style="color:var(--speak)">Speak — 語音輸出</h3>
+        <div class="model"><span class="name">Browser TTS</span><span class="badge integrated">✅ Nova</span></div>
+        <div class="model"><span class="name">Kokoro TTS</span><span class="badge integrated">✅ Nova</span></div>
+        <div class="model"><span class="name">tts.ai</span><span class="badge integrated">✅ Nova</span></div>
+        <div class="model"><span class="name">ElevenLabs</span><span class="badge integrated">✅ Nova</span></div>
+      </div>
+
+      <!-- Think -->
+      <div class="cap-card" data-color="think">
+        <span class="icon" style="color:var(--think)">🧠</span>
+        <h3 style="color:var(--think)">Think — 推理思考</h3>
+        <div class="model"><span class="name">Nemotron Nano 9B v2</span><span class="badge new">🆕 可控推理</span></div>
+        <div class="model"><span class="name">Nemotron Super 49B</span><span class="badge integrated">✅ 可選</span></div>
+        <div class="model"><span class="name">Nemotron 3 Nano Omni</span><span class="badge new">🆕 未整合</span></div>
+        <div class="model"><span class="name">cuOpt</span><span class="badge pending">🆕 觀察中</span></div>
+      </div>
+
+      <!-- Remember -->
+      <div class="cap-card" data-color="remember">
+        <span class="icon" style="color:var(--remember)">💾</span>
+        <h3 style="color:var(--remember)">Remember — 記憶檢索</h3>
+        <div class="model"><span class="name">NeMo Retriever Embeddings</span><span class="badge new">🆕 未整合</span></div>
+        <div class="model"><span class="name">NeMo Retriever Rerank</span><span class="badge new">🆕 未整合</span></div>
+        <div class="model"><span class="name">AI Assistant Memory</span><span class="badge integrated">✅ 已上線</span></div>
+      </div>
+
+    </div>
+
+    <!-- Architecture -->
+    <div class="arch">
+      <div style="font-size:.85rem;font-weight:600;margin-bottom:1rem;text-align:center;color:var(--text-soft)">系統架構</div>
+      <div class="arch-flow">
+        <span class="arch-node highlight">👤 使用者</span>
+        <span class="arch-arrow">→</span>
+        <span class="arch-node">BlockFlow App<br><span style="font-size:.7rem;color:var(--text-soft)">PWA 前端</span></span>
+        <span class="arch-arrow">→</span>
+        <span class="arch-node highlight">NVIDIA API Gateway<br><span style="font-size:.7rem;color:var(--text-soft)">integrate.api.nvidia.com</span></span>
+      </div>
+      <div class="arch-gateway" style="margin-top:.75rem">
+        <span style="border-color:rgba(96,165,250,.3);color:var(--read)">📖 Chat Completions</span>
+        <span style="border-color:rgba(167,139,250,.3);color:var(--see)">👁️ Vision</span>
+        <span style="border-color:rgba(34,211,238,.3);color:var(--listen)">👂 Audio</span>
+        <span style="border-color:rgba(74,222,128,.3);color:var(--think)">🧠 Reasoning</span>
+        <span style="border-color:rgba(251,146,60,.3);color:var(--remember)">💾 Embeddings</span>
+      </div>
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;font-size:.8rem;color:var(--text-soft)">
+        <span>🆓 免費開發：NVIDIA Developer Program</span>
+        <span>🖥️ 自架 NIM：最多 16 GPU 免費</span>
+        <span>💼 生產環境：$4,500/GPU/年</span>
+        <span>⚡ Rate Limit：約 40 RPM</span>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 2: Top Models Ranking -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">02 · Top Models</div>
+      <h2>最具潛力的模型排名</h2>
+    </div>
+    <div class="rank-list">
+
+      <div class="rank-item" style="border-color:rgba(74,222,128,.2)">
+        <div class="rank-num" style="color:var(--think)">#1</div>
+        <h3 style="color:var(--think)">🧠 Nemotron Nano 9B v2</h3>
+        <div class="tagline">AI 大腦升級，讓 BlockFlow 真正會「思考」</div>
+        <div class="details">
+          <strong>可控推理深度</strong>（Reasoning Budget Control）— 開關切換推理模式<br>
+          <strong>128K 上下文視窗</strong> — 可一次讀完整週行程<br>
+          <strong>關鍵價值</strong>：取代 Llama 3.1 8B 成為預設模型，排程從規則比對進化為真正理解
+        </div>
+      </div>
+
+      <div class="rank-item" style="border-color:rgba(167,139,250,.2)">
+        <div class="rank-num" style="color:var(--see)">#2</div>
+        <h3 style="color:var(--see)">🧠+👁️+👂 Nemotron 3 Nano Omni 30B</h3>
+        <div class="tagline">AI 全能模態，看影片、聽錄音、讀講義全部一台搞定</div>
+        <div class="details">
+          <strong>MoE 架構</strong>（30B 參數，每次只啟動 3B）— 高效又強大<br>
+          影片理解 → 音訊理解 → 圖片 OCR → 文字推理<br>
+          <strong>關鍵價值</strong>：一個模型取代五個功能，從文字助理進化為全方位學習助手
+        </div>
+      </div>
+
+      <div class="rank-item" style="border-color:rgba(34,211,238,.2)">
+        <div class="rank-num" style="color:var(--listen)">#3</div>
+        <h3 style="color:var(--listen)">👁️ Phi-4 Multimodal Instruct</h3>
+        <div class="tagline">輕量級多模態，適合頻繁使用的情境</div>
+        <div class="details">
+          <strong>微軟出品</strong>，品質穩定<br>
+          同時支援文字 + 圖片 + 音訊<br>
+          <strong>關鍵價值</strong>：比 Omni 更輕量，適合手機端頻繁呼叫，拍照課本即時摘要
+        </div>
+      </div>
+
+      <div class="rank-item" style="border-color:rgba(251,146,60,.2)">
+        <div class="rank-num" style="color:var(--remember)">#4</div>
+        <h3 style="color:var(--remember)">💾 NeMo Retriever Embeddings + Rerank</h3>
+        <div class="tagline">讓 AI 擁有「記憶」，找到你曾經記下的任何東西</div>
+        <div class="details">
+          <strong>語意搜尋</strong>（不是關鍵字比對）<br>
+          Embeddings + Rerank 雙層架構 → 精準度業界頂尖<br>
+          <strong>關鍵價值</strong>：解決學生「記得有記過但找不到」的永恆痛點
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 3: Feature Recommendations -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">03 · Feature Roadmap</div>
+      <h2>能真正提升 BlockFlow 的 API 功能</h2>
+      <p style="color:var(--text-soft);margin-top:.5rem;font-weight:300">每一項能力都對應一個學生的真實痛點</p>
+    </div>
+    <div class="feat-rec">
+
+      <div class="feat-card" style="border-color:rgba(74,222,128,.15)">
+        <h3 style="color:var(--think)">📖 + 🧠 AI 三區塊排程</h3>
+        <div class="pain">🎯 學生痛點：每天花 10 分鐘決定「今天要怎麼安排」</div>
+        <div class="example">「明天早上9點上課到12點，下午要寫程式作業，晚上7點要去健身房」<br>→ AI 自動產出三區塊排程，含個人化建議</div>
+        <div class="tags">
+          <span style="background:rgba(74,222,128,.1);color:var(--think)">🧠 Nemotron Nano 9B v2</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">🟢 開發難度：中</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">⭐⭐⭐⭐⭐ 市場價值</span>
+        </div>
+      </div>
+
+      <div class="feat-card" style="border-color:rgba(167,139,250,.15)">
+        <h3 style="color:var(--see)">👁️ 講義 / 課本智能掃描</h3>
+        <div class="pain">🎯 學生痛點：老師講義太亂，找不到重點</div>
+        <div class="example">📱 學生打開 BlockFlow → 拍下課本頁面 → AI 提取重點概念 + 摘要 + 待辦建議</div>
+        <div class="tags">
+          <span style="background:rgba(167,139,250,.1);color:var(--see)">👁️ Phi-4 / Omni</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">🟡 開發難度：中高</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">⭐⭐⭐⭐⭐ 市場價值</span>
+        </div>
+      </div>
+
+      <div class="feat-card" style="border-color:rgba(34,211,238,.15)">
+        <h3 style="color:var(--listen)">👂 語音建立行事曆</h3>
+        <div class="pain">🎯 學生痛點：打字好麻煩，用說的比較快</div>
+        <div class="example">🎤 「明天早上九點上課，下午兩點到五點寫報告」<br>→ 自動辨識並加入對應區塊</div>
+        <div class="tags">
+          <span style="background:rgba(34,211,238,.1);color:var(--listen)">👂 Browser STT + 🧠 Nano 9B</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">🟢 開發難度：低</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">⭐⭐⭐ 市場價值</span>
+        </div>
+      </div>
+
+      <div class="feat-card" style="border-color:rgba(244,114,182,.15)">
+        <h3 style="color:var(--speak)">🗣️ AI 語音助理</h3>
+        <div class="pain">🎯 學生痛點：不想一直看著螢幕</div>
+        <div class="example">🔊 「Focus 區塊結束了！你今天的專注時間已達 3 小時，表現不錯！」<br>🌅 「早安！你今天有 3 個 Focus 區塊，第一堂課在 9 點。」</div>
+        <div class="tags">
+          <span style="background:rgba(244,114,182,.1);color:var(--speak)">🗣️ Kokoro / ElevenLabs</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">🟢 開發難度：低</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">⭐⭐⭐ 市場價值</span>
+        </div>
+      </div>
+
+      <div class="feat-card" style="border-color:rgba(251,146,60,.15)">
+        <h3 style="color:var(--remember)">💾 筆記語意搜尋</h3>
+        <div class="pain">🎯 學生痛點：「我記得有記過這個重點，但找不到在哪」</div>
+        <div class="example">🔍 搜尋「gradient descent 的學習率怎麼設」<br>→ 找到上週二課堂筆記（相關度 97%）+ 昨天作業筆記（相關度 82%）</div>
+        <div class="tags">
+          <span style="background:rgba(251,146,60,.1);color:var(--remember)">💾 NeMo Embeddings + Rerank</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">🟡 開發難度：中</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">⭐⭐⭐ 市場價值</span>
+        </div>
+      </div>
+
+      <div class="feat-card" style="border-color:rgba(74,222,128,.15)">
+        <h3 style="color:var(--think)">🧠 每週 AI 教練報告</h3>
+        <div class="pain">🎯 學生痛點：「我這週過得怎麼樣？哪裡可以改進？」</div>
+        <div class="example">📊 分析一週 Focus 時間、分心模式、效率高峰 → 產出個人化建議</div>
+        <div class="tags">
+          <span style="background:rgba(74,222,128,.1);color:var(--think)">🧠 Nemotron Nano 9B v2</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">🟢 開發難度：低</span>
+          <span style="background:rgba(255,255,255,.05);color:var(--text)">⭐⭐⭐ 市場價值</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Roadmap -->
+    <div style="margin-top:2.5rem">
+      <h3 style="font-size:1rem;font-weight:600;margin-bottom:1.5rem;text-align:center;color:var(--text-soft)">產品升級路線圖</h3>
+      <div class="roadmap">
+        <div class="roadmap-item" style="border-color:rgba(255,255,255,.1)">
+          <div class="version">v4.1 · 現在</div>
+          <h4>📋 基礎功能</h4>
+          <p>三區塊手動排程<br>基本 AI 聊天</p>
+        </div>
+        <div class="roadmap-item" style="border-color:rgba(74,222,128,.2)">
+          <div class="version">v4.2 · 2 週</div>
+          <h4 style="color:var(--think)">🧠 AI 升級</h4>
+          <p>AI 三區塊排程<br>每週教練報告</p>
+        </div>
+        <div class="roadmap-item" style="border-color:rgba(167,139,250,.2)">
+          <div class="version">v4.3 · 1 個月</div>
+          <h4 style="color:var(--see)">👁️ 多模態</h4>
+          <p>講義智能掃描<br>語音建立行事曆</p>
+        </div>
+        <div class="roadmap-item" style="border-color:rgba(34,211,238,.2)">
+          <div class="version">v5.0 · 2 個月</div>
+          <h4 style="color:var(--listen)">🤖 全功能 AI</h4>
+          <p>AI 語音助理<br>筆記語意搜尋</p>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:1.5rem;font-size:.85rem;color:var(--text-soft);font-style:italic;font-weight:300">從「手動排程工具」進化為「看得見、聽得懂、會思考、能提醒的全方位 AI 學習助手」</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer">NVIDIA API Research · BlockFlow Presentation</div>
+
+</body>
+</html>

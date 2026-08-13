@@ -1381,10 +1381,13 @@ const Settings = {
     },
 
     setupEventListeners() {
-        this.elements.importSampleData.addEventListener('click', () => this.importSampleData());
-        this.elements.exportData.addEventListener('click', () => this.exportData());
-        this.elements.clearAllData.addEventListener('click', () => this.clearAllData());
-        this.elements.showWalkthrough.addEventListener('click', () => this.showWalkthrough());
+        // Elements below may not exist in all versions of the page — guard against null
+        // (missing elements previously crashed init and prevented ALL later listeners,
+        //  including NVIDIA key save/test and voice settings, from being attached)
+        if (this.elements.importSampleData) this.elements.importSampleData.addEventListener('click', () => this.importSampleData());
+        if (this.elements.exportData) this.elements.exportData.addEventListener('click', () => this.exportData());
+        if (this.elements.clearAllData) this.elements.clearAllData.addEventListener('click', () => this.clearAllData());
+        if (this.elements.showWalkthrough) this.elements.showWalkthrough.addEventListener('click', () => this.showWalkthrough());
 
         this.elements.saveNvidiaKey.addEventListener('click', () => this.saveNvidiaKey());
         this.elements.testNvidiaKey.addEventListener('click', () => this.testNvidiaKey());

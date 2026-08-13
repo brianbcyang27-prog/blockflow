@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>市場價值與商業模式 — BlockFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8f7f4;
+  --card:#ffffff;
+  --border:#e6e4df;
+  --text:#1a1814;
+  --text-soft:#6b665a;
+  --text-muted:#9c978a;
+  --gold:#b8860b;
+  --gold-light:#faf3e0;
+  --emerald:#2d7d46;
+  --emerald-light:#edf7f0;
+  --navy:#1e2a4a;
+  --accent:#c8a845;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Hero */
+.hero{
+  min-height:60vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:4rem 2rem;
+  background:linear-gradient(135deg,#1a1814 0%,#2a2824 100%);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 30% 50%,rgba(200,168,69,.08) 0%,transparent 60%),
+             radial-gradient(ellipse at 70% 50%,rgba(45,125,70,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-label{
+  font-size:.7rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+  margin-bottom:1.25rem;
+  position:relative;
+  z-index:1;
+}
+.hero h1{
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  font-weight:400;
+  line-height:1.1;
+  margin-bottom:1rem;
+  position:relative;
+  z-index:1;
+}
+.hero h1 span{color:var(--accent)}
+.hero p{
+  font-size:clamp(.95rem,1.5vw,1.15rem);
+  color:rgba(255,255,255,.55);
+  max-width:560px;
+  position:relative;
+  z-index:1;
+}
+
+/* Container */
+.container{max-width:920px;margin:0 auto;padding:0 2rem}
+
+/* Section */
+.section{padding:4.5rem 0}
+.section-header{margin-bottom:2.5rem}
+.section-number{
+  font-size:.7rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:.5rem;
+}
+.section h2{
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  font-weight:400;
+  color:var(--text);
+  letter-spacing:-.01em;
+}
+.section h2 i{font-style:italic;color:var(--text-muted);font-weight:400}
+.section-intro{
+  color:var(--text-soft);
+  margin-top:.5rem;
+  font-size:.95rem;
+}
+
+/* Value spectrum (styled as sorted cards) */
+.val-grid{display:grid;gap:1rem;margin-top:1.5rem}
+.val-row{display:grid;grid-template-columns:2rem 1fr;gap:.75rem;align-items:start}
+.val-stars{font-size:.8rem;line-height:1.4;color:var(--accent);text-align:center;font-weight:600}
+.val-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:.5rem;
+  padding:1rem 1.25rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:.5rem;
+  transition:transform .2s ease;
+}
+.val-card:hover{transform:translateX(4px)}
+.val-card .name{font-weight:500;font-size:.9rem}
+.val-card .comp{font-size:.8rem;color:var(--text-muted)}
+.val-card .tag{
+  font-size:.7rem;
+  padding:.2rem .6rem;
+  border-radius:2rem;
+  font-weight:500;
+}
+.tag.core{background:var(--emerald-light);color:var(--emerald)}
+.tag.high{background:var(--gold-light);color:#8b6914}
+.tag.free{background:#f0efec;color:var(--text-soft)}
+
+/* Value clusters */
+.cluster-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.cluster-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:.75rem;
+  padding:1.5rem;
+}
+.cluster-card h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.cluster-card .num{font-family:'Instrument Serif',Georgia,serif;font-size:2rem;color:var(--accent);line-height:1;margin-bottom:.25rem}
+.cluster-card p,.cluster-card li{font-size:.85rem;color:var(--text-soft);line-height:1.7}
+.cluster-card ul{list-style:none;margin-top:.5rem}
+.cluster-card ul li::before{content:'— ';color:var(--text-muted)}
+
+/* Pyramid */
+.pyramid{margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.pyramid-level{
+  border-radius:.5rem;
+  padding:1rem 2rem;
+  text-align:center;
+  width:100%;
+  max-width:600px;
+}
+.pyramid-level.top{background:var(--emerald-light);border:1px solid rgba(45,125,70,.15);max-width:360px}
+.pyramid-level.mid{background:var(--gold-light);border:1px solid rgba(184,134,11,.12);max-width:480px}
+.pyramid-level.base{background:#f0efec;border:1px solid rgba(0,0,0,.06);max-width:600px}
+.pyramid-level .l{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;margin-bottom:.25rem;font-weight:600}
+.pyramid-level .l.top-l{color:var(--emerald)}
+.pyramid-level .l.mid-l{color:#8b6914}
+.pyramid-level .l.base-l{color:var(--text-soft)}
+.pyramid-level .items{font-size:.82rem;color:var(--text-soft)}
+
+/* Pricing table */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-top:1.5rem;align-items:start}
+.plan-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:.75rem;
+  padding:2rem 1.5rem;
+  position:relative;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.plan-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.06)}
+.plan-card.featured{border-color:var(--accent);box-shadow:0 4px 24px rgba(184,134,11,.1)}
+.plan-card.featured .badge{
+  position:absolute;
+  top:-.6rem;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--accent);
+  color:#fff;
+  font-size:.65rem;
+  padding:.2rem 1rem;
+  border-radius:1rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:500;
+}
+.plan-card h3{font-size:1.1rem;font-weight:600;margin-bottom:.25rem}
+.plan-card .price{font-family:'Instrument Serif',Georgia,serif;font-size:2rem;line-height:1.2;margin-bottom:.25rem}
+.plan-card .price span{font-size:.9rem;color:var(--text-muted);font-family:'Inter',sans-serif}
+.plan-card .sub{font-size:.8rem;color:var(--text-muted);margin-bottom:1rem}
+.plan-card ul{list-style:none;font-size:.82rem;line-height:2.2}
+.plan-card ul li{color:var(--text-soft)}
+.plan-card ul li.y{color:var(--emerald)}
+.plan-card ul li.n{color:var(--text-muted)}
+.plan-card ul li::before{content:'';margin-right:0}
+.plan-card .divider{border:none;border-top:1px solid var(--border);margin:.75rem 0}
+
+/* Comparison bar */
+.comp-bar{margin-top:2rem;padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:.75rem}
+.comp-bar h3{font-size:.9rem;font-weight:600;margin-bottom:1rem;text-align:center}
+.comp-list{display:flex;flex-direction:column;gap:.5rem}
+.comp-item{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:.82rem}
+.comp-item:last-child{border-bottom:none}
+.comp-item .name{color:var(--text-soft)}
+.comp-item .price{font-weight:500}
+.comp-item.highlight .name{font-weight:600;color:var(--emerald)}
+.comp-item.highlight .price{color:var(--emerald)}
+
+/* Phase roadmap */
+.phase-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-top:1.5rem}
+.phase-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:.75rem;
+  padding:1.5rem;
+  position:relative;
+}
+.phase-card .phase-num{font-family:'Instrument Serif',Georgia,serif;font-size:3rem;color:var(--accent);opacity:.15;position:absolute;top:.25rem;right:1rem;line-height:1;font-style:italic}
+.phase-card .phase-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);margin-bottom:.25rem}
+.phase-card h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.phase-card .time{font-size:.75rem;color:var(--text-muted);margin-bottom:.75rem;font-weight:500}
+.phase-card ul{list-style:none;font-size:.82rem;line-height:2;color:var(--text-soft)}
+.phase-card ul li::before{content:'→ ';color:var(--accent)}
+.phase-card .success{font-size:.75rem;color:var(--emerald);margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)}
+.phase-card .success::before{content:'🎯 '}
+
+/* Revenue */
+.revenue{margin-top:2rem;padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:.75rem;text-align:center}
+.revenue .big{font-family:'Instrument Serif',Georgia,serif;font-size:2.5rem;color:var(--emerald)}
+.revenue .note{font-size:.8rem;color:var(--text-muted);margin-top:.25rem}
+.revenue .row{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:1rem}
+.revenue .row div{text-align:center}
+.revenue .row div .num{font-size:1.5rem;font-weight:600}
+.revenue .row div .lbl{font-size:.75rem;color:var(--text-muted)}
+
+/* 5 reasons */
+.reasons{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.reason-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:.5rem;
+  padding:1.25rem;
+  text-align:center;
+  transition:transform .2s ease;
+}
+.reason-card:hover{transform:translateY(-2px)}
+.reason-card .icon{font-size:1.5rem;margin-bottom:.5rem;display:block}
+.reason-card h4{font-size:.9rem;font-weight:600;margin-bottom:.25rem}
+.reason-card p{font-size:.8rem;color:var(--text-soft);line-height:1.5}
+
+/* Risk table */
+.risk-table{margin-top:1.5rem;width:100%;border-collapse:collapse;font-size:.82rem}
+.risk-table td{padding:.6rem .75rem;border-bottom:1px solid var(--border);color:var(--text-soft);vertical-align:top}
+.risk-table td:first-child{font-weight:500;color:var(--text);width:28%}
+.risk-table td:nth-child(2){width:15%;color:var(--text-muted)}
+.risk-table tr:last-child td{border-bottom:none}
+
+/* Ethical */
+.ethical-box{margin-top:2rem;padding:1.5rem;background:var(--emerald-light);border:1px solid rgba(45,125,70,.15);border-radius:.75rem;text-align:center}
+.ethical-box h3{font-size:.9rem;color:var(--emerald);margin-bottom:.75rem}
+.ethical-box .items{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+.ethical-box .items span{font-size:.8rem;background:rgba(255,255,255,.6);padding:.3rem .75rem;border-radius:2rem}
+
+/* Divider */
+hr{margin:0;border:none;border-top:1px solid var(--border);opacity:.5}
+
+/* Footer */
+.footer{
+  text-align:center;
+  padding:3rem 2rem;
+  color:var(--text-muted);
+  font-size:.8rem;
+  font-style:italic;
+}
+
+@media(max-width:768px){
+  .cluster-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .phase-grid{grid-template-columns:1fr}
+  .phase-grid .phase-card:not(:last-child){border-bottom:1px solid var(--border);padding-bottom:1.5rem}
+  .reasons{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-label">Business Model</div>
+  <h1>從產品到<span>市場價值</span></h1>
+  <p>不是所有功能都能賺錢——區分「核心價值功能」vs「免費體驗功能」，前者收費，後者留客。</p>
+</header>
+
+<div class="container">
+
+  <!-- Section 1: Value Analysis -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">01 · Value Analysis</div>
+      <h2>功能市場價值分析</h2>
+      <p class="section-intro">一個功能是否有市場價值，取決於三個條件：需求強度 · 市場基準 · 可行性</p>
+    </div>
+
+    <div class="val-grid">
+
+      <div class="val-row">
+        <div class="val-stars">⭐⭐⭐⭐⭐</div>
+        <div class="val-card">
+          <div><span class="name">🤖 AI 助理 (Nova Chat)</span><br><span class="comp">Motion $34/mo · Akiflow $29/mo</span></div>
+          <span class="tag core">💰 核心賣點</span>
+        </div>
+      </div>
+
+      <div class="val-row">
+        <div class="val-stars">⭐⭐⭐⭐⭐</div>
+        <div class="val-card">
+          <div><span class="name">🗓️ AI 行事曆 + 同步</span><br><span class="comp">Reclaim $15/mo · Fantastical $6.99/mo</span></div>
+          <span class="tag core">💰 黏著度強</span>
+        </div>
+      </div>
+
+      <div class="val-row">
+        <div class="val-stars">⭐⭐⭐⭐</div>
+        <div class="val-card">
+          <div><span class="name">🎤 語音系統 (Nova TTS/STT)</span><br><span class="comp">Otter AI $17/mo · ElevenLabs $5/mo</span></div>
+          <span class="tag high">✨ 獨特差異化</span>
+        </div>
+      </div>
+
+      <div class="val-row">
+        <div class="val-stars">⭐⭐⭐</div>
+        <div class="val-card">
+          <div><span class="name">📊 AI 週報 + 生產力分析</span><br><span class="comp">RescueTime $12/mo · Timely $22/mo</span></div>
+          <span class="tag">📈 從工具變教練</span>
+        </div>
+      </div>
+
+      <div class="val-row">
+        <div class="val-stars">⭐⭐⭐</div>
+        <div class="val-card">
+          <div><span class="name">☁️ 跨裝置雲端同步</span><br><span class="comp">Todoist $5/mo · TickTick $3.5/mo</span></div>
+          <span class="tag">🔗 基本但必要</span>
+        </div>
+      </div>
+
+      <div class="val-row">
+        <div class="val-stars">⭐⭐⭐</div>
+        <div class="val-card">
+          <div><span class="name">📎 教材管理 + AI 分析</span><br><span class="comp">Notion AI $10/mo · Mem $15/mo</span></div>
+          <span class="tag">📚 學生剛需</span>
+        </div>
+      </div>
+
+      <div class="val-row">
+        <div class="val-stars">⭐⭐</div>
+        <div class="val-card">
+          <div><span class="name">🧠 AI 記憶系統</span></div>
+          <span class="tag">➕ 加分項</span>
+        </div>
+      </div>
+
+      <div class="val-row">
+        <div class="val-stars">⭐</div>
+        <div class="val-card">
+          <div><span class="name">⏱️ Pomodoro 計時器 · 🧱 三區塊規劃</span></div>
+          <span class="tag free">🆓 維持免費</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Value Clusters -->
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:1.3rem;font-weight:400;margin-top:2.5rem;margin-bottom:.5rem">四大價值集群</h3>
+    <div class="cluster-grid">
+      <div class="cluster-card">
+        <div class="num">01</div>
+        <h3>🤖 AI 排程助理</h3>
+        <p style="font-size:.85rem;color:var(--text-soft)">最強變現引擎 — 每天 10-15 分鐘排程 → AI 30 秒搞定</p>
+        <ul>
+          <li>高頻操作（每天至少一次）</li>
+          <li>BlockFlow 定位 $5-8/月</li>
+          <li>對手：Motion $34 · Akiflow $29</li>
+        </ul>
+      </div>
+      <div class="cluster-card">
+        <div class="num">02</div>
+        <h3>🎤 語音 AI 助理</h3>
+        <p style="font-size:.85rem;color:var(--text-soft)">最強差異化 — PWA 極少有完整語音 I/O</p>
+        <ul>
+          <li>STT: Browser + 進階 Provider</li>
+          <li>TTS: Kokoro + tts.ai + ElevenLabs</li>
+          <li>可作為 Pro 加值功能</li>
+        </ul>
+      </div>
+      <div class="cluster-card">
+        <div class="num">03</div>
+        <h3>📊 生產力數據分析</h3>
+        <p style="font-size:.85rem;color:var(--text-soft)">黏著度引擎 — 每日簡報 → AI 週報 → 洞察儀表板</p>
+        <ul>
+          <li>高轉換成本，換平台就失去歷史</li>
+          <li>從「工具」變成「教練」</li>
+          <li>週報適合社群傳播</li>
+        </ul>
+      </div>
+      <div class="cluster-card">
+        <div class="num">04</div>
+        <h3>☁️ 跨裝置雲端同步</h3>
+        <p style="font-size:.85rem;color:var(--text-soft)">留存基礎設施 — 沒有它用戶就會流失</p>
+        <ul>
+          <li>Firebase Firestore 已建好</li>
+          <li>可以作為 Pro 功能推動升級</li>
+          <li>不是 direct revenue driver</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Value Pyramid -->
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:1.3rem;font-weight:400;margin-top:2.5rem;margin-bottom:.5rem">價值分層</h3>
+    <div class="pyramid">
+      <div class="pyramid-level top">
+        <div class="l top-l">💰 直接收費層</div>
+        <div class="items">AI 排程助理 · 語音 I/O（進階）· AI 週報</div>
+      </div>
+      <div class="pyramid-level mid">
+        <div class="l mid-l">🧱 留存層（Pro 功能）</div>
+        <div class="items">雲端同步 · Google Calendar 雙向同步 · 推播通知</div>
+      </div>
+      <div class="pyramid-level base">
+        <div class="l base-l">🆓 免費用來獲客</div>
+        <div class="items">三區塊規劃 · Pomodoro · 基本行事曆 · 瀏覽器語音 · 7 天歷史</div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 2: Pricing -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-number">02 · Pricing Strategy</div>
+      <h2>定價策略與方案設計</h2>
+      <p class="section-intro">核心挑戰：用戶自備 NVIDIA API Key → 無法對 AI 聊天次數收費，轉而對「便利性」和「加值服務」收費</p>
+    </div>
+
+    <!-- Three-tier API Key -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:1.5rem;margin-bottom:2rem">
+      <div style="padding:1rem;background:var(--card);border:1px solid var(--border);border-radius:.5rem;text-align:center">
+        <div style="font-size:.8rem;font-weight:500">🔑 用戶自帶 Key</div>
+        <div style="font-size:.7rem;color:var(--text-muted);margin-top:.25rem">用戶付 NVIDIA<br>標準模型</div>
+      </div>
+      <div style="padding:1rem;background:var(--gold-light);border:1px solid rgba(184,134,11,.15);border-radius:.5rem;text-align:center">
+        <div style="font-size:.8rem;font-weight:500">⭐ Pro 內含 Key</div>
+        <div style="font-size:.7rem;color:var(--text-muted);margin-top:.25rem">我們付 NVIDIA<br>所有模型</div>
+      </div>
+      <div style="padding:1rem;background:var(--card);border:1px solid var(--border);border-radius:.5rem;text-align:center">
+        <div style="font-size:.8rem;font-weight:500">🔄 BYOK + 加購</div>
+        <div style="font-size:.7rem;color:var(--text-muted);margin-top:.25rem">自備 Key + 月費<br>進階功能</div>
+      </div>
+    </div>
+
+    <!-- Pricing plans -->
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <h3>Free</h3>
+        <div class="price">$0<span>/月</span></div>
+        <div class="sub">獲客用 · 無廣告（永久承諾）</div>
+        <hr class="divider">
+        <ul>
+          <li class="y">🧱 三區塊規劃 ✅</li>
+          <li class="y">⏱️ Pomodoro 計時器 ✅</li>
+          <li class="y">🗓️ 基本行事曆（30 筆）✅</li>
+          <li class="y">🤖 AI 聊天（自備 Key）✅</li>
+          <li class="y">🎤 語音輸入（Browser）✅</li>
+          <li class="y">📊 7 天歷史 ✅</li>
+          <li class="y">💾 記憶系統（20 筆）✅</li>
+          <li class="n">☁️ 雲端同步 ❌</li>
+          <li class="n">🖥️ 1 台裝置</li>
+        </ul>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="badge">推薦</div>
+        <h3>學生方案</h3>
+        <div class="price">$2.99<span>/月</span></div>
+        <div class="sub">$29/年 · 需 .edu 驗證</div>
+        <hr class="divider">
+        <ul>
+          <li class="y">🤖 標準 AI 模型（自備/內建）✅</li>
+          <li class="y">🎤 ElevenLabs 10,000 字 ✅</li>
+          <li class="y">☁️ 雲端同步 ✅</li>
+          <li class="y">📅 Google Calendar ✅</li>
+          <li class="y">📊 AI 週報 ✅</li>
+          <li class="y">💾 AI 記憶無上限 ✅</li>
+          <li class="y">📎 教材無上限 ✅</li>
+          <li class="y">🖥️ 裝置無限制 ✅</li>
+        </ul>
+      </div>
+
+      <div class="plan-card">
+        <h3>Pro</h3>
+        <div class="price">$4.99<span>/月</span></div>
+        <div class="sub">$49/年 · 約 18% 折扣</div>
+        <hr class="divider">
+        <ul>
+          <li class="y">🤖 內建 Key + 所有 NVIDIA 模型 ✅</li>
+          <li class="y">🧠 Nemotron Super 49B ✅</li>
+          <li class="y">🧠 Nemotron Nano 9B ✅</li>
+          <li class="y">🗣️ ElevenLabs 30,000 字 ✅</li>
+          <li class="y">🗣️ tts.ai 50,000 字 ✅</li>
+          <li class="y">📅 Google Calendar 雙向同步 ✅</li>
+          <li class="y">☁️ 跨裝置雲端同步 ✅</li>
+          <li class="y">📊 AI 週報 + PDF ✅</li>
+          <li class="y">🔔 推播通知 ✅</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Pricing psychology -->
+    <div class="comp-bar">
+      <h3>定價心理學 — 為什麼 $4.99？</h3>
+      <div class="comp-list">
+        <div class="comp-item"><span class="name">Motion</span><span class="price">$34/月</span></div>
+        <div class="comp-item"><span class="name">Akiflow</span><span class="price">$29/月</span></div>
+        <div class="comp-item"><span class="name">Reclaim</span><span class="price">$15/月</span></div>
+        <div class="comp-item"><span class="name">Todoist</span><span class="price">$5/月</span></div>
+        <div class="comp-item"><span class="name">TickTick</span><span class="price">$3.5/月</span></div>
+        <div class="comp-item highlight"><span class="name">✨ BlockFlow Pro</span><span class="price">$4.99/月</span></div>
+      </div>
+      <p style="text-align:center;margin-top:1rem;font-size:.8rem;color:var(--text-muted)">比 Todoist 多一個 AI 大腦 · 比 Motion 便宜 7 倍 · 台灣學生 NT$90/月 = 一杯手搖飲</p>
+    </div>
+
+    <!-- Revenue -->
+    <div class="revenue">
+      <h3 style="font-size:.9rem;font-weight:600;margin-bottom:.5rem">預估收入模型</h3>
+      <div class="row">
+        <div><div class="num">10,000</div><div class="lbl">MAU</div></div>
+        <div><div class="num">3%</div><div class="lbl">Free → Pro 轉換率</div></div>
+        <div><div class="big">$1,257</div><div class="lbl">MRR（月）≈ NT$40,000</div></div>
+      </div>
+      <div class="row" style="border-top:1px solid var(--border);padding-top:1rem;margin-top:1rem">
+        <div><div class="num">50,000</div><div class="lbl">MAU 擴張</div></div>
+        <div><div class="big">$6,285</div><div class="lbl">MRR（月）≈ NT$200,000</div></div>
+      </div>
+    </div>
+
+    <!-- Ethical -->
+    <div class="ethical-box">
+      <h3>🛡️ 倫理底線 — 永遠免費</h3>
+      <div class="items">
+        <span>🧱 三區塊規劃</span>
+        <span>⏱️ Pomodoro</span>
+        <span>🗓️ 基本行事曆</span>
+        <span>🎤 瀏覽器語音</span>
+        <span>🚫 無廣告</span>
+        <span>💾 本機資料完整可用</span>
+      </div>
+      <p style="font-size:.75rem;color:var(--text-muted);margin-top:.75rem">用戶的資料永遠屬於用戶，即使不付費，也可以完整使用所有本機功能。</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 3: Market Entry -->
+  <section class="section" style="padding-bottom:6rem">
+    <div class="section-header">
+      <div class="section-number">03 · Market Entry</div>
+      <h2>市場切入與執行路徑</h2>
+      <p class="section-intro">從現在的「無收入 PWA」到「月收 $5K+ 的產品」</p>
+    </div>
+
+    <!-- User personas -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem">
+        <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);margin-bottom:.25rem">Primary</div>
+        <h3 style="font-size:1rem;font-weight:600">🎓 大學生 / 研究生</h3>
+        <p style="font-size:.82rem;color:var(--text-soft);margin-top:.5rem">18-25 歲 · 手機居多 · 價格敏感<br>課表亂、作業截止日記不清、讀書沒方向<br>養成習慣後至少用 2-4 年</p>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem">
+        <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--text-muted);margin-bottom:.25rem">Secondary</div>
+        <h3 style="font-size:1rem;font-weight:600">💼 年輕工作者</h3>
+        <p style="font-size:.82rem;color:var(--text-soft);margin-top:.5rem">25-35 歲 · 電腦為主 · 有付費習慣<br>工作生活失衡、待辦事項太多、專注力不足<br>願意付 $5-10/月 來提升效率</p>
+      </div>
+    </div>
+
+    <!-- Phase roadmap -->
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:1.3rem;font-weight:400;margin-top:2.5rem;margin-bottom:.5rem">三階段執行路徑</h3>
+    <div class="phase-grid">
+
+      <div class="phase-card">
+        <div class="phase-num">I</div>
+        <div class="phase-label">Phase 1</div>
+        <h3>🧪 驗證期</h3>
+        <div class="time">📅 現在 — 1 個月</div>
+        <ul>
+          <li>加入贊助按鈕（Buy Me a Coffee）</li>
+          <li>蒐集 Pro 等候清單 email</li>
+          <li>GitHub Sponsor 開啟</li>
+          <li>Dcard / Reddit 發佈測試</li>
+          <li>加入基本使用統計</li>
+        </ul>
+        <div class="success">50+ email · DAU > 100 · 贊助 > $0</div>
+      </div>
+
+      <div class="phase-card" style="border-color:rgba(184,134,11,.2)">
+        <div class="phase-num">II</div>
+        <div class="phase-label">Phase 2</div>
+        <h3>💳 MVP 收費期</h3>
+        <div class="time">📅 1 — 3 個月</div>
+        <ul>
+          <li>Stripe / Paddle 金流串接</li>
+          <li>Feature Flag 系統（Free vs Pro）</li>
+          <li>Pro Key 管理後端</li>
+          <li>NVIDIA Proxy（用量控制）</li>
+          <li>Product Hunt 發布</li>
+        </ul>
+        <div class="success">MRR > $1,000 · 轉換率 > 3%</div>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-num">III</div>
+        <div class="phase-label">Phase 3</div>
+        <h3>🚀 成長期</h3>
+        <div class="time">📅 3 — 6 個月</div>
+        <ul>
+          <li>學生方案（.edu 驗證）</li>
+          <li>年繳方案 · 推薦計畫</li>
+          <li>與學校 / 補習班 B2B 合作</li>
+          <li>AI 洞察儀表板（Pro 限定）</li>
+          <li>日 / 韓 / 英文版本</li>
+        </ul>
+        <div class="success">MRR > $5,000 · MAU > 50,000</div>
+      </div>
+
+    </div>
+
+    <!-- Risks -->
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:1.3rem;font-weight:400;margin-top:2.5rem;margin-bottom:.75rem">風險與對策</h3>
+    <table class="risk-table">
+      <tr><td>用戶不願意為 PWA 付費</td><td>🟡 高</td><td>驗證期先測贊助；若失敗 → 加速 Native App</td></tr>
+      <tr><td>NVIDIA API 成本太高</td><td>🟢 中</td><td>用量限制（5000次/月）；多模型 routing</td></tr>
+      <tr><td>Free 太多 Pro 太少</td><td>🟢 中</td><td>調整 Free 限制，但不破壞核心體驗</td></tr>
+      <tr><td>被大廠抄襲</td><td>🔵 低</td><td>AI 記憶 + 語音生態系是護城河</td></tr>
+      <tr><td>學生沒信用卡</td><td>🟢 中</td><td>電信代扣 · LINE Pay · 超商代碼</td></tr>
+    </table>
+
+    <!-- 5 reasons -->
+    <h3 style="font-family:'Instrument Serif',Georgia,serif;font-size:1.3rem;font-weight:400;margin-top:2.5rem;margin-bottom:.5rem">為什麼 BlockFlow 可以賺錢？</h3>
+    <div class="reasons">
+      <div class="reason-card">
+        <span class="icon">🎯</span>
+        <h4>解決真實痛點</h4>
+        <p>「今天要怎麼安排？」是每個人每天的煩惱</p>
+      </div>
+      <div class="reason-card">
+        <span class="icon">💰</span>
+        <h4>定價合理</h4>
+        <p>$4.99/月 = 比一杯手搖飲還便宜</p>
+      </div>
+      <div class="reason-card">
+        <span class="icon">🏰</span>
+        <h4>轉換成本高</h4>
+        <p>AI 記住習慣 + 100 筆事件 = 用戶不離開</p>
+      </div>
+      <div class="reason-card">
+        <span class="icon">🌏</span>
+        <h4>市場夠大</h4>
+        <p>全球 2.5 億大學生，0.1% 付費 = $125K/月</p>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:2rem;font-family:'Instrument Serif',Georgia,serif;font-size:1.1rem;font-style:italic;color:var(--text-soft)">
+      BlockFlow 不是為了賺錢而存在，但只有賺錢才能讓它持續存在。
+    </p>
+
+  </section>
+
+</div>
+
+<div class="footer">BlockFlow · Market Analysis</div>
+
+</body>
+</html>
